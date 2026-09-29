@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {initial,command,tick,moving,parked,aligned,metrics} from '../lib/simulation.ts';
+const settle=s=>{for(let i=0;i<6000&&moving(s);i++)s=tick(s,1/60);assert.ok(!moving(s),'movement reaches target');return s;};
+let checks=0;const check=(value,label)=>{assert.ok(value,label);checks++;console.log('PASS '+label);};
+let s=initial();s=command(s,{type:'move',key:'length',value:15});check(s.target.length===9,'power-off blocks movement');
+s=command(s,{type:'power'});s=command(s,{type:'move',key:'length',value:15});check(s.target.length===9,'unconfirmed aircraft blocks approach');
+s=command(s,{type:'area',value:true});s=command(s,{type:'authorize',value:true});s=command(s,{type:'canopy',open:true});check(s.target.canopy===0,'canopy blocked far from door');
+s=command(s,{type:'move',key:'length',value:15.6});s=tick(s,.05);check(s.pose.length>9,'real animated movement');
+s=command(s,{type:'emergency'});const frozen={...s.pose};for(let i=0;i<60;i++)s=tick(s,.05);check(JSON.stringify(s.pose)===JSON.stringify(frozen),'emergency freezes all axes immediately');
+s=command(s,{type:'resetEmergency'});s=tick(s,.05);check(!moving(s),'emergency reset never resumes stale command');
+s=command(s,{type:'move',key:'angle',value:0});s=settle(s);s=command(s,{type:'move',key:'height',value:3.4});s=settle(s);s=command(s,{type:'move',key:'length',value:15.6});s=settle(s);check(aligned(s.pose),'manual alignment reaches door');
+s=command(s,{type:'canopy',open:true});s=tick(s,.05);const before=s.target.length;s=command(s,{type:'move',key:'length',value:14});check(s.target.length===before,'partially deployed canopy locks bridge');s=settle(s);check(s.pose.canopy===1,'manual connection complete');
+s=command(s,{type:'canopy',open:false});check(s.target.canopy===1,'end service required before canopy retract');
+s=command(s,{type:'service'});s=command(s,{type:'canopy',open:false});s=settle(s);s=command(s,{type:'move',key:'length',value:14});s=settle(s);s=command(s,{type:'park'});s=settle(s);check(parked(s),'manual departure reaches parking');
+s=command(initial(),{type:'guide'});for(let i=0;i<10000&&s.step!==5;i++)s=tick(s,1/60);check(s.step===5&&s.pose.canopy===1&&s.paused,'guided approach completes and pauses for explanation');
+s=command(s,{type:'guide',departure:true});for(let i=0;i<10000&&s.step!==10;i++)s=tick(s,1/60);check(s.step===10&&parked(s)&&!s.power,'guided departure completes and powers off');
+s=initial();for(const c of [{type:'power'},{type:'area',value:true},{type:'authorize',value:true},{type:'move',key:'angle',value:0}])s=command(s,c);s=settle(s);s=command(s,{type:'move',key:'length',value:100});s=settle(s);check(metrics(s.pose).gap>=.24,'overshoot clamped before aircraft safety plane');
+s=command(s,{type:'move',key:'length',value:12});s=command(s,{type:'pause'});const p={...s.pose};s=tick(s,.05);check(JSON.stringify(p)===JSON.stringify(s.pose),'pause freezes motion');s=command(s,{type:'pause'});s=settle(s);check(s.pose.length===12,'resume reaches target');
+s=command(s,{type:'move',key:'length',value:15});s=command(s,{type:'authorize',value:false});check(!moving(s),'revoking clearance aborts motion');
+s=command(s,{type:'reset'});check(parked(s)&&!s.power&&!s.authorized,'full reset restores lesson');
+console.log(`${checks} behavioral checks passed.`);
+// Tiny remainder must finish exactly: a partially retracted canopy must not lock forever.
+let residual=initial();residual.power=true;residual.pose.canopy=.0002;residual.target.canopy=0;
+residual=tick(residual,.016);assert.equal(residual.pose.canopy,0);console.log('PASS canopy sub-millimetre remainder finishes exactly');
