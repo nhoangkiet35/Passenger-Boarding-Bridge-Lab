@@ -2,6 +2,8 @@
 
 Website React + TypeScript + Three.js qua React Three Fiber. Mô hình tạo bằng hình khối trong code, không cần tải tài nguyên 3D, ảnh hoặc font bên ngoài khi sử dụng. Giao diện tiếng Việt, responsive, có điều khiển chuột và bàn phím.
 
+Xem [README tại gốc repository](../README.md) để có hướng dẫn cài đặt từng bước, chạy production và xử lý lỗi. Nếu dùng gói ZIP chỉ chứa thư mục này, các lệnh bên dưới vẫn đủ để khởi động.
+
 ## Cài đặt và chạy
 
 Yêu cầu Node.js 24 LTS và pnpm 11. Nếu chưa có pnpm: `npm install -g pnpm@11.19.0`.
@@ -62,4 +64,3 @@ Dùng để học tập/thuyết trình, không phải hướng dẫn vận hàn
 - `scripts/test-simulation.mjs`: các kiểm tra hành vi độc lập.
 
 Không lưu tiến trình sau khi tải lại trang. WebMCP `pbb_status` là phần tùy chọn, chỉ đọc trạng thái trong trình duyệt hỗ trợ; không bắt buộc để dùng website.
-
