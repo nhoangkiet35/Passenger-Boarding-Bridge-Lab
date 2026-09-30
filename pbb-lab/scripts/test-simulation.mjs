@@ -22,3 +22,5 @@ console.log(`${checks} behavioral checks passed.`);
 // Tiny remainder must finish exactly: a partially retracted canopy must not lock forever.
 let residual=initial();residual.power=true;residual.pose.canopy=.0002;residual.target.canopy=0;
 residual=tick(residual,.016);assert.equal(residual.pose.canopy,0);console.log('PASS canopy sub-millimetre remainder finishes exactly');
+
+await import('./test-console.mjs');

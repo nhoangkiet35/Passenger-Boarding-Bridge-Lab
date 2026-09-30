@@ -11,6 +11,13 @@ function Camera({view,reset}:{view:string;reset:number}){const controls=useRef<a
 }
 export default function Scene({s,labels,view,reset}:{s:State;labels:boolean;view:string;reset:number}){
  const [lost,setLost]=useState(false);return <><Canvas shadows dpr={[1,1.7]} camera={{position:[-24,23,30],fov:43}} onCreated={({gl})=>{gl.domElement.addEventListener('webglcontextlost',()=>setLost(true));gl.domElement.addEventListener('webglcontextrestored',()=>setLost(false));}}>
+  <World s={s} labels={labels}/><Camera view={view} reset={reset}/>
+ </Canvas>{lost&&<div className="webgl-error">Kết nối đồ họa bị gián đoạn. Hãy tải lại trang để khôi phục cảnh 3D.</div>}</>;
+}
+
+
+
+export function World({s,labels=false,cctv=false}:{s:State;labels?:boolean;cctv?:boolean}){return <>
   <color attach="background" args={['#dce7ed']}/><fog attach="fog" args={['#dce7ed',55,115]}/>
   <ambientLight intensity={1.4}/><hemisphereLight args={['#eaf9ff','#738b97',1]}/><directionalLight position={[-10,28,-15]} intensity={2.6} castShadow shadow-mapSize={[2048,2048]} shadow-camera-left={-35} shadow-camera-right={35} shadow-camera-top={35} shadow-camera-bottom={-35} shadow-normalBias={.03}/>
   <Box at={[0,-.21,0]} size={[130,.4,130]} color="#adbec8"/>
@@ -19,14 +26,12 @@ export default function Scene({s,labels,view,reset}:{s:State;labels:boolean;view
   <Box at={[-13.45,4.9,0]} size={[.08,4,34]} color="#416576"/>
   {Array.from({length:18},(_,i)=><Box key={i} at={[-13.3,4.9,-16.5+i*1.94]} size={[.15,4.3,.09]} color="#95b4c5"/>)}
   <Box at={[-19,8.2,0]} size={[11.6,.3,35.5]} color="#e2edf2"/>
-  <Html position={[-13.1,7.1,7]} center zIndexRange={[10,0]}><span className="terminal-label">NHÀ GA · A04</span></Html>
+  {!cctv&&<Html position={[-13.1,7.1,7]} center zIndexRange={[10,0]}><span className="terminal-label">NHÀ GA · A04</span></Html>}
   <Line points={[[7,.025,-25],[7,.025,26]]} color="#e8bc45" lineWidth={3}/>
   <Line points={[[3,.027,-9],[11,.027,-9]]} color="#e8bc45" lineWidth={3}/>
   <Line points={[[-11,.03,-8],[2.5,.03,-8],[2.5,.03,7],[-11,.03,7],[-11,.03,-8]]} color="#f2dfb2" lineWidth={2} dashed dashSize={.55} gapSize={.4}/>
   <Line points={[[4.6,.035,-3],[4.6,.035,3]]} color={metrics(s.pose).gap<.65?'#e35240':'#dc846a'} lineWidth={6}/>
-  {metrics(s.pose).gap<.65&&<mesh position={[4.6,2.6,0]}><boxGeometry args={[.12,5.2,5]}/><meshBasicMaterial color="#ff654f" transparent opacity={.15} depthWrite={false}/></mesh>}
-  <Aircraft labels={labels}/><PBB pose={s.pose} labels={labels}/><Camera view={view} reset={reset}/>
- </Canvas>{lost&&<div className="webgl-error">Kết nối đồ họa bị gián đoạn. Hãy tải lại trang để khôi phục cảnh 3D.</div>}</>;
-}
+  {!cctv&&metrics(s.pose).clearance<.65&&<mesh position={[4.6,2.6,0]}><boxGeometry args={[.12,5.2,5]}/><meshBasicMaterial color="#ff654f" transparent opacity={.15} depthWrite={false}/></mesh>}
+  <Aircraft labels={labels} annotations={!cctv}/><PBB pose={s.pose} labels={labels} annotations={!cctv} highlight={!cctv} aux={s.power?s.aux:{interior:false,exterior:false,aircon:false,ventilation:false}}/>
 
-
+</>;}

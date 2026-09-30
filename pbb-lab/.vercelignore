@@ -1,0 +1,16 @@
+node_modules
+.pnpm-store
+.git
+.env*
+.wrangler
+.vinext
+.next
+.sites-runtime
+.openai
+dist
+dist-vercel
+outputs
+work
+*.log
+*.zip
+*.tsbuildinfo

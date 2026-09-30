@@ -1,5 +1,16 @@
 # Kết quả kiểm tra
 
+## Bản Vercel và bàn điều khiển cabin
+
+- Build tĩnh `vite build --config vite.vercel.config.ts`: thành công (cảnh báo dung lượng bundle Three.js lớn, không chặn build).
+- TypeScript: đạt. Tổng 40 kiểm tra logic chu trình, liên động, joystick và camera: đạt.
+- Preview production tại cổng 4173: trang khởi tạo được, bật AUTO/PRESET khởi động chu trình và CCTV chuyển sang LIVE 3D.
+- Vercel production READY: https://passenger-boarding-bridge.vercel.app (deployment `dpl_3kzVpLJNdDYsi1TBHSy68Am3LNGA`). Truy cập HTTP không đăng nhập trả 200 và đúng HTML PBB Lab.
+- Build trên Linux của Vercel thành công sau khi dùng `--ignore-scripts`, cùng cách cài dependency đã kiểm tra tại local.
+- Vercel từ chối alias `www.passenger-boarding-bridge.vercel.app`: tài khoản không có quyền dùng `*.passenger-boarding-bridge.vercel.app`.
+
+## Kiểm tra bản ban đầu
+
 - Cài đặt dependency: pnpm 11.19.0, frozen lockfile, bỏ qua lifecycle script; thành công.
 - Logic: 18 tình huống chu trình/liên động và 1 hồi quy canopy còn sai số nhỏ; tất cả đạt.
 - TypeScript: tsc --noEmit đạt.

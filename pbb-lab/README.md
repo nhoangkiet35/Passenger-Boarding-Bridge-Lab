@@ -50,7 +50,7 @@ Thanh trượt đặt mục tiêu; nút ± thay đổi từng nấc. Có thể d
 
 ## Giới hạn mô hình
 
-Dùng để học tập/thuyết trình, không phải hướng dẫn vận hành chính thức và không điều khiển thiết bị thật. Hình học, tốc độ, ngưỡng an toàn không đại diện cho một mẫu PBB/sân bay cụ thể. Canopy giản lược bằng nếp xếp; cabin không xoay độc lập; tiến/lùi được thể hiện bằng thay đổi chiều dài ống. Không mô phỏng cơ khí thủy lực, tải trọng, tự cân bằng, cảm biến, cầu thang, cửa mở, độ quay lốp/góc lái bánh xe hoặc biến dạng thân tàu bay.
+Dùng để học tập/thuyết trình, không phải hướng dẫn vận hành chính thức và không điều khiển thiết bị thật. Hình học, tốc độ, ngưỡng an toàn không đại diện cho một mẫu PBB/sân bay cụ thể. Canopy giản lược bằng nếp xếp, đóng/mở đồng bộ; cabin xoay độc lập ±12°, sàn nghiêng ±3° theo mô hình minh họa; tiến/lùi được thể hiện bằng thay đổi chiều dài ống. Không mô phỏng cơ khí thủy lực, tải trọng, tự cân bằng, cảm biến, cầu thang, cửa mở, độ quay lốp/góc lái bánh xe hoặc biến dạng thân tàu bay.
 
 ## Tổ chức mã nguồn
 
@@ -64,3 +64,52 @@ Dùng để học tập/thuyết trình, không phải hướng dẫn vận hàn
 - `scripts/test-simulation.mjs`: các kiểm tra hành vi độc lập.
 
 Không lưu tiến trình sau khi tải lại trang. WebMCP `pbb_status` là phần tùy chọn, chỉ đọc trạng thái trong trình duyệt hỗ trợ; không bắt buộc để dùng website.
+
+## Bàn điều khiển cabin và CCTV
+
+Bàn điều khiển mới nằm dưới cảnh tổng thể; nhấn **Bàn điều khiển cabin ↓** ở đầu trang để chuyển đến đó. Bố cục tham khảo hình người dùng cung cấp, không mô phỏng chính xác phần cứng hay tiêu chuẩn của một nhà sản xuất.
+
+- **Khóa TẮT / THỦ CÔNG / TỰ ĐỘNG** đồng bộ với nguồn và chế độ bài học. **POWER ON/OFF** cấp/ngắt nguồn mô phỏng.
+- **Joystick**: kéo lên/xuống để tiến/lùi; kéo trái/phải để xoay cầu. Độ lệch cần quyết định tốc độ. Có thể focus joystick bằng Tab rồi giữ phím mũi tên; bốn nút hướng bên dưới cũng là nút giữ để chạy.
+- **Thả chuột/phím, mất pointer capture, đổi cửa sổ, tạm dừng, ngắt nguồn hoặc dừng khẩn cấp** đều hủy lệnh giữ. Cầu không tự tiếp tục cho tới khi có lệnh mới.
+- **TUNNEL UP/DOWN**, **CAB ROTATION** và **LEVEL FLOOR** là nút giữ để nâng/hạ, xoay cabin và nghiêng sàn. Phạm vi cabin ±12°, sàn ±3° chỉ là giá trị minh họa. Khi chuẩn bị kết nối, đưa sàn gần 0° và hướng cabin thẳng với cửa.
+- **CANOPY** dùng hai nút thu/triển khai; không có cơ cấu rèm trái/phải độc lập trong mô hình.
+- **PRESET START** chạy tiếp cận ở chế độ TỰ ĐỘNG; sau khi kết nối, nút này chuyển sang chu trình tách cầu.
+- **Đèn trong / đèn ngoài** bật nguồn sáng tại cabin trong cả hai cảnh. **Thông gió** quay quạt 3D. **Điều hòa** thay đổi nhiệt độ minh họa về 22 °C; đây không phải mô hình nhiệt động lực học.
+- **EMRG. STOP** dừng mọi trục cầu; **RESET** giải chốt khẩn cấp, không tự phục hồi lệnh cũ.
+
+CCTV dùng camera 3D gắn cố định trong cabin, cùng dữ liệu hình học và trạng thái với cảnh tổng thể. Camera đi theo góc cầu, độ cao và góc xoay cabin, nhìn hơi chếch xuống để quan sát cửa và mép sàn. Không tự bám cửa, không dùng webcam, không xin quyền truy cập camera thật. Màn hình mất hình khi ngắt nguồn; dừng khẩn cấp vẫn giữ CCTV nếu nguồn còn bật. Dấu ngắm chỉ là mốc cố định trên hình, không phải nhận dạng cửa bằng cảm biến.
+
+Các chỉ số khoảng hở, lệch ngang ΔZ và lệch sàn ΔH giúp so sánh hình ảnh với vị trí hình học. Liên động bảo vệ tính cả mép cabin khi xoay, không chỉ tâm đầu cầu. Bài kiểm tra console/camera nằm ở `scripts/test-console.mjs` và được chạy cùng `pnpm test`.
+
+Các file bổ sung: `components/pbb/OperatorConsole.tsx`, `CctvMonitor.tsx`, `Joystick.tsx` và `console.css`.
+## Triển khai lên Vercel
+
+Bản production: https://passenger-boarding-bridge.vercel.app
+
+Ứng dụng có bản build tĩnh riêng dùng chung mô phỏng 3D, bàn điều khiển và CCTV. Không cần database hay biến môi trường.
+
+Chạy trong thư mục `pbb-lab`:
+
+```powershell
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm test
+pnpm typecheck
+pnpm build:vercel
+pnpm preview:vercel --port 4173
+```
+
+Đăng nhập và triển khai lại từ **thư mục gốc repository** (cấp cha của `pbb-lab`), vì dự án Vercel đã đặt Root Directory là `pbb-lab`:
+
+```powershell
+npx vercel login
+cd ..
+npx vercel link --project passenger-boarding-bridge
+npx vercel --prod
+```
+
+Nếu import Git trên Vercel, chọn Root Directory `pbb-lab`. File `vercel.json` đã đặt framework Vite, build command `pnpm build:vercel` và output `dist-vercel`. Địa chỉ production mong muốn là `passenger-boarding-bridge.vercel.app`, tùy tình trạng tên miền trên tài khoản Vercel. Không tự thêm `www` trước tên miền được Vercel cấp.
+
+`pnpm dev` vẫn sử dụng cấu hình phát triển hiện có. Không dùng output Cloudflare `dist/server` cho Vercel.
+
+Vercel đã liên kết repository GitHub. Cần commit/push các file cấu hình Vercel và mã nguồn mới trước khi dùng auto-deploy qua Git. Lần phát hành hiện tại được tải trực tiếp từ máy local.

@@ -8,6 +8,7 @@ node_modules/
 # Generated application output and caches
 # Keep pbb-lab/build/: it contains source for the Vite plugin.
 dist/
+dist-vercel/
 .next/
 .vinext/
 out/
@@ -66,3 +67,6 @@ Desktop.ini
 
 # Keep source and reproducible configuration tracked:
 # pnpm-lock.yaml, package.json, .npmrc, .openai/hosting.json, build/, public/
+
+.vercel
+.env*
