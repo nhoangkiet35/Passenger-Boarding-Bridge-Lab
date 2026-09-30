@@ -66,3 +66,6 @@ Desktop.ini
 
 # Keep source and reproducible configuration tracked:
 # pnpm-lock.yaml, package.json, .npmrc, .openai/hosting.json, build/, public/
+
+.vercel
+.env*

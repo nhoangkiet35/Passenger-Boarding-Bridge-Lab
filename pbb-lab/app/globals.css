@@ -6,6 +6,19 @@
 @media(max-width:850px){main{padding:0 14px}.topbar{height:66px}.brand-divider{display:none}.training-badge{font-size:9px;letter-spacing:.7px}.page-title{padding:23px 0;align-items:flex-start;gap:14px}h1{font-size:24px}.page-title p{font-size:14px}.page-title .eyebrow{font-size:9px}.reset-all{font-size:0;min-width:36px;padding:9px}.workspace,.knowledge{grid-template-columns:1fr}.viewport{height:470px}.control-panel{padding:22px}.checks label{font-size:14px}.axis-title label{font-size:14px}.two-buttons button,.canopy-row button{font-size:14px}.knowledge{margin-top:14px}.terms p,.explanation p{font-size:14px}.process li p{font-size:12px}.process li{flex-basis:20%}.brand-caption{display:none}footer b{display:none}}
 @media(max-width:480px){.viewport{height:380px}.simulation-toolbar{padding:10px;gap:10px}.simulation-toolbar [data-slot=tabs-trigger]{font-size:12px;padding:6px 10px}.label-toggle{margin-left:auto}.scene-badge{left:13px;font-size:10px}.scene-badge small{font-size:8px}.telemetry{padding:15px 4px}.telemetry strong{font-size:21px}.telemetry span{font-size:8px;letter-spacing:.3px}.telemetry>div{padding-left:8px}.telemetry small{font-size:11px}.scene-help{bottom:47px;left:13px}.state-pill{right:12px}.playback{padding:12px}.playback-actions{gap:5px}.playback button{font-size:12px}.action-label{font-size:12px}.process-card{padding:17px}.page-title p{line-height:1.6}.page-title h1{font-size:23px}.training-badge{max-width:112px;text-align:center;line-height:1.5}.process li p{font-size:10px}.topbar .brand b{font-size:22px}}
 @media(prefers-reduced-motion:reduce){button{transition:none}}
+.control-panel.is-collapsed .panel-heading{margin-bottom:0}
+.control-panel-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.control-panel-toggle{font-size:12px;padding:6px 8px;min-height:36px;color:#137e8b;background:#eef6f7;border-color:#c6dce3;white-space:nowrap}
+.control-panel .panel-heading h2{font-size:17px}
+@media(min-width:851px){
+  .workspace.controls-collapsed{grid-template-columns:minmax(0,1fr) 100px}
+  .workspace .control-panel.is-collapsed{padding:16px 8px}
+  .control-panel.is-collapsed .panel-heading{flex-direction:column;gap:14px;text-align:center}
+  .control-panel.is-collapsed .panel-heading h2{display:none}
+  .control-panel.is-collapsed .panel-heading .eyebrow{margin:0;white-space:nowrap}
+  .control-panel.is-collapsed .control-panel-actions{flex-direction:column;gap:14px}
+  .control-panel.is-collapsed .control-panel-toggle{flex-direction:column;width:100%;gap:4px}
+}
 /* Keep interactive primitives independent of the generic button surface. */
 button[data-slot="switch"]{width:34px;height:20px;min-height:20px;padding:2px;border:0;border-radius:999px;background:#c6d5df;display:inline-flex;justify-content:flex-start;flex-shrink:0}
 button[data-slot="switch"][data-state="checked"]{background:#178493}

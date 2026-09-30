@@ -1,12 +1,15 @@
-import { Power,MoveHorizontal,RotateCw,ArrowUpDown,Octagon,Home,Check,ShieldCheck } from 'lucide-react';
+import { useId } from 'react';
+import { Power,MoveHorizontal,RotateCw,ArrowUpDown,Octagon,Home,Check,ShieldCheck,ChevronUp,ChevronDown } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { Checkbox } from '@/components/ui/checkbox';
 import { limits,type Command,type State } from '@/lib/simulation';
-export default function Controls({s,send}:{s:State;send:(c:Command)=>State}){
+export default function Controls({s,send,collapsed,onToggle}:{s:State;send:(c:Command)=>State;collapsed:boolean;onToggle:()=>void}){
  const manual=s.mode==='manual';
- return <aside className="control-panel">
-  <div className="panel-heading"><div><span className="eyebrow">PBB / 01</span><h2>Bảng điều khiển</h2></div><span className={'power-dot '+(s.power?'on':'')}/></div>
+ const contentId=useId();
+ return <aside className={'control-panel'+(collapsed?' is-collapsed':'')}>
+  <div className="panel-heading"><div><span className="eyebrow">PBB / 01</span><h2>Bảng điều khiển</h2></div><div className="control-panel-actions"><span className={'power-dot '+(s.power?'on':'')} role="img" aria-label={s.power?'Nguồn đang bật':'Nguồn đang tắt'}/><button type="button" className="control-panel-toggle" aria-expanded={!collapsed} aria-controls={contentId} aria-label={collapsed?'Mở rộng bảng điều khiển':'Thu gọn bảng điều khiển'} onClick={onToggle}>{collapsed?'Mở rộng':'Thu gọn'}{collapsed?<ChevronDown size={16} aria-hidden="true"/>:<ChevronUp size={16} aria-hidden="true"/>}</button></div></div>
+  <div id={contentId} hidden={collapsed}>
   <label className="power-row"><span><Power size={18}/>Nguồn mô phỏng</span><Switch aria-label="Nguồn mô phỏng" checked={s.power} onCheckedChange={()=>send({type:'power'})}/></label>
   <div className="checks"><p><ShieldCheck size={15}/> Điều kiện tiếp cận</p>
    <label><Checkbox checked={s.area} disabled={!manual} onCheckedChange={v=>send({type:'area',value:v===true})}/>Khu vực di chuyển thông thoáng</label>
@@ -25,6 +28,7 @@ export default function Controls({s,send}:{s:State;send:(c:Command)=>State}){
   {!manual&&<p className="muted mode-note">Hướng dẫn đang điều khiển cầu. Chọn Thủ công để tự thao tác.</p>}
   <button className="emergency" onClick={()=>send({type:'emergency'})}><Octagon size={22}/><span>DỪNG KHẨN CẤP<small>Dừng ngay mọi chuyển động</small></span></button>
   {s.emergency&&<button className="reset-emergency" onClick={()=>send({type:'resetEmergency'})}>Đặt lại dừng khẩn cấp</button>}
+  </div>
  </aside>;
 }
 
