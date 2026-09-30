@@ -155,12 +155,37 @@ Các ngưỡng minh họa và giản lược cơ khí được giải thích tro
 | Không nhận lệnh `node`, `npm` hoặc `pnpm` | Cài công cụ tương ứng, đóng và mở lại terminal để cập nhật PATH. |
 | Báo không tìm thấy `package.json` | Chuyển vào thư mục `pbb-lab` trước khi chạy lệnh. |
 | PowerShell chặn script `pnpm.ps1` | Dùng `pnpm.cmd` thay cho `pnpm`, ví dụ `pnpm.cmd dev`; không cần đổi Execution Policy. |
+| Báo `Another vinext dev server is already running` | Mở URL được báo nếu server còn chạy. Nếu URL không truy cập được, kiểm tra PID và cổng trước khi xử lý file khóa cũ; xem phần bên dưới. |
 | Cổng đang được sử dụng | Chạy `pnpm dev --port 3000` hoặc chọn một cổng trống khác. |
 | Thiếu thư viện hoặc cài đặt bị ngắt | Kiểm tra mạng và chạy lại lệnh cài đặt ở trên. |
 | Lockfile không khớp `package.json` | Kiểm tra hai file thuộc cùng phiên bản mã nguồn. Chỉ chạy `pnpm install --ignore-scripts` để cập nhật lockfile khi bạn chủ động thay dependency. |
 | Cảnh 3D trống hoặc mất WebGL | Bật tăng tốc đồ họa, cập nhật trình duyệt/driver đồ họa và tải lại trang. |
 | Thao tác di chuyển bị chặn | Đọc thông báo: kiểm tra nguồn, hai xác nhận tiếp cận, trạng thái canopy và dừng khẩn cấp. |
 | `pnpm start` thiếu file trong `dist` | Chạy `pnpm build` thành công trước. |
+
+
+### Vinext báo có máy chủ đang chạy nhưng URL không truy cập được
+
+Vinext ghi thông tin máy chủ vào `pbb-lab/.vinext/dev/lock.json`. Sau khi máy chủ bị tắt đột ngột hoặc máy tính khởi động lại, file này có thể còn tồn tại. Windows có thể tái sử dụng PID cũ cho ứng dụng khác, khiến Vinext hiểu nhầm máy chủ vẫn hoạt động.
+
+Trong PowerShell, từ thư mục `pbb-lab`, kiểm tra thông tin hiện tại:
+
+```powershell
+$devLock = Get-Content .vinext/dev/lock.json -Raw | ConvertFrom-Json
+Get-CimInstance Win32_Process -Filter "ProcessId = $($devLock.pid)" |
+    Select-Object ProcessId, Name, CommandLine
+Get-NetTCPConnection -LocalPort $devLock.port -State Listen -ErrorAction SilentlyContinue
+```
+
+- Nếu đúng máy chủ của dự án vẫn chạy, dùng URL hiện có hoặc nhấn **Ctrl+C** trong terminal đang chạy máy chủ rồi khởi động lại.
+- Nếu đã xác nhận máy chủ cũ không còn chạy và PID không thuộc máy chủ của dự án, chỉ xóa file khóa cũ rồi chạy lại:
+
+```powershell
+Remove-Item -LiteralPath .vinext/dev/lock.json
+pnpm dev --port 3000
+```
+
+Không chạy `taskkill` chỉ dựa trên PID trong thông báo cũ, vì PID có thể đã được cấp cho VS Code hoặc ứng dụng khác. Nếu không đọc được thông tin tiến trình, chưa đủ căn cứ để xóa khóa hay dừng tiến trình. Không cần xóa `node_modules` hoặc cài lại dependency cho lỗi file khóa cũ.
 
 ## Quy ước Git
 
