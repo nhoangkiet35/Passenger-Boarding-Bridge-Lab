@@ -3,5 +3,6 @@
   "framework": "vite",
   "installCommand": "pnpm install --frozen-lockfile --ignore-scripts",
   "buildCommand": "pnpm build:vercel",
-  "outputDirectory": "dist-vercel"
+  "outputDirectory": "dist-vercel",
+  "rewrites": [{ "source": "/about", "destination": "/index.html" }, { "source": "/about/", "destination": "/index.html" }]
 }
