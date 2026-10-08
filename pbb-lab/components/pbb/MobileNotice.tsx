@@ -13,7 +13,7 @@ export default function MobileNotice() {
     if (!phone.matches) return;
 
     const show = window.setTimeout(() => setVisible(true), 0);
-    const hide = window.setTimeout(() => setVisible(false), 3000);
+    const hide = window.setTimeout(() => setVisible(false), 5000);
     return () => {
       window.clearTimeout(show);
       window.clearTimeout(hide);

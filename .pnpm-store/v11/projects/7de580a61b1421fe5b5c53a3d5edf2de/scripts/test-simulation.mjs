@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {initial,command,tick,moving,parked,aligned,metrics} from '../lib/simulation.ts';
+import {initial,command,tick,moving,parked,aligned,metrics,passengerAccess} from '../lib/simulation.ts';
 const settle=s=>{for(let i=0;i<6000&&moving(s);i++)s=tick(s,1/60);assert.ok(!moving(s),'movement reaches target');return s;};
 let checks=0;const check=(value,label)=>{assert.ok(value,label);checks++;console.log('PASS '+label);};
 let s=initial();s=command(s,{type:'move',key:'length',value:15});check(s.target.length===9,'power-off blocks movement');
@@ -24,3 +24,9 @@ let residual=initial();residual.power=true;residual.pose.canopy=.0002;residual.t
 residual=tick(residual,.016);assert.equal(residual.pose.canopy,0);console.log('PASS canopy sub-millimetre remainder finishes exactly');
 
 await import('./test-console.mjs');
+
+const access=initial();access.area=true;access.authorized=true;access.pose={angle:0,length:15.6,height:3.4,cabYaw:0,floorTilt:0,canopy:.95};
+assert.equal(passengerAccess(access),false,'partial canopy cannot open aircraft door');
+access.pose.canopy=1;assert.equal(passengerAccess(access),true,'completed aligned connection enables passengers');
+access.pose.height=4;assert.equal(passengerAccess(access),false,'misaligned bridge cannot open door');
+access.pose.height=3.4;access.serviceEnded=true;assert.equal(passengerAccess(access),false,'end of service closes passenger access');

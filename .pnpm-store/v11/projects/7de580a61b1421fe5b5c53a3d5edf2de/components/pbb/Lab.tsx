@@ -1,10 +1,11 @@
 import { useEffect,useRef,useState,Component,type ReactNode } from 'react';
-import { Plane,RotateCcw,Maximize,Focus,Layers,Play,Pause,ArrowRight,Info,MousePointer2 } from 'lucide-react';
+import { RotateCcw,Maximize,Focus,Layers,Play,Pause,ArrowRight,Info,MousePointer2 } from 'lucide-react';
 import { Tabs,TabsList,TabsTrigger } from '@/components/ui/tabs';
 import { Switch } from '@/components/ui/switch';
 import { command,initial,tick,metrics,status,type Command,type State } from '@/lib/simulation';
 import OperatorConsole from './OperatorConsole';
 import MobileNotice from './MobileNotice';
+import SiteHeader from './SiteHeader';
 import Scene from './Scene';import Controls from './Controls';import Guide from './Guide';
 class SceneBoundary extends Component<{children:ReactNode},{failed:boolean}>{state={failed:false};static getDerivedStateFromError(){return {failed:true};}render(){return this.state.failed?<div className="webgl-error">Không thể khởi tạo WebGL. Hãy bật tăng tốc đồ họa trong trình duyệt rồi tải lại trang.</div>:this.props.children;}}
 export default function Lab(){
@@ -22,8 +23,8 @@ export default function Lab(){
  const m=metrics(s.pose);const reset=()=>{send({type:'reset'});setLabels(true);setView('overview');setCameraReset(v=>v+1);};
  return <main>
   <MobileNotice/>
-  <header className="topbar"><a className="brand" href="#"><span className="brand-icon"><Plane size={24}/></span><b>PBB<span>LAB</span></b><span className="brand-divider"/><span className="brand-caption">KHÔNG GIAN HỌC TẬP TƯƠNG TÁC</span></a><span className="training-badge">MÔ PHỎNG ĐÀO TẠO</span></header>
-  <div className="page-title"><div><div className="eyebrow">KỸ THUẬT MẶT ĐẤT / CẦU HÀNH KHÁCH</div><h1>Từ nhà ga đến cửa tàu bay<span>.</span></h1><p>Khám phá cấu tạo và vận hành cầu ống lồng trong không gian 3D.</p></div><div className="title-actions"><a className="console-jump" href="#operator-console">Bàn điều khiển cabin ↓</a><button className="reset-all" onClick={reset}><RotateCcw size={16}/>Đặt lại bài học</button></div></div>
+  <SiteHeader page="simulation"/>
+  <div className="page-title"><div><div className="eyebrow">LONG THÀNH / KỸ THUẬT MẶT ĐẤT</div><h1>Từ nhà ga đến cửa tàu bay<span>.</span></h1><p>Khám phá cấu tạo và vận hành cầu hành khách ShinMaywa PAXWAY trong không gian 3D lấy bối cảnh sân bay Long Thành.</p></div><div className="title-actions"><a className="console-jump" href="#operator-console">Bàn điều khiển cabin ↓</a><button className="reset-all" onClick={reset}><RotateCcw size={16}/>Đặt lại bài học</button></div></div>
   <div className={'workspace'+(controlsCollapsed?' controls-collapsed':'')}><section className="simulation-panel"><div className="simulation-toolbar"><Tabs value={s.mode} onValueChange={mode=>send({type:'mode',mode:mode as State['mode']})}><TabsList><TabsTrigger value="manual">Điều khiển thủ công</TabsTrigger><TabsTrigger value="guide">Chế độ hướng dẫn</TabsTrigger></TabsList></Tabs><label className="label-toggle"><Switch checked={labels} onCheckedChange={setLabels} aria-label="Nhãn bộ phận"/>Nhãn bộ phận</label></div>
    <div className="viewport"><SceneBoundary><Scene s={s} labels={labels} view={view} reset={cameraReset}/></SceneBoundary><div className="scene-badge"><span className="live-dot"/>VỊ TRÍ ĐỖ A04<small>GÓC NHÌN 3D • THỜI GIAN THỰC</small></div><div className="camera-controls"><button className={view==='overview'?'selected':''} onClick={()=>setView('overview')} title="Góc nhìn tổng thể" aria-label="Góc nhìn tổng thể"><Maximize size={19}/></button><button className={view==='cabin'?'selected':''} onClick={()=>setView('cabin')} title="Góc nhìn gần cabin" aria-label="Góc nhìn gần cabin"><Focus size={19}/></button><button className={view==='top'?'selected':''} onClick={()=>setView('top')} title="Nhìn từ trên" aria-label="Nhìn từ trên"><Layers size={19}/></button><button onClick={()=>setCameraReset(v=>v+1)} title="Đặt lại camera" aria-label="Đặt lại camera"><RotateCcw size={18}/></button></div><div className="scene-help"><MousePointer2 size={14}/> Kéo để xoay · Cuộn để thu phóng</div><div className={'state-pill '+(s.emergency?'danger':'')}>{status(s)}</div></div>
    <div className="telemetry"><div><span>GÓC XOAY</span><strong>{s.pose.angle.toFixed(1)}<small>°</small></strong></div><div><span>CAO ĐỘ SÀN</span><strong>{s.pose.height.toFixed(2)}<small>m</small></strong></div><div><span>KHOẢNG HỞ THÂN</span><strong className={m.gap<.65?'warning':''}>{m.gap.toFixed(2)}<small>m</small></strong></div><div><span>LỆCH NGANG CỬA</span><strong>{Math.abs(m.offset).toFixed(2)}<small>m</small></strong></div></div>

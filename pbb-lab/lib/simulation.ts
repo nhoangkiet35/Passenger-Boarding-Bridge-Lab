@@ -58,6 +58,8 @@ export function aligned(p: Pose) {
   return m.gap >= .24 && m.gap <= .65 && m.clearance >= .24 && Math.abs(m.offset) < .35 &&
     Math.abs(m.heightError) < .12 && Math.abs(p.angle + p.cabYaw) < 2 && Math.abs(p.floorTilt) < .5;
 }
+/** Passenger doorway is enabled only after a completed, aligned connection. */
+export const passengerAccess = (s: State) => s.pose.canopy >= .999 && aligned(s.pose) && s.area && s.authorized && !s.serviceEnded;
 export const moving = (s: State) => s.jog !== null || Object.keys(s.pose).some(k => s.pose[k as keyof Pose] !== s.target[k as keyof Pose]);
 export const parked = (s: State) => Object.keys(PARK).every(k => Math.abs(s.pose[k as keyof Pose] - PARK[k as keyof Pose]) < .01) && s.pose.canopy === 0;
 export function status(s: State) {

@@ -1,5 +1,16 @@
 # Kết quả kiểm tra
 
+## Cập nhật bố trí cầu và thiết bị — 09/10/2026
+
+- Thêm PCA dưới ống lồng, GPU gần cabin, PWS cạnh cơ cấu nâng, cầu thang phục vụ và cầu cố định nối rotunda với nhà ga.
+- VDGS đặt tại x=7, z=-12, phía trước mũi tàu bay; mặt hiển thị hướng +z về buồng lái.
+- Đường đi hành khách đi qua cabin → ống lồng → rotunda → cầu cố định → nhà ga; cao độ được nội suy theo sàn cầu.
+- Build tĩnh Vite: đạt. Các kiểm tra mô phỏng và quyền mở cửa: đạt.
+- Typecheck: còn 16 lỗi trong sites-vite-plugin.ts, Controls.tsx, Lab.tsx và OperatorConsole.tsx; không báo lỗi trong Infrastructure.tsx, Models.tsx hay Scene.tsx.
+- Chưa xác minh trực quan: công cụ trình duyệt hết thời gian chờ trong cả hai lần thử. Preview local tại http://127.0.0.1:4173/.
+- Thiết bị và ống/cáp minh họa vị trí lắp đặt, chưa mô phỏng cấp khí/điện/nước; VDGS hiển thị trạng thái tàu bay đã đỗ.
+
+
 ## Bản Vercel và bàn điều khiển cabin
 
 - Build tĩnh `vite build --config vite.vercel.config.ts`: thành công (cảnh báo dung lượng bundle Three.js lớn, không chặn build).
