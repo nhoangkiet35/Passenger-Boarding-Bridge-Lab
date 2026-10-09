@@ -1,3 +1,4 @@
+import { standLayout } from './standLayout.ts';
 /** Educational kinematics only. Units: illustrative metres / degrees. */
 export type Axis = 'angle' | 'length' | 'height' | 'cabYaw' | 'floorTilt';
 export type Pose = Record<Axis, number> & { canopy: number };
@@ -10,7 +11,11 @@ export type State = {
   step: number; speed: number; message: string; action: string; dwell: number;
   connectedOnce: boolean; aux: Record<Aux, boolean>; temperature: number;
 };
-export const PARK: Pose = { angle: -25, length: 9, height: 3, canopy: 0, cabYaw: 0, floorTilt: 0 };
+export const PARK: Pose = { angle: 0, length: 12, height: 3, canopy: 0, cabYaw: 0, floorTilt: 0 };
+export const DOCKING = { gap: .025, minimumClearance: .02, sillHeight: 3.4, floorDrop: .15 } as const;
+export const CABIN_OFFSET = 1.785; // Cabin set back 0.30 m from the previous position.
+const dockAngle = Math.atan2(-standLayout.rotundaZ, 5 - 1 - CABIN_OFFSET - DOCKING.gap - standLayout.rotundaX) * 180 / Math.PI;
+export const CONNECTION: Pose = { angle: dockAngle, length: Math.hypot(5 - 1 - CABIN_OFFSET - DOCKING.gap - standLayout.rotundaX, -standLayout.rotundaZ), height: DOCKING.sillHeight - DOCKING.floorDrop, canopy: 0, cabYaw: -dockAngle, floorTilt: 0 };
 export const initial = (): State => ({
   pose: { ...PARK }, target: { ...PARK }, jog: null,
   power: false, emergency: false, area: false, authorized: false,
@@ -23,7 +28,7 @@ export const steps = [
   ['Kiểm tra khu vực', 'Quan sát sân đỗ, xác nhận vùng di chuyển thông thoáng. Hướng dẫn tự đánh dấu xác nhận này.'],
   ['Xác nhận tàu bay', 'Xác nhận tàu bay đã dừng, được phép tiếp cận và bật nguồn mô phỏng.'],
   ['Tiếp cận cửa', 'Xoay và kéo dài ống lồng, đưa cabin đến vùng chờ trước cửa trái phía trước.'],
-  ['Căn chỉnh cabin', 'Điều chỉnh cao độ và vị trí, giữ khoảng hở minh họa 0,4 m.'],
+  ['Căn chỉnh cabin', 'Điều chỉnh cao độ và vị trí, giữ khoảng hở 2,5 cm và sàn thấp hơn ngưỡng cửa 15 cm theo yêu cầu mô phỏng.'],
   ['Triển khai canopy', 'Mở mái che mềm khi cabin đã đúng vị trí. Liên động khóa chuyển động cầu.'],
   ['Đã kết nối', 'Chọn Tách cầu để tiếp tục nửa sau bài học.'],
   ['Kết thúc phục vụ', 'Xác nhận kết thúc phục vụ hành khách trước khi thu canopy.'],
@@ -32,11 +37,11 @@ export const steps = [
   ['Về vị trí đỗ', 'Thu các đoạn ống, xoay và hạ cầu về vị trí ban đầu.'],
   ['Hoàn tất bài học', 'Cầu đã về vị trí đỗ, nguồn mô phỏng tắt.'],
 ] as const;
-export const limits = { angle: [-35, 12], length: [9, 16.05], height: [2.6, 4.4], cabYaw: [-12, 12], floorTilt: [-3, 3] } as const;
+export const limits = { angle: [-10, 70], length: [12, 28], height: [2.6, 4.4], cabYaw: [-70, 70], floorTilt: [-3, 3] } as const;
 const radians = (degrees: number) => degrees * Math.PI / 180;
 export function cabinFrame(p: Pose) {
   const a = radians(p.angle), heading = radians(p.angle + p.cabYaw);
-  return { x: -12 + p.length * Math.cos(a), z: p.length * Math.sin(a), heading };
+  return { x: standLayout.rotundaX + p.length * Math.cos(a) + CABIN_OFFSET * Math.cos(heading), z: standLayout.rotundaZ + p.length * Math.sin(a) + CABIN_OFFSET * Math.sin(heading), heading };
 }
 /** Fixed camera mount in cabin coordinates. It does not auto-aim at the aircraft. */
 export function cabinView(p: Pose) {
@@ -50,13 +55,13 @@ export function metrics(p: Pose) {
   return {
     gap, clearance: gap - 1.375 * Math.abs(Math.sin(f.heading)),
     offset: f.z + Math.sin(f.heading),
-    heightError: p.height + Math.sin(radians(p.floorTilt)) - 3.4,
+    heightError: p.height + Math.sin(radians(p.floorTilt)) - CONNECTION.height,
   };
 }
 export function aligned(p: Pose) {
   const m = metrics(p);
-  return m.gap >= .24 && m.gap <= .65 && m.clearance >= .24 && Math.abs(m.offset) < .35 &&
-    Math.abs(m.heightError) < .12 && Math.abs(p.angle + p.cabYaw) < 2 && Math.abs(p.floorTilt) < .5;
+  return m.gap >= DOCKING.minimumClearance && m.gap <= .035 && m.clearance >= DOCKING.minimumClearance && Math.abs(m.offset) < .05 &&
+    Math.abs(m.heightError) < .01 && Math.abs(p.angle + p.cabYaw) < .3 && Math.abs(p.floorTilt) < .5;
 }
 /** Passenger doorway is enabled only after a completed, aligned connection. */
 export const passengerAccess = (s: State) => s.pose.canopy >= .999 && aligned(s.pose) && s.area && s.authorized && !s.serviceEnded;
@@ -106,12 +111,12 @@ export function command(s: State, c: Command): State {
   if (c.type === 'service') return { ...s, serviceEnded: true, message: 'Đã kết thúc phục vụ. Có thể thu canopy.', action: 'Kết thúc phục vụ' };
   if (c.type === 'canopy') {
     if (c.open && (!s.area || !s.authorized)) return block('chưa đủ xác nhận khu vực và tàu bay.');
-    if (c.open && (moving(s) || !aligned(s.pose))) return block('cabin phải dừng, sàn cân bằng, cách cửa 0,24–0,65 m, lệch ngang < 0,35 m và lệch cao < 0,12 m.');
+    if (c.open && (moving(s) || !aligned(s.pose))) return block('cabin phải dừng, sàn cân bằng, khoảng hở 2–3,5 cm, lệch ngang < 5 cm, sàn thấp hơn ngưỡng cửa 15 cm và sai số cao độ < 1 cm.');
     if (!c.open && s.connectedOnce && !s.serviceEnded) return block('hãy xác nhận kết thúc phục vụ trước.');
     return { ...s, jog: null, target: { ...s.pose, canopy: c.open ? 1 : 0 }, serviceEnded: c.open ? false : s.serviceEnded, action: c.open ? 'Triển khai canopy' : 'Thu canopy', message: c.open ? 'Đang mở mái che; cầu bị khóa chuyển động.' : 'Đang thu mái che.' };
   }
   if (s.pose.canopy > 0 || s.target.canopy > 0) return block('canopy chưa thu hoàn toàn.');
-  if (c.type === 'park') return { ...s, jog: null, target: { ...PARK }, action: 'Về vị trí đỗ', message: 'Đang thu cầu và về vị trí ban đầu.' };
+  if (c.type === 'park') return { ...s, jog: null, target: { ...s.pose, length: PARK.length, canopy: 0 }, action: 'Về vị trí đỗ', message: 'Đang thu cầu và về vị trí ban đầu.' };
   if (!s.area || !s.authorized) return block('phải xác nhận khu vực an toàn và tàu bay đã đỗ, được phép tiếp cận.');
   if (c.type === 'jog') {
     if (s.mode !== 'manual') return block('xoay khóa về THỦ CÔNG để dùng joystick.');
@@ -135,13 +140,13 @@ function executeStep(s: State, i: number): State {
   switch (i) {
     case 0: n.area = true; break;
     case 1: n.authorized = true; n.power = true; break;
-    case 2: n.target = { ...n.pose, angle: 0, length: 14.4 }; break;
-    case 3: n.target = { ...PARK, angle: 0, length: 15.6, height: 3.4 }; break;
+    case 2: n.target = { ...n.pose, ...CONNECTION, length: PARK.length }; break;
+    case 3: n.target = { ...CONNECTION }; break;
     case 4: return { ...command(n, { type: 'canopy', open: true }), step: i };
     case 5: n.paused = true; break;
     case 6: n.serviceEnded = true; break;
     case 7: return { ...command(n, { type: 'canopy', open: false }), step: i };
-    case 8: n.target = { ...n.pose, length: 14 }; break;
+    case 8: n.target = { ...n.pose, length: PARK.length }; break;
     case 9: n.target = { ...PARK }; break;
     case 10: n.power = false; n.paused = true; break;
   }
@@ -168,10 +173,11 @@ export function tick(s: State, seconds: number): State {
         p[key] = Math.abs(d) <= rates[key] * dt ? s.target[key] : p[key] + Math.sign(d) * rates[key] * dt;
       }
     }
-    if (metrics(p).clearance < .24) return { ...stop(n), message: 'Giới hạn an toàn: mép cabin quá gần thân tàu bay. Hãy thu cầu.', action: 'Đã chặn tiếp cận', paused: s.mode === 'guide' };
+    if (metrics(p).clearance < DOCKING.minimumClearance) return { ...stop(n), message: 'Giới hạn an toàn: mép cabin quá gần thân tàu bay. Hãy thu cầu.', action: 'Đã chặn tiếp cận', paused: s.mode === 'guide' };
     if (s.jog && Object.keys(p).every(k => p[k as keyof Pose] === s.pose[k as keyof Pose])) return { ...stop(n), message: 'Đã chạm giới hạn hành trình. Nhả điều khiển rồi chọn hướng khác.', action: 'Giới hạn hành trình' };
     n = { ...n, pose: p, target: s.jog ? { ...p } : s.target, connectedOnce: s.connectedOnce || p.canopy >= .999 };
   }
+  if (n.action === 'Về vị trí đỗ' && !moving(n) && !parked(n)) n = { ...n, target: { ...PARK } };
   if (n.mode === 'guide' && n.step >= 0 && n.step !== 5 && n.step < 10 && !moving(n)) {
     n = { ...n, dwell: n.dwell + dt };
     if (n.dwell >= 3) n = executeStep(n, n.step + 1);

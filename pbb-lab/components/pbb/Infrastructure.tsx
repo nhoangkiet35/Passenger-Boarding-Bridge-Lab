@@ -1,8 +1,7 @@
 import type { Pose } from '@/lib/simulation';
+import { standLayout } from '@/lib/standLayout';
 import { Html } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import type { Group } from 'three';
+import { useEffect, useMemo, useState } from 'react';
 import { CanvasTexture, CatmullRomCurve3, Quaternion, SRGBColorSpace, TubeGeometry, Vector3 } from 'three';
 
 function Block({at=[0,0,0],size=[1,1,1],color='#dce5e9'}:{at?:[number,number,number];size?:[number,number,number];color?:string}) {
@@ -53,7 +52,7 @@ function HoseReels({show}:{show:boolean}) {
    <mesh position={[-.2,-.26,.38]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[.13,.13,.18,24]}/><meshStandardMaterial color="#e1a52d"/></mesh>
    <mesh position={[-.2,-.26,.48]}><torusGeometry args={[.11,.022,8,24]}/><meshStandardMaterial color="#222c32"/></mesh>
   </group>)}
-  <Annotation at={[0,-.1,-1.55]} show={show}>Ống cuộn khí</Annotation>
+  <Annotation at={[0,-.1,-1.55]} show={show}>Ống khí</Annotation>
  </group>;
 }
 export function BridgeServices({length,show}:{length:number;show:boolean}) {
@@ -140,12 +139,17 @@ export function MobileCarriage({pose,show}:{pose:Pose;show:boolean}) {
    <Block size={[1.35,.09,.14]} color="#d5bb4b"/>
    {[-.5,-.25,0,.25,.5].map(x=><Block key={x} at={[x,0,side*.08]} size={[.12,.1,.02]} color="#263238"/>)}
   </group>)}
+  {/* Front and rear sensor guards complete the four-sided protective perimeter. */}
+  {[-1,1].map(side=><group key={side} position={[side*.675,ground+.32,0]} rotation={[0,Math.PI/2,0]}>
+   <Block size={[2.44,.09,.14]} color="#d5bb4b"/>
+   {Array.from({length:9},(_,i)=>-1+i*.25).map(x=><mesh key={x} position={[x,0,side*.08]}><boxGeometry args={[.085,.105,.02]}/><meshStandardMaterial color="#20262a"/></mesh>)}
+  </group>)}
   <Block at={[.12,ground+1.15,0]} size={[.2,.23,.3]} color="#8c9e9d"/>
   {[-1,1].map(side=><group key={side} position={[0,ground+.45,side*.72]}>
    <mesh rotation={[Math.PI/2,0,0]} castShadow receiveShadow><cylinderGeometry args={[.45,.45,.34,32]}/><meshStandardMaterial color="#202a31" roughness={.9}/></mesh>
    <mesh position={[0,0,side*.175]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[.22,.22,.025,24]}/><meshStandardMaterial color="#9cafb9" metalness={.55}/></mesh>
   </group>)}
-  <Annotation at={[0,ground+.45,-2.25]} show={show}>05 · Trụ nâng hạ</Annotation>
+  <Annotation at={[0,ground+.45,-2.25]} show={show}>05 · Trục nâng hạ</Annotation>
  </group>;
 }
 
@@ -168,31 +172,31 @@ export function CabinServices({pose,show}:{pose:Pose;show:boolean}) {
  </>;
 }
 export function FixedBridge({show}:{show:boolean}) {
- return <group position={[-15,3,0]}>
-  <Block at={[0,0,0]} size={[6.4,.22,2.7]} color="#677d89"/>
-  <Block at={[0,2.45,0]} size={[6.4,.18,2.85]} color="#eaf0f1"/>
+ return <group position={[-12,3,standLayout.bridgeCenterZ]} rotation={[0,-Math.PI/2,0]}>
+  <Block at={[0,-.11,0]} size={[standLayout.bridgeLength,.22,2.7]} color="#677d89"/>
+  <Block at={[0,2.45,0]} size={[standLayout.bridgeLength,.18,2.85]} color="#eaf0f1"/>
   {[-1,1].map(side=><group key={side}>
-   <Block at={[0,.42,side*1.32]} size={[6.4,.65,.1]}/>
-   <mesh position={[0,1.5,side*1.32]}><boxGeometry args={[6.4,1.5,.04]}/><meshStandardMaterial color="#84b9c8" transparent opacity={.4}/></mesh>
-   {[-3,-1.5,0,1.5,3].map(x=><Block key={x} at={[x,1.3,side*1.32]} size={[.07,2.3,.12]} color="#f0f4f5"/>)}
-   <Block at={[0,.8,side*1.32]} size={[6.4,.08,.12]} color="#2795a4"/>
+   <Block at={[0,.42,side*1.32]} size={[standLayout.bridgeLength,.65,.1]}/>
+   <mesh position={[0,1.5,side*1.32]}><boxGeometry args={[standLayout.bridgeLength,1.5,.04]}/><meshStandardMaterial color="#84b9c8" transparent opacity={.4}/></mesh>
+   {[-.5,-.25,0,.25,.5].map(t=>{const x=t*standLayout.bridgeLength;return <Block key={x} at={[x,1.3,side*1.32]} size={[.07,2.3,.12]} color="#f0f4f5"/>;})}
+   <Block at={[0,.8,side*1.32]} size={[standLayout.bridgeLength,.08,.12]} color="#2795a4"/>
   </group>)}
-  {[-2.7,2.7].map(x=>[-1,1].map(z=><Block key={`${x}:${z}`} at={[x,-1.55,z]} size={[.38,2.9,.38]} color="#738994"/>))}
-  <Annotation at={[0,3.25,0]} show={show}>06 · Cầu cố định → Nhà ga</Annotation>
+  {[-3,3].map(x=>[-1,1].map(z=><Block key={`${x}:${z}`} at={[x,-1.55,z]} size={[.38,2.9,.38]} color="#738994"/>))}
+  <Annotation at={[0,3.25,0]} show={show}>06 · Cầu cố định</Annotation>
  </group>;
 }
 export function VDGS({show,connected}:{show:boolean;connected:boolean}) {
- // Aircraft nose is at world z=-6.7. The screen normal is +z toward the pilot.
- return <group position={[7,0,-12]}>
-  <Block at={[0,.15,0]} size={[1.5,.3,1.3]} color="#6c7e87"/>
-  <Block at={[0,2.8,0]} size={[.32,5.5,.32]} color="#738b98"/>
+ // Aircraft nose is at world z=-7. The screen normal is +z toward the pilot.
+ return <group position={[7,0,standLayout.terminalFaceZ+.45]}>
+  <Block at={[-.9,5.35,-.23]} size={[.12,.2,.55]} color="#738b98"/>
+  <Block at={[.9,5.35,-.23]} size={[.12,.2,.55]} color="#738b98"/>
   <Block at={[0,5.35,0]} size={[2.6,1.85,.35]} color="#1b2c38"/>
   <Plate at={[0,5.77,.181]} text="A321" width={2.3} color="#ffc454" background="#071820"/>
   <Plate at={[0,5.25,.184]} text="STOP" width={2.3} color="#ff6259" background="#071820"/>
   <Plate at={[0,4.77,.185]} text={connected?'PBB OK':'ON BLOCK'} width={1.75} color="#6ef0b2" background="#071820"/>
   <Block at={[0,4.14,.18]} size={[.58,.3,.22]} color="#263d4d"/>
   <mesh position={[0,4.14,.3]}><circleGeometry args={[.1,16]}/><meshBasicMaterial color="#6391a9"/></mesh>
-  <Annotation at={[0,7,0]} show={show}>VDGS · Hệ thống dẫn đỗ tàu bay</Annotation>
+  <Annotation at={[0,7,0]} show={show}>VDGS</Annotation>
  </group>;
 }
 
@@ -203,27 +207,16 @@ export function BridgeBrand({length}:{length:number}) {
   <Plate at={[0,-.24,.036]} text="PAXWAY" width={1.25} color="#516b82" background="#f4f7f8"/>
  </group>;
 }
-function ServiceVehicle({lane,offset,color}:{lane:number;offset:number;color:string}) {
- const vehicle=useRef<Group>(null);
- useFrame(({clock})=>{if(vehicle.current)vehicle.current.position.z=((clock.elapsedTime*2.4+offset)%54-27)*(lane===0?1:-1);});
- return <group ref={vehicle} position={[-15+(lane===0?-.9:.9),0,0]} rotation={[0,lane===0?0:Math.PI,0]}>
-  <Block at={[0,.7,0]} size={[1.15,.68,2.2]} color={color}/>
-  <Block at={[0,1.2,.3]} size={[1.05,.48,1.1]} color={color}/>
-  <Block at={[0,1.22,.87]} size={[.88,.29,.02]} color="#476b7e"/>
-  {[-1,1].map(side=>[-.7,.7].map(z=><mesh key={side+':'+z} position={[side*.58,.31,z]} rotation={[0,0,Math.PI/2]} castShadow><cylinderGeometry args={[.29,.29,.15,16]}/><meshStandardMaterial color="#24343e"/></mesh>))}
-  {[-.38,.38].map(x=><Block key={x} at={[x,.66,1.12]} size={[.16,.12,.04]} color="#ffe8a7"/>)}
- </group>;
-}
 export function ServiceRoad({show}:{show:boolean}) {
- return <>
-  <Block at={[-15,.014,0]} size={[3.8,.02,56]} color="#58626b"/>
-  {[-1.8,1.8].map(x=><Block key={x} at={[-15+x,.03,0]} size={[.06,.015,56]} color="#e5e8e5"/>)}
-  {Array.from({length:20},(_,i)=><Block key={i} at={[-15,.032,-27+i*2.8]} size={[.055,.014,1.35]} color="#e5e8e5"/>)}
-  {[-1,1].map(lane=>[-17,-7,7,17].map(z=><group key={lane+':'+z} position={[-15+lane*.9,.043,z]} rotation={[0,lane===-1?0:Math.PI,0]}>
+ return <group position={[0,0,standLayout.roadCenterZ]} rotation={[0,Math.PI/2,0]}>
+  <Block at={[0,.014,0]} size={[3.8,.02,56]} color="#58626b"/>
+  {[-1.8,1.8].map(x=><Block key={x} at={[x,.03,0]} size={[.06,.015,56]} color="#e5e8e5"/>)}
+  {Array.from({length:20},(_,i)=><Block key={i} at={[0,.032,-27+i*2.8]} size={[.055,.014,1.35]} color="#e5e8e5"/>)}
+  {[-1,1].map(lane=>[-17,-7,7,17].map(z=><group key={lane+':'+z} position={[lane*.9,.043,z]} rotation={[0,lane===-1?0:Math.PI,0]}>
    <Block at={[0,0,0]} size={[.09,.014,.9]} color="#f0f1e9"/>
    {[-1,1].map(side=><mesh key={side} position={[side*.12,0,.3]} rotation={[0,side*.65,0]}><boxGeometry args={[.07,.014,.4]}/><meshBasicMaterial color="#f0f1e9"/></mesh>)}
   </group>))}
-  <ServiceVehicle lane={0} offset={14} color="#e7bc54"/><ServiceVehicle lane={1} offset={38} color="#e8edef"/>
-  <Annotation at={[-15,.4,12]} show={show}>Đường công vụ · Xe cơ giới</Annotation>
- </>;
+
+  <Annotation at={[0,.4,12]} show={show}>Đường công vụ</Annotation>
+ </group>;
 }
