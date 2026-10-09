@@ -35,7 +35,6 @@ export default function CctvMonitor({ s }: { s: State }) {
         <div className={'cctv-caption '+(s.emergency?'alarm':'')}>{s.emergency?'DỪNG KHẨN CẤP • CAMERA VẪN HOẠT ĐỘNG':s.pose.canopy===1?'CANOPY ĐÃ TRIỂN KHAI':ready?'CABIN ĐÃ CĂN CHỈNH':s.paused?'MÔ PHỎNG TẠM DỪNG':'QUAN SÁT CỬA & MÉP SÀN'}</div></>}
       {(!s.power||lost)&&<div className="cctv-off"><VideoOff size={32}/><b>{lost?'MẤT TÍN HIỆU WEBGL':'CAMERA CHƯA CẤP NGUỒN'}</b><span>{lost?'Tải lại trang để kết nối camera.':'Bật POWER ON để xem hình trực tiếp.'}</span></div>}
     </div>
-    <div className="monitor-metrics"><div><span>KHOẢNG HỞ</span><b className={m.clearance<.4?'amber':''}>{m.gap.toFixed(2)} <small>m</small></b></div><div><span>LỆCH NGANG ΔZ</span><b>{m.offset>0?'+':''}{m.offset.toFixed(2)} <small>m</small></b></div><div><span>LỆCH SÀN ΔH</span><b>{m.heightError>0?'+':''}{m.heightError.toFixed(2)} <small>m</small></b></div></div>
     <div className="monitor-foot"><span>Góc nhìn từ bên trong cabin · không tự bám cửa</span><span className={ready?'ready':''}>{ready?'ALIGNED':'ALIGNMENT'}</span></div>
   </div>;
 }

@@ -1,11 +1,11 @@
 import { cabinCurtainPanels } from '@/lib/cabinCurtainGeometry';
-import { CABIN_OFFSET, metrics, type Aux, type Pose } from '@/lib/simulation';
+import { CABIN_OFFSET, cabinFrame, metrics, type Aux, type Pose } from '@/lib/simulation';
 import { standLayout } from '@/lib/standLayout';
 import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import type { Group } from 'three';
-import { DoubleSide, Path, Shape } from 'three';
+import { BufferGeometry, Float32BufferAttribute, DoubleSide, Path, Shape } from 'three';
 import { aircraftHull, aircraftSurface } from './aircraftGeometry';
 import { BridgeBrand, BridgeServices, CabinGPU, CabinServices, MobileCarriage } from './Infrastructure';
 export function Box({at=[0,0,0],size=[1,1,1],color='#cbd5df',...props}:{at?:[number,number,number];size?:[number,number,number];color?:string;rotation?:[number,number,number]}){return <mesh position={at} castShadow receiveShadow {...props}><boxGeometry args={size}/><meshStandardMaterial color={color} roughness={.65}/></mesh>;}
@@ -23,6 +23,27 @@ function CabinEquipment({aux}:{aux:Record<Aux,boolean>}) {
     <Box at={[-.5,2.14,-.65]} size={[.7,.2,.55]} color={aux.aircon?'#8bcad0':'#7f9299'}/>
     {[-.2,-.1,0,.1,.2].map(x=><Box key={x} at={[-.5+x,2.02,-.65]} size={[.03,.03,.4]} color="#394e58"/>)}
   </>;
+}
+function ConformingCanopy({pose}:{pose:Pose}) {
+ const geometry=useMemo(()=>{
+  const frame=cabinFrame(pose),vertices:number[]=[],colors:number[]=[];
+  const reach=(y:number,z:number)=>{
+   const worldY=pose.height+y,skinX=7-Math.sqrt(Math.max(.01,4-(worldY-4.1)**2));
+   const contact=(skinX-frame.x+z*Math.sin(frame.heading))/Math.max(.25,Math.cos(frame.heading))-1;
+   return .005+pose.canopy*Math.max(0,contact+.012-.005);
+  };
+  const point=(y:number,z:number,t:number):number[]=>[.005+t*reach(y,z),y,z];
+  const surfaces=[{a:[.14,-1.24],b:[2.25,-1.24]},{a:[.14,1.24],b:[2.25,1.24]},{a:[2.25,-1.24],b:[2.25,1.24]}];
+  for(const surface of surfaces)for(let row=0;row<32;row++)for(let fold=0;fold<12;fold++){
+   const yz=(u:number)=>surface.a.map((v,i)=>v+(surface.b[i]-v)*u);
+   const a=yz(row/32),b=yz((row+1)/32),t0=fold/12,t1=(fold+1)/12;
+   const q=[point(a[0],a[1],t0),point(a[0],a[1],t1),point(b[0],b[1],t1),point(b[0],b[1],t0)];
+   for(const i of [0,1,2,0,2,3]){vertices.push(...q[i]);const color=fold%2?.19:.12;colors.push(color,color+.015,color+.02);}
+  }
+  const g=new BufferGeometry();g.setAttribute('position',new Float32BufferAttribute(vertices,3));g.setAttribute('color',new Float32BufferAttribute(colors,3));g.computeVertexNormals();return g;
+ },[pose.height,pose.angle,pose.length,pose.cabYaw,pose.canopy]);
+ useEffect(()=>()=>geometry.dispose(),[geometry]);
+ return <mesh geometry={geometry} castShadow receiveShadow><meshStandardMaterial vertexColors side={DoubleSide} roughness={.95}/></mesh>;
 }
 function SwivelCurtain({yaw}:{yaw:number}) {
  const panels=useMemo(()=>cabinCurtainPanels(yaw).map(({from,to,index})=>{
@@ -99,7 +120,8 @@ export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior
    </group>
   </group>
   <group position={[0,3,0]} rotation={[0,0,slope]}>
-   {[0,1,2].map(i=>{const x=i*(len-10)/2+5;const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
+   {[0,1,2].map(i=>{const x=i*(len-10)/2+5+(i===0?.6:0); // Move tunnel A forward, retaining overlap with rotunda and tunnel B.
+const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
     {[-1,1].map(side=><group key={side}>
      <Box at={[0,-.32,side*(width/2-.12)]} size={[10,.08,.08]} color="#e5e9e7"/>
      {[-3.75,-1.25,1.25,3.75].map((x,j)=><Box key={x} at={[x,-.2,side*(width/2-.12)]} size={[2.55,.055,.055]} rotation={[0,0,j%2?.17:-.17]} color="#e5e9e7"/>)}
@@ -158,10 +180,7 @@ export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior
     <CabinEquipment aux={aux}/>
     <CabinGPU show={annotations&&labels}/>
     <group position={[1,0,0]}>
-     {Array.from({length:12},(_,i)=>{const reach=.005+p.canopy*Math.max(0,metrics(p).gap-.005),step=reach/11,x=.01+i*step;return <group key={i}>
-      <Box at={[x,2.25,0]} size={[Math.max(.006,step),.13,2.57]} color={i%2?'#3c4142':'#252c30'}/>
-      {[-1,1].map(side=><Box key={side} at={[x,1.13,side*1.24]} size={[Math.max(.045,step),2.25,.12]} color={i%2?'#3c4142':'#252c30'}/>)}
-     </group>;})}
+     <ConformingCanopy pose={p}/>
      <Box at={[.005+p.canopy*Math.max(0,metrics(p).gap-.005),.14,0]} size={[.1,.12,2.55]} color="#e3b934"/>
 
     </group>
