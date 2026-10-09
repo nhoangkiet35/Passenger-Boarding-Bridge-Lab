@@ -32,7 +32,7 @@
 .site-footer-bottom p { font-size: 12px; line-height: 1.8; max-width: 900px; }
 .site-footer-bottom > a { display: flex; align-items: center; gap: 8px; min-height: 44px; color: var(--site-accent); white-space: nowrap; font-size: 13px; }
 .site-shell [id], .about-page .site-shell [id] { scroll-margin-top: 104px; }
-.site-shell #site-top { scroll-margin-top: 0; }
+.site-shell#site-top { scroll-margin-top: 0; }
 .lab-main { padding-inline: clamp(20px, 3vw, 48px); }
 .lab-main .page-title { gap: 28px; padding-block: 34px 28px; }
 .lab-main .page-title p { max-width: 760px; line-height: 1.7; color: #526c7b; }
