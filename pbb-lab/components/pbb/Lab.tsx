@@ -9,6 +9,11 @@ import SiteHeader from './SiteHeader';
 import Scene from './Scene';import Controls from './Controls';import Guide from './Guide';
 class SceneBoundary extends Component<{children:ReactNode},{failed:boolean}>{state={failed:false};static getDerivedStateFromError(){return {failed:true};}render(){return this.state.failed?<div className="webgl-error">Không thể khởi tạo WebGL. Hãy bật tăng tốc đồ họa trong trình duyệt rồi tải lại trang.</div>:this.props.children;}}
 export default function Lab(){
+ useEffect(()=>{
+  if(window.location.hash!=='#operator-console')return;
+  const frame=requestAnimationFrame(()=>document.getElementById('operator-console')?.scrollIntoView());
+  return ()=>cancelAnimationFrame(frame);
+ },[]);
  const [controlsCollapsed,setControlsCollapsed]=useState(false);
  const [s,setS]=useState(initial);const live=useRef(s);const [labels,setLabels]=useState(true);const [view,setView]=useState('overview');const [cameraReset,setCameraReset]=useState(0);
  const send=(c:Command)=>{live.current=command(live.current,c);setS(live.current);return live.current;};

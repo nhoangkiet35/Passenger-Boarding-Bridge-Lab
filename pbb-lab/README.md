@@ -32,7 +32,7 @@ Chọn **Chế độ hướng dẫn → Tiếp cận**. Hệ thống lần lư�
 ## Điều khiển thủ công
 
 1. Bật nguồn và đánh dấu cả hai điều kiện tiếp cận.
-2. Xoay về **0°**, đặt cao độ sàn **3,40 m**, chiều dài **15,60 m**. Chờ cầu đạt các mục tiêu; khoảng hở thân là **0,40 m**, lệch ngang **0 m**.
+2. Xoay về **0°**, đặt cao độ sàn **3,40 m**, chiều dài **25,36 m**. Chờ cầu đạt các mục tiêu; khoảng hở thân là **0,40 m**, lệch ngang **0 m**.
 3. Chọn **Triển khai**. Khi canopy đạt 100%, mô phỏng đã kết nối.
 4. Chọn **Kết thúc phục vụ**, **Thu lại** và chờ canopy về 0%.
 5. Chọn **Lùi khỏi cửa**, chờ cabin lùi, sau đó **Về vị trí đỗ**.

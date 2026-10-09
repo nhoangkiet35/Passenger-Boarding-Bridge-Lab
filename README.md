@@ -118,7 +118,7 @@ Chi tiết lần kiểm tra ứng dụng được ghi trong [TESTING.md](pbb-lab
 ### Chế độ thủ công
 
 1. Bật **Nguồn mô phỏng** và xác nhận cả hai điều kiện tiếp cận.
-2. Đặt góc xoay **0°**, cao độ sàn **3,40 m**, chiều dài **15,60 m**; chờ chuyển động hoàn tất.
+2. Đặt góc xoay **52°**, xoay cabin **−52°**, cao độ sàn **3,40 m**, chiều dài **25,36 m**; chờ chuyển động hoàn tất.
 3. Chọn **Triển khai** canopy để kết nối.
 4. Khi tách cầu: **Kết thúc phục vụ → Thu lại**, chờ canopy về **0%**, rồi **Lùi khỏi cửa → Về vị trí đỗ**.
 
