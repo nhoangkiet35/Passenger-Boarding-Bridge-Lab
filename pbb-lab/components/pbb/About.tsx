@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import BridgeExplorer from './BridgeExplorer';
 
 import LongThanhExhibition from './LongThanhExhibition';
-import SiteHeader from './SiteHeader';
+import SiteShell from './SiteShell';
 import './about.css';
 
 const vnexpress = 'https://vnexpress.net/dien-mao-san-bay-long-thanh-trong-tuong-lai-4607669.html';
@@ -30,9 +30,8 @@ export default function About() {
   }, []);
   const openSources = () => setSourcesOpen(true);
   return <div className="about-page" ref={pageRef}>
-    <a className="about-skip" href="#about-content">Chuyển đến nội dung</a>
-    <div className="about-header-wrap"><SiteHeader page="about"/></div>
-    <main id="about-content" className="about-main">
+    <SiteShell page="about">
+    <main id="about-content" tabIndex={-1} className="about-main">
       <section className="about-hero" aria-labelledby="about-title">
         <div className="about-hero-art"><img className="airport-concept-image" src="/images/airport-concept-ai.webp" alt="Phối cảnh AI nhà ga mái cong, tàu bay và cầu ống dẫn khách trong ánh sáng chiều" width={1672} height={941} fetchPriority="high"/></div>
         <div className="about-shell hero-shell"><div className="about-hero-copy"><span className="about-kicker">PBB LAB / ABOUT</span><h1 id="about-title">Nơi công nghệ<br/>kết nối những<br/><em>hành trình.</em></h1><p>Không gian khám phá, học tập và mô phỏng cầu hành khách trong bối cảnh Cảng hàng không quốc tế Long Thành.</p><div className="about-actions"><a className="about-button" href="/">Khám phá mô phỏng <ArrowUpRight size={19}/></a><a className="about-button secondary" href="#shinmaywa">Tìm hiểu công nghệ <ArrowDown size={17}/></a></div></div><div className="hero-caption"><span><MapPin size={14}/> LONG THÀNH · ĐỒNG NAI</span><span>MINH HỌA AI · KHÔNG PHẢI ẢNH LONG THÀNH THỰC TẾ</span></div></div>
@@ -56,6 +55,6 @@ export default function About() {
       <section id="sources" className="about-shell about-sources" aria-labelledby="sources-title"><details open={sourcesOpen} onToggle={event => setSourcesOpen(event.currentTarget.open)}><summary><span><BookOpen size={19}/> <span id="sources-title">Nguồn thông tin công khai</span></span><span>{sourcesOpen ? 'Thu gọn −' : 'Mở danh mục +'}</span></summary><div className="source-list"><article><h3>ShinMaywa · PAXWAY</h3><p>Giới thiệu công khai về dòng cầu hành khách và công nghệ điều chỉnh sàn cabin. Thông tin sản phẩm chung không xác nhận cấu hình lắp đặt tại Long Thành.</p><a className="about-text-link" href={manufacturer} target="_blank" rel="noopener noreferrer">Trang sản phẩm của nhà sản xuất <ArrowUpRight size={15}/></a></article><article><h3>VnExpress · 21/05/2023</h3><p>Bài: Diện mạo sân bay Long Thành trong tương lai. Tác giả: Phước Tuấn; đăng lúc 10:55 ngày 21/05/2023. Ảnh phối cảnh trong phần kiến trúc được dẫn trực tiếp từ bài báo, ghi nguồn ACV.</p><a className="about-text-link" href={vnexpress} target="_blank" rel="noopener noreferrer">Đọc bài gốc <ArrowUpRight size={15}/></a></article><article><h3>VTV · 02/12/2025</h3><p>Tác giả: P.V; đăng lúc 20:34 ngày 02/12/2025. Nguồn công khai cho số liệu quy hoạch, công suất thiết kế giai đoạn 1 và tư liệu công trường.</p><a className="about-text-link" href={vtv} target="_blank" rel="noopener noreferrer">Đọc bài gốc <ArrowUpRight size={15}/></a></article></div></details></section>
       <section className="about-closing" data-reveal aria-labelledby="closing-title"><div className="about-shell"><span className="about-kicker">TỪ TÌM HIỂU ĐẾN TỰ KHÁM PHÁ</span><h2 id="closing-title">Bước vào<br/><em>không gian vận hành.</em></h2><p>Chọn một góc nhìn. Thử một chuyển động.<br/>Quan sát cách từng bộ phận cùng tạo nên sự kết nối.</p><div className="about-actions"><a className="about-button" href="/">Khám phá mô phỏng <ArrowUpRight size={19}/></a><a className="about-button secondary" href="#sources" onClick={openSources}>Xem nguồn công khai <BookOpen size={17}/></a></div></div></section>
     </main>
-    <footer className="about-footer about-shell"><div><strong>PBB LAB <span>/ LONG THÀNH</span></strong><p>PBB Lab là dự án học tập và mô phỏng độc lập. Nội dung mô phỏng không thay thế tài liệu và quy trình vận hành được phê duyệt.</p><small>Không đại diện cho hoặc được xác nhận bảo trợ bởi ACV, Cảng HKQT Long Thành hay ShinMaywa.</small></div><a href="#about-title">Về đầu trang ↑</a></footer>
+    </SiteShell>
   </div>;
 }

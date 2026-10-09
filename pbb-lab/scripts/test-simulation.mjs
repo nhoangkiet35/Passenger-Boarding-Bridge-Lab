@@ -39,3 +39,17 @@ let directPark=initial();directPark.power=true;directPark.area=true;directPark.a
 directPark=command(directPark,{type:'park'});assert.equal(directPark.target.angle,CONNECTION.angle,'retract before rotating back');directPark=settle(directPark);assert.ok(parked(directPark),'direct parking from diagonal connection completes');
 
 assert.ok(Math.abs(metrics(CONNECTION).gap-.025)<1e-9,'requested 2.5 cm gap');assert.ok(Math.abs(3.4-CONNECTION.height-.15)<1e-9,'requested 15 cm sill-to-floor drop');
+
+// Configured travel stops apply to both target inputs and held console controls.
+for (const [axis, low, high] of [['height',2,5.4],['angle',-87.5,87.5],['cabYaw',-65,65]]) {
+  for (const [requested, expected] of [[low-10,low],[high+10,high]]) {
+    const ready=initial();ready.power=true;ready.area=true;ready.authorized=true;
+    const moved=command(ready,{type:'move',key:axis,value:requested});
+    assert.equal(moved.target[axis],expected,`${axis} target clamps at travel stop`);
+    const held=initial();held.power=true;held.area=true;held.authorized=true;
+    held.pose[axis]=expected;held.target={...held.pose};
+    const jogging=command(held,{type:'jog',axes:{[axis]:requested<low?-1:1}});
+    assert.equal(tick(jogging,.05).pose[axis],expected,`${axis} jog cannot pass travel stop`);
+  }
+}
+console.log('PASS cabin height, rotunda and cabin rotation travel stops');

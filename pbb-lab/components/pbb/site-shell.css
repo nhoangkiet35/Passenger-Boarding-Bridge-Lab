@@ -1,0 +1,100 @@
+/* Shared chrome: the same components and navigation on every page. */
+.site-shell { --site-surface: #fff; --site-text: #172e40; --site-muted: #526c7b; --site-line: #d9e5eb; --site-accent: #0c7180; --site-active: #e6f3f4; min-height: 100dvh; }
+.site-shell--about { --site-surface: #0c2130; --site-text: #edf5f7; --site-muted: #adc4ce; --site-line: #294351; --site-accent: #7cd7dc; --site-active: #193d49; }
+.site-shell .site-header { position: sticky; top: 0; z-index: 100; background: var(--site-surface); border-bottom: 1px solid var(--site-line); box-shadow: 0 3px 16px #102c3d06; }
+.about-page .site-shell .site-header { height: auto; min-height: 0; padding: 0; }
+.site-header-inner, .site-footer-inner { max-width: 1800px; margin-inline: auto; padding-inline: clamp(20px, 3vw, 48px); }
+.site-header-inner { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.site-shell .site-brand { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; color: var(--site-text); }
+.site-brand-icon { width: 43px; height: 43px; border-radius: 13px; background: #137e8b; color: #fff; display: grid; place-items: center; flex-shrink: 0; }
+.site-brand-copy { display: flex; flex-direction: column; gap: 4px; }
+.site-brand-copy strong { font-size: 24px; letter-spacing: -.8px; line-height: 1.1; }
+.site-brand-copy strong span { color: var(--site-accent); font-weight: 500; }
+.site-brand-copy small { color: var(--site-muted); font-size: 9px; letter-spacing: 1.3px; }
+.site-navigation { display: flex; align-items: center; gap: 6px; }
+.site-navigation a { min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; color: var(--site-muted); font-size: 14px; font-weight: 600; border-radius: 10px; white-space: nowrap; }
+.site-navigation a:hover, .site-navigation a[aria-current="page"] { background: var(--site-active); color: var(--site-accent); }
+.site-navigation a[aria-current="page"] { box-shadow: inset 0 -2px var(--site-accent); }
+.site-navigation .site-nav-cta { margin-left: 14px; border: 1px solid var(--site-line); color: var(--site-accent); }
+.site-shell .site-menu-toggle { display: none; }
+.site-skip-link { position: fixed; left: 16px; top: 12px; transform: translateY(-180%); padding: 12px 18px; background: #fff; color: #0c7180; border-radius: 8px; z-index: 1100; }
+.site-skip-link:focus { transform: translateY(0); }
+.site-shell .site-footer { display: block; padding: 0; margin-top: 48px; background: var(--site-surface); color: var(--site-muted); border-top: 1px solid var(--site-line); font-size: 14px; }
+.site-shell--about .site-footer { margin-top: 0; }
+.site-footer-inner { padding-block: 40px 22px; }
+.site-footer-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr)); gap: 48px; }
+.site-footer-intro p { font-size: 14px; line-height: 1.8; margin: 18px 0 14px; max-width: 420px; }
+.site-footer-tag { font-size: 12px; color: var(--site-accent); }
+.site-footer nav h2 { font-size: 14px; letter-spacing: 0; color: var(--site-text); margin: 0 0 12px; }
+.site-footer nav a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; max-width: 280px; font-size: 14px; }
+.site-footer nav a:hover { color: var(--site-accent); text-decoration: underline; text-underline-offset: 4px; }
+.site-footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 40px; margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--site-line); }
+.site-footer-bottom p { font-size: 12px; line-height: 1.8; max-width: 900px; }
+.site-footer-bottom > a { display: flex; align-items: center; gap: 8px; min-height: 44px; color: var(--site-accent); white-space: nowrap; font-size: 13px; }
+.site-shell [id], .about-page .site-shell [id] { scroll-margin-top: 104px; }
+.site-shell #site-top { scroll-margin-top: 0; }
+.lab-main { padding-inline: clamp(20px, 3vw, 48px); }
+.lab-main .page-title { gap: 28px; padding-block: 34px 28px; }
+.lab-main .page-title p { max-width: 760px; line-height: 1.7; color: #526c7b; }
+.lab-main .telemetry { grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 8px 10px; }
+.lab-main .telemetry > div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; padding-inline: 8px; min-width: 0; }
+.lab-main .telemetry span { display: block; font-size: 10px; line-height: 1.5; letter-spacing: .3px; color: #526c7b; }
+.lab-main .telemetry strong { display: inline; font-size: 14px; margin-top: 0; white-space: nowrap; }
+.lab-main .telemetry small { font-size: 11px; margin-left: 3px; }
+@media (min-width: 851px) and (max-width: 1280px) {
+  .lab-main .workspace, .lab-main .knowledge { grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; }
+  .lab-main .workspace.controls-collapsed { grid-template-columns: minmax(0, 1fr) 100px; }
+  .lab-main .viewport { height: clamp(380px, 48vh, 480px); }
+  .lab-main .telemetry { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .lab-main .telemetry > div { border: 0; }
+}
+@media (min-width: 761px) and (max-width: 1050px) {
+  .site-brand-copy small { display: none; }
+  .site-navigation a { font-size: 13px; padding-inline: 10px; }
+  .site-navigation .site-nav-cta { display: none; }
+}
+@media (max-width: 760px) {
+  .site-header-inner { min-height: 72px; flex-wrap: wrap; gap: 0; padding-inline: 20px; }
+  .site-brand-copy strong { font-size: 22px; }
+  .site-brand-copy small { font-size: 8px; letter-spacing: .8px; }
+  .site-brand-icon { width: 39px; height: 39px; border-radius: 11px; }
+  .site-shell .site-menu-toggle { display: inline-flex; min-height: 44px; gap: 6px; padding: 9px 10px; background: var(--site-surface); color: var(--site-text); border: 1px solid var(--site-line); border-radius: 10px; font-size: 12px; }
+  .site-navigation { display: none; width: 100%; padding-block: 8px 16px; border-top: 1px solid var(--site-line); }
+  .site-navigation.is-open { display: grid; gap: 6px; }
+  .site-navigation a { justify-content: flex-start; padding: 12px 14px; min-height: 48px; }
+  .site-navigation .site-nav-cta { margin: 6px 0 0; justify-content: space-between; }
+  .site-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; }
+  .site-footer-intro { grid-column: 1 / -1; }
+  .site-footer nav a { font-size: 13px; line-height: 1.5; }
+  .site-footer-bottom { align-items: flex-start; flex-direction: column; gap: 12px; margin-top: 24px; }
+  .site-shell .site-footer { margin-top: 32px; }
+  .site-shell--about .site-footer { margin-top: 0; }
+  .site-footer-inner { padding-block: 32px 20px; }
+  .lab-main { padding-inline: 16px; }
+  .lab-main .page-title { flex-direction: column; gap: 18px; padding-block: 26px 22px; }
+  .lab-main .page-title h1 { font-size: clamp(25px, 6vw, 32px); line-height: 1.25; }
+  .lab-main .page-title p { font-size: 14px; }
+  .lab-main .title-actions { width: 100%; max-width: none; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; gap: 10px; }
+  .lab-main .reset-all { font-size: 12px; min-height: 44px; }
+  .lab-main .console-jump { min-height: 44px; display: inline-flex; align-items: center; }
+  .lab-main .viewport { height: clamp(330px, 54svh, 470px); }
+  .lab-main .simulation-toolbar { gap: 12px; padding: 12px; }
+  .lab-main .simulation-toolbar [data-slot=tabs-list] { width: 100%; height: auto; }
+  .lab-main .simulation-toolbar [data-slot=tabs-trigger] { flex: 1; min-height: 44px; padding-inline: 8px; font-size: 12px; }
+  .lab-main .camera-controls button { width: 44px; height: 44px; min-height: 44px; }
+  .lab-main .scene-help { max-width: calc(100% - 32px); bottom: 56px; }
+  .lab-main .telemetry { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 8px; padding: 8px; }
+  .lab-main .telemetry > div { border: 0; padding-inline: 8px; }
+  .lab-main .telemetry strong { font-size: 13px; }
+  .lab-main .telemetry span { font-size: 10px; }
+  .lab-main .playback { gap: 16px; }
+  .lab-main .playback-actions { flex-wrap: wrap; }
+  .lab-main .playback button { min-height: 44px; }
+  .lab-main .speed button { min-width: 44px; }
+}
+@media (max-width: 360px) {
+  .site-brand-copy small { display: none; }
+  .site-footer-grid { grid-template-columns: 1fr; }
+  .site-footer-intro { grid-column: auto; }
+}
+@media print { .site-header, .site-skip-link { display: none; } }

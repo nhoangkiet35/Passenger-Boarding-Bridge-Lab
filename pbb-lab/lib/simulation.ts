@@ -37,7 +37,8 @@ export const steps = [
   ['Về vị trí đỗ', 'Thu các đoạn ống, xoay và hạ cầu về vị trí ban đầu.'],
   ['Hoàn tất bài học', 'Cầu đã về vị trí đỗ, nguồn mô phỏng tắt.'],
 ] as const;
-export const limits = { angle: [-10, 70], length: [12, 28], height: [2.6, 4.4], cabYaw: [-70, 70], floorTilt: [-3, 3] } as const;
+// Height from ground to cabin floor; configured travel limits supplied for this PBB.
+export const limits = { angle: [-87.5, 87.5], length: [12, 28], height: [2, 5.4], cabYaw: [-65, 65], floorTilt: [-3, 3] } as const;
 const radians = (degrees: number) => degrees * Math.PI / 180;
 export function cabinFrame(p: Pose) {
   const a = radians(p.angle), heading = radians(p.angle + p.cabYaw);
