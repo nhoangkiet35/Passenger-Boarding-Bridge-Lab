@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {initial,command,tick,moving,parked,aligned,metrics,passengerAccess,PARK,CONNECTION} from '../lib/simulation.ts';
+import {initial,command,tick,moving,parked,aligned,metrics,passengerAccess,cabinFrame,DOCKING,PARK,CONNECTION} from '../lib/simulation.ts';
 const settle=s=>{for(let i=0;i<6000&&moving(s);i++)s=tick(s,1/60);assert.ok(!moving(s),'movement reaches target');return s;};
 let checks=0;const check=(value,label)=>{assert.ok(value,label);checks++;console.log('PASS '+label);};
 let s=initial();s=command(s,{type:'move',key:'length',value:15});check(s.target.length===PARK.length,'power-off blocks movement');
@@ -39,6 +39,15 @@ let directPark=initial();directPark.power=true;directPark.area=true;directPark.a
 directPark=command(directPark,{type:'park'});assert.equal(directPark.target.angle,CONNECTION.angle,'retract before rotating back');directPark=settle(directPark);assert.ok(parked(directPark),'direct parking from diagonal connection completes');
 
 assert.ok(Math.abs(metrics(CONNECTION).gap-.025)<1e-9,'requested 2.5 cm gap');assert.ok(Math.abs(3.4-CONNECTION.height-.15)<1e-9,'requested 15 cm sill-to-floor drop');
+const connectedFrame=cabinFrame(CONNECTION);
+assert.ok(Math.abs(connectedFrame.z+DOCKING.cabinPassageOffset)<1e-9,'aircraft L1 aligns with right-hand glass-door passage');
+assert.ok(Math.abs(metrics(CONNECTION).offset)<1e-9,'alignment measures passenger passage rather than cabin center');
+for(const opening of [0,.2,.5,1]) {
+  const doorCenter=-1.2*Math.max(0,(opening-.2)/.8);
+  const left=doorCenter-.5-connectedFrame.z,right=doorCenter+.5-connectedFrame.z;
+  assert.ok(left>=-1.24&&right<=1.24,'entire aircraft door panel stays within canopy width throughout opening');
+}
+console.log('PASS right-hand glass-door alignment and aircraft door canopy clearance');
 
 // Configured travel stops apply to both target inputs and held console controls.
 for (const [axis, low, high] of [['height',2,5.4],['angle',-87.5,87.5],['cabYaw',-65,65]]) {

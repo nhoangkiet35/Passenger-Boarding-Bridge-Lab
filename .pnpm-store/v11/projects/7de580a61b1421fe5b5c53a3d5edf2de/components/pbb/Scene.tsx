@@ -1,4 +1,4 @@
-import { cabinFrame, metrics, passengerAccess, type State } from '@/lib/simulation';
+import { cabinFrame, DOCKING, metrics, passengerAccess, type State } from '@/lib/simulation';
 import { standClearances, standLayout } from '@/lib/standLayout';
 import { Grid, Html, Line, OrbitControls } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
@@ -49,6 +49,6 @@ export function World({s,labels=false,cctv=false}:{s:State;labels?:boolean;cctv?
 
 function PassengerFlow({active,pose}:{active:boolean;pose:State['pose']}) {
  const people=useRef<Array<any>>([]), openingTime=useRef(0);
- useFrame(({clock},dt)=>{openingTime.current=active?openingTime.current+dt:0;people.current.forEach((person,i)=>{if(!person)return;const t=(clock.elapsedTime*.075+i*.19)%1;const frame=cabinFrame(pose),cabinX=frame.x,deckY=pose.height;const route=[[5.05,3.4,0],[cabinX,deckY,frame.z],[standLayout.rotundaX,3.0,standLayout.rotundaZ],[-12,3.0,standLayout.terminalFaceZ+.3],[-12,3.0,standLayout.terminalFaceZ-2]];const q=t*(route.length-1),k=Math.min(route.length-2,Math.floor(q)),u=q-k;person.position.set(route[k][0]+(route[k+1][0]-route[k][0])*u,route[k][1]+(route[k+1][1]-route[k][1])*u,route[k][2]+(route[k+1][2]-route[k][2])*u);person.visible=active&&openingTime.current>1.4&&t<.96;person.rotation.y= t<.3?Math.PI:0;});});
+ useFrame(({clock},dt)=>{openingTime.current=active?openingTime.current+dt:0;people.current.forEach((person,i)=>{if(!person)return;const t=(clock.elapsedTime*.075+i*.19)%1;const frame=cabinFrame(pose),cabinX=frame.x,deckY=pose.height;const passage=(x:number)=>[cabinX+x*Math.cos(frame.heading)-DOCKING.cabinPassageOffset*Math.sin(frame.heading),deckY,frame.z+x*Math.sin(frame.heading)+DOCKING.cabinPassageOffset*Math.cos(frame.heading)];const route=[[5.05,3.4,0],passage(1),passage(.1),passage(-.9),[standLayout.rotundaX,3.0,standLayout.rotundaZ],[-12,3.0,standLayout.terminalFaceZ+.3],[-12,3.0,standLayout.terminalFaceZ-2]];const q=t*(route.length-1),k=Math.min(route.length-2,Math.floor(q)),u=q-k;person.position.set(route[k][0]+(route[k+1][0]-route[k][0])*u,route[k][1]+(route[k+1][1]-route[k][1])*u,route[k][2]+(route[k+1][2]-route[k][2])*u);person.visible=active&&openingTime.current>1.4&&t<.96;person.rotation.y= t<.3?Math.PI:0;});});
  return <group>{Array.from({length:6},(_,i)=><group key={i} ref={el=>{people.current[i]=el;}} visible={false}><mesh position={[0,.38,0]} castShadow><capsuleGeometry args={[.18,.62,4,8]}/><meshStandardMaterial color={['#df805b','#557d9a','#ddbd67','#7e729b','#5c9a85','#cf7181'][i]}/></mesh><mesh position={[0,.88,0]} castShadow><sphereGeometry args={[.16,12,10]}/><meshStandardMaterial color="#e5b99a"/></mesh></group>)}</group>;
 }

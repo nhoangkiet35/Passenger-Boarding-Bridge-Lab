@@ -1,5 +1,5 @@
 import { cabinCurtainPanels } from '@/lib/cabinCurtainGeometry';
-import { CABIN_OFFSET, cabinFrame, metrics, type Aux, type Pose } from '@/lib/simulation';
+import { APRON_CAMERA_MOUNT, CABIN_OFFSET, cabinFrame, metrics, type Aux, type Pose } from '@/lib/simulation';
 import { standLayout } from '@/lib/standLayout';
 import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
@@ -62,30 +62,33 @@ function SwivelCurtain({yaw}:{yaw:number}) {
  </group>)}</>;
 }
 // Looking from inside toward +x: left is -z, right is +z.
-function CabinFront({open}:{open:boolean}) {
+function CabinFront({open,floorTilt}:{open:boolean;floorTilt:number}) {
  const leaves=useRef<Array<Group|null>>([]);
  useFrame((_,dt)=>{leaves.current.forEach((leaf,i)=>{if(leaf){const target=open?(i===0?-1.35:1.35):0;leaf.rotation.y+=(target-leaf.rotation.y)*Math.min(1,dt*4);}});});
  return <>
   {[-1,1].map((side,i)=><group key={side}>
-   <group ref={el=>{leaves.current[i]=el;}} position={[.1,1.12,.43+side*.67]}>
-    <mesh position={[0,0,-side*.32]}><boxGeometry args={[.025,1.88,.58]}/><meshStandardMaterial color="#77aab8" transparent opacity={.5} metalness={.15} roughness={.17}/></mesh>
-    {[-.98,.98].map(y=><Box key={y} at={[0,y,-side*.32]} size={[.045,.045,.65]} color="#b6c6cd"/>)}
-    {[0,-side*.64].map(z=><Box key={z} at={[0,0,z]} size={[.045,2,.045]} color="#b6c6cd"/>)}
-    <Box at={[-.035,-.04,-side*.54]} size={[.035,.22,.04]} color="#778e99"/>
+   <group ref={el=>{leaves.current[i]=el;}} position={[.1,1.14,side===-1?-.28:1.29]}>
+    <mesh position={[0,0,-side*.3925]}><boxGeometry args={[.025,2.24,.785]}/><meshStandardMaterial color="#77aab8" transparent opacity={.5} metalness={.15} roughness={.17}/></mesh>
+    {[-1.12,1.12].map(y=><Box key={y} at={[0,y,-side*.3925]} size={[.045,.045,.785]} color="#b6c6cd"/>)}
+    {[0,-side*.785].map(z=><Box key={z} at={[0,0,z]} size={[.045,2.28,.045]} color="#b6c6cd"/>)}
+    <Box at={[-.035,-.04,-side*.68]} size={[.035,.22,.04]} color="#778e99"/>
    </group>
-   {side===-1&&<group position={[-.35,.88,-.94]}>
-    <Box size={[.56,.76,.44]} color="#d0dcdf"/>
+   {side===-1&&<group rotation={[0,0,floorTilt*Math.PI/180]}><group position={[-.35,.58,-.94]}>
+    <Box at={[0,-.1,0]} size={[.56,.96,.44]} color="#d0dcdf"/>
     <Box at={[0,.46,0]} size={[.61,.16,.51]} rotation={[0,0,.22]} color="#3a5363"/>
     <mesh position={[0,.55,0]} rotation={[-Math.PI/2,0,.22]}><planeGeometry args={[.36,.25]}/><meshBasicMaterial color="#498fa8"/></mesh>
     {[-.13,0,.13].map((x,j)=><mesh key={x} position={[x,.55,.17]}><sphereGeometry args={[.028,10,8]}/><meshStandardMaterial color={j===2?'#dc514b':'#71cda8'}/></mesh>)}
-   </group>}
+   </group></group>}
    <mesh position={[.97,-.19,side*1.05]} rotation={[0,Math.PI/2,0]}><cylinderGeometry args={[.04,.04,.07,16]}/><meshStandardMaterial color="#b94b3c"/></mesh>
    <mesh position={[.77,-.25,side*.68]} rotation={[0,Math.PI/2,0]}><sphereGeometry args={[.065,12,10]}/><meshStandardMaterial color="#dfe8e8" emissive="#fff0bf" emissiveIntensity={.6}/></mesh>
   </group>)}
   {/* Fixed glazing in front of the left console shares the recessed door plane. */}
-  <mesh position={[.1,1.12,-.79]}><boxGeometry args={[.025,1.88,.96]}/><meshStandardMaterial color="#77aab8" transparent opacity={.5} metalness={.15} roughness={.17}/></mesh>
-  {[-.98,.98].map(y=><Box key={y} at={[.1,1.12+y,-.79]} size={[.045,.045,1.02]} color="#b6c6cd"/>)}
-  {[-1.3,-.28].map(z=><Box key={z} at={[.1,1.12,z]} size={[.045,2,.045]} color="#b6c6cd"/>)}
+  <mesh position={[.1,1.14,-.79]}><boxGeometry args={[.025,2.24,1.02]}/><meshStandardMaterial color="#77aab8" transparent opacity={.5} metalness={.15} roughness={.17}/></mesh>
+  {[-1.12,1.12].map(y=><Box key={y} at={[.1,1.14+y,-.79]} size={[.045,.045,1.02]} color="#b6c6cd"/>)}
+  {[-1.3,-.28,1.29].map(z=><Box key={z} at={[.1,1.14,z]} size={[.065,2.28,.065]} color="#b6c6cd"/>)}
+  {/* Continuous jambs, header and sill seal the partition against the cabin shell. */}
+  {[-1,1].map(side=><Box key={side} at={[.1,1.14,side*1.325]} size={[.09,2.28,.09]} color="#c5cecb"/>)}
+  {[.025,2.275].map(y=><Box key={y} at={[.1,y,0]} size={[.09,.05,2.75]} color="#b6c6cd"/>)}
   <Box at={[1,-.085,0]} size={[.1,.03,.55]} color="#ebb94d"/>
   <Box at={[.84,-.16,0]} size={[.26,.13,.16]} color="#58727f"/>
  </>;
@@ -139,6 +142,7 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
     </group>)}
    </group>;})}
    <BridgeBrand length={len}/>
+   {annotations&&<group position={[...APRON_CAMERA_MOUNT]} rotation={[0,0,-.35]}><Box at={[0,.16,0]} size={[.08,.25,.08]} color="#647b89"/><Box size={[.32,.16,.18]} color="#dce4e8"/><Box at={[.17,0,0]} size={[.015,.1,.12]} color="#172e40"/></group>}
    <BridgeServices length={len} show={annotations&&labels}/>
    {annotations&&<Label visible={labels} at={[len/2,3.45,0]}>02 · Ống lồng</Label>}
   </group>
@@ -176,7 +180,7 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
      <Box at={[-.39,1.02,side*1.454]} size={[.045,.16,.03]} color="#77898e"/>
      {Array.from({length:9},(_,i)=><Box key={i} at={[-.98+i*.045,1.2,side*1.425]} size={[.022,2.25,.045]} color={i%2?'#d0d9d7':'#f4f5ef'}/>)}
     </group>)}
-    <CabinFront open={p.canopy>=.999}/>
+    <CabinFront open={p.canopy>=.999} floorTilt={p.floorTilt}/>
     <CabinEquipment aux={aux}/>
     <CabinGPU show={annotations&&labels}/>
     <group position={[1,0,0]}>

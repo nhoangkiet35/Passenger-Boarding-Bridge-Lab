@@ -12,10 +12,10 @@ export type State = {
   connectedOnce: boolean; aux: Record<Aux, boolean>; temperature: number;
 };
 export const PARK: Pose = { angle: 0, length: 12, height: 3, canopy: 0, cabYaw: 0, floorTilt: 0 };
-export const DOCKING = { gap: .025, minimumClearance: .02, sillHeight: 3.4, floorDrop: .15 } as const;
+export const DOCKING = { gap: .025, minimumClearance: .02, sillHeight: 3.4, floorDrop: .15, cabinPassageOffset: .505 } as const;
 export const CABIN_OFFSET = 1.785; // Cabin set back 0.30 m from the previous position.
-const dockAngle = Math.atan2(-standLayout.rotundaZ, 5 - 1 - CABIN_OFFSET - DOCKING.gap - standLayout.rotundaX) * 180 / Math.PI;
-export const CONNECTION: Pose = { angle: dockAngle, length: Math.hypot(5 - 1 - CABIN_OFFSET - DOCKING.gap - standLayout.rotundaX, -standLayout.rotundaZ), height: DOCKING.sillHeight - DOCKING.floorDrop, canopy: 0, cabYaw: -dockAngle, floorTilt: 0 };
+const dockAngle = Math.atan2(-DOCKING.cabinPassageOffset-standLayout.rotundaZ, 5 - 1 - CABIN_OFFSET - DOCKING.gap - standLayout.rotundaX) * 180 / Math.PI;
+export const CONNECTION: Pose = { angle: dockAngle, length: Math.hypot(5 - 1 - CABIN_OFFSET - DOCKING.gap - standLayout.rotundaX, -DOCKING.cabinPassageOffset-standLayout.rotundaZ), height: DOCKING.sillHeight - DOCKING.floorDrop, canopy: 0, cabYaw: -dockAngle, floorTilt: 0 };
 export const initial = (): State => ({
   pose: { ...PARK }, target: { ...PARK }, jog: null,
   power: false, emergency: false, area: false, authorized: false,
@@ -40,22 +40,35 @@ export const steps = [
 // Height from ground to cabin floor; configured travel limits supplied for this PBB.
 export const limits = { angle: [-87.5, 87.5], length: [12, 28], height: [2, 5.4], cabYaw: [-65, 65], floorTilt: [-3, 3] } as const;
 const radians = (degrees: number) => degrees * Math.PI / 180;
+/** Rotating bridge-frame mount below the rotunda end of tunnel A. */
+export const APRON_CAMERA_MOUNT = [.85, -.55, 1.15] as const;
+export function apronView(p: Pose) {
+  const slope = Math.atan2(p.height - 3, p.length), angle = radians(p.angle);
+  const world = (x: number, y: number, z: number): [number, number, number] => {
+    const along = x * Math.cos(slope) - y * Math.sin(slope);
+    return [standLayout.rotundaX + along * Math.cos(angle) - z * Math.sin(angle),
+      3 + x * Math.sin(slope) + y * Math.cos(slope),
+      standLayout.rotundaZ + along * Math.sin(angle) + z * Math.cos(angle)];
+  };
+  return { position: world(...APRON_CAMERA_MOUNT), target: world(12.6, -3.15, 3.3) };
+}
+export const cctvView = (s: State, selected: 'apron' | 'cabin' | null = null) => !s.area ? 'apron' : selected ?? 'cabin';
 export function cabinFrame(p: Pose) {
   const a = radians(p.angle), heading = radians(p.angle + p.cabYaw);
   return { x: standLayout.rotundaX + p.length * Math.cos(a) + CABIN_OFFSET * Math.cos(heading), z: standLayout.rotundaZ + p.length * Math.sin(a) + CABIN_OFFSET * Math.sin(heading), heading };
 }
-/** Fixed camera mount in cabin coordinates. It does not auto-aim at the aircraft. */
+/** Wide interior view behind the glazing: console, doors, floor and front threshold. */
 export function cabinView(p: Pose) {
   const f = cabinFrame(p), dx = Math.cos(f.heading), dz = Math.sin(f.heading);
-  const position: [number, number, number] = [f.x - .68 * dx, p.height + 1.55, f.z - .68 * dz];
-  const target: [number, number, number] = [position[0] + 8 * dx, position[1] - 1.2, position[2] + 8 * dz];
+  const position: [number, number, number] = [f.x - 1.1 * dx, p.height + 1.85, f.z - 1.1 * dz];
+  const target: [number, number, number] = [position[0] + 4 * dx, position[1] - 1.6, position[2] + 4 * dz];
   return { position, target };
 }
 export function metrics(p: Pose) {
   const f = cabinFrame(p), gap = 5 - f.x - Math.cos(f.heading);
   return {
     gap, clearance: gap - 1.375 * Math.abs(Math.sin(f.heading)),
-    offset: f.z + Math.sin(f.heading),
+    offset: f.z + Math.sin(f.heading) + DOCKING.cabinPassageOffset * Math.cos(f.heading),
     heightError: p.height + Math.sin(radians(p.floorTilt)) - CONNECTION.height,
   };
 }

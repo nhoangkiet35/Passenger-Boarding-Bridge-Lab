@@ -11,3 +11,4 @@
 @media(prefers-reduced-motion:reduce){.fan-running{animation:none}.key-dial span{transition:none}}
 
 .monitor-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cctv-source-controls{display:flex;gap:6px;flex-wrap:wrap;padding:8px 0}.cctv-source-controls button{flex:1;min-height:40px;font-size:12px;padding:8px;color:#bdd5df;background:#18313e;border-color:#365562}.cctv-source-controls button[aria-pressed=true]{background:#235765;color:#ecffff;border-color:#73bcc7}.cctv-source-controls button:disabled{opacity:.5}

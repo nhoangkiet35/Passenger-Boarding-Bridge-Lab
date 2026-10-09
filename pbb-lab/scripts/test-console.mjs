@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { initial, command, tick, PARK, CONNECTION, CABIN_OFFSET, cabinView, cabinFrame, aligned, metrics, moving } from '../lib/simulation.ts';
+import { initial, command, tick, PARK, CONNECTION, CABIN_OFFSET, cabinView, apronView, cctvView, cabinFrame, aligned, metrics, moving } from '../lib/simulation.ts';
 let count=0;
 const check=(ok,label)=>{assert.ok(ok,label);count++;console.log('PASS console: '+label);};
 const ready=()=>{let s=initial();for(const c of [{type:'power',on:true},{type:'area',value:true},{type:'authorize',value:true}])s=command(s,c);return s;};
@@ -24,3 +24,25 @@ check(Math.abs(before.target[2]-before.position[2])<1e-9&&rotated.target[2]-rota
 s=ready();s.pose={...p,length:CONNECTION.length-.05};s.target={...s.pose};s=command(s,{type:'jog',axes:{cabYaw:1}});s=run(s,10);check(metrics(s.pose).clearance>=.02&&!s.jog,'rotating cabin corner cannot cross safety plane');
 s=ready();s=command(s,{type:'aux',key:'aircon'});s=run(s,10);check(s.temperature<27&&s.aux.aircon,'air conditioning changes simulated temperature');s=command(s,{type:'reset'});check(!s.aux.aircon&&s.temperature===27&&s.pose.cabYaw===0,'full reset includes all console equipment');
 console.log(`${count} console/camera checks passed.`);
+const apronState=command(initial(),{type:'power',on:true});
+check(cctvView(apronState)==='apron','startup without apron clearance shows underside camera');
+check(cctvView(apronState,'cabin')==='apron','cabin selection cannot bypass apron inspection');
+const inspected=command(apronState,{type:'area',value:true});
+check(cctvView(inspected)==='cabin'&&cctvView(inspected,'apron')==='apron','cleared apron enables cabin feed and manual apron review');
+check(cctvView(command(inspected,{type:'area',value:false}),'cabin')==='apron','revoked clearance restores apron camera');
+const groundCamera=apronView(PARK),yawCamera=apronView({...PARK,cabYaw:45});
+check(JSON.stringify(groundCamera)===JSON.stringify(yawCamera),'tunnel A camera is independent of cabin rotation');
+check(groundCamera.position[1]<3&&groundCamera.target[1]<groundCamera.position[1],'apron camera sits below tunnel A and looks downward');
+const turned=apronView({...PARK,angle:90});
+const groundDirection=groundCamera.target.map((v,i)=>v-groundCamera.position[i]);
+const turnedDirection=turned.target.map((v,i)=>v-turned.position[i]);
+check(Math.abs(turnedDirection[0]+groundDirection[2])<1e-9&&Math.abs(turnedDirection[2]-groundDirection[0])<1e-9,'apron camera direction rotates with rotunda');
+const extended=apronView({...PARK,length:28});
+check(JSON.stringify(groundCamera)===JSON.stringify(extended),'rotunda-end camera stays mounted when tunnel extends at level height');
+const frontOffset=(before.position[0]-baseFrame.x)*Math.cos(baseFrame.heading)+(before.position[2]-baseFrame.z)*Math.sin(baseFrame.heading);
+check(frontOffset> -1.3&&frontOffset<.0875,'cabin lens stays in rear cabin passage behind front glazing');
+for(const cabYaw of [-65,-50.9,0,65]) {
+  const pose={...PARK,cabYaw},frame=cabinFrame(pose),view=cabinView(pose);
+  const x=view.position[0]-frame.x,z=view.position[2]-frame.z;
+  check(Math.abs(x*Math.cos(frame.heading)+z*Math.sin(frame.heading)+1.1)<1e-9&&Math.abs(-x*Math.sin(frame.heading)+z*Math.cos(frame.heading))<1e-9,`interior centered lens follows cabin yaw ${cabYaw}`);
+}
