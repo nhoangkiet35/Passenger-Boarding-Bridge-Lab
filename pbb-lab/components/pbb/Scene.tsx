@@ -1,4 +1,4 @@
-import { cabinFrame, DOCKING, metrics, passengerAccess, type State } from '@/lib/simulation';
+import { cabinFrame, DOCKING, metrics, passengerAccess, wheelMotion, type State } from '@/lib/simulation';
 import { standClearances, standLayout } from '@/lib/standLayout';
 import { Grid, Html, Line, OrbitControls } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
@@ -42,7 +42,7 @@ export function World({s,labels=false,cctv=false}:{s:State;labels?:boolean;cctv?
   </>}
   <ServiceRoad show={!cctv&&labels}/>
   <FixedBridge show={!cctv&&labels}/><VDGS show={!cctv&&labels} connected={passengerAccess(s)}/>
-  <Aircraft labels={labels} annotations={!cctv} doorOpen={passengerAccess(s)} halted={s.emergency}/><PBB pose={s.pose} labels={labels} annotations={!cctv} highlight={!cctv} aux={s.power?s.aux:{interior:false,exterior:false,aircon:false,ventilation:false}}/>
+  <Aircraft labels={labels} annotations={!cctv} doorOpen={passengerAccess(s)} halted={s.emergency}/><PBB pose={s.pose} labels={labels} annotations={!cctv} highlight={!cctv} aux={s.power?s.aux:{interior:false,exterior:false,aircon:false,ventilation:false}} wheelRotation={wheelMotion(s).angle}/>
   {!cctv&&<PassengerFlow active={passengerAccess(s)} pose={s.pose}/>}
 
 </>;}

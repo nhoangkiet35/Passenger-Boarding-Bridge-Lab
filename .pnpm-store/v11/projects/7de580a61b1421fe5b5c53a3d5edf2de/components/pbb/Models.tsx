@@ -93,7 +93,7 @@ function CabinFront({open,floorTilt}:{open:boolean;floorTilt:number}) {
   <Box at={[.84,-.16,0]} size={[.26,.13,.16]} color="#58727f"/>
  </>;
 }
-export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior:false,aircon:false,ventilation:false},highlight=true}:{pose:Pose;labels:boolean;annotations?:boolean;aux?:Record<Aux,boolean>;highlight?:boolean}){
+export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior:false,aircon:false,ventilation:false},highlight=true,wheelRotation=0}:{pose:Pose;labels:boolean;annotations?:boolean;aux?:Record<Aux,boolean>;highlight?:boolean;wheelRotation?:number}){
  const slope=Math.atan2(p.height-3,p.length),len=Math.hypot(p.length,p.height-3);
  return <group position={[standLayout.rotundaX,0,standLayout.rotundaZ]} rotation={[0,-p.angle*Math.PI/180,0]}>
   <group rotation={[0,p.angle*Math.PI/180,0]}>
@@ -191,7 +191,7 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
     {annotations&&<><Label visible={labels} at={[0,3.6,-2]}>03 · Cabin</Label><Label visible={labels} at={[1.4,2.9,2.7]}>04 · Canopy</Label></>}
     </group>
    </group>
-   <MobileCarriage pose={p} show={annotations&&labels}/>
+   <MobileCarriage pose={p} show={annotations&&labels} wheelRotation={wheelRotation}/>
   </group>
   {highlight&&<mesh position={[p.length-1.9,.04,0]} rotation={[-Math.PI/2,0,0]}><ringGeometry args={[1.7,2.05,48]}/><meshBasicMaterial color={metrics(p).clearance<.65?'#ee7655':'#26bdc9'} transparent opacity={.7}/></mesh>}
  </group>;

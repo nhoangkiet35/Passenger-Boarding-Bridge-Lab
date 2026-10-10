@@ -9,7 +9,7 @@ export type State = {
   power: boolean; emergency: boolean; area: boolean; authorized: boolean;
   serviceEnded: boolean; mode: 'manual' | 'guide'; paused: boolean;
   step: number; speed: number; message: string; action: string; dwell: number;
-  connectedOnce: boolean; aux: Record<Aux, boolean>; temperature: number;
+  connectedOnce: boolean; aux: Record<Aux, boolean>; temperature: number; wheelRotation: number;
 };
 export const PARK: Pose = { angle: 0, length: 12, height: 3, canopy: 0, cabYaw: 0, floorTilt: 0 };
 export const DOCKING = { gap: .025, minimumClearance: .02, sillHeight: 3.4, floorDrop: .15, cabinPassageOffset: .505 } as const;
@@ -22,7 +22,7 @@ export const initial = (): State => ({
   serviceEnded: false, mode: 'manual', paused: false, step: -1, speed: 1,
   message: 'Kiểm tra khu vực và xác nhận tàu bay trước khi tiếp cận.',
   action: 'Đang đỗ', dwell: 0, connectedOnce: false,
-  aux: { interior: false, exterior: false, aircon: false, ventilation: false }, temperature: 27,
+  aux: { interior: false, exterior: false, aircon: false, ventilation: false }, temperature: 27, wheelRotation: 0,
 });
 export const steps = [
   ['Kiểm tra khu vực', 'Quan sát sân đỗ, xác nhận vùng di chuyển thông thoáng. Hướng dẫn tự đánh dấu xác nhận này.'],
@@ -80,6 +80,22 @@ export function aligned(p: Pose) {
 /** Passenger doorway is enabled only after a completed, aligned connection. */
 export const passengerAccess = (s: State) => s.pose.canopy >= .999 && aligned(s.pose) && s.area && s.authorized && !s.serviceEnded;
 export const moving = (s: State) => s.jog !== null || Object.keys(s.pose).some(k => s.pose[k as keyof Pose] !== s.target[k as keyof Pose]);
+/** Steering spans -90..+90 degrees; reversing the drive covers the other half-plane. */
+export function wheelMotion(s: State): { angle: number; direction: -1 | 0 | 1 } {
+  if (!s.power || s.emergency || s.paused || s.pose.canopy > 0) return { angle: s.wheelRotation, direction: 0 };
+  let forward = s.jog ? (s.jog.length ?? 0) * .45 : Math.sign(s.target.length - s.pose.length) * 1.3;
+  let lateral = s.jog ? (s.jog.angle ?? 0) * 2 : Math.sign(s.target.angle - s.pose.angle) * 8;
+  // Ignore commands pushing into a mechanical stop; use actual travel direction.
+  if ((forward < 0 && s.pose.length <= limits.length[0]) || (forward > 0 && s.pose.length >= limits.length[1])) forward = 0;
+  if ((lateral < 0 && s.pose.angle <= limits.angle[0]) || (lateral > 0 && s.pose.angle >= limits.angle[1])) lateral = 0;
+  lateral *= Math.PI / 180 * Math.max(0, s.pose.length - 1.9);
+  if (Math.hypot(forward, lateral) < 1e-8) return { angle: s.wheelRotation, direction: 0 };
+  let angle = Math.atan2(lateral, forward) * 180 / Math.PI;
+  let direction: -1 | 1 = 1;
+  if (angle > 90) { angle -= 180; direction = -1; }
+  else if (angle < -90) { angle += 180; direction = -1; }
+  return { angle: Object.is(angle, -0) ? 0 : angle, direction };
+}
 export const parked = (s: State) => Object.keys(PARK).every(k => Math.abs(s.pose[k as keyof Pose] - PARK[k as keyof Pose]) < .01) && s.pose.canopy === 0;
 export function status(s: State) {
   return s.emergency ? 'DỪNG KHẨN CẤP' : s.step === 10 ? 'HOÀN TẤT · ĐÃ ĐỖ' : s.pose.canopy > .999 ? 'ĐÃ KẾT NỐI' :
@@ -140,7 +156,8 @@ export function command(s: State, c: Command): State {
       if (value !== undefined && Number.isFinite(value) && Math.abs(value) > .03) axes[key] = Math.max(-1, Math.min(1, value));
     }
     if (!Object.keys(axes).length) return command(s, { type: 'haltJog' });
-    return { ...stop(s), jog: axes, action: 'Điều khiển giữ để chạy', message: 'Giữ để chạy • Thả tay để dừng. Joystick: lên/xuống tiến/lùi, trái/phải xoay cầu.' };
+    const next = { ...stop(s), jog: axes, action: 'Điều khiển giữ để chạy', message: 'Giữ để chạy • Thả tay để dừng. Joystick: lên/xuống tiến/lùi, trái/phải xoay cầu.' };
+    return { ...next, wheelRotation: wheelMotion(next).angle };
   }
   if (c.type === 'move') {
     if (!Number.isFinite(c.value)) return block('mục tiêu không hợp lệ.');
@@ -189,7 +206,7 @@ export function tick(s: State, seconds: number): State {
     }
     if (metrics(p).clearance < DOCKING.minimumClearance) return { ...stop(n), message: 'Giới hạn an toàn: mép cabin quá gần thân tàu bay. Hãy thu cầu.', action: 'Đã chặn tiếp cận', paused: s.mode === 'guide' };
     if (s.jog && Object.keys(p).every(k => p[k as keyof Pose] === s.pose[k as keyof Pose])) return { ...stop(n), message: 'Đã chạm giới hạn hành trình. Nhả điều khiển rồi chọn hướng khác.', action: 'Giới hạn hành trình' };
-    n = { ...n, pose: p, target: s.jog ? { ...p } : s.target, connectedOnce: s.connectedOnce || p.canopy >= .999 };
+    n = { ...n, pose: p, target: s.jog ? { ...p } : s.target, connectedOnce: s.connectedOnce || p.canopy >= .999, wheelRotation: wheelMotion(s).angle };
   }
   if (n.action === 'Về vị trí đỗ' && !moving(n) && !parked(n)) n = { ...n, target: { ...PARK } };
   if (n.mode === 'guide' && n.step >= 0 && n.step !== 5 && n.step < 10 && !moving(n)) {
