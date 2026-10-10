@@ -1,7 +1,8 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Component, useEffect, useRef, useState, type ReactNode } from 'react';
-import { apronView, cabinView, cctvView, limits, moving, parked, wheelMotion, type Pose, type State } from '@/lib/simulation';
+import { apronView, cabinView, cctvView, CONNECTION, PARK, limits, moving, parked, wheelMotion, type Pose, type State } from '@/lib/simulation';
 import { World } from './Scene';
+import type { Send } from './Joystick';
 import './cabin-main.css';
 
 function CameraPosition({ pose, apron }: { pose: Pose; apron: boolean }) {
@@ -32,7 +33,7 @@ function AngleGauge({ value, label }: { value: number; label: string }) {
 }
 
 function Indicator({ label, value, red = false }: { label: string; value: string; red?: boolean }) {
-  return <div className={`cabin-indicator${red ? ' is-red' : ''}`} role="status" aria-label={`${label} ${value}`}><span>{label}</span><strong>{value}</strong></div>;
+  return <div className={`cabin-indicator${red ? ' is-red' : ''}${value === 'OFF' ? ' is-off' : ''}${value === 'AUTO' ? ' is-auto' : ''}`} role="status" aria-label={`${label} ${value}`}><span>{label}</span><strong>{value}</strong></div>;
 }
 
 function Clock() {
@@ -47,13 +48,34 @@ function Clock() {
   return <div className="cabin-clock"><span>GATE No. XX</span><time>{clock}</time></div>;
 }
 
-export default function CabinMainScreen({ s }: { s: State }) {
+function ScreenWindow({ kind, s, send, close }: { kind: 'maintenance' | 'preset'; s: State; send: Send; close: () => void }) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [error, setError] = useState('');
+  const [departure, setDeparture] = useState(false);
+  useEffect(() => { const node = dialog.current; node?.showModal(); return () => { node?.close(); }; }, []);
+  const target = departure ? PARK : CONNECTION;
+  return <dialog className="cabin-window" ref={dialog} aria-labelledby="cabin-window-title" onCancel={close}>
+    <header><strong id="cabin-window-title">{kind === 'maintenance' ? 'MAINTENANCE' : 'PRESET'}</strong><button type="button" aria-label="Close window" onClick={close}>×</button></header>
+    {kind === 'maintenance' ? <form onSubmit={event => { event.preventDefault(); event.currentTarget.reset(); setError('SERVICE AUTHENTICATION NOT CONFIGURED. ACCESS DENIED.'); }}>
+      <p>SERVICE PERSONNEL ONLY</p><label htmlFor="cabin-service-password">PASSWORD</label><input id="cabin-service-password" type="password" required autoComplete="off" />
+      {error ? <p className="cabin-window-error" role="alert">{error}</p> : null}<div className="cabin-window-actions"><button type="button" onClick={close}>CANCEL</button><button type="submit">LOGIN</button></div>
+    </form> : <div>
+      <label htmlFor="cabin-preset-position">PRESET POSITION</label><select id="cabin-preset-position" value={departure ? 'departure' : 'approach'} onChange={event => setDeparture(event.target.value === 'departure')}><option value="approach">AIRCRAFT / APPROACH</option><option value="departure">PARK / DEPARTURE</option></select>
+      <dl><dt>HEIGHT</dt><dd>{target.height.toFixed(3)} m</dd><dt>LENGTH</dt><dd>{target.length.toFixed(3)} m</dd><dt>CAB ROT.</dt><dd>{target.cabYaw.toFixed(1)} deg</dd><dt>ROTUNDA ROT.</dt><dd>{target.angle.toFixed(1)} deg</dd></dl>
+      {error ? <p className="cabin-window-error" role="alert">{error}</p> : null}
+      <div className="cabin-window-actions"><button type="button" onClick={close}>CLOSE</button><button type="button" disabled={!s.power || s.emergency} onClick={() => { const result = send({ type: 'guide', departure }); if (result.message.startsWith('Thao tác bị chặn:')) { setError(departure ? 'COMPLETE CONNECTION BEFORE DEPARTURE.' : 'RETURN TO PARK BEFORE APPROACH.'); } else close(); }}>START</button></div>
+    </div>}
+  </dialog>;
+}
+
+export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
   const [selectedCamera, setSelectedCamera] = useState<'apron' | 'cabin' | null>(null);
   const apron = cctvView(s, selectedCamera) === 'apron';
   const [expanded, setExpanded] = useState(false);
   const [page, setPage] = useState(0);
   const [help, setHelp] = useState(false);
   const [lost, setLost] = useState(false);
+  const [screenWindow, setScreenWindow] = useState<'maintenance' | 'preset' | null>(null);
   const lastTouch = useRef(0);
   const lastTouchToggle = useRef(-1000);
   const isMoving = moving(s);
@@ -110,15 +132,16 @@ export default function CabinMainScreen({ s }: { s: State }) {
       <div className="cabin-wheel"><div>WHEEL ROT. <strong>{wheel.angle.toFixed(1)} deg</strong></div><svg viewBox="0 0 160 160" role="img" aria-label={`Wheel steering ${wheel.angle.toFixed(1)} degrees, ${wheel.direction === 0 ? 'stopped' : wheel.direction > 0 ? 'forward drive' : 'reverse drive'}`}><circle cx="80" cy="80" r="65" fill="none" stroke="#00aaff" /><text x="80" y="29" textAnchor="middle">F</text><text x="80" y="142" textAnchor="middle">R</text><g transform={`rotate(${wheel.angle} 80 80)`}><rect x="52" y="51" width="16" height="58" rx="8" fill="#000000" /><rect x="94" y="51" width="16" height="58" rx="8" fill="#000000" /><path d="M68 80 H94" stroke="#808080" strokeWidth="15" />{wheel.direction > 0 ? <path d="M80 34 L68 49 H92 Z" fill="#ff0000" /> : wheel.direction < 0 ? <path d="M80 126 L68 111 H92 Z" fill="#ff0000" /> : null}</g></svg></div>
     </div>
     <div className="cabin-indicators" aria-label="Indicator lamps">
-      <div className="cabin-mode-lamp"><i className={s.mode === 'manual' ? 'active' : ''} /><span>MAIN-<br />TENANCE</span></div>
-      <div className="cabin-mode-lamp"><i className={s.mode === 'guide' ? 'active' : ''} /><span>PRESET</span></div>
+      <button type="button" className="cabin-mode-lamp" aria-label="MAINTENANCE: open service password window" aria-haspopup="dialog" onClick={() => setScreenWindow('maintenance')}><i aria-hidden="true" /><span>MAIN-<br />TENANCE</span></button>
+      <button type="button" className="cabin-mode-lamp" aria-label="PRESET: open preset window" aria-haspopup="dialog" onClick={() => setScreenWindow('preset')}><i className={s.mode === 'guide' ? 'active' : ''} aria-hidden="true" /><span>PRESET</span></button>
       <Indicator label="PARK" value={isParked ? 'IN' : 'OUT'} red={!isParked} />
-      <Indicator label="OPERATION" value={s.power && !s.emergency && !s.paused ? 'ON' : 'OFF'} />
+      <Indicator label="OPERATION" value={!s.power || s.emergency || s.paused ? 'OFF' : s.mode === 'guide' ? 'AUTO' : 'ON'} />
       <Indicator label="VENTILATOR" value={s.power && s.aux.ventilation ? 'ON' : 'OFF'} />
       <Indicator label="POWER" value={s.power ? 'ON' : 'OFF'} />
       <Indicator label="AIR-CON" value={s.power && s.aux.aircon ? 'ON' : 'OFF'} />
       <Indicator label="INT. LIGHT" value={s.power && s.aux.interior ? 'ON' : 'OFF'} />
       <Indicator label="EXT. LIGHT" value={s.power && s.aux.exterior ? 'ON' : 'OFF'} />
     </div>
+    {screenWindow ? <ScreenWindow kind={screenWindow} s={s} send={send} close={() => setScreenWindow(null)} /> : null}
   </div>;
 }
