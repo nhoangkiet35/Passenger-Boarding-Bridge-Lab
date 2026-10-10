@@ -10,6 +10,7 @@ import BridgeExplorer from './BridgeExplorer';
 import LongThanhExhibition from './LongThanhExhibition';
 import SiteShell from './SiteShell';
 import './about.css';
+import useAboutMotion from './useAboutMotion';
 
 const vnexpress = 'https://vnexpress.net/dien-mao-san-bay-long-thanh-trong-tuong-lai-4607669.html';
 const vtv = 'https://vtv.vn/san-bay-long-thanh-hang-nghin-nguoi-chay-dua-truoc-gio-g-100251202150621774.htm';
@@ -19,23 +20,46 @@ const panorama = 'https://i1-vnexpress.vnecdn.net/2023/05/21/Anh-1-1684637666.jp
 export default function About() {
   const pageRef = useRef<HTMLDivElement>(null);
   const [sourcesOpen, setSourcesOpen] = useState(false);
+  const [motionMode, setMotionMode] = useState<'system' | 'on' | 'off'>('system');
+  useAboutMotion(pageRef, motionMode);
   useEffect(() => {
     const page = pageRef.current;
-    if (!page || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
-    }), { threshold: .08 });
-    page.querySelectorAll('[data-reveal]').forEach(section => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
+    if (!page) return;
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    let frame = 0;
+    const updateProgress = () => {
+      frame = 0;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      page.style.setProperty('--reading-progress', String(total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0));
+    };
+    const scheduleProgress = () => { if (!frame) frame = requestAnimationFrame(updateProgress); };
+    const configureMotion = () => {
+      page.classList.toggle('motion-enabled', motionMode === 'on' || (motionMode === 'system' && !preference.matches));
+    };
+    configureMotion();
+    updateProgress();
+    window.addEventListener('scroll', scheduleProgress, { passive: true });
+    window.addEventListener('resize', scheduleProgress);
+    preference.addEventListener('change', configureMotion);
+    return () => {
+
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', scheduleProgress);
+      window.removeEventListener('resize', scheduleProgress);
+      preference.removeEventListener('change', configureMotion);
+    };
+  }, [motionMode]);
   const openSources = () => setSourcesOpen(true);
   return <div className="about-page" ref={pageRef}>
+    <div className="about-reading-progress" aria-hidden="true"/>
     <SiteShell page="about">
     <main id="about-content" tabIndex={-1} className="about-main">
       <section className="about-hero" aria-labelledby="about-title">
         <div className="about-hero-art"><img className="airport-concept-image" src="/images/airport-concept-ai.webp" alt="Phối cảnh AI nhà ga mái cong, tàu bay và cầu ống dẫn khách trong ánh sáng chiều" width={1672} height={941} fetchPriority="high"/></div>
         <div className="about-shell hero-shell"><div className="about-hero-copy"><span className="about-kicker">PBB LAB / ABOUT</span><h1 id="about-title">Nơi công nghệ<br/>kết nối những<br/><em>hành trình.</em></h1><p>Không gian khám phá, học tập và mô phỏng cầu hành khách trong bối cảnh Cảng hàng không quốc tế Long Thành.</p><div className="about-actions"><a className="about-button" href="/">Khám phá mô phỏng <ArrowUpRight size={19}/></a><a className="about-button secondary" href="#shinmaywa">Tìm hiểu công nghệ <ArrowDown size={17}/></a></div></div><div className="hero-caption"><span><MapPin size={14}/> LONG THÀNH · ĐỒNG NAI</span><span>MINH HỌA AI · KHÔNG PHẢI ẢNH LONG THÀNH THỰC TẾ</span></div></div>
       </section>
+<div className="about-shell motion-choice"><label>Hiệu ứng cuộn <select value={motionMode} onChange={event => setMotionMode(event.target.value as typeof motionMode)} aria-label="Chế độ hiệu ứng cuộn"><option value="system">Theo thiết bị</option><option value="on">Bật hiệu ứng</option><option value="off">Tắt hiệu ứng</option></select></label></div>
       <nav className="about-chapters about-shell" aria-label="Các phần của trang About"><a href="#long-thanh"><span>01</span> Sân bay</a><a href="#shinmaywa"><span>02</span> Công nghệ</a><a href="#experience"><span>03</span> Trải nghiệm</a><a href="#philosophy"><span>04</span> Triết lý</a><a href="#exhibition"><span>05</span> Triển lãm</a><a href="#sources" onClick={openSources}><BookOpen size={14}/> Nguồn công khai</a></nav>
       <section id="long-thanh" className="about-shell about-section" data-reveal aria-labelledby="airport-title">
         <div className="editorial-heading"><span className="about-kicker">01 / BỐI CẢNH CỦA NHỮNG KẾT NỐI</span><h2 id="airport-title">Một sân bay lớn.<br/>Từng điểm kết nối.</h2></div>
