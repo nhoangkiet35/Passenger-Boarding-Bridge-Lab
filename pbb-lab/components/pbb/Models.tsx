@@ -1,4 +1,5 @@
-import { cabinCurtainPanels } from '@/lib/cabinCurtainGeometry';
+import { cabinCurtainPanels, CABIN_SWIVEL_RADIUS } from '@/lib/cabinCurtainGeometry';
+import { technicalConfig } from '@/lib/technicalConfig';
 import { APRON_CAMERA_MOUNT, CABIN_OFFSET, cabinFrame, geometry, metrics, type Aux, type Pose } from '@/lib/simulation';
 import { standLayout } from '@/lib/standLayout';
 import { Html } from '@react-three/drei';
@@ -172,7 +173,7 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
    <group rotation={[0,-p.cabYaw*Math.PI/180,0]}>
     {/* Vertical cylindrical swivel at the existing cabin yaw axis; rear opening leads into the tunnel. */}
     <group>
-     {[-.02,2.37].map(y=><mesh key={y} position={[0,y,0]} castShadow><cylinderGeometry args={[1.39,1.39,.12,64]}/><meshStandardMaterial color="#dce4e2" metalness={.3} roughness={.4}/></mesh>)}
+     {[-.02,2.37].map(y=><mesh key={y} position={[0,y,0]} castShadow><cylinderGeometry args={[CABIN_SWIVEL_RADIUS+.035,CABIN_SWIVEL_RADIUS+.035,.12,64]}/><meshStandardMaterial color="#dce4e2" metalness={.3} roughness={.4}/></mesh>)}
      <group name="cabin-moving-curtain"><SwivelCurtain yaw={p.cabYaw}/></group>
     </group>
     <group position={[CABIN_OFFSET,0,0]}>
@@ -201,8 +202,10 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
     <CabinGPU show={annotations&&labels}/>
     <group position={[1,0,0]}>
      <ConformingCanopy pose={p} aircraftShift={aircraftShift}/>
-     <Box at={[.005+p.canopy*Math.max(0,metrics(p).gap-.005),.14,0]} size={[.05,.12,2.55]} color="#e3b934"/>
 
+    </group>
+    <group rotation={[0,0,p.floorTilt*Math.PI/180]}>
+     <Box at={[1+.005+p.canopy*Math.max(0,metrics(p).gap-.005),-.06,0]} size={[.05,.12,2.55]} color="#e3b934"/>
     </group>
     {annotations&&<><Label visible={labels} at={[0,3.6,-2]}>03 · Cabin</Label><Label visible={labels} at={[1.4,2.9,2.7]}>04 · Canopy</Label></>}
     </group>
@@ -216,10 +219,11 @@ const wingShape=aircraftSurface([[1.6,-1.2],[4.5,-.3],[17.9,9],[17.9,10.2],[6.5,
 const tailplaneShape=aircraftSurface([[0,0],[2,.2],[6.4,3.6],[6.4,5],[1.2,3.8],[0,3.4]]);
 const finShape=aircraftSurface([[0,0],[4.2,6.7],[6.5,6.7],[5.8,0]]);
 export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,heightShift=0}:{labels:boolean;annotations?:boolean;doorOpen?:boolean;halted?:boolean;heightShift?:number}){
+ const doorSpec=technicalConfig.aircraftDoor,doorCenter=doorSpec.sill+doorSpec.height/2;
  const door=useRef<Group>(null), progress=useRef(0);
  const hull=useMemo(aircraftHull,[]);
  useEffect(()=>()=>hull.dispose(),[hull]);
- useFrame((_,dt)=>{if(!door.current||halted)return;const target=doorOpen?1:0;progress.current+=(target-progress.current)*Math.min(1,dt*3);if(Math.abs(target-progress.current)<.001)progress.current=target;door.current.position.x=-2.04-.12*Math.min(1,progress.current*5);door.current.position.z=-8.47-1.2*Math.max(0,(progress.current-.2)/.8);});
+ useFrame((_,dt)=>{if(!door.current||halted)return;const target=doorOpen?1:0;progress.current+=(target-progress.current)*Math.min(1,dt*3);if(Math.abs(target-progress.current)<.001)progress.current=target;door.current.position.x=-2.04-.12*Math.min(1,progress.current*5);door.current.position.z=-8-doorSpec.slide*Math.max(0,(progress.current-.2)/.8);});
  return <group position={[7,heightShift,8]}>
   <mesh geometry={hull} castShadow receiveShadow><meshStandardMaterial vertexColors side={DoubleSide} roughness={.38}/></mesh>
   {[-1,1].map(side=><group key={side}>
@@ -242,16 +246,16 @@ export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,he
   <Box at={[-.9,3.38,-8]} size={[2.2,.06,1]} color="#697782"/>
   <Box at={[.3,4.3,-8]} size={[.06,1.8,1]} color="#e6eded"/>
   <Box at={[-.9,5.25,-8]} size={[2.2,.06,1]} color="#ece7d6"/>
-  {[-8.53,-7.47].map(z=><Box key={z} at={[-1.94,4.34,z]} size={[.08,1.94,.06]} color="#d4b64b"/>)}
+  {[-8-doorSpec.width/2-.03,-8+doorSpec.width/2+.03].map(z=><Box key={z} at={[-1.94,doorCenter,z]} size={[.08,doorSpec.height+.06,.06]} color="#d4b64b"/>)}
   {doorOpen&&<pointLight position={[-1,4.8,-8]} color="#fff0ce" intensity={8} distance={3}/>}
   {[-1,1].map(side=><group key={side}>
    {[-2,8,19.5].map(z=><group key={z} position={[side*1.99,4.3,z]}><Box size={[.035,1.75,.8]} color="#ddbf51"/><Box at={[side*.025,0,0]} size={[.035,1.65,.7]} color="#00869c"/></group>)}
    {[-.45,0,.45].map(a=><mesh key={a} position={[side*.11,8.6,26.5]} rotation={[a,0,0]} scale={[.025,1.3,.32]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color="#e8c94c"/></mesh>)}
   </group>)}
   <Box at={[-2.1,4.13,-8.2]} size={[.025,.05,.2]} color="#dde8e8"/>
-  <group ref={door} position={[-2.045,4.34,-8.47]}>
-   <Box at={[-.02,0,.47]} size={[.07,1.88,1]} color="#00869c"/>
-   <Box at={[-.04,.46,.47]} size={[.075,.3,.27]} color="#385c71"/>
+  <group ref={door} position={[-2.045,doorCenter,-8]}>
+   <Box at={[-.02,0,0]} size={[.07,doorSpec.height,doorSpec.width]} color="#00869c"/>
+   <Box at={[-.04,.43,0]} size={[.075,.27,.24]} color="#385c71"/>
   </group>
   <Box at={[-2.1,3.43,-8]} size={[.08,.045,.95]} color="#d4a637"/>
   <Box at={[-2.1,4.13,-7.8]} size={[.09,.05,.2]} color="#476777"/>

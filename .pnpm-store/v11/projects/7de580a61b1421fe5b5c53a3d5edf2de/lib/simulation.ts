@@ -82,12 +82,62 @@ export function metrics(p: Pose, aircraftShift = 0) {
 }
 export function aligned(p: Pose, aircraftShift = 0) {
   const m = metrics(p, aircraftShift);
-  return m.gap >= DOCKING.minimumClearance && m.gap <= config.alignment.maximumGap && m.clearance >= DOCKING.minimumClearance && Math.abs(m.offset) < config.alignment.lateralTolerance &&
-    Math.abs(m.heightError) < config.alignment.heightTolerance && Math.abs(p.angle + p.cabYaw) < config.alignment.headingTolerance && Math.abs(p.floorTilt) < config.alignment.floorTolerance;
+  return m.gap >= DOCKING.minimumClearance - 1e-9 && m.gap <= config.alignment.maximumGap + 1e-9 && m.clearance >= DOCKING.minimumClearance - 1e-9 &&
+    Math.abs(m.heightError) <= config.alignment.heightTolerance + 1e-9 && Math.abs(p.floorTilt) <= config.alignment.floorTolerance && aircraftDoorClear(p, aircraftShift);
+}
+/** Conservative swept envelope of the rendered sliding aircraft door, including its window.
+ * Keep the complete opening path inside the clear front cabin/canopy cavity.
+ * The cavity excludes the partition, floor, roof, side walls and rear bridge equipment.
+ */
+export function aircraftDoorClear(p: Pose, aircraftShift = 0) {
+  const f = cabinFrame(p), c = Math.cos(f.heading), s = Math.sin(f.heading);
+  const door=config.aircraftDoor;
+  const bottom = door.sill + aircraftShift - p.height, top = door.sill+door.height + aircraftShift - p.height;
+  if (top >= 2.29) return false;
+  // Door first moves outward 12 cm, then slides along the fuselage.
+  // This bounding envelope contains all intermediate poses (no temporal sampling).
+  for (const x of [4.7625, 4.975]) for (const z of [-door.slide-door.width/2, door.width/2]) {
+    const dx = x - f.x, dz = z - f.z;
+    const localX = dx*c + dz*s, localZ = -dx*s + dz*c;
+    if (localX <= .16 || localX >= 2.25 || Math.abs(localZ) >= 1.24) return false;
+    if (bottom <= .05 + Math.max(0, localX*Math.tan(radians(p.floorTilt)))) return false;
+  }
+  return true;
 }
 /** Passenger doorway is enabled only after a completed, aligned connection. */
 export const passengerAccess = (s: State) => s.pose.canopy >= .999 && aligned(s.pose, s.aircraftShift) && !s.fault && !s.emergency && s.power && s.area && s.authorized && !s.serviceEnded;
 export const moving = (s: State) => s.jog !== null || Object.keys(s.pose).some(k => s.pose[k as keyof Pose] !== s.target[k as keyof Pose]);
+export type BridgeMessage = { text: string; alarm: boolean };
+/** Live simulated sensor readings and operating hazards, rather than equipment mode lamps. */
+export function bridgeMessages(s: State): BridgeMessage[] {
+  const result: BridgeMessage[] = [];
+  const add = (text: string, alarm = false) => result.push({ text, alarm });
+  const m = metrics(s.pose,s.aircraftShift);
+  if(s.emergency) add('DỪNG KHẨN CẤP: mọi chuyển động đã bị khóa.',true);
+  if(s.fault) add('BẢO VỆ CẦU: '+s.fault,true);
+  if(!s.power) {
+    add('Cảm biến mô phỏng chưa hoạt động: bật nguồn để theo dõi.');
+    return result;
+  }
+  const contact=collision(s.pose,s.obstacles);
+  if(contact) add('VÙNG VA CHẠM: '+contact,true);
+  if(!s.area) add('Chưa xác nhận sân đỗ thông thoáng; kiểm tra người và xe.',true);
+  if(!s.authorized) add('Chưa xác nhận tàu bay dừng và được phép tiếp cận.',true);
+  if(s.message.startsWith('Thao tác bị chặn:') || s.message.startsWith('Giới hạn')) add(s.message,true);
+  add(`Cảm biến mép cabin: ${(m.clearance*100).toFixed(1)} cm đến thân tàu.`,m.clearance<DOCKING.minimumClearance-1e-9);
+  if(m.clearance<DOCKING.minimumClearance-1e-9) add('NGUY CƠ CHẠM THÂN TÀU: thu cầu, không tiến thêm.',true);
+  else if(m.gap<config.warningDistance && s.pose.canopy===0) add('Gần thân tàu: di chuyển chậm, thả joystick để dừng.');
+  if(m.gap<config.warningDistance) {
+    const clear=aircraftDoorClear(s.pose,s.aircraftShift);
+    add(clear?'Đường mở cửa tàu bay: đủ khoảng trống trong mô hình.':'Đường mở cửa vướng vùng cabin / canopy: chỉnh vị trí trước khi mở.',!clear);
+    add(`Cảm biến cao độ: sàn thấp hơn ngưỡng cửa ${((DOCKING.floorDrop-m.heightError)*100).toFixed(1)} cm.`,Math.abs(m.heightError)>config.alignment.heightTolerance+1e-9);
+    add(`Cảm biến nghiêng sàn: ${s.pose.floorTilt.toFixed(1)}°; cho phép ±2°.`,Math.abs(s.pose.floorTilt)>config.alignment.floorTolerance);
+  }
+  if(s.pose.canopy>0) add('Mái che đã triển khai: khóa di chuyển cầu; kết thúc phục vụ rồi thu mái che.');
+  if(s.autoLevel) add(`Cảm biến bám cao độ: sai số ${(m.heightError*100).toFixed(1)} cm.`);
+  if(!geometry(s.pose).valid) add('Giới hạn cơ khí: độ dốc / chồng lồng chưa phù hợp.',true);
+  return result.sort((a,b)=>Number(b.alarm)-Number(a.alarm));
+}
 /** Steering spans -90..+90 degrees; reversing the drive covers the other half-plane. */
 export function wheelMotion(s: State): { angle: number; direction: -1 | 0 | 1 } {
   if (!s.power || s.emergency || s.fault || s.paused || s.pose.canopy > 0) return { angle: s.wheelRotation, direction: 0 };
@@ -187,7 +237,9 @@ function applyCommand(s: State, c: Command): State {
   }
   if (c.type === 'canopy') {
     if (c.open && (!s.area || !s.authorized)) return block('chưa đủ xác nhận khu vực và tàu bay.');
-    if (c.open && (moving(s) || !aligned(s.pose,s.aircraftShift))) return block('cabin phải dừng, sàn cân bằng, khoảng hở 2–3,5 cm, lệch ngang < 5 cm, sàn thấp hơn ngưỡng cửa 15 cm và sai số cao độ < 1 cm.');
+    if (c.open && !aircraftDoorClear(s.pose,s.aircraftShift)) return block('đường mở cửa tàu bay chưa đủ khoảng trống với cabin / canopy; hãy chỉnh vị trí cabin.');
+    if (c.open && moving(s)) return block('hãy thả điều khiển và chờ cabin dừng trước khi mở mái che.');
+    if (c.open && !aligned(s.pose,s.aircraftShift)) return block('giữ khoảng hở 2,5–5 cm, chênh ngưỡng cửa 10–20 cm và độ nghiêng sàn không quá 2°.');
     if (!c.open && s.connectedOnce && !s.serviceEnded) return block('hãy xác nhận kết thúc phục vụ trước.');
     return { ...s, jog: null, target: { ...s.pose, canopy: c.open ? 1 : 0 }, serviceEnded: c.open ? false : s.serviceEnded, action: c.open ? 'Triển khai canopy' : 'Thu canopy', message: c.open ? 'Đang mở mái che; cầu bị khóa chuyển động.' : 'Đang thu mái che.' };
   }
@@ -275,7 +327,7 @@ function integrate(s: State, dt: number): State {
     const contact=collision(p,s.obstacles);
     if(contact)return latchFault(n,'Va chạm dự đoán: '+contact+' (vùng bảo vệ mô phỏng)');
     if(!geometry(p).valid && !improvesGeometry(s.pose,p))return {...stop(n),message:'Giới hạn độ dốc / chồng lồng (giả định): giảm chênh cao hoặc tăng chiều dài.',action:'Giới hạn hình học'};
-    if (metrics(p).clearance < DOCKING.minimumClearance) return { ...stop(n), message: 'Giới hạn an toàn: mép cabin quá gần thân tàu bay. Hãy thu cầu.', action: 'Đã chặn tiếp cận', paused: s.mode === 'guide' };
+    if (metrics(p).clearance < DOCKING.minimumClearance - 1e-9) return { ...stop(n), message: 'Giới hạn an toàn: mép cabin quá gần thân tàu bay. Hãy thu cầu.', action: 'Đã chặn tiếp cận', paused: s.mode === 'guide' };
     if (s.jog && Object.keys(p).every(k => p[k as keyof Pose] === s.pose[k as keyof Pose])) return { ...stop(n), message: 'Đã chạm giới hạn hành trình. Nhả điều khiển rồi chọn hướng khác.', action: 'Giới hạn hành trình' };
     const travel=Math.hypot(p.length-s.pose.length, radians(p.angle-s.pose.angle)*(p.length-config.carriageOffset));
     n = { ...n, actualSpeed:travel/dt, wheelTravel:s.wheelTravel+travel*wheelMotion(s).direction, pose: p, target: s.jog ? { ...p } : s.target, connectedOnce: s.connectedOnce || p.canopy >= .999, wheelRotation: wheelMotion(s).angle };

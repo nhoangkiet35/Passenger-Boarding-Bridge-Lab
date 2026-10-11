@@ -1,14 +1,16 @@
 import { BufferGeometry, Float32BufferAttribute, Shape } from 'three';
+import { technicalConfig } from '@/lib/technicalConfig';
 
 // Local z points aft. Preserve the existing L1 sill and docking plane.
 export function aircraftHull() {
   const geometry = new BufferGeometry(), vertices: number[] = [], colors: number[] = [];
-  const low = Math.asin(-.7 / 2), high = Math.asin(1.18 / 2);
+  const door=technicalConfig.aircraftDoor;
+  const low = Math.asin((door.sill-4.1) / 2), high = Math.asin((door.sill+door.height-4.1) / 2);
   const angles = [low, high, ...Array.from({ length: 97 }, (_, i) => high + i * (Math.PI * 2 + low - high) / 96)];
-  const stations = [-15,-14.8,-14,-13,-12,-10.5,-8.5,-7.5,22,23.5,25.5,27.5,29.5];
+  const stations = [-15,-14.8,-14,-13,-12,-10.5,-8-door.width/2,-8+door.width/2,22,23.5,25.5,27.5,29.5];
   const radii = [.015,.35,.95,1.5,1.8,2,2,2,2,1.82,1.25,.65,.015];
   for (let j = 0; j < stations.length - 1; j++) for (let i = 0; i < angles.length - 1; i++) {
-    if (stations[j] === -8.5 && i === 0) continue; // Actual opening, rather than a painted door.
+    if (j === 6 && i === 0) continue; // Actual opening, rather than a painted door.
     const a = angles[i], b = angles[i + 1], front = stations[j], back = stations[j + 1];
     const points = [[a, front], [b, front], [b, back], [a, front], [b, back], [a, back]];
     for (const [angle, z] of points) {

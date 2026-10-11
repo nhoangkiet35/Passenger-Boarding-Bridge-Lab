@@ -8,10 +8,11 @@ export const technicalConfig = {
   rates: { angle: 8, length: 1.3, height: .35, canopy: .65, cabYaw: 5, floorTilt: 1.5 },
   jogRates: { angle: 2, length: .45, height: .15, cabYaw: 3, floorTilt: 1 },
   rotundaHeight: 3, cabinOffset: 1.785, carriageOffset: 1.9,
+  aircraftDoor: { width:.9, height:1.78, sill:3.4, slide:1.05 },
   tunnelSegment: 10, minimumOverlap: .8, maxSlope: 12,
-  docking: { gap: .025, minimumClearance: .02, sillHeight: 3.4, floorDrop: .15, cabinPassageOffset: .505 },
+  docking: { gap: .025, minimumClearance: .025, sillHeight: 3.4, floorDrop: .15, cabinPassageOffset: .505 },
   bumperProjection: .025, warningDistance: .65, nearDoorSpeed: .08,
-  alignment: { maximumGap:.035, lateralTolerance:.05, heightTolerance:.01, headingTolerance:.3, floorTolerance:.5 },
+  alignment: { maximumGap:.05, heightTolerance:.05, floorTolerance:2 },
   wheelRadius:.45,
   autoLevel: { rate: .08, deadband: .002, maxError: .18, maxAircraftShift: .3 },
   // 97 km/h is a manual caution about autolevel performance, NOT a site wind cut-off.

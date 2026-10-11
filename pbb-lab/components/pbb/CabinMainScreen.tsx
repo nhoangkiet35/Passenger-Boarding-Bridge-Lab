@@ -1,6 +1,6 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Component, useEffect, useRef, useState, type ReactNode } from 'react';
-import { apronView, cabinView, cctvView, CONNECTION, PARK, limits, moving, parked, wheelMotion, type Pose, type State } from '@/lib/simulation';
+import { apronView, cabinView, cctvView, CONNECTION, PARK, limits, parked, wheelMotion, bridgeMessages, type Pose, type State } from '@/lib/simulation';
 import { World } from './Scene';
 import type { Send } from './Joystick';
 import './cabin-main.css';
@@ -78,25 +78,15 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
   const [screenWindow, setScreenWindow] = useState<'maintenance' | 'preset' | null>(null);
   const lastTouch = useRef(0);
   const lastTouchToggle = useRef(-1000);
-  const isMoving = moving(s);
   const isParked = parked(s);
   const plcRun = s.power && !s.emergency;
   const slope = Math.atan2(s.pose.height - 3, s.pose.length) * 180 / Math.PI;
   const wheel = wheelMotion(s);
-  const blocked = s.message.startsWith('Thao tác bị chặn:');
-  const messages = page === 0 ? [
-    s.fault ? 'FAULT: '+s.fault : s.emergency ? 'EMERGENCY STOP' : blocked ? 'CONTROL COMMAND REJECTED' : isMoving ? 'BRIDGE MOVING' : s.pose.canopy >= .999 ? 'CANOPY DEPLOYED' : 'BRIDGE READY',
-    plcRun ? 'PLC RUN' : 'PLC STOP',
-    isParked ? 'PARK IN' : 'PARK OUT',
-    s.autoLevel ? 'AUTO LEVEL' : s.mode === 'manual' ? 'MANUAL MODE' : 'GUIDE MODE (SIMULATION)',
-    s.area ? 'AREA CLEAR' : 'CHECK MOVEMENT AREA',
-  ] : [
-    s.authorized ? 'AIRCRAFT ACCESS AUTHORIZED' : 'AWAITING AIRCRAFT AUTHORIZATION',
-    `VENTILATOR ${s.power && s.aux.ventilation ? 'ON' : 'OFF'}`,
-    `AIR-CON ${s.power && s.aux.aircon ? 'ON' : 'OFF'}`,
-    `INT. LIGHT ${s.power && s.aux.interior ? 'ON' : 'OFF'}`,
-    `EXT. LIGHT ${s.power && s.aux.exterior ? 'ON' : 'OFF'}`,
-  ];
+  const allMessages = bridgeMessages(s);
+  const lastPage = Math.max(0, Math.ceil(allMessages.length / 5) - 1);
+  const visiblePage = Math.min(page, lastPage);
+  const messages = Array.from({ length: 5 }, (_, index) => allMessages[visiblePage * 5 + index] ?? { text: '', alarm: false });
+  useEffect(() => { setPage(0); }, [s.fault, s.emergency, s.message]);
   const toggleExpanded = () => setExpanded(value => !value);
   return <div className={`cabin-main${expanded ? ' camera-expanded' : ''}`} aria-label="Cabin main screen">
     <div className="cabin-main-grid">
@@ -125,9 +115,9 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
           <div className="cabin-drive"><span>DRIVE COLUMN</span><div><strong>{s.pose.height.toFixed(3)} m</strong><strong>{s.pose.height.toFixed(3)} m</strong></div></div>
         </div>
       </div>
-      <div className="cabin-message-panel"><table aria-label="Bridge messages"><thead><tr><th scope="col">NO.</th><th scope="col">MESSAGE</th></tr></thead><tbody>{messages.map((message, index) => <tr key={index}><td>{page * 5 + index + 1}</td><td className={page === 0 && index === 0 && (s.emergency || s.fault || blocked) ? 'is-alarm' : ''}>{message}</td></tr>)}</tbody></table>
-        <div className="cabin-message-controls"><button type="button" aria-expanded={help} onClick={() => setHelp(value => !value)}>HELP</button><button type="button" aria-label="Previous messages" disabled={page === 0} onClick={() => setPage(0)}>▲</button><button type="button" aria-label="Next messages" disabled={page === 1} onClick={() => setPage(1)}>▼</button><button type="button" className="cabin-camera-select" onClick={() => setSelectedCamera(apron ? 'cabin' : 'apron')}>CAMERA<br />{apron ? '2' : '1'}</button></div>
-        {help ? <div className="cabin-help" role="status">CAMERA: DOUBLE-TAP TO EXPAND / RESTORE.<br />L: − / R: +. DOWN SLOPE: −.</div> : null}
+      <div className="cabin-message-panel"><table aria-label="Cảm biến và cảnh báo vận hành cầu"><thead><tr><th scope="col">NO.</th><th scope="col">MESSAGE</th></tr></thead><tbody>{messages.map((message, index) => <tr key={index}><td>{visiblePage * 5 + index + 1}</td><td className={message.alarm ? 'is-alarm' : ''}>{message.text}</td></tr>)}</tbody></table>
+        <div className="cabin-message-controls"><button type="button" aria-expanded={help} onClick={() => setHelp(value => !value)}>HELP</button><button type="button" aria-label="Previous messages" disabled={visiblePage === 0} onClick={() => setPage(visiblePage-1)}>▲</button><button type="button" aria-label="Next messages" disabled={visiblePage === lastPage} onClick={() => setPage(visiblePage+1)}>▼</button><button type="button" className="cabin-camera-select" onClick={() => setSelectedCamera(apron ? 'cabin' : 'apron')}>CAMERA<br />{apron ? '2' : '1'}</button></div>
+        {help ? <div className="cabin-help" role="status">Tiếp cận chậm, giữ khe 2,5–5 cm. Sàn thấp hơn cửa 10–20 cm, nghiêng tối đa ±2°. Thả joystick trước khi mở mái che. Cảnh báo đỏ cần xử lý trước.<br />Nhấn đúp camera để phóng lớn.</div> : null}
       </div>
       <div className="cabin-wheel"><div>WHEEL ROT. <strong>{wheel.angle.toFixed(1)} deg</strong></div><svg viewBox="0 0 160 160" role="img" aria-label={`Wheel steering ${wheel.angle.toFixed(1)} degrees, ${wheel.direction === 0 ? 'stopped' : wheel.direction > 0 ? 'forward drive' : 'reverse drive'}`}><circle cx="80" cy="80" r="65" fill="none" stroke="#00aaff" /><text x="80" y="29" textAnchor="middle">F</text><text x="80" y="142" textAnchor="middle">R</text><g transform={`rotate(${wheel.angle} 80 80)`}><rect x="52" y="51" width="16" height="58" rx="8" fill="#000000" /><rect x="94" y="51" width="16" height="58" rx="8" fill="#000000" /><path d="M68 80 H94" stroke="#808080" strokeWidth="15" />{wheel.direction > 0 ? <path d="M80 34 L68 49 H92 Z" fill="#ff0000" /> : wheel.direction < 0 ? <path d="M80 126 L68 111 H92 Z" fill="#ff0000" /> : null}</g></svg></div>
     </div>

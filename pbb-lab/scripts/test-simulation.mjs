@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
-import {initial,command,tick,moving,parked,aligned,metrics,passengerAccess,cabinFrame,DOCKING,PARK,CONNECTION} from '../lib/simulation.ts';
+import {technicalConfig} from '../lib/technicalConfig.ts';
+import {standLayout} from '../lib/standLayout.ts';
+import {cabinCurtainPanels,CABIN_SWIVEL_RADIUS} from '../lib/cabinCurtainGeometry.ts';
+import {initial,command,tick,moving,parked,aligned,metrics,passengerAccess,cabinFrame,DOCKING,PARK,CONNECTION,bridgeMessages} from '../lib/simulation.ts';
 const settle=s=>{for(let i=0;i<6000&&moving(s);i++)s=tick(s,1/60);assert.ok(!moving(s),'movement reaches target');return s;};
 let checks=0;const check=(value,label)=>{assert.ok(value,label);checks++;console.log('PASS '+label);};
 let s=initial();s=command(s,{type:'move',key:'length',value:15});check(s.target.length===PARK.length,'power-off blocks movement');
@@ -33,7 +36,49 @@ access.pose.height=3.4;access.serviceEnded=true;assert.equal(passengerAccess(acc
 
 assert.ok(CONNECTION.angle>30&&CONNECTION.cabYaw< -30,'diagonal tunnel and counter-rotated cabin');
 assert.ok(aligned(CONNECTION),'diagonal pose seals at L1');
-assert.ok(!aligned({...CONNECTION,cabYaw:0}),'canopy blocked without counter-rotation');
+assert.ok(aligned({...CONNECTION,height:3.20}),'lower height boundary accepted');
+assert.ok(aligned({...CONNECTION,height:3.30}),'upper height boundary accepted');
+assert.ok(!aligned({...CONNECTION,height:3.31}),'excessive height error rejected');
+const offMessages=bridgeMessages(initial());
+assert.ok(offMessages.some(m=>m.text.includes('chưa hoạt động')),'unpowered sensors do not claim live readings');
+assert.ok(!offMessages.some(m=>/PLC STOP|PARK IN|GUIDE MODE|BRIDGE READY/.test(m.text)),'message panel excludes mode lamp statuses');
+const sensorState={...initial(),power:true,area:true,authorized:true,pose:{...CONNECTION},target:{...CONNECTION}};
+assert.ok(bridgeMessages(sensorState).some(m=>m.text.includes('Đường mở cửa')&&!m.alarm),'clear door path reports sensor clearance');
+assert.ok(bridgeMessages({...sensorState,pose:{...CONNECTION,length:CONNECTION.length+.1}}).some(m=>m.alarm&&m.text.includes('CHẠM THÂN')),'unsafe aircraft clearance shows alarm');
+assert.ok(bridgeMessages({...sensorState,emergency:true})[0].text.includes('DỪNG KHẨN CẤP'),'emergency takes message priority');
+for(const [gap,accepted] of [[.025,true],[.05,true],[.024,false],[.051,false]]) {
+  const x=5-1-technicalConfig.cabinOffset-gap-standLayout.rotundaX;
+  const z=-DOCKING.cabinPassageOffset-standLayout.rotundaZ;
+  const angle=Math.atan2(z,x)*180/Math.PI;
+  const pose={...CONNECTION,angle,cabYaw:-angle,length:Math.hypot(x,z)};
+  const state={...initial(),power:true,area:true,authorized:true,pose,target:{...pose}};
+  assert.equal(command(state,{type:'canopy',open:true}).target.canopy,accepted?1:0,`canopy gap boundary ${gap} m`);
+}
+// A lateral offset alone no longer prevents manual canopy deployment.
+const lateralX=CONNECTION.length*Math.cos(CONNECTION.angle*Math.PI/180);
+const lateralZ=CONNECTION.length*Math.sin(CONNECTION.angle*Math.PI/180)-.1;
+const lateralAngle=Math.atan2(lateralZ,lateralX)*180/Math.PI;
+const lateralPose={...CONNECTION,angle:lateralAngle,cabYaw:-lateralAngle,length:Math.hypot(lateralX,lateralZ)};
+assert.ok(Math.abs(metrics(lateralPose).offset)>.05,'fixture exceeds former lateral limit');
+assert.ok(aligned(lateralPose),'lateral offset does not block alignment');
+const lateralState={...initial(),power:true,area:true,authorized:true,pose:{...lateralPose},target:{...lateralPose}};
+assert.equal(command(lateralState,{type:'canopy',open:true}).target.canopy,1,'manual canopy accepts lateral offset');
+assert.equal(command({...lateralState,pose:{...lateralPose,height:3.32},target:{...lateralPose,height:3.32}},{type:'canopy',open:true}).target.canopy,0,'excessive height error still blocks canopy');
+assert.equal(command({...lateralState,pose:{...lateralPose,height:3.27},target:{...lateralPose,height:3.27}},{type:'canopy',open:true}).target.canopy,1,'moderate height error accepted with clear door path');
+assert.ok(!aligned({...CONNECTION,cabYaw:0}),'unsafe cabin geometry still blocks canopy');
+const heading=.4*Math.PI/180;
+const safeX=5-Math.cos(heading)-.04;
+const pivotX=safeX-technicalConfig.cabinOffset*Math.cos(heading)-standLayout.rotundaX;
+const pivotZ=-DOCKING.cabinPassageOffset-technicalConfig.cabinOffset*Math.sin(heading)-standLayout.rotundaZ;
+const safeAngle=Math.atan2(pivotZ,pivotX)*180/Math.PI;
+const safeYawPose={...CONNECTION,angle:safeAngle,cabYaw:.4-safeAngle,length:Math.hypot(pivotX,pivotZ)};
+assert.ok(aligned(safeYawPose),'safe door opening accepts heading above former 0.3 degree limit');
+const unsafeLateral={...lateralPose,angle:CONNECTION.angle,cabYaw:CONNECTION.cabYaw,length:CONNECTION.length};
+const collisionZ=CONNECTION.length*Math.sin(CONNECTION.angle*Math.PI/180)+.4;
+unsafeLateral.angle=Math.atan2(collisionZ,lateralX)*180/Math.PI;
+unsafeLateral.cabYaw=-unsafeLateral.angle;
+unsafeLateral.length=Math.hypot(lateralX,collisionZ);
+assert.equal(command({...lateralState,pose:unsafeLateral,target:{...unsafeLateral}},{type:'canopy',open:true}).target.canopy,0,'door path crossing canopy side blocks deployment');
 
 let directPark=initial();directPark.power=true;directPark.area=true;directPark.authorized=true;directPark.pose={...CONNECTION};directPark.target={...CONNECTION};
 directPark=command(directPark,{type:'park'});assert.equal(directPark.target.angle,CONNECTION.angle,'retract before rotating back');directPark=settle(directPark);assert.ok(parked(directPark),'direct parking from diagonal connection completes');
@@ -43,11 +88,28 @@ const connectedFrame=cabinFrame(CONNECTION);
 assert.ok(Math.abs(connectedFrame.z+DOCKING.cabinPassageOffset)<1e-9,'aircraft L1 aligns with right-hand glass-door passage');
 assert.ok(Math.abs(metrics(CONNECTION).offset)<1e-9,'alignment measures passenger passage rather than cabin center');
 for(const opening of [0,.2,.5,1]) {
-  const doorCenter=-1.2*Math.max(0,(opening-.2)/.8);
-  const left=doorCenter-.5-connectedFrame.z,right=doorCenter+.5-connectedFrame.z;
+  const doorCenter=-technicalConfig.aircraftDoor.slide*Math.max(0,(opening-.2)/.8);
+  const left=doorCenter-technicalConfig.aircraftDoor.width/2-connectedFrame.z,right=doorCenter+technicalConfig.aircraftDoor.width/2-connectedFrame.z;
   assert.ok(left>=-1.24&&right<=1.24,'entire aircraft door panel stays within canopy width throughout opening');
 }
 console.log('PASS right-hand glass-door alignment and aircraft door canopy clearance');
+for(const yaw of [-65,-38,0,38,65]){
+  const panels=cabinCurtainPanels(yaw),a=yaw*Math.PI/180;
+  assert.equal(panels.length,64,'two continuous circular bellows strips');
+  for(const panel of panels) for(const point of [panel.from,panel.to]) {
+    const radius=Math.hypot(...point);
+    assert.ok(radius>=CABIN_SWIVEL_RADIUS-1e-9&&radius<=CABIN_SWIVEL_RADIUS+.035+1e-9,'pleats remain around the vertical pivot');
+  }
+  for(const start of [0,32]) {
+    const end=panels[start+31].to;
+    const tunnelZ=end[0]*Math.sin(a)+end[1]*Math.cos(a);
+    assert.ok(Math.abs(Math.abs(tunnelZ)-1.27)<1e-9,'rear attachment remains fixed to tunnel');
+    const front=panels[start].from;
+    assert.ok(Math.abs(Math.abs(front[1])-1.39)<1e-9,'front attachment follows cabin frame');
+    for(let i=start;i<start+31;i++)assert.deepEqual(panels[i].to,panels[i+1].from,'bellows have no gaps');
+  }
+}
+console.log('PASS cylindrical cabin curtain at full yaw range');
 
 // Configured travel stops apply to both target inputs and held console controls.
 for (const [axis, low, high] of [['height',2,5.4],['angle',-87.5,87.5],['cabYaw',-65,65]]) {

@@ -15,7 +15,7 @@ for(const action of [{type:'emergency'},{type:'power',on:false},{type:'area',val
 }
 s=ready();s.pose={...CONNECTION};s.target={...s.pose};s=command(s,{type:'canopy',open:true});s=run(s,2);s=command(s,{type:'jog',axes:{cabYaw:1}});check(!s.jog&&s.pose.cabYaw===CONNECTION.cabYaw,'deployed canopy locks cabin rotation');
 s=ready();s=command(s,{type:'jog',axes:{floorTilt:1}});s=run(s,10);check(s.pose.floorTilt===3&&!s.jog,'floor stops at mechanical range');
-let p={...CONNECTION};check(aligned(p),'standard connection pose remains valid');check(!aligned({...p,floorTilt:1}),'tilted floor blocks canopy deployment');
+let p={...CONNECTION};check(aligned(p),'standard connection pose remains valid');check(aligned({...p,floorTilt:1}),'moderate floor tilt accepted with clear door path');check(!aligned({...p,floorTilt:3}),'excessive floor tilt blocks canopy deployment');
 const before=cabinView(p),rotated=cabinView({...p,cabYaw:CONNECTION.cabYaw+10}),raised=cabinView({...p,height:4});
 check(Math.abs(raised.position[1]-before.position[1]-(4-CONNECTION.height))<1e-9,'CCTV rises with cabin');
 const rotatedFrame=cabinFrame({...p,cabYaw:CONNECTION.cabYaw+10}),baseFrame=cabinFrame(p);

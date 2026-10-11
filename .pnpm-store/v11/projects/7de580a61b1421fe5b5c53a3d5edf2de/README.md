@@ -4,6 +4,12 @@ Website React + TypeScript + Three.js qua React Three Fiber. Mô hình tạo b�
 
 Xem [README tại gốc repository](../README.md) để có hướng dẫn cài đặt từng bước, chạy production và xử lý lỗi. Nếu dùng gói ZIP chỉ chứa thư mục này, các lệnh bên dưới vẫn đủ để khởi động.
 
+## Tiếp cận thủ công trong mô phỏng
+
+Giữ khoảng hở mép cabin / thân tàu 2,5–5 cm; sàn thấp hơn ngưỡng cửa 10–20 cm, độ nghiêng sàn tối đa ±2°. Không áp dụng ngưỡng lệch ngang hoặc lệch hướng cố định. Đường mở cửa phải nằm trong vùng trống cabin/canopy theo kiểm tra hình học bảo thủ; bảo vệ va chạm và khóa di chuyển khi mở canopy vẫn có hiệu lực. Thả joystick và chờ cầu dừng trước khi triển khai mái che. Nút tăng/giảm cao độ và chiều dài chỉnh mỗi lần 1 cm; góc cầu chỉnh mỗi lần 0,1°.
+
+MESSAGE hiển thị số đo cảm biến mô phỏng và cảnh báo vận hành, ưu tiên nguy cơ trước. Các trạng thái nguồn, PLC và vị trí đỗ nằm ở chỉ báo riêng. Khi tắt nguồn, không hiển thị số đo như dữ liệu cảm biến đang hoạt động.
+
 ## Cài đặt và chạy
 
 Yêu cầu Node.js 24 LTS và pnpm 11. Nếu chưa có pnpm: `npm install -g pnpm@11.19.0`.
