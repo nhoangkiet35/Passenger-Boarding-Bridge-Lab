@@ -100,7 +100,7 @@ export function CabinGPU({show}:{show:boolean}) {
  </group>;
 }
 
-export function MobileCarriage({pose,show,wheelRotation=0}:{pose:Pose;show:boolean;wheelRotation?:number}) {
+export function MobileCarriage({pose,show,wheelRotation=0,wheelTravel=0}:{pose:Pose;show:boolean;wheelRotation?:number;wheelTravel?:number}) {
  const ground=-pose.height;
  return <group position={[-1.9,0,0]}>
   {/* Two outboard lift columns; the single two-wheel carriage is centered between them. */}
@@ -146,8 +146,9 @@ export function MobileCarriage({pose,show,wheelRotation=0}:{pose:Pose;show:boole
    {Array.from({length:9},(_,i)=>-1+i*.25).map(x=><mesh key={x} position={[x,0,side*.08]}><boxGeometry args={[.085,.105,.02]}/><meshStandardMaterial color="#20262a"/></mesh>)}
   </group>)}
   <Block at={[.12,ground+1.15,0]} size={[.2,.23,.3]} color="#8c9e9d"/>
-  {[-1,1].map(side=><group key={side} position={[0,ground+.45,side*.72]}>
+  {[-1,1].map(side=><group key={side} position={[0,ground+.45,side*.72]} rotation={[0,0,-wheelTravel/.45]}>
    <mesh rotation={[Math.PI/2,0,0]} castShadow receiveShadow><cylinderGeometry args={[.45,.45,.34,32]}/><meshStandardMaterial color="#202a31" roughness={.9}/></mesh>
+   <Block at={[0,.13,side*.19]} size={[.025,.18,.025]} color="#e4bd57"/>
    <mesh position={[0,0,side*.175]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[.22,.22,.025,24]}/><meshStandardMaterial color="#9cafb9" metalness={.55}/></mesh>
   </group>)}
   </group>

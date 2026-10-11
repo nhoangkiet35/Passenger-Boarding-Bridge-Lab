@@ -85,10 +85,10 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
   const wheel = wheelMotion(s);
   const blocked = s.message.startsWith('Thao tác bị chặn:');
   const messages = page === 0 ? [
-    s.emergency ? 'EMERGENCY STOP' : blocked ? 'CONTROL COMMAND REJECTED' : isMoving ? 'BRIDGE MOVING' : s.pose.canopy >= .999 ? 'CANOPY DEPLOYED' : 'BRIDGE READY',
+    s.fault ? 'FAULT: '+s.fault : s.emergency ? 'EMERGENCY STOP' : blocked ? 'CONTROL COMMAND REJECTED' : isMoving ? 'BRIDGE MOVING' : s.pose.canopy >= .999 ? 'CANOPY DEPLOYED' : 'BRIDGE READY',
     plcRun ? 'PLC RUN' : 'PLC STOP',
     isParked ? 'PARK IN' : 'PARK OUT',
-    s.mode === 'manual' ? 'MANUAL MODE' : 'PRESET MODE',
+    s.autoLevel ? 'AUTO LEVEL' : s.mode === 'manual' ? 'MANUAL MODE' : 'GUIDE MODE (SIMULATION)',
     s.area ? 'AREA CLEAR' : 'CHECK MOVEMENT AREA',
   ] : [
     s.authorized ? 'AIRCRAFT ACCESS AUTHORIZED' : 'AWAITING AIRCRAFT AUTHORIZATION',
@@ -125,7 +125,7 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
           <div className="cabin-drive"><span>DRIVE COLUMN</span><div><strong>{s.pose.height.toFixed(3)} m</strong><strong>{s.pose.height.toFixed(3)} m</strong></div></div>
         </div>
       </div>
-      <div className="cabin-message-panel"><table aria-label="Bridge messages"><thead><tr><th scope="col">NO.</th><th scope="col">MESSAGE</th></tr></thead><tbody>{messages.map((message, index) => <tr key={index}><td>{page * 5 + index + 1}</td><td className={page === 0 && index === 0 && (s.emergency || blocked) ? 'is-alarm' : ''}>{message}</td></tr>)}</tbody></table>
+      <div className="cabin-message-panel"><table aria-label="Bridge messages"><thead><tr><th scope="col">NO.</th><th scope="col">MESSAGE</th></tr></thead><tbody>{messages.map((message, index) => <tr key={index}><td>{page * 5 + index + 1}</td><td className={page === 0 && index === 0 && (s.emergency || s.fault || blocked) ? 'is-alarm' : ''}>{message}</td></tr>)}</tbody></table>
         <div className="cabin-message-controls"><button type="button" aria-expanded={help} onClick={() => setHelp(value => !value)}>HELP</button><button type="button" aria-label="Previous messages" disabled={page === 0} onClick={() => setPage(0)}>▲</button><button type="button" aria-label="Next messages" disabled={page === 1} onClick={() => setPage(1)}>▼</button><button type="button" className="cabin-camera-select" onClick={() => setSelectedCamera(apron ? 'cabin' : 'apron')}>CAMERA<br />{apron ? '2' : '1'}</button></div>
         {help ? <div className="cabin-help" role="status">CAMERA: DOUBLE-TAP TO EXPAND / RESTORE.<br />L: − / R: +. DOWN SLOPE: −.</div> : null}
       </div>
@@ -135,7 +135,7 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
       <button type="button" className="cabin-mode-lamp" aria-label="MAINTENANCE: open service password window" aria-haspopup="dialog" onClick={() => setScreenWindow('maintenance')}><i aria-hidden="true" /><span>MAIN-<br />TENANCE</span></button>
       <button type="button" className="cabin-mode-lamp" aria-label="PRESET: open preset window" aria-haspopup="dialog" onClick={() => setScreenWindow('preset')}><i className={s.mode === 'guide' ? 'active' : ''} aria-hidden="true" /><span>PRESET</span></button>
       <Indicator label="PARK" value={isParked ? 'IN' : 'OUT'} red={!isParked} />
-      <Indicator label="OPERATION" value={!s.power || s.emergency || s.paused ? 'OFF' : s.mode === 'guide' ? 'AUTO' : 'ON'} />
+      <Indicator label="OPERATION" value={s.autoLevel ? 'AUTO' : !s.power || s.emergency || s.paused ? 'OFF' : 'ON'} />
       <Indicator label="VENTILATOR" value={s.power && s.aux.ventilation ? 'ON' : 'OFF'} />
       <Indicator label="POWER" value={s.power ? 'ON' : 'OFF'} />
       <Indicator label="AIR-CON" value={s.power && s.aux.aircon ? 'ON' : 'OFF'} />
