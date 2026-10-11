@@ -44,6 +44,8 @@ export function bridgeMessages(s: State): BridgeMessage[] {
         add('Mái che đã triển khai: khóa di chuyển cầu; kết thúc phục vụ rồi thu mái che.');
     if (s.autoLevel)
         add(`Cảm biến bám cao độ: sai số ${(m.heightError * 100).toFixed(1)} cm.`);
+    if (s.autoLevel && s.pose.canopy>=.999 && !s.serviceEnded)
+        add(`Bù tải hành khách: độ võng giả lập ${(s.passengerLoadDeflection*100).toFixed(1)} cm; AUTO LEVEL đang giữ cao độ.`);
     if (!geometry(s.pose).valid)
         add('Giới hạn cơ khí: độ dốc / chồng lồng chưa phù hợp.', true);
     return result.sort((a, b) => Number(b.alarm) - Number(a.alarm));

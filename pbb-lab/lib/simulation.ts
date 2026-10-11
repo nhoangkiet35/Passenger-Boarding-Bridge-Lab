@@ -7,7 +7,7 @@ export * from './bridgeGeometry.ts';
 export { bridgeMessages, type BridgeMessage } from './bridgeMessages.ts';
 export const initial = (): State => ({
     obstacles: [],
-    autoLevel: false, aircraftShift: 0, scenarios: { obstacle: false, autolevelFault: false, powerLoss: false, wind: false, auxDeployed: false }, fault: null, elapsed: 0, log: [], actualSpeed: 0, wheelTravel: 0,
+    autoLevel: false, passengerLoadDeflection: 0, aircraftShift: 0, scenarios: { obstacle: false, autolevelFault: false, powerLoss: false, wind: false, auxDeployed: false }, fault: null, elapsed: 0, log: [], actualSpeed: 0, wheelTravel: 0,
     pose: { ...PARK }, target: { ...PARK }, jog: null,
     power: false, emergency: false, area: false, authorized: false,
     serviceEnded: false, mode: 'manual', paused: false, step: -1, speed: 1,
@@ -165,6 +165,8 @@ function applyCommand(s: State, c: Command): State {
         return { ...stop(s), fault: null, autoLevel: false, power: false, step: -1, message: 'Đã xác nhận khôi phục mô phỏng. Bật nguồn và phát lệnh mới; xem hướng dẫn nguồn khi xử lý thiết bị thật.' };
     }
     if (c.type === 'autolevel') {
+        if (!c.on && s.pose.canopy >= .999 && !s.serviceEnded)
+            return block('AUTO LEVEL đang bảo vệ cao độ khi phục vụ; kết thúc phục vụ trước khi thu cảm biến.');
         if (!c.on)
             return { ...stop(s), autoLevel: false, message: 'Đã chuyển về OPERATE minh họa; Autolevel ngừng.' };
         if (!s.power || s.emergency || s.fault || moving(s) || !aligned(s.pose, s.aircraftShift) || !s.area || !s.authorized)
@@ -279,7 +281,7 @@ function executeStep(s: State, i: number): State {
         case 3:
             n.target = { ...CONNECTION };
             break;
-        case 4: return { ...command(command(n, { type: 'autolevel', on: true }), { type: 'canopy', open: true }), step: i };
+        case 4: return { ...command(n, { type: 'canopy', open: true }), step: i };
         case 5:
             n.paused = true;
             break;
@@ -326,19 +328,32 @@ function integrate(s: State, dt: number): State {
         if (contact)
             return latchFault(n, 'Vùng bảo vệ bị chiếm: ' + contact);
     }
+    if (s.power && s.pose.canopy >= .999 && s.autoLevel && !s.serviceEnded && s.area && s.authorized) {
+        // Illustrative elastic deflection from changing passenger load, not a structural calculation.
+        const load = config.passengerLoad;
+        const desired = load.maximumDeflection * (1 - Math.cos(2*Math.PI*n.elapsed/load.cycleSeconds))/2;
+        const change = Math.sign(desired-s.passengerLoadDeflection) * Math.min(Math.abs(desired-s.passengerLoadDeflection),load.responseRate*dt);
+        const pose = { ...n.pose, height:n.pose.height-change };
+        const contact = collision(pose,s.obstacles);
+        if(contact || !geometry(pose).valid || !aircraftDoorClear(pose,s.aircraftShift))
+            return latchFault(n,'Tải hành khách: vùng bảo vệ cao độ / cửa không còn đủ khoảng trống');
+        n = { ...n, passengerLoadDeflection:s.passengerLoadDeflection+change, pose, target:{...n.target,height:n.target.height-change} };
+    }
     if (s.autoLevel && s.power) {
-        const error = CONNECTION.height + s.aircraftShift - s.pose.height;
+        const error = CONNECTION.height + s.aircraftShift - n.pose.height;
         if (Math.abs(error) > config.autoLevel.maxError)
             return latchFault(n, 'Autolevel không theo kịp: sai lệch vượt ngưỡng giả định');
         if (Math.abs(error) > config.autoLevel.deadband) {
-            const h = s.pose.height + Math.sign(error) * Math.min(Math.abs(error), config.autoLevel.rate * dt);
-            const p = { ...s.pose, height: h };
+            const h = n.pose.height + Math.sign(error) * Math.min(Math.abs(error), config.autoLevel.rate * dt);
+            const p = { ...n.pose, height: h };
             if (h < limits.height[0] || h > limits.height[1] || !geometry(p).valid)
                 return latchFault(n, 'Autolevel chạm giới hạn hình học');
             const contact = collision(p, s.obstacles);
             if (contact)
                 return latchFault(n, 'Autolevel / vùng va chạm: ' + contact);
-            n = { ...n, pose: p, target: { ...s.target, height: h } };
+            if(n.pose.canopy>=.999 && !aircraftDoorClear(p,s.aircraftShift))
+                return latchFault(n,'Autolevel: đường mở cửa không còn đủ khoảng trống');
+            n = { ...n, pose: p, target: { ...n.target, height: h } };
         }
     }
     if (s.power && Math.abs(s.temperature - (s.aux.aircon ? 22 : 27)) > .01) {
@@ -375,6 +390,9 @@ function integrate(s: State, dt: number): State {
             return { ...stop(n), message: 'Đã chạm giới hạn hành trình. Nhả điều khiển rồi chọn hướng khác.', action: 'Giới hạn hành trình' };
         const travel = Math.hypot(p.length - s.pose.length, radians(p.angle - s.pose.angle) * (p.length - config.carriageOffset));
         n = { ...n, actualSpeed: travel / dt, wheelTravel: s.wheelTravel + travel * wheelMotion(s).direction, pose: p, target: s.jog ? { ...p } : s.target, connectedOnce: s.connectedOnce || p.canopy >= .999, wheelRotation: wheelMotion(s).angle };
+    }
+    if (s.pose.canopy < .999 && n.pose.canopy >= .999 && n.power && n.area && n.authorized && !n.serviceEnded && aligned(n.pose,n.aircraftShift)) {
+        n = { ...n,autoLevel:true,message:'Mái che đã triển khai. AUTO LEVEL tự kích hoạt; cảm biến tì thân tàu và giữ cao độ khi hành khách di chuyển.' };
     }
     if (n.action === 'Về vị trí đỗ' && !moving(n) && !parked(n))
         n = { ...n, target: { ...PARK } };

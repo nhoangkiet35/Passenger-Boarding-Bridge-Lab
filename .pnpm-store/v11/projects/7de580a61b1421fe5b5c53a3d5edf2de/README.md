@@ -18,6 +18,8 @@ Giữ khoảng hở mép cabin / thân tàu 2,5–5 cm; sàn thấp hơn ngưỡ
 
 MESSAGE hiển thị số đo cảm biến mô phỏng và cảnh báo vận hành, ưu tiên nguy cơ trước. Các trạng thái nguồn, PLC và vị trí đỗ nằm ở chỉ báo riêng. Khi tắt nguồn, không hiển thị số đo như dữ liệu cảm biến đang hoạt động.
 
+Khi canopy triển khai hoàn tất, AUTO LEVEL tự kích hoạt trong cả chế độ thủ công và hướng dẫn. Tay cảm biến vươn tì thân tàu; tải hành khách tạo độ võng giả lập thay đổi tối đa 1,2 cm và AUTO LEVEL bù cao độ. MESSAGE hiển thị độ võng và sai số bám cao độ. Đây là minh họa tải trọng, không phải tính toán kết cấu hoặc cảm biến thật. Kết thúc phục vụ sẽ ngừng bù tải và thu cảm biến; dừng khẩn cấp, mất nguồn và lỗi vẫn ngắt AUTO LEVEL.
+
 ## Cài đặt và chạy
 
 Yêu cầu Node.js 24 LTS và pnpm 11. Nếu chưa có pnpm: `npm install -g pnpm@11.19.0`.

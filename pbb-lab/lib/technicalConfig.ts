@@ -21,6 +21,7 @@ export const technicalConfig = {
     alignment: { maximumGap: .05, heightTolerance: .05, floorTolerance: 2 },
     wheelRadius: .45,
     autoLevel: { rate: .08, deadband: .002, maxError: .18, maxAircraftShift: .3 },
+    passengerLoad: { maximumDeflection:.012, cycleSeconds:6, responseRate:.004 },
     // 97 km/h is a manual caution about autolevel performance, NOT a site wind cut-off.
     windCautionKmh: 97,
     wheelSteeringLimit: 87.5, // Model steering limit.

@@ -10,6 +10,7 @@ export type Scenario = 'obstacle' | 'autolevelFault' | 'powerLoss' | 'wind' | 'a
 export type State = {
     obstacles: Obstacle[];
     autoLevel: boolean;
+    passengerLoadDeflection: number;
     aircraftShift: number;
     scenarios: Record<Scenario, boolean>;
     fault: string | null;

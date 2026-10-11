@@ -7,6 +7,24 @@ const check=(ok,name)=>{assert.ok(ok,name);checks++;console.log('PASS training: 
 const ready=()=>{let s=initial();for(const cmd of [{type:'power',on:true},{type:'area',value:true},{type:'authorize',value:true}])s=command(s,cmd);return s;};
 const run=(s,seconds,fps=60)=>{for(let i=0;i<Math.round(seconds*fps);i++)s=tick(s,1/fps);return s;};
 const docked=()=>{const s=ready();s.pose={...CONNECTION};s.target={...s.pose};return command(s,{type:'autolevel',on:true});};
+for(const fps of [15,60,144]){
+  let manual=ready();manual.pose={...CONNECTION};manual.target={...manual.pose};
+  manual=command(manual,{type:'canopy',open:true});
+  manual=run(manual,.5,fps);
+  check(!manual.autoLevel&&manual.pose.canopy<.999,`partial canopy does not activate autolevel at ${fps} FPS`);
+  manual=run(manual,2,fps);
+  check(manual.autoLevel&&manual.pose.canopy===1,`manual canopy automatically activates autolevel at ${fps} FPS`);
+  const activation=manual.pose.height;
+  manual=run(manual,3,fps);
+  check(manual.passengerLoadDeflection>0&&Math.abs(manual.pose.height-activation)>1e-8,`passenger load produces corrected height movement at ${fps} FPS`);
+  check(!manual.fault&&Math.abs(metrics(manual.pose,manual.aircraftShift).heightError)<=c.autoLevel.deadband+.000001&&passengerAccess(manual),`load compensation preserves door access and height at ${fps} FPS`);
+  check(command(manual,{type:'autolevel',on:false}).autoLevel,'active passenger service cannot disable height protection');
+  manual=command(manual,{type:'service'});
+  check(!manual.autoLevel&&!passengerAccess(manual),'end of service retracts sensor and closes access');
+  const unloaded=manual.passengerLoadDeflection;
+  manual=run(manual,1,fps);
+  check(manual.passengerLoadDeflection===unloaded,'passenger loading stops after service');
+}
 for(const fps of [15,30,60,144]){
   let s=command(ready(),{type:'move',key:'length',value:13.5});s=run(s,1,fps);
   check(Math.abs(s.pose.length-13.3)<1e-9,`time integration at ${fps} FPS`);
