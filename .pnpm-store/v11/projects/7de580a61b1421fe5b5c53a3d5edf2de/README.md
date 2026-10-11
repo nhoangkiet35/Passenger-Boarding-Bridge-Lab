@@ -25,6 +25,10 @@ pnpm start     # Phục vụ bản build bằng Wrangler local
 
 Lệnh cài đặt bỏ qua lifecycle script; các binary nền tảng cần thiết được cung cấp qua dependency. Cấu hình này đã được kiểm tra build trên Windows x64. Không cần khóa API, cơ sở dữ liệu hay tài khoản cloud để chạy cục bộ. Vinext/Vite cung cấp môi trường React và build; cấu hình Sites có sẵn cho triển khai tùy chọn.
 
+## Hiệu chỉnh theo hồ sơ LTIA — 11/10/2026
+
+Các giới hạn/ngưỡng chưa xác nhận là **Giả định mô phỏng** tại `lib/technicalConfig.ts`. Bảng kiểm chứng và tình huống huấn luyện đã được gỡ khỏi giao diện. Tài liệu trong docs được phép lưu trong repo GitHub private, nhưng bị loại khỏi gói triển khai website; tên file và trích dẫn nguồn nội bộ không được xuất hiện trên website.
+
 ## Chế độ hướng dẫn
 
 Chọn **Chế độ hướng dẫn → Tiếp cận**. Hệ thống lần lượt đánh dấu kiểm tra khu vực và xác nhận tàu bay, bật nguồn, tiếp cận, căn chỉnh, mở canopy và dừng ở trạng thái kết nối. Mỗi bước giữ giải thích 3 giây mô phỏng; nút **Tạm dừng** giữ cả chuyển động và đồng hồ bước. Chọn **Tách cầu** để kết thúc phục vụ, thu canopy, lùi, thu cầu và trở về vị trí đỗ. Tốc độ 0,5× / 1× / 2× áp dụng cho hoạt ảnh lẫn thời gian giải thích.
@@ -32,25 +36,23 @@ Chọn **Chế độ hướng dẫn → Tiếp cận**. Hệ thống lần lư�
 ## Điều khiển thủ công
 
 1. Bật nguồn và đánh dấu cả hai điều kiện tiếp cận.
-2. Xoay về **0°**, đặt cao độ sàn **3,40 m**, chiều dài **25,36 m**. Chờ cầu đạt các mục tiêu; khoảng hở thân là **0,40 m**, lệch ngang **0 m**.
-3. Chọn **Triển khai**. Khi canopy đạt 100%, mô phỏng đã kết nối.
+2. Xoay cầu **38,27°**, cabin **−38,27°**, cao độ sàn **3,25 m**, tầm với ngang **18,07 m**. Chờ cầu dừng. Đây là preset A321 minh họa, không phải preset đã nghiệm thu Long Thành.
+3. Thao tác bằng bàn điều khiển hiện có; các chức năng mô phỏng chưa được xác nhận không thay thế quy trình thiết bị thực tế.
 4. Chọn **Kết thúc phục vụ**, **Thu lại** và chờ canopy về 0%.
 5. Chọn **Lùi khỏi cửa**, chờ cabin lùi, sau đó **Về vị trí đỗ**.
 
 Thanh trượt đặt mục tiêu; nút ± thay đổi từng nấc. Có thể dùng Tab để chọn, phím mũi tên điều chỉnh thanh trượt. Bật/tắt nhãn, chọn tổng thể / gần cabin / từ trên cao, kéo chuột để xoay, cuộn để thu phóng, chuột phải để dịch cảnh. Đặt lại camera chỉ đổi góc nhìn; Đặt lại bài học xóa toàn bộ trạng thái và phục hồi camera, tốc độ, nhãn.
 
-## Liên động minh họa
+## Liên động và giới hạn mô hình
 
-- Chưa bật nguồn hoặc chưa xác nhận khu vực và tàu bay: chặn tiếp cận.
-- Canopy chỉ mở khi cabin đã dừng, góc dưới 2°, lệch ngang dưới 0,35 m, lệch cao dưới 0,12 m và khoảng hở 0,24–0,65 m.
-- Canopy đang mở, đang thu hoặc đã mở: khóa xoay/nâng/thu và về đỗ.
-- Dừng khẩn cấp hủy mục tiêu ngay trên mọi trục. Đặt lại dừng khẩn cấp không tự chạy lại lệnh cũ; cần lệnh mới.
-- Tắt nguồn, thu hồi xác nhận hoặc đổi chế độ hủy chuyển động đang chạy. Tạm dừng giữ mục tiêu để tiếp tục.
-- Vùng đỏ xuất hiện khi khoảng hở dưới 0,65 m; chặn trước mặt phẳng giới hạn 0,24 m. Đây là mặt phẳng bảo vệ đơn giản, không phải mô phỏng va chạm toàn bộ máy bay.
-
-## Giới hạn mô hình
-
-Dùng để học tập/thuyết trình, không phải hướng dẫn vận hành chính thức và không điều khiển thiết bị thật. Hình học, tốc độ, ngưỡng an toàn không đại diện cho một mẫu PBB/sân bay cụ thể. Canopy giản lược bằng nếp xếp, đóng/mở đồng bộ; cabin xoay độc lập ±12°, sàn nghiêng ±3° theo mô hình minh họa; tiến/lùi được thể hiện bằng thay đổi chiều dài ống. Không mô phỏng cơ khí thủy lực, tải trọng, tự cân bằng, cảm biến, cầu thang, cửa mở, độ quay lốp/góc lái bánh xe hoặc biến dạng thân tàu bay.
+- Cần nguồn và hai xác nhận trước di chuyển, kể cả về đỗ. Canopy chỉ triển khai khi cầu dừng và căn chỉnh đủ. Canopy đang triển khai khóa điều khiển cầu.
+- AUTO LEVEL khóa move/jog/park; chỉ tự hiệu chỉnh cao độ. Sau kết thúc phục vụ, Autolevel ngừng và canopy được phép thu.
+- Dừng khẩn cấp cắt nguồn và hủy lệnh. Nhả nút cần bật nguồn và phát lệnh mới. Lỗi cần loại bỏ nguyên nhân, xác nhận khôi phục và bật nguồn; không tự chạy lại.
+- Bumper minh họa nhô 2,5 cm: mép sàn còn khe 2,5 cm, bumper chạm nhẹ mặt phẳng thân. Ngưỡng căn chỉnh là giả định. Vùng đỏ cảnh báo dưới 0,65 m; khe mép sàn nhỏ hơn 0,02 m bị chặn.
+- Tích phân theo thời gian, có bước nhỏ kiểm tra collision; vật cản, nhà ga, mặt sân, cabin/tunnel/bánh và phong bì cánh/động cơ được kiểm tra bảo thủ. Đây không phải kiểm tra mesh hoặc cảm biến thật.
+- Ba đoạn tunnel nối liên tục với rotunda/cabin; cột nâng theo dốc; bánh chạm sân. Kích thước, overlap, slope, tốc độ và động lực học còn giả định. Cabin ±65°, rotunda ±87,5°, sàn ±3° chưa có Specification List. Riêng lái bánh ±87,5° có trong hướng dẫn LTIA PDF 134.
+- Tàu bay/cửa A321, canopy hai bên đồng bộ, sàn leveling và safety shoe tiếp tục minh họa; chưa xác nhận đầy đủ cấu hình. Cáp/ống và VDGS chưa có giao tiếp vận hành.
+- Gió 97 km/h là Caution của nguồn về Autolevel; khóa toàn bài học là bảo vệ bổ sung. Không coi đó là giới hạn khai thác sân bay đã xác nhận.
 
 ## Tổ chức mã nguồn
 
@@ -69,16 +71,16 @@ Không lưu tiến trình sau khi tải lại trang. WebMCP `pbb_status` là ph�
 
 Bàn điều khiển mới nằm dưới cảnh tổng thể; nhấn **Bàn điều khiển cabin ↓** ở đầu trang để chuyển đến đó. Bố cục tham khảo hình người dùng cung cấp, không mô phỏng chính xác phần cứng hay tiêu chuẩn của một nhà sản xuất.
 
-- **Khóa TẮT / THỦ CÔNG / TỰ ĐỘNG** đồng bộ với nguồn và chế độ bài học. **POWER ON/OFF** cấp/ngắt nguồn mô phỏng.
+- **Khóa TẮT / THỦ CÔNG / HƯỚNG DẪN** đồng bộ với nguồn và chế độ bài học. **POWER ON/OFF** cấp/ngắt nguồn mô phỏng.
 - **Joystick**: kéo lên/xuống để tiến/lùi; kéo trái/phải để xoay cầu. Độ lệch cần quyết định tốc độ. Có thể focus joystick bằng Tab rồi giữ phím mũi tên; bốn nút hướng bên dưới cũng là nút giữ để chạy.
 - **Thả chuột/phím, mất pointer capture, đổi cửa sổ, tạm dừng, ngắt nguồn hoặc dừng khẩn cấp** đều hủy lệnh giữ. Cầu không tự tiếp tục cho tới khi có lệnh mới.
-- **TUNNEL UP/DOWN**, **CAB ROTATION** và **LEVEL FLOOR** là nút giữ để nâng/hạ, xoay cabin và nghiêng sàn. Phạm vi cabin ±12°, sàn ±3° chỉ là giá trị minh họa. Khi chuẩn bị kết nối, đưa sàn gần 0° và hướng cabin thẳng với cửa.
+- **TUNNEL UP/DOWN**, **CAB ROTATION** và **LEVEL FLOOR** là nút giữ để nâng/hạ, xoay cabin và nghiêng sàn. Phạm vi cabin ±65°, sàn ±3° chỉ là giá trị minh họa. Khi chuẩn bị kết nối, đưa sàn gần 0° và hướng cabin thẳng với cửa.
 - **CANOPY** dùng hai nút thu/triển khai; không có cơ cấu rèm trái/phải độc lập trong mô hình.
-- **PRESET START** chạy tiếp cận ở chế độ TỰ ĐỘNG; sau khi kết nối, nút này chuyển sang chu trình tách cầu.
+- **PRESET START** chạy tiếp cận ở chế độ HƯỚNG DẪN; sau khi kết nối, nút này chuyển sang chu trình tách cầu.
 - **Đèn trong / đèn ngoài** bật nguồn sáng tại cabin trong cả hai cảnh. **Thông gió** quay quạt 3D. **Điều hòa** thay đổi nhiệt độ minh họa về 22 °C; đây không phải mô hình nhiệt động lực học.
 - **EMRG. STOP** dừng mọi trục cầu; **RESET** giải chốt khẩn cấp, không tự phục hồi lệnh cũ.
 
-CCTV dùng camera 3D gắn cố định trong cabin, cùng dữ liệu hình học và trạng thái với cảnh tổng thể. Camera đi theo góc cầu, độ cao và góc xoay cabin, nhìn hơi chếch xuống để quan sát cửa và mép sàn. Không tự bám cửa, không dùng webcam, không xin quyền truy cập camera thật. Màn hình mất hình khi ngắt nguồn; dừng khẩn cấp vẫn giữ CCTV nếu nguồn còn bật. Dấu ngắm chỉ là mốc cố định trên hình, không phải nhận dạng cửa bằng cảm biến.
+CCTV dùng camera 3D gắn cố định trong cabin, cùng dữ liệu hình học và trạng thái với cảnh tổng thể. Camera đi theo góc cầu, độ cao và góc xoay cabin, nhìn hơi chếch xuống để quan sát cửa và mép sàn. Không tự bám cửa, không dùng webcam, không xin quyền truy cập camera thật. Màn hình mất hình khi ngắt nguồn; dừng khẩn cấp cắt nguồn mô phỏng và CCTV chuyển về màn hình tắt. Dấu ngắm chỉ là mốc cố định trên hình, không phải nhận dạng cửa bằng cảm biến.
 
 Các chỉ số khoảng hở, lệch ngang ΔZ và lệch sàn ΔH giúp so sánh hình ảnh với vị trí hình học. Liên động bảo vệ tính cả mép cabin khi xoay, không chỉ tâm đầu cầu. Bài kiểm tra console/camera nằm ở `scripts/test-console.mjs` và được chạy cùng `pnpm test`.
 
@@ -113,3 +115,9 @@ Nếu import Git trên Vercel, chọn Root Directory `pbb-lab`. File `vercel.jso
 `pnpm dev` vẫn sử dụng cấu hình phát triển hiện có. Không dùng output Cloudflare `dist/server` cho Vercel.
 
 Vercel đã liên kết repository GitHub. Cần commit/push các file cấu hình Vercel và mã nguồn mới trước khi dùng auto-deploy qua Git. Lần phát hành hiện tại được tải trực tiếp từ máy local.
+
+
+## Bảo vệ tài liệu nội bộ khi phát hành
+
+Thư mục docs được lưu trong repo private. Lệnh build và build:vercel kiểm tra thư mục public và đầu ra bằng scripts/check-public-docs.mjs, dừng phát hành nếu phát hiện tài liệu, tên file hoặc trích dẫn nguồn nội bộ. Không bật source map công khai. Các quy tắc .vercelignore loại docs khỏi gói tải lên CLI; build từ Git chỉ phát hành thư mục đầu ra đã kiểm tra.
+

@@ -1,16 +1,15 @@
 /** Illustrative stand layout with the user-requested nose-to-road clearance. */
-const aircraftNoseZ = -7;
-const roadWidth = 3.8;
-const noseToRoad = 7.5;
+import { technicalConfig } from './technicalConfig.ts';
+const { aircraftNoseZ, roadWidth, noseToRoad } = technicalConfig.stand;
 const roadCenterZ = aircraftNoseZ - noseToRoad - roadWidth / 2;
 export const standLayout = {
   terminalFaceZ: roadCenterZ - 5,
   roadCenterZ,
   roadWidth,
   aircraftNoseZ,
-  bridgeLength: 8,
+  bridgeLength: technicalConfig.stand.bridgeLength,
   bridgeCenterZ: roadCenterZ - 1,
-  rotundaX: -12,
+  rotundaX: technicalConfig.stand.rotundaX,
   rotundaZ: roadCenterZ + 4.7,
 } as const;
 export const standClearances = {

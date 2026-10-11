@@ -7,7 +7,7 @@ import { Vector3 } from 'three';
 import { FixedBridge, ServiceRoad, VDGS } from './Infrastructure';
 import { Aircraft, Box, PBB } from './Models';
 function Camera({view,reset}:{view:string;reset:number}){const controls=useRef<any>(null);const {camera,size}=useThree();const transition=useRef(0);const dest=useRef(new Vector3());const aim=useRef(new Vector3());
- useEffect(()=>{dest.current.fromArray(view==='cabin'?[-3,10,-10]:view==='top'?[0,40,1]:[-30,27,30]);if(view!=='cabin'&&size.width/size.height<1.3)dest.current.multiplyScalar(1.35);aim.current.fromArray(view==='cabin'?[4,4,0]:[0,2,5]);transition.current=1;},[view,reset,size.width,size.height]);
+ useEffect(()=>{dest.current.fromArray(view==='side'?[-15,8,30]:view==='cabin'?[-3,10,-10]:view==='top'?[0,40,1]:[-30,27,30]);if(view!=='cabin'&&size.width/size.height<1.3)dest.current.multiplyScalar(1.35);aim.current.fromArray(view==='cabin'?[4,4,0]:[0,2,5]);transition.current=1;},[view,reset,size.width,size.height]);
  useFrame((_,dt)=>{if(transition.current&&controls.current){camera.position.lerp(dest.current,Math.min(1,dt*5));controls.current.target.lerp(aim.current,Math.min(1,dt*5));controls.current.update();if(camera.position.distanceTo(dest.current)<.02)transition.current=0;}});
  return <OrbitControls ref={controls} makeDefault minDistance={5} maxDistance={65} maxPolarAngle={Math.PI/2-.04} onStart={()=>transition.current=0}/>;
 }
@@ -42,7 +42,8 @@ export function World({s,labels=false,cctv=false}:{s:State;labels?:boolean;cctv?
   </>}
   <ServiceRoad show={!cctv&&labels}/>
   <FixedBridge show={!cctv&&labels}/><VDGS show={!cctv&&labels} connected={passengerAccess(s)}/>
-  <Aircraft labels={labels} annotations={!cctv} doorOpen={passengerAccess(s)} halted={s.emergency}/><PBB pose={s.pose} labels={labels} annotations={!cctv} highlight={!cctv} aux={s.power?s.aux:{interior:false,exterior:false,aircon:false,ventilation:false}} wheelRotation={wheelMotion(s).angle}/>
+  {s.obstacles.map(o=><group key={o.id} position={[o.x,o.height/2,o.z]}><Box size={[o.radius*2,o.height,o.radius*2]} color={o.kind==='person'?'#e58c52':'#c95454'}/>{!cctv&&<Html position={[0,o.height/2+.3,0]} center><span className="part-label">{o.kind==='person'?'Người':'Xe'} · vùng giả định</span></Html>}</group>)}
+  <Aircraft labels={labels} annotations={!cctv} doorOpen={passengerAccess(s)} halted={s.emergency||!!s.fault||!s.power} heightShift={s.aircraftShift}/><PBB pose={s.pose} halted={s.emergency||!!s.fault||!s.power||s.paused} wheelTravel={s.wheelTravel} autoLevel={s.autoLevel} aircraftShift={s.aircraftShift} labels={labels} annotations={!cctv} highlight={!cctv} aux={s.power?s.aux:{interior:false,exterior:false,aircon:false,ventilation:false}} wheelRotation={wheelMotion(s).angle}/>
   {!cctv&&<PassengerFlow active={passengerAccess(s)} pose={s.pose}/>}
 
 </>;}

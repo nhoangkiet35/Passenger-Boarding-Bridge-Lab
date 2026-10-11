@@ -1,11 +1,11 @@
 import { cabinCurtainPanels } from '@/lib/cabinCurtainGeometry';
-import { APRON_CAMERA_MOUNT, CABIN_OFFSET, cabinFrame, metrics, type Aux, type Pose } from '@/lib/simulation';
+import { APRON_CAMERA_MOUNT, CABIN_OFFSET, cabinFrame, geometry, metrics, type Aux, type Pose } from '@/lib/simulation';
 import { standLayout } from '@/lib/standLayout';
 import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import type { Group } from 'three';
-import { BufferGeometry, Float32BufferAttribute, DoubleSide, Path, Shape } from 'three';
+import { BufferGeometry, DoubleSide, Float32BufferAttribute, Path, Shape } from 'three';
 import { aircraftHull, aircraftSurface } from './aircraftGeometry';
 import { BridgeBrand, BridgeServices, CabinGPU, CabinServices, MobileCarriage } from './Infrastructure';
 export function Box({at=[0,0,0],size=[1,1,1],color='#cbd5df',...props}:{at?:[number,number,number];size?:[number,number,number];color?:string;rotation?:[number,number,number]}){return <mesh position={at} castShadow receiveShadow {...props}><boxGeometry args={size}/><meshStandardMaterial color={color} roughness={.65}/></mesh>;}
@@ -24,11 +24,11 @@ function CabinEquipment({aux}:{aux:Record<Aux,boolean>}) {
     {[-.2,-.1,0,.1,.2].map(x=><Box key={x} at={[-.5+x,2.02,-.65]} size={[.03,.03,.4]} color="#394e58"/>)}
   </>;
 }
-function ConformingCanopy({pose}:{pose:Pose}) {
+function ConformingCanopy({pose,aircraftShift=0}:{pose:Pose;aircraftShift?:number}) {
  const geometry=useMemo(()=>{
   const frame=cabinFrame(pose),vertices:number[]=[],colors:number[]=[];
   const reach=(y:number,z:number)=>{
-   const worldY=pose.height+y,skinX=7-Math.sqrt(Math.max(.01,4-(worldY-4.1)**2));
+   const worldY=pose.height+y,skinX=7-Math.sqrt(Math.max(.01,4-(worldY-aircraftShift-4.1)**2));
    const contact=(skinX-frame.x+z*Math.sin(frame.heading))/Math.max(.25,Math.cos(frame.heading))-1;
    return .005+pose.canopy*Math.max(0,contact+.012-.005);
   };
@@ -41,7 +41,7 @@ function ConformingCanopy({pose}:{pose:Pose}) {
    for(const i of [0,1,2,0,2,3]){vertices.push(...q[i]);const color=fold%2?.19:.12;colors.push(color,color+.015,color+.02);}
   }
   const g=new BufferGeometry();g.setAttribute('position',new Float32BufferAttribute(vertices,3));g.setAttribute('color',new Float32BufferAttribute(colors,3));g.computeVertexNormals();return g;
- },[pose.height,pose.angle,pose.length,pose.cabYaw,pose.canopy]);
+ },[pose.height,pose.angle,pose.length,pose.cabYaw,pose.canopy,aircraftShift]);
  useEffect(()=>()=>geometry.dispose(),[geometry]);
  return <mesh geometry={geometry} castShadow receiveShadow><meshStandardMaterial vertexColors side={DoubleSide} roughness={.95}/></mesh>;
 }
@@ -62,9 +62,9 @@ function SwivelCurtain({yaw}:{yaw:number}) {
  </group>)}</>;
 }
 // Looking from inside toward +x: left is -z, right is +z.
-function CabinFront({open,floorTilt}:{open:boolean;floorTilt:number}) {
+function CabinFront({open,floorTilt,halted=false}:{open:boolean;floorTilt:number;halted?:boolean}) {
  const leaves=useRef<Array<Group|null>>([]);
- useFrame((_,dt)=>{leaves.current.forEach((leaf,i)=>{if(leaf){const target=open?(i===0?-1.35:1.35):0;leaf.rotation.y+=(target-leaf.rotation.y)*Math.min(1,dt*4);}});});
+ useFrame((_,dt)=>{if(halted)return;leaves.current.forEach((leaf,i)=>{if(leaf){const target=open?(i===0?-1.35:1.35):0;leaf.rotation.y+=(target-leaf.rotation.y)*Math.min(1,dt*4);}});});
  return <>
   {[-1,1].map((side,i)=><group key={side}>
    <group ref={el=>{leaves.current[i]=el;}} position={[.1,1.14,side===-1?-.28:1.29]}>
@@ -93,8 +93,17 @@ function CabinFront({open,floorTilt}:{open:boolean;floorTilt:number}) {
   <Box at={[.84,-.16,0]} size={[.26,.13,.16]} color="#58727f"/>
  </>;
 }
-export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior:false,aircon:false,ventilation:false},highlight=true,wheelRotation=0}:{pose:Pose;labels:boolean;annotations?:boolean;aux?:Record<Aux,boolean>;highlight?:boolean;wheelRotation?:number}){
+export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior:false,aircon:false,ventilation:false},highlight=true,wheelRotation=0,autoLevel=false,aircraftShift=0,wheelTravel=0,halted=false}:{pose:Pose;halted?:boolean;wheelTravel?:number;autoLevel?:boolean;aircraftShift?:number;labels:boolean;annotations?:boolean;aux?:Record<Aux,boolean>;highlight?:boolean;wheelRotation?:number}){
  const slope=Math.atan2(p.height-3,p.length),len=Math.hypot(p.length,p.height-3);
+ const frame=cabinFrame(p),sensorRadius=.075,sensorSide=-1.48;
+ // Stop the roller's outer edge at the aircraft skin, accounting for cabin yaw and aircraft height.
+ const sensorHeightOffset=Math.max(0,Math.abs(p.height+.18-aircraftShift-4.1)-sensorRadius);
+ const sensorSkinX=7-Math.sqrt(Math.max(.01,4-sensorHeightOffset**2));
+ const sensorHeading=Math.cos(frame.heading);
+ const sensorClearance=sensorHeading>.25
+  ? (sensorSkinX-frame.x+sensorSide*Math.sin(frame.heading)-sensorRadius)/sensorHeading-.9
+  : 0;
+ const sensorReach=Math.max(0,Math.min(autoLevel?.32:.08,sensorClearance));
  return <group position={[standLayout.rotundaX,0,standLayout.rotundaZ]} rotation={[0,-p.angle*Math.PI/180,0]}>
   <group rotation={[0,p.angle*Math.PI/180,0]}>
   <mesh position={[0,2.9,0]}><cylinderGeometry args={[1.6,1.6,.2,32]}/><meshStandardMaterial color="#687d89"/></mesh>
@@ -123,7 +132,7 @@ export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior
    </group>
   </group>
   <group position={[0,3,0]} rotation={[0,0,slope]}>
-   {[0,1,2].map(i=>{const x=i*(len-10)/2+5+(i===0?.6:0); // Move tunnel A forward, retaining overlap with rotunda and tunnel B.
+   {[0,1,2].map(i=>{const x=geometry(p).centres[i]; // Move tunnel A forward, retaining overlap with rotunda and tunnel B.
 const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
     {[-1,1].map(side=><group key={side}>
      <Box at={[0,-.32,side*(width/2-.12)]} size={[10,.08,.08]} color="#e5e9e7"/>
@@ -180,18 +189,25 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
      <Box at={[-.39,1.02,side*1.454]} size={[.045,.16,.03]} color="#77898e"/>
      {Array.from({length:9},(_,i)=><Box key={i} at={[-.98+i*.045,1.2,side*1.425]} size={[.022,2.25,.045]} color={i%2?'#d0d9d7':'#f4f5ef'}/>)}
     </group>)}
-    <CabinFront open={p.canopy>=.999} floorTilt={p.floorTilt}/>
+    <CabinFront halted={halted} open={p.canopy>=.999} floorTilt={p.floorTilt}/>
     <CabinEquipment aux={aux}/>
+    {/* Autolevel is mounted low on the cabin side, outside the side wall. */}
+    <group name="cabin-side-autolevel" position={[.9,.18,-1.48]}>
+      <Box at={[-.12,0,.06]} size={[.16,.2,.12]} color="#647b89"/>
+      <Box at={[sensorReach/2,0,0]} size={[Math.max(.01,sensorReach),.08,.09]} color="#a2b3bb"/>
+      <mesh position={[sensorReach,0,0]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[sensorRadius,sensorRadius,.06,16]}/><meshStandardMaterial color={autoLevel?'#4dbb83':'#5a6570'}/></mesh>
+      {annotations&&<Label visible={labels} at={[.1,-.15,-.6]}>Autolevel · {autoLevel?'tì thân tàu':'thu'}</Label>}
+    </group>
     <CabinGPU show={annotations&&labels}/>
     <group position={[1,0,0]}>
-     <ConformingCanopy pose={p}/>
-     <Box at={[.005+p.canopy*Math.max(0,metrics(p).gap-.005),.14,0]} size={[.1,.12,2.55]} color="#e3b934"/>
+     <ConformingCanopy pose={p} aircraftShift={aircraftShift}/>
+     <Box at={[.005+p.canopy*Math.max(0,metrics(p).gap-.005),.14,0]} size={[.05,.12,2.55]} color="#e3b934"/>
 
     </group>
     {annotations&&<><Label visible={labels} at={[0,3.6,-2]}>03 · Cabin</Label><Label visible={labels} at={[1.4,2.9,2.7]}>04 · Canopy</Label></>}
     </group>
    </group>
-   <MobileCarriage pose={p} show={annotations&&labels} wheelRotation={wheelRotation}/>
+   <group position={[0,geometry(p).columnDeckHeight-p.height,0]}><MobileCarriage pose={{...p,height:geometry(p).columnDeckHeight}} show={annotations&&labels} wheelRotation={wheelRotation} wheelTravel={wheelTravel}/></group>
   </group>
   {highlight&&<mesh position={[p.length-1.9,.04,0]} rotation={[-Math.PI/2,0,0]}><ringGeometry args={[1.7,2.05,48]}/><meshBasicMaterial color={metrics(p).clearance<.65?'#ee7655':'#26bdc9'} transparent opacity={.7}/></mesh>}
  </group>;
@@ -199,12 +215,12 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
 const wingShape=aircraftSurface([[1.6,-1.2],[4.5,-.3],[17.9,9],[17.9,10.2],[6.5,6.4],[1.6,5.5]]);
 const tailplaneShape=aircraftSurface([[0,0],[2,.2],[6.4,3.6],[6.4,5],[1.2,3.8],[0,3.4]]);
 const finShape=aircraftSurface([[0,0],[4.2,6.7],[6.5,6.7],[5.8,0]]);
-export function Aircraft({labels,annotations=true,doorOpen=false,halted=false}:{labels:boolean;annotations?:boolean;doorOpen?:boolean;halted?:boolean}){
+export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,heightShift=0}:{labels:boolean;annotations?:boolean;doorOpen?:boolean;halted?:boolean;heightShift?:number}){
  const door=useRef<Group>(null), progress=useRef(0);
  const hull=useMemo(aircraftHull,[]);
  useEffect(()=>()=>hull.dispose(),[hull]);
  useFrame((_,dt)=>{if(!door.current||halted)return;const target=doorOpen?1:0;progress.current+=(target-progress.current)*Math.min(1,dt*3);if(Math.abs(target-progress.current)<.001)progress.current=target;door.current.position.x=-2.04-.12*Math.min(1,progress.current*5);door.current.position.z=-8.47-1.2*Math.max(0,(progress.current-.2)/.8);});
- return <group position={[7,0,8]}>
+ return <group position={[7,heightShift,8]}>
   <mesh geometry={hull} castShadow receiveShadow><meshStandardMaterial vertexColors side={DoubleSide} roughness={.38}/></mesh>
   {[-1,1].map(side=><group key={side}>
    {Array.from({length:38},(_,i)=><mesh key={i} position={[side*1.95,4.53,-6.7+i*.72]}><sphereGeometry args={[.13,12,10]}/><meshStandardMaterial color="#365d75"/></mesh>)}
@@ -244,16 +260,18 @@ export function Aircraft({labels,annotations=true,doorOpen=false,halted=false}:{
    <Box at={[side*1.2,4.82,-12.96]} size={[.48,.34,.04]} rotation={[0,side*.9,0]} color="#213f52"/>
   </group>)}
   <mesh position={[0,4.06,-14.92]} scale={[.09,.09,.14]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color="#3f6372"/></mesh>
-  <Box at={[0,1.54,-11.2]} size={[.15,1.95,.17]} color="#91a6b1"/>
+  <group position={[0,-heightShift,0]}>
+  <Box at={[0,1.54+heightShift/2,-11.2]} size={[.15,1.95+heightShift,.17]} color="#91a6b1"/>
   {[-.22,.22].map(x=><mesh key={x} position={[x,.35,-11.2]} rotation={[0,0,Math.PI/2]} castShadow><cylinderGeometry args={[.35,.35,.22,24]}/><meshStandardMaterial color="#26343c"/></mesh>)}
   {[-1,1].map(side=><group key={side} position={[side*2.4,0,7.1]}>
-   <Box at={[0,1.45,0]} size={[.22,1.75,.24]} color="#91a6b1"/>
-   <Box at={[side*-.4,2.18,-.12]} size={[1.1,.17,.45]} rotation={[0,0,side*.18]} color="#91a6b1"/>
+   <Box at={[0,1.45+heightShift/2,0]} size={[.22,1.75+heightShift,.24]} color="#91a6b1"/>
+   <Box at={[side*-.4,2.18+heightShift,-.12]} size={[1.1,.17,.45]} rotation={[0,0,side*.18]} color="#91a6b1"/>
    {[-.31,.31].map(x=><group key={x} position={[x,.52,0]}>
     <mesh rotation={[0,0,Math.PI/2]} castShadow><cylinderGeometry args={[.52,.52,.32,28]}/><meshStandardMaterial color="#26343c"/></mesh>
     <mesh position={[Math.sign(x)*.17,0,0]} rotation={[0,0,Math.PI/2]}><cylinderGeometry args={[.24,.24,.025,24]}/><meshStandardMaterial color="#a7b9c2" metalness={.6}/></mesh>
    </group>)}
   </group>)}
-  {annotations&&<Label visible={labels} at={[0,7.4,-10]}>{doorOpen?'Cửa trượt mở · Khách vào nhà ga':'A321 · Cửa L1 chờ kết nối'}</Label>}
+  </group>
+  {annotations&&<Label visible={labels} at={[0,7.4,-10]}>{doorOpen?'Cửa trượt mở · Khách vào nhà ga':'A321 · Cửa L1'}</Label>}
  </group>;
 }

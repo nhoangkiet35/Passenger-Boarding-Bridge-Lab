@@ -4,6 +4,10 @@
 
 Dự án phục vụ học tập và thuyết trình. Đây **không phải phần mềm điều khiển thiết bị thật hoặc quy trình vận hành chính thức của sân bay**. Mô hình và các ngưỡng liên động chỉ mang tính minh họa.
 
+## Cập nhật đối chiếu hồ sơ Long Thành
+
+Cấu hình mô phỏng được tập trung trong mã nguồn. Thông số chưa xác nhận được ghi rõ **Giả định mô phỏng**. Bảng kiểm chứng và tình huống huấn luyện đã được gỡ khỏi giao diện; tài liệu nội bộ không được phân phối cùng website.
+
 ## Tính năng
 
 - Cảnh 3D gồm nhà ga, sân đỗ, tàu bay, rotunda, các đoạn ống lồng, cabin, canopy và cụm bánh xe.
@@ -118,11 +122,11 @@ Chi tiết lần kiểm tra ứng dụng được ghi trong [TESTING.md](pbb-lab
 ### Chế độ thủ công
 
 1. Bật **Nguồn mô phỏng** và xác nhận cả hai điều kiện tiếp cận.
-2. Đặt góc xoay **52°**, xoay cabin **−52°**, cao độ sàn **3,40 m**, chiều dài **25,36 m**; chờ chuyển động hoàn tất.
+2. Đặt góc xoay **38,27°**, xoay cabin **−38,27°**, cao độ sàn **3,25 m**, chiều dài **18,07 m**; chờ chuyển động hoàn tất.
 3. Chọn **Triển khai** canopy để kết nối.
 4. Khi tách cầu: **Kết thúc phục vụ → Thu lại**, chờ canopy về **0%**, rồi **Lùi khỏi cửa → Về vị trí đỗ**.
 
-Ô nhập mục tiêu nhận lệnh khi nhấn Enter hoặc rời ô. Kéo chuột để xoay cảnh, cuộn để thu phóng và dùng chuột phải để dịch chuyển. Sau dừng khẩn cấp, cần **Đặt lại dừng khẩn cấp** rồi phát lệnh mới.
+Ô nhập mục tiêu nhận lệnh khi nhấn Enter hoặc rời ô. Kéo chuột để xoay cảnh, cuộn để thu phóng và dùng chuột phải để dịch chuyển. Sau dừng khẩn cấp, cần **Đặt lại dừng khẩn cấp**, bật nguồn rồi phát lệnh mới.
 
 Các ngưỡng minh họa và giản lược cơ khí được giải thích trong website và [hướng dẫn chi tiết](pbb-lab/README.md).
 

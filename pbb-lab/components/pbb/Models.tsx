@@ -5,7 +5,7 @@ import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import type { Group } from 'three';
-import { BufferGeometry, Float32BufferAttribute, DoubleSide, Path, Shape } from 'three';
+import { BufferGeometry, DoubleSide, Float32BufferAttribute, Path, Shape } from 'three';
 import { aircraftHull, aircraftSurface } from './aircraftGeometry';
 import { BridgeBrand, BridgeServices, CabinGPU, CabinServices, MobileCarriage } from './Infrastructure';
 export function Box({at=[0,0,0],size=[1,1,1],color='#cbd5df',...props}:{at?:[number,number,number];size?:[number,number,number];color?:string;rotation?:[number,number,number]}){return <mesh position={at} castShadow receiveShadow {...props}><boxGeometry args={size}/><meshStandardMaterial color={color} roughness={.65}/></mesh>;}
@@ -95,6 +95,15 @@ function CabinFront({open,floorTilt,halted=false}:{open:boolean;floorTilt:number
 }
 export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior:false,aircon:false,ventilation:false},highlight=true,wheelRotation=0,autoLevel=false,aircraftShift=0,wheelTravel=0,halted=false}:{pose:Pose;halted?:boolean;wheelTravel?:number;autoLevel?:boolean;aircraftShift?:number;labels:boolean;annotations?:boolean;aux?:Record<Aux,boolean>;highlight?:boolean;wheelRotation?:number}){
  const slope=Math.atan2(p.height-3,p.length),len=Math.hypot(p.length,p.height-3);
+ const frame=cabinFrame(p),sensorRadius=.075,sensorSide=-1.48;
+ // Stop the roller's outer edge at the aircraft skin, accounting for cabin yaw and aircraft height.
+ const sensorHeightOffset=Math.max(0,Math.abs(p.height+.18-aircraftShift-4.1)-sensorRadius);
+ const sensorSkinX=7-Math.sqrt(Math.max(.01,4-sensorHeightOffset**2));
+ const sensorHeading=Math.cos(frame.heading);
+ const sensorClearance=sensorHeading>.25
+  ? (sensorSkinX-frame.x+sensorSide*Math.sin(frame.heading)-sensorRadius)/sensorHeading-.9
+  : 0;
+ const sensorReach=Math.max(0,Math.min(autoLevel?.32:.08,sensorClearance));
  return <group position={[standLayout.rotundaX,0,standLayout.rotundaZ]} rotation={[0,-p.angle*Math.PI/180,0]}>
   <group rotation={[0,p.angle*Math.PI/180,0]}>
   <mesh position={[0,2.9,0]}><cylinderGeometry args={[1.6,1.6,.2,32]}/><meshStandardMaterial color="#687d89"/></mesh>
@@ -182,10 +191,12 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
     </group>)}
     <CabinFront halted={halted} open={p.canopy>=.999} floorTilt={p.floorTilt}/>
     <CabinEquipment aux={aux}/>
-    <group position={[.9,-.32,-.9]}>
-      <Box at={[autoLevel?.12:0,0,0]} size={[autoLevel?.36:.12,.08,.09]} color="#a2b3bb"/>
-      <mesh position={[autoLevel?.32:.08,0,0]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[.075,.075,.06,16]}/><meshStandardMaterial color={autoLevel?'#4dbb83':'#5a6570'}/></mesh>
-      {annotations&&<Label visible={labels} at={[.1,-.4,-.6]}>Autolevel · {autoLevel?'tì thân tàu':'thu'} (minh họa)</Label>}
+    {/* Autolevel is mounted low on the cabin side, outside the side wall. */}
+    <group name="cabin-side-autolevel" position={[.9,.18,-1.48]}>
+      <Box at={[-.12,0,.06]} size={[.16,.2,.12]} color="#647b89"/>
+      <Box at={[sensorReach/2,0,0]} size={[Math.max(.01,sensorReach),.08,.09]} color="#a2b3bb"/>
+      <mesh position={[sensorReach,0,0]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[sensorRadius,sensorRadius,.06,16]}/><meshStandardMaterial color={autoLevel?'#4dbb83':'#5a6570'}/></mesh>
+      {annotations&&<Label visible={labels} at={[.1,-.15,-.6]}>Autolevel · {autoLevel?'tì thân tàu':'thu'}</Label>}
     </group>
     <CabinGPU show={annotations&&labels}/>
     <group position={[1,0,0]}>
@@ -261,6 +272,6 @@ export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,he
    </group>)}
   </group>)}
   </group>
-  {annotations&&<Label visible={labels} at={[0,7.4,-10]}>{doorOpen?'Cửa trượt mở · Khách vào nhà ga':'A321 minh họa · Cửa L1'}</Label>}
+  {annotations&&<Label visible={labels} at={[0,7.4,-10]}>{doorOpen?'Cửa trượt mở · Khách vào nhà ga':'A321 · Cửa L1'}</Label>}
  </group>;
 }

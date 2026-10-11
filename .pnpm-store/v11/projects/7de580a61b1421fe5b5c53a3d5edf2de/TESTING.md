@@ -1,5 +1,16 @@
 # Kết quả kiểm tra
 
+## Hiệu chỉnh hồ sơ LTIA — 11/10/2026
+
+- Kiểm tra hiện có và 38 kiểm tra huấn luyện mới: đạt.
+- Quét 297 tư thế hình học, thử 15/30/60/144 FPS: đạt theo cấu hình giả định.
+- TypeScript với quyền đọc đầy đủ thư viện pnpm: đạt.
+- Vite build tĩnh: đạt; cảnh báo bundle Three.js >500 kB.
+- Chrome cục bộ: tải 3D, tiếp cận đến Autolevel/canopy 100%, cao độ tàu tăng 5 cm được theo dõi; lỗi Autolevel khóa nguồn và chặn reset khi nguyên nhân còn tồn tại.
+- Nguồn, giả định, trạng thái và giới hạn kiểm chứng: [báo cáo](docs/LONG-THANH-VERIFICATION.md).
+- Các mục dưới đây là lịch sử kiểm tra phiên bản cũ; thông số và kết luận mới ưu tiên mục này.
+
+
 ## Cập nhật bố trí cầu và thiết bị — 09/10/2026
 
 - Thêm PCA dưới ống lồng, GPU gần cabin, PWS cạnh cơ cấu nâng, cầu thang phục vụ và cầu cố định nối rotunda với nhà ga.
