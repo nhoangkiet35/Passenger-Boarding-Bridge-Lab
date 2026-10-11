@@ -1,0 +1,39 @@
+import type { Obstacle } from './collision.ts';
+/** Educational kinematics only. Units: illustrative metres / degrees. */
+export type Axis = 'angle' | 'length' | 'height' | 'cabYaw' | 'floorTilt';
+export type Pose = Record<Axis, number> & {
+    canopy: number;
+};
+export type Aux = 'interior' | 'exterior' | 'aircon' | 'ventilation';
+export type Jog = Partial<Record<Axis, number>>;
+export type Scenario = 'obstacle' | 'autolevelFault' | 'powerLoss' | 'wind' | 'auxDeployed';
+export type State = {
+    obstacles: Obstacle[];
+    autoLevel: boolean;
+    aircraftShift: number;
+    scenarios: Record<Scenario, boolean>;
+    fault: string | null;
+    elapsed: number;
+    log: string[];
+    actualSpeed: number;
+    wheelTravel: number;
+    pose: Pose;
+    target: Pose;
+    jog: Jog | null;
+    power: boolean;
+    emergency: boolean;
+    area: boolean;
+    authorized: boolean;
+    serviceEnded: boolean;
+    mode: 'manual' | 'guide';
+    paused: boolean;
+    step: number;
+    speed: number;
+    message: string;
+    action: string;
+    dwell: number;
+    connectedOnce: boolean;
+    aux: Record<Aux, boolean>;
+    temperature: number;
+    wheelRotation: number;
+};

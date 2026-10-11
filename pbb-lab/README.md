@@ -4,6 +4,14 @@ Website React + TypeScript + Three.js qua React Three Fiber. Mô hình tạo b�
 
 Xem [README tại gốc repository](../README.md) để có hướng dẫn cài đặt từng bước, chạy production và xử lý lỗi. Nếu dùng gói ZIP chỉ chứa thư mục này, các lệnh bên dưới vẫn đủ để khởi động.
 
+## Tổ chức mã mô phỏng
+
+- `lib/simulationTypes.ts`: kiểu trạng thái, tư thế và trục điều khiển.
+- `lib/bridgeGeometry.ts`: hình học cầu, camera, khoảng hở cửa và vị trí AUTO LEVEL.
+- `lib/bridgeMessages.ts`: số đo cảm biến và cảnh báo MESSAGE.
+- `lib/simulation.ts`: xử lý lệnh, cập nhật chuyển động và chu trình hướng dẫn; giữ các export cũ để giao diện và kiểm thử dùng chung.
+- `lib/technicalConfig.ts`: thông số chung của cửa L1, vùng trống cửa, cảm biến và giới hạn mô phỏng.
+
 ## Tiếp cận thủ công trong mô phỏng
 
 Giữ khoảng hở mép cabin / thân tàu 2,5–5 cm; sàn thấp hơn ngưỡng cửa 10–20 cm, độ nghiêng sàn tối đa ±2°. Không áp dụng ngưỡng lệch ngang hoặc lệch hướng cố định. Đường mở cửa phải nằm trong vùng trống cabin/canopy theo kiểm tra hình học bảo thủ; bảo vệ va chạm và khóa di chuyển khi mở canopy vẫn có hiệu lực. Thả joystick và chờ cầu dừng trước khi triển khai mái che. Nút tăng/giảm cao độ và chiều dài chỉnh mỗi lần 1 cm; góc cầu chỉnh mỗi lần 0,1°.

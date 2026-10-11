@@ -1,4 +1,4 @@
-import type { Pose } from './simulation.ts';
+import type { Pose } from './simulationTypes.ts';
 import { standLayout } from './standLayout.ts';
 import { technicalConfig as c } from './technicalConfig.ts';
 export type Volume = { part:string; centre:[number,number,number]; half:[number,number,number]; yaw:number };

@@ -1,6 +1,6 @@
 import { cabinCurtainPanels, CABIN_SWIVEL_RADIUS } from '@/lib/cabinCurtainGeometry';
 import { technicalConfig } from '@/lib/technicalConfig';
-import { APRON_CAMERA_MOUNT, CABIN_OFFSET, cabinFrame, geometry, metrics, type Aux, type Pose } from '@/lib/simulation';
+import { APRON_CAMERA_MOUNT, CABIN_OFFSET, cabinFrame, geometry, metrics, autoLevelSensorGeometry, type Aux, type Pose } from '@/lib/simulation';
 import { standLayout } from '@/lib/standLayout';
 import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
@@ -96,15 +96,8 @@ function CabinFront({open,floorTilt,halted=false}:{open:boolean;floorTilt:number
 }
 export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior:false,aircon:false,ventilation:false},highlight=true,wheelRotation=0,autoLevel=false,aircraftShift=0,wheelTravel=0,halted=false}:{pose:Pose;halted?:boolean;wheelTravel?:number;autoLevel?:boolean;aircraftShift?:number;labels:boolean;annotations?:boolean;aux?:Record<Aux,boolean>;highlight?:boolean;wheelRotation?:number}){
  const slope=Math.atan2(p.height-3,p.length),len=Math.hypot(p.length,p.height-3);
- const frame=cabinFrame(p),sensorRadius=.075,sensorSide=-1.48;
- // Stop the roller's outer edge at the aircraft skin, accounting for cabin yaw and aircraft height.
- const sensorHeightOffset=Math.max(0,Math.abs(p.height+.18-aircraftShift-4.1)-sensorRadius);
- const sensorSkinX=7-Math.sqrt(Math.max(.01,4-sensorHeightOffset**2));
- const sensorHeading=Math.cos(frame.heading);
- const sensorClearance=sensorHeading>.25
-  ? (sensorSkinX-frame.x+sensorSide*Math.sin(frame.heading)-sensorRadius)/sensorHeading-.9
-  : 0;
- const sensorReach=Math.max(0,Math.min(autoLevel?.32:.08,sensorClearance));
+ const sensor=autoLevelSensorGeometry(p,autoLevel,aircraftShift);
+ const sensorReach=sensor.reach,sensorRadius=sensor.radius;
  return <group position={[standLayout.rotundaX,0,standLayout.rotundaZ]} rotation={[0,-p.angle*Math.PI/180,0]}>
   <group rotation={[0,p.angle*Math.PI/180,0]}>
   <mesh position={[0,2.9,0]}><cylinderGeometry args={[1.6,1.6,.2,32]}/><meshStandardMaterial color="#687d89"/></mesh>
@@ -193,7 +186,7 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
     <CabinFront halted={halted} open={p.canopy>=.999} floorTilt={p.floorTilt}/>
     <CabinEquipment aux={aux}/>
     {/* Autolevel is mounted low on the cabin side, outside the side wall. */}
-    <group name="cabin-side-autolevel" position={[.9,.18,-1.48]}>
+    <group name="cabin-side-autolevel" position={[sensor.mountX,sensor.height,sensor.side]}>
       <Box at={[-.12,0,.06]} size={[.16,.2,.12]} color="#647b89"/>
       <Box at={[sensorReach/2,0,0]} size={[Math.max(.01,sensorReach),.08,.09]} color="#a2b3bb"/>
       <mesh position={[sensorReach,0,0]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[sensorRadius,sensorRadius,.06,16]}/><meshStandardMaterial color={autoLevel?'#4dbb83':'#5a6570'}/></mesh>
@@ -223,7 +216,7 @@ export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,he
  const door=useRef<Group>(null), progress=useRef(0);
  const hull=useMemo(aircraftHull,[]);
  useEffect(()=>()=>hull.dispose(),[hull]);
- useFrame((_,dt)=>{if(!door.current||halted)return;const target=doorOpen?1:0;progress.current+=(target-progress.current)*Math.min(1,dt*3);if(Math.abs(target-progress.current)<.001)progress.current=target;door.current.position.x=-2.04-.12*Math.min(1,progress.current*5);door.current.position.z=-8-doorSpec.slide*Math.max(0,(progress.current-.2)/.8);});
+ useFrame((_,dt)=>{if(!door.current||halted)return;const target=doorOpen?1:0;progress.current+=(target-progress.current)*Math.min(1,dt*3);if(Math.abs(target-progress.current)<.001)progress.current=target;door.current.position.x=doorSpec.closedX-doorSpec.outwardTravel*Math.min(1,progress.current*5);door.current.position.z=-8-doorSpec.slide*Math.max(0,(progress.current-.2)/.8);});
  return <group position={[7,heightShift,8]}>
   <mesh geometry={hull} castShadow receiveShadow><meshStandardMaterial vertexColors side={DoubleSide} roughness={.38}/></mesh>
   {[-1,1].map(side=><group key={side}>
@@ -254,8 +247,8 @@ export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,he
   </group>)}
   <Box at={[-2.1,4.13,-8.2]} size={[.025,.05,.2]} color="#dde8e8"/>
   <group ref={door} position={[-2.045,doorCenter,-8]}>
-   <Box at={[-.02,0,0]} size={[.07,doorSpec.height,doorSpec.width]} color="#00869c"/>
-   <Box at={[-.04,.43,0]} size={[.075,.27,.24]} color="#385c71"/>
+   <Box at={[doorSpec.panelOffsetX,0,0]} size={[doorSpec.panelThickness,doorSpec.height,doorSpec.width]} color="#00869c"/>
+   <Box at={[doorSpec.windowOffsetX,.43,0]} size={[doorSpec.windowThickness,.27,.24]} color="#385c71"/>
   </group>
   <Box at={[-2.1,3.43,-8]} size={[.08,.045,.95]} color="#d4a637"/>
   <Box at={[-2.1,4.13,-7.8]} size={[.09,.05,.2]} color="#476777"/>
