@@ -14,12 +14,47 @@
       "destination": "/index.html"
     },
     {
+      "source": "/admin",
+      "destination": "/api/admin?view=home"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "/api/admin?view=:path*"
+    }
+  ],
+  "functions": {
+    "api/explore.mjs": {
+      "includeFiles": ".private-explore/**"
+    },
+    "api/admin.mjs": {
+      "includeFiles": ".private-explore/**"
+    }
+  },
+  "redirects": [
+    {
       "source": "/explore",
-      "destination": "/index.html"
+      "destination": "/admin/explore",
+      "permanent": false
     },
     {
       "source": "/explore/",
-      "destination": "/index.html"
+      "destination": "/admin/explore",
+      "permanent": false
+    },
+    {
+      "source": "/admin/",
+      "destination": "/admin",
+      "permanent": false
+    },
+    {
+      "source": "/admin/login/",
+      "destination": "/admin/login",
+      "permanent": false
+    },
+    {
+      "source": "/admin/explore/",
+      "destination": "/admin/explore",
+      "permanent": false
     }
   ]
 }

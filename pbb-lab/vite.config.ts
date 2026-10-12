@@ -1,4 +1,5 @@
 import vinext from "vinext";
+import { exploreDevGateway } from "./build/explore-dev-gateway.mjs";
 import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
 import { readExecutionProfile } from "./scripts/execution-profile.mjs";
@@ -56,6 +57,7 @@ export default defineConfig(async () => {
       ...(isCodexSeatbeltSandbox ? { watch: { useFsEvents: false, usePolling: true } } : {}),
     },
     plugins: [
+      exploreDevGateway(),
       vinext(),
       sites({ mockAuth: !managedLinux }),
       cloudflare({

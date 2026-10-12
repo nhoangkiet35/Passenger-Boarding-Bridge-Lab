@@ -69,3 +69,6 @@ Desktop.ini
 
 .vercel
 .env*
+
+# Private server-only Explore payload
+.private-explore/

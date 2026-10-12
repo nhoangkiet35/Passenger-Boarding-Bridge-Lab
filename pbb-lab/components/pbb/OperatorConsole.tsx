@@ -1,9 +1,9 @@
-import './console.css';
-import { ArrowDown, ArrowUp, RotateCcw, RotateCw, Lightbulb, Fan, Snowflake, Sun, ShieldCheck, Check, Home, Play, Pause } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
-import { metrics, status, type Axis, type Aux, type State } from '@/lib/simulation';
-import Joystick, { HoldButton, type Send } from './Joystick';
+import { metrics, status, type Aux, type Axis, type State } from '@/lib/simulation';
+import { ArrowDown, ArrowUp, Check, Fan, Home, Lightbulb, Pause, Play, RotateCcw, RotateCw, ShieldCheck, Snowflake, Sun } from 'lucide-react';
 import CabinMainScreen from './CabinMainScreen';
+import './console.css';
+import Joystick, { HoldButton, type Send } from './Joystick';
 function Rocker({s,send,axis,title,caption,left,right}:{s:State;send:Send;axis:Axis;title:string;caption:string;left:React.ReactNode;right:React.ReactNode}) {
   return <div className="rocker-row"><div><b>{title}</b><span>{caption}</span></div><div className="rocker-buttons"><HoldButton send={send} running={!!s.jog} disabled={s.mode!=='manual'} axes={{[axis]:-1}} label={'Giữ giảm '+title}>{left}</HoldButton><HoldButton send={send} running={!!s.jog} disabled={s.mode!=='manual'} axes={{[axis]:1}} label={'Giữ tăng '+title}>{right}</HoldButton></div></div>;
 }

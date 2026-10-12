@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import { randomBytes, scryptSync, createHmac } from 'node:crypto';
+import { handleAdmin } from '../server/admin-handler.mjs';
+import { handleExplore } from '../server/explore-handler.mjs';
+const password=randomBytes(16).toString('hex'),salt=randomBytes(16).toString('hex');
+process.env.EXPLORE_PASSWORD_HASH=salt+':'+scryptSync(password,salt,64).toString('hex');
+process.env.EXPLORE_SESSION_SECRET=randomBytes(32).toString('hex');
+const url='https://pbb.test/admin/explore';
+const get=(cookie='')=>handleAdmin(new Request(url,{headers:{cookie}}));
+const csrf=html=>html.match(/name="csrf" value="([^"]+)"/)[1];
+const post=(form,ip='test')=>handleAdmin(new Request('https://pbb.test/api/admin',{method:'POST',headers:{origin:'https://pbb.test','content-type':'application/x-www-form-urlencoded','x-vercel-forwarded-for':ip},body:new URLSearchParams({returnTo:'/admin/explore',...form})}));
+let r=await get();const loginHtml=await r.text();assert.equal(r.status,200);assert(!loginHtml.includes('Nguyên lý hoạt động'));assert.match(r.headers.get('cache-control'),/no-store/);
+const token=csrf(loginHtml);
+r=await post({password:'incorrect',csrf:token});assert.equal(r.status,401);assert(!r.headers.has('set-cookie'));
+r=await post({password,csrf:'forged'});assert.equal(r.status,403);
+r=await handleAdmin(new Request('https://pbb.test/api/admin',{method:'POST',headers:{origin:'https://attacker.test','content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams({password,csrf:token})}));assert.equal(r.status,403);
+r=await get('pbb_explore_session=forged');assert(!(await r.text()).includes('Nguyên lý hoạt động'));
+r=await post({password,csrf:token},'valid-user');assert.equal(r.status,303);const c=r.headers.get('set-cookie');assert.match(c,/HttpOnly/);assert.match(c,/Secure/);assert.match(c,/SameSite=Strict/);assert.equal(r.headers.get('location'),'/admin/explore');
+const session=c.split(';')[0];r=await get(session);assert.equal(r.status,200);const content=await r.text();assert(content.includes('Nguyên lý hoạt động'));assert(content.includes('MCB & TMan'));assert(content.includes('Đăng xuất'));
+const originalDirectory=process.cwd();process.chdir('..');r=await get(session);assert.equal(r.status,200);assert((await r.text()).includes('Nguyên lý hoạt động'));process.chdir(originalDirectory);
+r=await handleAdmin(new Request('https://pbb.test/admin',{headers:{cookie:session}}));assert.equal(r.status,200);const dashboard=await r.text();assert(dashboard.includes('Tổng quan quản trị'));assert(dashboard.includes('href="/admin/explore"'));assert(!dashboard.includes('Nguyên lý hoạt động'));
+for (const path of ['/admin','/admin/login','/api/admin?view=home','/api/admin?view=explore']) {r=await handleAdmin(new Request('https://pbb.test'+path));assert.equal(r.status,200);assert((await r.text()).includes('name="password"'));}
+r=await handleAdmin(new Request('https://pbb.test/admin/unknown',{headers:{cookie:session}}));assert.equal(r.status,404);
+r=await handleExplore(new Request('https://pbb.test/explore'));assert.equal(r.status,303);assert.equal(r.headers.get('location'),'/admin/explore');
+r=await post({password,csrf:token,returnTo:'https://attacker.test'},'redirect-user');assert.equal(r.status,303);assert.equal(r.headers.get('location'),'/admin');
+const logoutToken=csrf(content);r=await post({action:'logout',csrf:logoutToken});assert.equal(r.status,303);assert.match(r.headers.get('set-cookie'),/Max-Age=0/);
+const expired=Date.now()-10000;const body=expired+':nonce:'+createHmac('sha256',process.env.EXPLORE_SESSION_SECRET).update(process.env.EXPLORE_PASSWORD_HASH).digest('base64url').slice(0,16);const signature=createHmac('sha256',process.env.EXPLORE_SESSION_SECRET).update(body).digest('base64url');r=await get('pbb_explore_session='+body+'.'+signature);assert(!(await r.text()).includes('Nguyên lý hoạt động'));
+for(let i=0;i<5;i++) {r=await post({password:'wrong',csrf:token},'limited-user');assert.equal(r.status,401);}
+r=await post({password,csrf:token},'limited-user');assert.equal(r.status,429);
+const hash=process.env.EXPLORE_PASSWORD_HASH;delete process.env.EXPLORE_PASSWORD_HASH;r=await get(session);assert.equal(r.status,503);assert(!(await r.text()).includes('Nguyên lý hoạt động'));process.env.EXPLORE_PASSWORD_HASH=hash;
+console.log('PASS: admin dashboard, protected module, canonical/legacy routes, safe redirect, unauthorized, incorrect password, CSRF/origin, forged/expired cookie, valid login, logout, throttling and fail-closed configuration.');

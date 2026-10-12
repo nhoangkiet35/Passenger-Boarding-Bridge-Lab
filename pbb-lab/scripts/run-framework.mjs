@@ -14,6 +14,13 @@ if (managedLinux && command === "build") {
   process.exit(result.status ?? 1);
 }
 
+// Local browser development uses the same client-only app as Vercel.
+// Keep the framework/Workers build path for the existing Cloudflare target.
+if (!managedLinux && command === 'dev') {
+ const viteCli = new URL('../node_modules/vite/bin/vite.js', import.meta.url);
+ process.argv = [process.execPath, fileURLToPath(viteCli), '--config', 'vite.vercel.config.ts', '--port', '5173', ...args];
+ await import(viteCli.href);
+} else {
 // Import in this process so the preview owner retains its PID and signals.
 const cli = new URL(managedLinux
   ? "../node_modules/vite/bin/vite.js"
@@ -21,3 +28,5 @@ const cli = new URL(managedLinux
 process.argv = [process.execPath, fileURLToPath(cli), command,
   ...(!managedLinux && command === "dev" ? ["--port", "5173"] : []), ...args];
 await import(cli.href);
+
+}

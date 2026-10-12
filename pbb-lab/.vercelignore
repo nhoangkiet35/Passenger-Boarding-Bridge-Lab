@@ -14,3 +14,7 @@ work
 *.log
 *.zip
 *.tsbuildinfo
+
+# Internal research notes and generated private payload are excluded from upload
+docs
+.private-explore
