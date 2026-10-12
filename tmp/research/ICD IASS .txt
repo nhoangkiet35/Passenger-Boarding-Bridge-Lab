@@ -1,0 +1,1576 @@
+
+=== PDF PAGE 1 ===
+ 
+ 
+IASS Interface 
+Control Document 
+Long Thanh International Airport 
+Vietnam 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1
+
+=== PDF PAGE 2 ===
+ 
+  
+ 
+1        Scope ................................................................................................................................. 3 
+1.1 Identification ................................................................................................................................................... 3 
+1.2 Overall IASS interface concept ......................................................................................................................... 4 
+1.3 Detail IASS interface diagram ........................................................................................................................... 5 
+1.4 Scope of work between IASS, ICT and ACV……………………………………………………………………………………………………  7 
+2 Specification of ShinMaywa IASS software ......................................................................... 8 
+2.1 Recommended infrastructure Requirements ................................................................................................. 11 
+3   Integration with Building systems(External ICD)  ……………………………………..………………………………….12 
+3.1   IASS-IB Integration ....................................................................................................................................... 13 
+3.2  HBMS/RMS integration ................................................................................................................................. 16 
+3.3   Airport Operation Database(AODB) ............................................................................................................. 21 
+3.4   Master Clock System(MCS) ........................................................................................................................... 22 
+3.5  Telephone over Internet Protocol(ToIP) ......................................................................................................... 22 
+3.6  Security and Access Card System(SACS) ........................................................................................................ 23 
+3.7  Fire alarm System(FAS) ................................................................................................................................. 23 
+3.8  Closed Circuit Television(CCTV) ...................................................................................................................... 23 
+3.9      Sample integration codes & types  .................................................................................................................. 24 
+3.10     Integration with PBB-GSE-VDGS(internal ICD) 
+3.11     Annex 1  ......................................................................................................................................................... 27 
+3.12     Annex 2  ......................................................................................................................................................... 29 
+3.13     Annex 3  ......................................................................................................................................................... 30 
+3.14      Annex 4 ………………….…………………………………………………………………….…………………………………………………………… 31 
+ 
+ 
+2
+
+=== PDF PAGE 3 ===
+ 
+  
+ 
+ 
+ 
+1. Scope 
+ 
+1.1 IDENTIFICATION 
+ 
+ This document describes the Detailed Design Specification (DDS) of the IASS IT Infrastructure for 
+the Long Thanh International Airport (LTIA). The following is described in more detail in this 
+document. 
+• The scope split between the IASS contractor and the ICT contractor 
+• The expected IASS IT Infrastructure by the ICT contractor (Network, Server resources, etc) 
+• The various systems that are interfaced with IASS  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+3
+
+=== PDF PAGE 4 ===
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  •  
+  
+ 
+ 
+ 
+ 
+1.2 Overall IASS interface concept 
+ 
+ 
+4
+
+=== PDF PAGE 5 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+1.3 Detail IASS interface diagram 
+ 
+The Interface point is at the (IASS interface panel installed inside fixed gangway 
+(FDR) room as shown in below. The Communication cable from IASS panel is 
+connected to the FDR Switch installed at FDR ICT Room locates below the fixed 
+gangway. 
+ 
+ 
+ 
+5
+
+=== PDF PAGE 6 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+ 
+ 
+ 
+* IASS layout at each gate 
+ 
+ 
+6
+
+=== PDF PAGE 7 ===
+ 
+ 
+ 
+ 
+ 
+1.4  Scope 
+ 
+         The following table depicts the scope between IASS , Vietur and ACV 
+IASS Responsible 
+Description ACV VIETUR IASS Supplier 
+Network Equipment in FDR 
+IT Field Cabinets  VIETUR  
+Switch ACV   
+Wifi Network ACV   
+Patch Panel  VIETUR  
+ 
+UTP Cable (IT Field Cabinets to PBB Control Panel)@FDR FGW room 
+  IASS Supplier 
+UTP Cable (IT Field Cabinets to ASE Control Room)  VIETUR  
+FO Cable (IT Field Cabinets to PBB Control Panel) @FDR FGW room *required 
+only if more 90m length 
+  IASS Supplier 
+FO Cable (IT Field Cabinets to CoreRoom)  VIETUR  
+UTP Patch Cord (FDR Access Switch to IASS Patch Panel in FDR FGW Room)   IASS Supplier 
+FO Patch Cord  VIETUR  
+Network Equipment in Data Centre 
+Datacenter / Server room  VIETUR  
+Network Cabinet  VIETUR  
+BackBone Switch(Core Switch) ACV   
+Network design (VLAN's) ACV   
+FireWall ACV   
+Access Switch ACV   
+KVM Switch ACV   
+Rack Cabinet  VIETUR  
+Patch Panel  VIETUR  
+UPS  VIETUR  
+UTP Cable (Core Cabinet to Field Cabinet)  VIETUR  
+FO Cable (Core Switch to Acces Switch)  VIETUR  
+UTP Patch Cord (Server to Server)  VIETUR  
+UTP Patch Cord (Server to Switch)  VIETUR  
+FO Patch Cord (Server to Server)  VIETUR  
+FO Patch Cord (Server to Switch)  VIETUR  
+Server Equipment 
+Server Farm HW ACV   
+Software 
+VM (VMware environment) ACV   
+VMware Hypervisor and Licenses ACV   
+NTP Source ACV   
+SMTP Source ACV   
+Backup Software and licences ACV   
+IASS Software VM(IASS monitoring system)   IASS Supplier 
+Anti virus/ mallware software and licenses ACV   
+Microsoft Server Licenses ACV   
+Back Office 
+Office clients Control room  VIETUR  
+WorkStation 2 sets   IASS Supplier 
+Windows Licenses   IASS Supplier 
+IASS monitoring system Software for client   IASS Supplier 
+Anti virus/ mallware software and licenses   IASS Supplier 
+CCTV Workstation ACV   
+    
+ 
+ 
+ 
+ 
+ 
+ 
+7
+
+=== PDF PAGE 8 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+     
+ 
+ 
+ 
+-  
+2.Specification for IASS monitoring software for Long Thanh International Airport 
+ 
+The ShinMaywa’s Smart Airport Management System(SSMS) is an Integrated software 
+monitoring system that caters to the needs of any Airport in the world. It consists of 4 
+major components; 
+ 
+1. Data collection 
+2. Web Portal Management 
+3. Data exchange 
+4. 3D Interactive display 
+ 
+ 
+Data Collection 
+The data collection component is designed to poll data from each of the PLC on the PBB. Data 
+collected can be referenced to the list in Appendix I. Data collection from other sources is 
+possible using standard Modbus protocol or by means of software API provided by the 
+respective Vendors of the equipment. 
+ 
+Web Portal Management 
+The web portal provides data to day operational functions and reports as listed in Appendix II. 
+ 
+Data Exchange 
+The Data Exchange system is responsible for sending required data to other software systems 
+by means of direct input of data into SQL servers or by means of API provided by the respective 
+software vendors.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+8
+
+=== PDF PAGE 9 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+     
+ 
+ 
+ 
+ 
+ 3D Interactive Appendix Display 
+ 
+3D view of overall airport situation with errors being display both at the PBB and at the Error 
+Log. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Display of error on individual PBB 
+Note: Picture for illustration purpose only. 
+ 
+9
+
+=== PDF PAGE 10 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+     
+ 
+10
+
+=== PDF PAGE 11 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+     
+ 
+2.1 Recommended Infrastructure requirements 
+ 
+Recommended Hardware specification (supply by Building IT scope) 
+1. Database Server x 1pcs 
+10 vCPU, 64GB ram, 2TB SSD storage, 8TB HDD storage, Microsoft Windows server 2022 or 
+later, Microsoft SQL Server 2022 or later. 
+ 
+2. Application Server x 1pcs 
+10 vCPU, 64GB ram, 1TB SSD storage, 8TB HDD storage, Microsoft Windows server 2022 or 
+later. 
+ 
+3. Data Exchange Server x 1pcs 
+10 vCPU, 64GB ram, 2TB SSD storage, 8TB HDD storage, Microsoft Windows server 2022 or 
+later, Microsoft SQL Server 2022 or later. 
+ 
+4. NAS x 1pcs 
+Additional NAS is recommended for the backup. Specification is as below; 
+NAS Storage with 4 X 10TB drive, with 10Gbps NIC. 
+ 
+Recommended Hardware specification (supply by ShinMaywa) 
+ 
+5. Workstation specs x 2pcs 
+a. HP/Lenovo Workstation or equivalent 
+b. Intel i9 processor 
+c. 32GB ram 
+d. 1TB SSD storage 
+e. Nvidia RTX 3090 Ti or better Graphics controller 
+f. 32 inch LED 
+g. Windows 10 or above 
+11
+
+=== PDF PAGE 12 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                            3. 
+      IASS Interface with various Building systems 
+      (ICD with external systems) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+12
+
+=== PDF PAGE 13 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+IASS-IB integration 
+3.1. Flight integration 
+GetFlightInfo 
+3.2 HBMS/RMS integration 
+GetFlightStatistics 
+GetBridgeDeviceStatus 
+ 
+3.1 Flight integration 
+GetFlightInfo 
+The IASS system integrate with IB to retrieve flight information for PBB monitoring and to serve as the 
+foundational data for reports. 
+For each PBB gate, the IASS system will show the currently docked flight and the next scheduled arrival. 
+Assuming that the typical interval between one flight docking at a gate and the next flight docking at the same 
+gate is 4 hours, the IASS system might set an expectation to retrieve flight information for the next 5 hours.  
+• This approach avoids obtaining information for flights scheduled much further in advance, which may 
+be subject to reassignment to different gates or cancellation. 
+• Though, if allocation changes or flight cancellations occur, the information returned by the same 
+method should include a flight change indicator. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+13
+
+=== PDF PAGE 14 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+Interface Name: GetFlightInfo 
+Description Used to get flight information for all 32 PBB gates. 
+Data Flow 
+ 
+Input Parameters Detail are as below: 
+Parameter 
+Name 
+Type Comment 
+StartTime Datetime E.g: 2025-01-03T13:00:00+08:00 
+EndTime Datetime E.g: 2025-01-03T17:00:00+08:00 
+Type int E.g:  0 used for all 32 gates. 
+1/… for other purposes. 
+All above parameters are mandatory inputs. 
+Output 
+Parameters 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Details are as below: 
+Parameter 
+Name 
+Type Comment 
+ResultCode Int 0: success 
+1/2/…: different fault code. 
+ErrorString String Empty if ResultCode=0; otherwise, contains a detailed 
+error message. 
+ResultBody Flight[] List of flight allocation information, flight’s object 
+structure is detailed in the table below. 
+ 
+ResultBody details are as below: 
+Parameter Name Type Comment 
+Terminal Int Assigned Terminal 
+Gate Int Assigned Gate 
+StandAlloStatus Int 0: Assigned. 1: flight canceled, 2: Allocation 
+changed,… 
+Airline String Airline Code 
+AircraftType String C, D, E, F, …eg.A380, B747-8 etc 
+AircraftID Int  
+FlightNumber String  
+ETA Date Time Datetime Estimate Time Arrival 
+ETD Dare Time Datetime Estimate Time Departure 
+STA Date Time Datetime Schedule Time Arrival 
+STD Data Time Datetime Schedule Time Departure 
+ATA Date Time Datetime Actual Time Arrival 
+ATD Date Time Datetime Actual Time Departure 
+   
+ 
+14
+
+=== PDF PAGE 15 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+Input Samples <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"> 
+   <soap:Body> 
+      <GetFlightInfoRequest> 
+         <StartTime>2025-01-03T13:00:00+08:00</StartTime> 
+         <EndTime>2025-01-03T17:00:00+08:00</EndTime> 
+         <Type>0</Type> 
+      </GetFlightInfoRequest> 
+   </soap:Body> 
+</soap:Envelope> 
+Output Samples <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"> 
+   <soap:Body> 
+      <GetGetFlightInfoResponse> 
+         <ResultCode>0</ResultCode> 
+         <ErrorString></ErrorString> 
+         <ResultBody> 
+            <Flight> 
+               <Terminal>1</Terminal> 
+               <Gate>15</Gate> 
+               <StandAlloStatus>0</StandAlloStatus> 
+               <Airline>AA</Airline> 
+               <AircraftType>C</AircraftType> 
+               <AircraftID>12345</AircraftID> 
+               <FlightNumber>AA102</FlightNumber> 
+               <ArrivalOrDeparture>1</ArrivalOrDeparture> 
+               <ETA>2025-03-10T12:00:00Z</ETA> 
+               <ETD>2025-03-10T14:00:00Z</ETD> 
+               <STA>2025-03-10T12:00:00Z</STA> 
+               <STD>2025-03-10T14:00:00Z</STD> 
+               <ATA>2025-03-10T12:00:00Z</ATA> 
+               <ATD>2025-03-10T14:00:00Z</ATD> 
+            </Flight> 
+            <!-- More FlightAllocation elements can be added here --> 
+         </ResultBody> 
+      </GetGetFlightInfoResponse > 
+   </soap:Body> 
+</soap:Envelope> 
+15
+
+=== PDF PAGE 16 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+ 
+3.2. HBMS/RMS integration 
+GetGateFlightStatistics  
+The IASS detects flight’s actual arrival and departure time by VDGS, and flight’s GPU and PCA consumption by 
+relevant device’s statistic data, thus can report this information to AODB or HBMS/RMS, the data integration 
+can be implemented as: 
+• AODB/HBMS provides an interface for IASS to call to update that information 
+• Or IASS provides an interface so that AODB/HBMS can call to get that information 
+ 
+ 
+Assuming IASS will provide an interface: 
+Interface Name: GetGateFlightStatistics 
+Description Used to get flight statistics like actual arrival/departure time, GPU/PCA consumption, 
+PWS status 
+Data Flow 
+ 
+Input Parameters Detail are as below: 
+Parameter 
+Name 
+Type Comment 
+StartTime Datetime E.g: 2025-01-03T13:00:00+08:00 
+EndTime Datetime E.g: 2025-01-03T17:00:00+08:00 
+Type int E.g:  0 used for all 32 gates. 
+1/… for other purposes. 
+All above parameters are mandatory inputs. 
+Output 
+Parameters 
+Details are as below: 
+Parameter 
+Name 
+Type Comment 
+ResultCode Int 0: success 
+1/2/…: different fault code. 
+ErrorString String Empty if ResultCode=0; otherwise, contains a detailed 
+error message. 
+ResultBody Flight[] List of flight consumption information, flight’s object 
+structure is detailed in the table below. 
+ 
+ResultBody details are as below: 
+Parameter Name Type Comment 
+Terminal Int Assigned Terminal  
+Gate Int Assigned Gate 
+AircraftID Int  
+FlightNumber String  
+16
+
+=== PDF PAGE 17 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+FlightStatus int 0:Planned; 1: Docked; 2: Undocked (following data is 
+correct only after flight undocked) 
+ATA Datetime Actual Time Arrival 
+ATD Datetime Actual Time Departure 
+PcaConsumption Int Total Power Consumption, Unit: kWh 
+PcaUseTime Int Total Used Time, Unit: seconds 
+Gpu1Consumption Int Total Power Consumption, Unit: KVA 
+Gpu1UseTime Int Total Used Time, Unit: seconds 
+Gpu2Consumption Int Total Power Consumption, Unit: KVA 
+Gpu2UseTime int Total Used Time, Unit: seconds 
+PWSStatus Bool PWS Status (False-OFF, True-ON) 
+PWSPowerTrip Bool PWS Power Trip (False-Not Trip, True-Trip) 
+UpdateTime Datetime Last updated time of the record. 
+ 
+Input Samples <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"> 
+   <soap:Body> 
+      <GetGateFlightStatisticsRequest> 
+         <StartTime>2025-01-03T13:00:00+08:00</StartTime> 
+         <EndTime>2025-01-03T17:00:00+08:00</EndTime> 
+         <Type>0</Type> 
+      </GetGateFlightStatisticsRequest> 
+   </soap:Body> 
+</soap:Envelope> 
+Output Samples <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"> 
+   <soap:Body> 
+         <ResultCode>0</ResultCode> 
+         <ErrorString></ErrorString> 
+         <ResultBody> 
+            <Flight> 
+               <Terminal>1</Terminal> 
+               <Gate>15</Gate> 
+               <AircraftID>12345</AircraftID> 
+               <FlightNumber>AA102</FlightNumber> 
+               <FlightStatus>1</FlightStatus> 
+               <ATA>2025-01-03T14:00:00+08:00</ATA> 
+               <ATD>2025-01-03T16:00:00+08:00</ATD> 
+               <PcaConsumption>120</PcaConsumption> 
+               <PcaUseTime>3600</PcaUseTime> 
+               <Gpu1Consumption>45</Gpu1Consumption> 
+               <Gpu1UseTime>1800</Gpu1UseTime> 
+               <Gpu2Consumption>0</Gpu2Consumption> 
+               <Gpu2UseTime>0</Gpu2UseTime> 
+               < PWSStatus >True</ PWSStatus > 
+               < PWSPowerTrip >True</ PWSPowerTrip > 
+17
+
+=== PDF PAGE 18 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+               <UpdateTime>2025-01-03T17:05:00+08:00</UpdateTime> 
+            </Flight> 
+            <!-- More Flight elements can be added here --> 
+         </ResultBody> 
+      </GetGateFlightStatisticsResponse> 
+   </soap:Body> 
+</soap:Envelope> 
+ 
+ 
+ 
+ 
+GetBridgeDeviceStatus ( Real Time ) 
+The IASS can provide key device’s key parameter statuses, it will return only the latest status at the time of 
+the query. 
+ 
+Interface Name: GetBridgeDeviceStatus 
+Description Used to get flight statistics like actual arrival/departure time, GPU/PCA consumption, 
+PWS status 
+Data Flow 
+ 
+Input Parameers Detail are as below: 
+Parameter 
+Name 
+Type Comment 
+Type int E.g:  0 used for all 32 gates. 
+1/… for other purposes. 
+All above parameters are mandatory inputs. 
+Output 
+Parameters 
+Details are as below: 
+Parameter 
+Name 
+Type Comment 
+ResultCode Int 0: success 
+1/2/…: different fault code. 
+ErrorString String Empty if ResultCode=0; otherwise, contains a detailed 
+error message. 
+ResultBody State[] List of bridge’s information, bridge’s object structure 
+is detailed in the table below. 
+ 
+ResultBody details are as below: 
+Parameter Name Type Comment 
+Terminal Int Assigned Terminal 
+Gate Int Assigned Gate 
+BridgeNumber int 1~64 
+PbbOpMode Bool Operate Mode (True-Operation Mode, False-Not In 
+Operation Mode) 
+18
+
+=== PDF PAGE 19 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+PbbAlMode Bool Autolevel Mode (True-AutoLevel Mode, False-Not in 
+Autolevel Mode) 
+PbbPlcFailure Bool PBB PLC or computer failure (PBB PLC Error) 
+PbbCommFailure Bool Communication Failure (PBB PLC Comms Error) 
+PCACtrlMode Int CTRL Mode (Current status of PCA) 
+10-Initializing 
+30-Disabled 
+33-Deploy Cabin Sensor 
+36-Damper not in Position 
+40-Error 
+60-Standby 
+70-Init Power up PCA 
+72-Power Up PCA 
+74-Power Up Main Blower 
+90-PCA Running 
+95-Power Down PCA 
+200-Updating 
+210- Reset 
+PCAWarning int Warning Status 
+0x001- Cooling Module 1 
+0x002-Cooling module 2 
+0x004-Cooling Module 3 
+0x008-Cooling Module 4 
+0x100-Condensate Pump not running 
+0x200-Air Filter Clogged 
+0x400-Pre Fuse Current Reached 
+PCAAutoMode int Auto mode Status 
+1-Heating, 2-Ventilation, 3-Cooling 
+PCAOutput Int  Output Status 
+1-Disabled,2-Ready for Use,8-Activated 
+PCATotalPower Int PCA Total Power Consumption (KWh) 
+GPU1TotalPower Int  GPU Power Consumption (kVA) 
+GPU2TotalPower Int  GPU Power Consumption (kVA) 
+PWSStatus Bool PWS Status (False-OFF, True-ON) 
+PWSPowerTrip Bool PWS Power Trip (False-Not Trip, True-Trip) 
+CreatedTime Datetime Creation time of the record. 
+ 
+Input Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"> 
+   <soap:Body> 
+      <GetBridgeDeviceStatus Request> 
+         <Type>0</Type> 
+      </GetBridgeDeviceStatusRequest> 
+   </soap:Body> 
+</soap:Envelope> 
+19
+
+=== PDF PAGE 20 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+Output Samples <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"> 
+   <soap:Body> 
+      <GetBridgeDeviceStatusResponse> 
+         <ResultCode>0</ResultCode> 
+         <ErrorString></ErrorString> 
+         <ResultBody> 
+            <State> 
+               <Terminal>1</Terminal> 
+               <Gate>15</Gate> 
+               <BridgeNumber>1</BridgeNumber> 
+               <PbbOpMode>true</PbbOpMode> 
+               <PbbAlMode>false</PbbAlMode> 
+               <PbbPlcFailure>false</PbbPlcFailure> 
+               <PbbCommFailure>false</PbbCommFailure> 
+               <PCACtrlMode>1</PCACtrlMode> 
+               <PCAWarning>0</PCAWarning> 
+               <PCAAutoMode>1</PCAAutoMode> 
+               <PCAOutput>20</PCAOutput> 
+                < PCATotalPower >0</ PCATotalPower > 
+                < GPU1TotalPower >0</ GPU1TotalPower > 
+                < GPU2TotalPower >0</ GPU2TotalPower > 
+               < PWSStatus >True</ PWSStatus > 
+               < PWSPowerTrip >True</ PWSPowerTrip > 
+            </State> 
+            <!-- More State elements can be added here to represent additional bridge 
+devices --> 
+         </ResultBody> 
+      </GetBridgeDeviceStatusResponse> 
+   </soap:Body> 
+</soap:Envelope> 
+ 
+  *Other require messages can be discussed in detail once Airport IT is on board 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+20
+
+=== PDF PAGE 21 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+3.3 AODB (Airport Operational Database) 
+          PBB to receive from AODB for the following 
+a. Airline 
+b. Flight Number 
+c. Aircraft Type 
+d. Aircraft Stand Number 
+e. EIBT (Estimated In Block time) 
+f. EOBT(Estimated Off Block Time) 
+g. TOBT(Target Off Block Time 
+The files are transmitted in XML format between IASS and AODB via the Information 
+Broker (IB). 
+ 
+ 
+ 
+ 
+<?xml version="1.0" encoding="UTF-8"?> 
+<StandSystemIntegration> 
+<Flight><!—AODB integration --> 
+<FlightNumber>. ....... </FlightNumber> 
+<Airline>. ... </Airline> 
+<AircraftType>. </AircraftType> 
+<ArrivalOrDeparture>Arrival</ArrivalOrDeparture> 
+<ScheduledTime>2024-11-05T10:30:00Z</ScheduledTime> 
+<ActualTime>2024-11-05T10:45:00Z</ActualTime> 
+<StandAssignment> 
+<StandNumber>G12</StandNumber> 
+<Status>Assigned</Status> 
+</StandAssignment> 
+</Fl 
+ 
+ 
+• *The format message may be adjusted during coordination work with ICT later 
+PBB, PCA ,GPU, 
+PWS  
+ 
+21
+
+=== PDF PAGE 22 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+3.4 MCS (Master clock system) 
+MCS to use NTP to sync all clock time and date stamp. The connection 
+will be at FDR switch at fixed gangway at each gate 
+ 
+ 
+3.5 ToIP (Telephone over internet Protocol) 
+These IP terminals (Phones) installed at cab end of PBB will be linked to the 
+voice/data switch(IT scope) which Airport IT will do a VLAN to separate the 
+voice and data at the FDR switch at fixed gangway at each gate. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PBB, PCA ,GPU, PWS  
+ 
+22
+
+=== PDF PAGE 23 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+3.6.Security and Access card system(SACS) 
+ 
+SACS will not be interfaced via  IASS system 
+Instead , it will be directly connected to FDR switch and link to building SACS system 
+directly 
+ 
+The DCU box for SACS  will be installed in PBB and connected to card reader, electric 
+lock and other 
+Accessories required for SACS monitoring.  
+ 
+ 
+3.7.Fire alarm System(FAS) 
+          
+         There is no hardware for FAS system installed in PBB. Hence, no interface with FAS 
+ 
+ 
+3.8.Closed circuit Television(CCTV) 
+ 
+ VLAN for CCTV to be provided by IT scope. IP address will be allocated by IT  
+ 
+        CCTV camera provided must support ONVIF. The IASS system is able of view image of 
+one CCTV    
+         at any one time only at IASS workstation 
+  
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+23
+
+=== PDF PAGE 24 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+ 
+3.9. Sample Integration Codes&Types 
+S/No Codes Type Description 
+1 SOAPEnvelope Elements Use to defind document format 
+2 SOAPHeader Elements Header for Document 
+3 Header Elements Document Right(1) or wrong(0) 
+4 ChannelID String Channel ID 
+5 ServiceDomain String Domain Name 
+6 OperationName String Service or Operation Name 
+7 ConsumerID String Consumer ID 
+8 SourceRegion String To Be Updated - TBU 
+ 
+ 
+ 
+ 
+9 
+ 
+ 
+ 
+ 
+DestinationRegion 
+ 
+ 
+ 
+ 
+String 
+ 
+This is a field used to identify the destination country or region. 
+Service calls can be directed to other service providers. If there 
+are special application scenarios where the service user and 
+service provider are from different countries or regions. 
+ 
+ 
+ 
+10 
+ 
+ 
+ 
+TransactionID 
+ 
+ 
+ 
+String 
+Provided by the service user. TransactionID is a specific ID used 
+by the service user to identify a unique value associated with a 
+service request. TransactionID is usually defined and 
+maintained by a third party. 
+11 TrackingID String Service users are not required to provide it. 
+ 
+ 
+12 
+ 
+ 
+UUID 
+ 
+ 
+String 
+Service users are not required to provide it. A unique identifier 
+will be provided in the request message and in the response 
+message. 
+ 
+ 
+ 
+ 
+13 
+ 
+ 
+ 
+ 
+CorrelationID 
+ 
+ 
+ 
+ 
+String 
+Service users are not required to provide it. Applied in 
+asynchronous transactions, as the only associated value 
+between request messages and message responses 
+The use of this field should be designed and defined based on 
+actual application scenarios. 
+ 
+14 
+ 
+RqTimestamp 
+ 
+DateTime 
+Provided by the service user. It is the request message 
+timestamp, the time when the service request was made. 
+ 
+15 
+ 
+RsTimestamp 
+ 
+DateTime 
+Service users do not need to provide this. This is the message 
+response timestamp. 
+ 
+16 
+ 
+SOAPBody 
+ 
+Elements 
+The SOAP Body content, which provides detailed information 
+about the service. 
+ 
+ 
+ 
+ 
+ 
+17 
+ 
+ 
+ 
+ 
+ 
+SOAPFault 
+ 
+ 
+ 
+ 
+ 
+Elements 
+ 
+The data element is used to indicate an abnormal 
+message. If the Fault data element exists, the child data 
+element of the Body data element must be displayed, and 
+the Fault data element can only appear once in a SOAP 
+message. The SOAP Fault data element has the following 
+child data elements: 
+ 
+ 
+18 
+ 
+ 
+Code 
+ 
+ 
+Elements 
+This provides error information that the software can 
+handle, 
+including the <Value> data element and the optional 
+<Subcode> field 
+ 
+ 
+19 
+ 
+ 
+Reason 
+ 
+ 
+Elements 
+The composite data element contains one or more <Text> 
+data 
+elements, which mainly provide human-readable 
+descriptions of the exception. 
+ 
+24
+
+=== PDF PAGE 25 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+  
+ 
+20 
+ 
+ 
+Test 
+ 
+ 
+String 
+The <Code> field provides exception descriptions 
+based on the 
+<Code> field. Examples of possible exception 
+descriptions are shown below. 
+ 
+ 
+ 
+ 
+21 
+ 
+ 
+ 
+ 
+Detail 
+ 
+ 
+ 
+ 
+Elements 
+The component data element contains the exception 
+code associated with the SOAP Fault generated by 
+the application- specific exception information. The 
+presence of the <Detail> component data element 
+has no significance for which parts of 
+the SOAP message are processed in the exception. 
+ 
+ 
+22 
+ 
+ 
+Fault 
+ 
+ 
+Elements 
+A sub-combination data element of a combination 
+data 
+element, which contains the exception code and 
+exception message description. 
+ 
+ 
+23 
+ 
+ 
+ErrorCode 
+ 
+ 
+String 
+The exception code is a unique code used to identify 
+a specific 
+exception. The detailed description of the exception 
+code will be listed in the ErrorString field. 
+ 
+24 
+ 
+ErrorString 
+ 
+String 
+The exception code description, the detailed 
+description of 
+ErrorCode. 
+ 
+Other Error codes - To Be Updated 
+25 0101  Fails To Validate Provider's Response 
+26 0201  Provider General Service Error , Please 
+27 0301  Service Not Available 
+28 0401  Consumer MAC Invalid 
+29 0901  Service Time Out ESB , Please retry again 
+30 0902  Concurrent usages over SLA rules 
+31 0903  Consumer Request Not Authorized 
+32 0999  System Error ESB , Please retry again 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+25
+
+=== PDF PAGE 26 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+3.10 
+ 
+Integration with PBB-GSE-VDGS(ICD with 
+internal systems) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+26
+
+=== PDF PAGE 27 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+3.11 ANNEX 1 
+ 
+INTERFACE BTW IASS AND VDGS 
+ 
+Communication protocol : XML via IB(IASS to VDGS(TMAN) server) 
+ 
+F. Interface with VDGS Honeywell Remark 
+1. The IASS shall have an interface 
+with the VDGS at each stand, 
+through a RS485/422 with Modbus 
+protocol. 
+IASS and VDGS system are connected independently to 
+Information Broker (IB) via CAT6 cable communicating on TCP/IP 
+protocol. 
+2. A connection will be established 
+with the PLC or computer of the 
+VDGS 
+ Connection between IASS and VDGS is established with Server of 
+VDGS. (both TMAN1 and 2) via the IB. 
+3. The interface shall allow report 
+of all actions made at the VDGS 
+level, as well as report all 
+operational and technical failures. 
+In addition, the VDGS aircraft 
+database can be updated remotely, 
+using this link 
+To update new aircraft database in TMAN a secured internet 
+connection is to be provided by customer with connection to 
+Honeywell lab. 
+4. The interface shall be MODBUS 
+type, with a RJ45 plug. Cables 
+between the two systems will be 
+provided by the contractor in 
+charge of the VDGS 
+IASS and VDGS system are connected independently to 
+Information Broker (IB) via CAT6 cable communicating on TCP/IP 
+protocol. 
+5. Data reported from the VDGS to 
+the IASS shall be listed by the 
+contractor and shall as a minimum 
+include the following: 
+ 
+a. VDGS operating mode Remote/Local/Maint
+enance Mode/Not 
+Available  
+Remote when VDGS operation initiated 
+remotely. 
+Local when VDGS operation initiated by 
+MCB. 
+Maintenance Mode when VDGS is under 
+maintenance  
+Not available when VDGS is not available 
+for operations. 
+b. Stand status FREE/PARKED FREE when no aircraft at stand. 
+Parked when aircraft is parked at stand. 
+c. Block ON / block OFF AIBT / AOBT AIBT(Actual inBlock Time/ AOBT(Actual 
+OffBlock Time) 
+d. Display status ON/OFF  ON when PDU is connected.   
+27
+
+=== PDF PAGE 28 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+OFF when PDU is not connected / PDU 
+communication error. 
+ 
+e. Control box status ON/OFF  ON when SBC Control Box – TMAN OPCUA 
+connectivity status is OK. OFF when SBC 
+Control Box – TMAN OPCUA connectivity 
+status is NOT OK. 
+f. Scanning unit status ON/OFF ON when Vision Tracking camera OR Lidar 
+is OK. 
+OFF when Vision Tracking camera OR Lidar 
+is NOT OK. 
+g. Communication failure OK/faulty OK when TMAN communication is OK. 
+Faulty when TMAN communication is NOT 
+OK. 
+h. Main computer unit failure Normal/faulty  
+ 
+TMAN status needs to be queried by IB / 
+AODB adapter via heartbeat check from IB. 
+i. Emergency stop ON/OFF ON when ESTOP is pressed. 
+OFF When ESTOP is in released state. 
+j. Hour meter Day Hours SBC (Single Board Computer) uptime from 
+last reboot state. 
+k. Aircraft identity failure YES/NO Yes when Aircraft ID fails. 
+NO when Aircraft ID not fails. 
+l. VDGS low visibility mode status YES/NO Yes when sensor is blind and docking is not 
+possible. 
+No when sensor is not blind and docking is 
+possible.  
+m. VGDS PLC or computer failure OK/Faulty 
+ 
+OK when TMAN - SBC connectivity is OK. 
+Faulty when TMAN - SBC connectivity is 
+NOT OK. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+28
+
+=== PDF PAGE 29 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+3.12 ANNEX 2 
+ 
+                            INTERFACE BETWEEN IASS AND PCA 
+ 
+Communication protcol : MODBUS TCP 
+ 
+7. Data reported from the PCA to the 
+IASS shall be listed by the contractor and 
+shall as a minimum include the following: 
+ 
+a. Watt meter P13 Adr. 1042/1043 - total power consummed 
+(kWh) 
+P13 Adr. 1052 - pressent power use (kW) 
+b. Hour meter P13 Adr. 1039/1040/1041 - total operating time  
+(seconds) 
+c. PCA working auxiliary contact P11 Adr. 1027 - value = 90 -> PCA Running 
+d. PCA general fault P11 Adr. 1027 - value = 40 -> PCA Fault / Error 
+e. PCA filter fault P12 Adr. 1028 - value = 512 -> Filter clogged warning 
+f. ON / OFF power status TBC. Ref. to P11 Adr. 1027 - values for  PCA state  
+g. Control valves N.A 
+h. Coil condition P14-16 Adr. 1099, 1107, 1115, 1123 - status of 
+cooling modules. Ref. to O&M Manual Sec. 9.1 for 
+details on numbers. 
+i. Blown air pressure probe P14 Adr. 1016 - outlet pressure (Pa) 
+j. Fan power variator fault P12 Adr. 1033 - PCA Error. Ref. O&M Manual Sec. 
+9.2 number 3400-3599 for details related to Main 
+Blower 
+k. PCA electrical fault P12 Adr. 1033 - PCA Error. Ref. O&M Manual Sec. 
+9.2 number 1000-1499 for details related to elec. 
+fault. 
+l. Air valves position Ref. to appendix B of 999010 and input I6 (high) for 
+closed and on I7 (high) for open.   
+m.Air valve position fault P12 Adr. 1033 - PCA Error. Ref. O&M Manual Sec. 
+9.2 number 5000-5099 for details related to damper 
+fault. 
+n. Lifting pump working auxiliary contact Ref. to appendix B of 999010 and input I16 (high) 
+and on I17 (high) for condensate pumps 
+activated/running.  
+o. Emergency stop P12 Adr. 1033 - PCA Error. Ref. O&M Manual Sec. 
+9.2 number 0400 - Emergency Stop Activated 
+p. PCA PLC or computer failure P12 Adr. 1033 - PCA Error. Ref. O&M Manual Sec. 
+9.2 number 0200-0299 - Control Board Error.  
+ 
+29
+
+=== PDF PAGE 30 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+3.13 ANNEX 3 
+ 
+ 
+  INTERFACE BETWEEN GPU AND PBB 
+ 
+Communication protocol : MODBUS TCP 
+ 
+G. Interface with GPU 400Hz Display on SCADA 
+a. 400Hz converter operating mode 
+ON/OFF  
+b. Emergency stop 
+ON/OFF  
+c. Auxiliary 48V voltage 
+ON/OFF  
+d. Circuit breaker status for various 400Hz 
+converter power supply NORMAL/TRIP 
+  
+e. Cable hoist 
+FAILURE/NORMAL  
+f. Converter status 
+READY/NOT READY  
+g. Hour meter 
+Hour/min/Sec  
+h. Power consumption meter 
+Amps & KW  
+i. Load Ampere in each phase 
+L1-A & kw,L2-A & 
+kw,L3-A&kw 
+j. Voltage across each phase 
+L1-v, L2-v,L3-v 
+k. Frequency 
+Hz  
+l. GPU PLC or computer failure 
+FAILURE/NORMAL  
+ 
+ 
+ 
+ 
+30
+
+=== PDF PAGE 31 ===
+Interface Control Document of IASS for 
+Long Thanh International Airport Project 
+ 
+ 
+ 
+ 
+ 
+ 
+3.14 ANNEX 4 
+ 
+INTERFACE BETWEEN PWS AND PBB 
+ 
+Communication protocol : MODBUS TCP 
+ 
+G. Interface with PWS 
+ 
+a. PWS On/Off 
+ON/OFF  
+b. PWS power trip 
+NORMAL/TRIP  
+ 
+31

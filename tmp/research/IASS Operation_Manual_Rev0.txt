@@ -1,0 +1,865 @@
+
+=== PDF PAGE 1 ===
+ 
+ 
+ 
+ 
+ 
+Intelligence Aircraft Stand System 
+SCADA Operation Manual 
+Version 1.1.0: 19/11/2025 
+ 
+ 
+ 
+Editor: 
+ 
+Reviewer: 
+ 
+Version control: 
+ 
+Version Date Author/Editor Description of Changes Reviewer/ 
+Approver Remarks 
+0.1 19 Dec 2025 WAGO    
+      
+      
+      
+      
+      
+ 
+
+=== PDF PAGE 2 ===
+Operation Manual 2 
+ 
+ 
+Internal 
+ 
+1. INTRODUCTION ....................................................................................................... 3 
+1.1 OBJECTIVE .......................................................................................................... 3 
+2. GRAPHICAL INTERFACE ....................................................................................... 4 
+2.1 System Log In Page ............................................................................................... 4 
+2.2 Overview Page ....................................................................................................... 5 
+2.3 Bridge Detail Page ................................................................................................. 7 
+2.5 Bridge Parameter List Table ................................................................................ 10 
+2.6 Bridge Alarm List Table ...................................................................................... 11 
+2.7 RealTime Trend Chart ......................................................................................... 12 
+2.8 RealTime Alarm .................................................................................................. 14 
+2.9 Historical Alarm .................................................................................................. 16 
+2.10Historical Trend Chart ........................................................................................ 17 
+ 
+
+=== PDF PAGE 3 ===
+Operation Manual 3 
+ 
+ 
+Internal 
+1. INTRODUCTION 
+Implementation of a bridge monitoring system consists of 32 bridges with WAGO 
+SCADA to transform maintenance from reactive to proactive, enhances safety, and 
+supports data-driven asset management. By combining sensor networks, robust data 
+acquisition, real-time visualization, and 3D presentation, users gain continuous insight 
+into structural behavior under variable loads and environmental conditions. Adhering 
+to best practices in sensor deployment, data management, cybersecurity, and 
+stakeholder coordinatio n ensures the monitoring system delivers reliable early 
+warnings, optimizes maintenance, and ultimately prolongs the service life of critical 
+bridge infrastructure. 
+ 
+1.1 OBJECTIVE 
+The objective of implementing WAGO SCADA solution is to establish a robust, secure, 
+and scalable system that enables real-time monitoring, control, and data-driven decision-
+making for industrial or infrastructure processes. Specific goals include: 
+ 
+1. Ensure Continuous Real-Time Visibility 
+- Deploy controllers and distributed I/O to acquire critical process or structural 
+parameters (e.g., temperature, pressure, flow, vibration). 
+- Provide operators and engineers with dashboards that display  3D modelling, 
+live status, trend charts, and key performance indicators. 
+ 
+2. Implement Effective Alarm Management 
+- Collaborate with user to define meaningful alarms. Assign severity levels (e.g., 
+critical, high, medium) based on risk and potential impact.  
+- Continuously log all alarm events (activations /clearances) with timestamps. 
+Store historical data in a historian or database for analysis 
+- Implement Shelving mechanisms  technique which  allow operators to 
+temporarily suppress low -priority alarms during certain operations  to avoid 
+nuisance alarms. 
+ 
+3. Support Live Data Trend Logging and Historical Trend Analysis 
+- Captures and visualizes process parameters in real time, enabling users to 
+observe ongoing behavior and detect deviations quickly. 
+- Store timestamped tag values , then summaries and display in term of hourly, 
+daily, monthly or yearly depending on the database.  
+ 
+4. Facilitate Integration  
+- Utilize for standard industrial protocols (e.g., Modbus TCP/RTU) 
+- Ensure seamless data exchange for reporting 
+ 
+ 
+ 
+ 
+ 
+
+=== PDF PAGE 4 ===
+Operation Manual 4 
+ 
+ 
+Internal 
+2. GRAPHICAL INTERFACE 
+2.1 System Log In Page  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 1 System Login Page 
+ Step 1: Go to Web-Browser 
+ Step 2: http://localhost:8055/#/runtime/VietnamAirport/Login 
+ Step 3: Key in Username and Password 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 5 ===
+Operation Manual 5 
+ 
+ 
+Internal 
+2.2 Overview Page 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Direction From To Protocol Format Trigger 
+1 IB IASS 
+RabbitMQ 4.1 
+(AMQP 0.9.1 
+native) 
+AIDX XML Subscription 
+(event) 
+ 
+ 
+Figure 2 Gates Overview Page 
+ 
+      
+Items Action Outcome 
+1  Click on Expand of the 3D modelling view  
+2  Click on Minimize the 3D modelling view 
+3  Drag  Rotation of the view 
+4  Drag  Positioning of the view 
+6  Scroll Zoom in /Zoom out 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 6 ===
+Operation Manual 6 
+ 
+ 
+Internal 
+Items Action Outcome 
+7  Click on 
+ Gate 20  
+3D model will zoom to the actual Gate view with a summary on the 
+general alarm status and in-flight detail. Please see below 
+   
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 3 Gate Zoom-in Page 
+ 
+Items Action Outcome 
+1 
+Trigger a few 
+alarms from 
+Gate 20, bridge 
+2 
+An alarm message of not more 
+than 20 is displayed on the 
+overview page. Older messages 
+will be replaced by new alarm 
+message.   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+User can click on the 
+alarm message for more 
+alarm details 
+ 
+ 
+ 
+
+
+=== PDF PAGE 7 ===
+Operation Manual 7 
+ 
+ 
+Internal 
+2.3 Bridge Detail Page 
+   
+ 
+ 
+ 
+ 
+2.5 Ov Page 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 4 Bridge Detail Page 
+ 
+Items Name/Action Description 
+1 
+Select Gate 20, 
+L2 via drop list or 
+arrow  
+ 
+ 
+3D modelling will display bridge from Gate 6, Bridge 2 
+2 Click on  
+ 
+Real Time alarm dialog box appears. (please to 5.2 for more 
+information) 
+3 Click on  
+ 
+Real Time Trend dialog box appears. (please to 5.3 for more 
+information) 
+4  Drag  Rotation of the view 
+5  Scroll Zoom in /Zoom out 
+ 
+ 
+ 
+
+
+=== PDF PAGE 8 ===
+Operation Manual 8 
+ 
+ 
+Internal 
+ 
+ 
+Items Name/Action Description 
+6 
+Bridge Summary 
+Table 
+(Trigger PBB 
+interface box 
+error)   
+User can identify the status of the component of the bridge system by 
+the color. 
+Red- Critical  
+Green- Standby/Ready 
+Orange – Critical 
+Grey - Offline  
+ 
+7 
+Component 
+location 
+placement 
+(Click on the 
+alarm message for 
+more information) 
+                
+An alarm dialog will appear more information. 
+ 
+ 
+
+
+=== PDF PAGE 9 ===
+Operation Manual 9 
+ 
+ 
+Internal 
+ 
+Items Name/Action Description 
+8 
+Main Operation 
+Status Display 
+Table. 
+(PBB, PCA, 
+GPU1, GPU2, 
+VDGS) 
+ 
+ 
+ 
+ 
+ 
+9 
+Click on  
+ 
+A Parameter list table popout. System reading, status and alarm are 
+displayed. (please to 2.4 for more information) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 10 ===
+Operation Manual 10 
+ 
+ 
+Internal 
+2.4 Bridge Parameter List Table 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 5 Bridge Parameter Table 
+ 
+Items Name/Action Description/Outcome 
+1 
+Select Gate (20) Bridge 
+(2) 
+System (PBB) 
+Status (-) 
+Monitoring item (-) 
+ 
+Click on 
+ 
+ 
+(Trigger an alarm and 
+simulate a reading on the 
+system) 
+The Parameter list table will displace all PBB system reading, 
+measurement, alarm and Flight information. 
+All Alarm parameters can be identified by a alarm status when 
+trigger and identify as normal when it is not trigger. An alarm 
+time is displayed when it is triggered. When the alarm is clear, 
+an alarm dismiss time is displayed while the alarm time is 
+cleared. 
+ 
+Parameter with no status identifier is either a reading, 
+information or a mode indication. 
+ 
+Users are required to click on the search bar to refresh the 
+parameter in the table. 
+2 
+Click on 
+ 
+A CSV file is exported and downloaded into the PC. 
+The CSV file includes all current information on the PBB 
+system. 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 11 ===
+Operation Manual 11 
+ 
+ 
+Internal 
+2.6  Bridge Alarm List Table 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 6 Bridge Alarm Lists Table 
+Items Name/Action Description/Outcome 
+1 
+Select Gate (20) Bridge 
+(2) 
+System (PBB) 
+Status (-) 
+Monitoring item (-) 
+ 
+Click on 
+ 
+ 
+(Trigger an alarm and 
+simulate a reading on the 
+system) 
+The alarm list table will displace all PBB system trigger alarm. 
+Only ongoing alarms will be displayed. Alarm will not be 
+displayed 
+ 
+ 
+Users are required to click on the search bar to refresh the 
+alarm in the table. 
+2 
+Click on 
+ A CSV file is exported and downloaded into the PC. 
+The CSV file includes all ongoing alarm of the PBB system. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 12 ===
+Operation Manual 12 
+ 
+ 
+Internal 
+2.7 RealTime Trend Chart 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 7 RealTime Trend Chart 
+Items Name/Action Description/Outcome 
+1 
+Select Gate (20) Bridge 
+(L2) 
+ 
+ 
+ 
+User is able to view the following component: 
+1. Real time value 
+o Frequency 
+o Airflow 
+o Power Consumption 
+2. Live Alarm log 
+3. GPU live trend (Voltage/Current) 
+4. PCS live trend (Temperature/Pressure) 
+5. Flight Number 
+6. Arrival time 
+7. PBB mode 
+o Operation OFF 
+o Operation ON  
+8. PCA Status 
+o Disable 
+o Ready for use 
+o Activated 
+9. GPU interlock status 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 13 ===
+Operation Manual 13 
+ 
+ 
+Internal 
+Items Name/Action Description/Outcome 
+2 Click on either one of 
+the trend model. 
+ 
+  
+A larger trend model is display with a time frame 1 minute. 
+The real time update rate is every 5 sec. 
+ 
+ 
+3 
+Select Gate (1) Bridge 
+(L1) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Note that not all Bridges come with a live trend feature.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 14 ===
+Operation Manual 14 
+ 
+ 
+Internal 
+2.8 RealTime Alarm 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 8 RealTime Alarm 
+ 
+Items Name/Action Description/Outcome 
+1 
+Click on 
+ 
+User Can select on the type of alarm detail they want to display 
+in the alarm table. 
+2 
+Click on 
+ User can choose the mute/unmute the siren of the alarm.  
+3 
+Click on  
+ 
+Users can either tick on the first tick box to select all alarms or 
+tick on selected alarm they want to select. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 15 ===
+Operation Manual 15 
+ 
+ 
+Internal 
+  
+Items Name/Action Description/Outcome 
+4 
+Click on 
+ 
+ 
+Shelve – To temporary hide the alarm into shelved table for a 
+limited time. 
+ 
+After user has identified the alarm for shelving, and click on 
+the shelve button, user can select the time period ranging from 
+5min to 4 hours. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Once shelve the alarm will be shift to the shelved table. 
+ 
+5 
+Click on 
+ 
+ 
+Acknowledge – To identify the alarm is noted. 
+ 
+Before the alarm is acknowledged, the alarm will be blinking 
+with a background siren. 
+ 
+After the alarm is acknowledged, the alarm will be stationery 
+and siren is cutoff. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 16 ===
+Operation Manual 16 
+ 
+ 
+Internal 
+2.9 Historical Alarm 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 9 Historical Alarm 
+ 
+  
+Items Name/Action Description/Outcome 
+1 
+Select Gate (6) Bridge 
+(2) 
+System (PBB) 
+Alarm code (-) 
+Description (-) 
+Date From (xxxxxx) 
+Date to (xxxxxx) 
+ 
+Click on 
+ 
+ 
+All existing alarms and cleared alarms will be display. 
+2 
+Click on 
+ A CSV file is exported and downloaded into the PC. 
+The CSV file includes all history of the PBB system. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 17 ===
+Operation Manual 17 
+ 
+ 
+Internal 
+2.10 Historical Trend Chart 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 8 Historical Trend Chart 
+Items Name/Action Description/Outcome 
+1 
+Select Gate (6) Bridge 
+(L2) 
+Date From (xxxxxx) 
+Date to (xxxxxx) 
+ 
+Click on 
+ 
+ 
+ 
+PCA Historical Trend chart: 
+o Blower Frequency 
+o Discharge Pressure 
+o Suction Pressure  
+o Heater Power  
+o Temperature 
+ 
+GPU1/GPU2 Historical Trend chart: 
+o Voltage 
+o Current 
+ 
+2 
+Click on 
+ A CSV file is exported and downloaded into the PC. 
+The CSV file includes all history of the PBB system. 
+ 
+ 
+ 
+ 

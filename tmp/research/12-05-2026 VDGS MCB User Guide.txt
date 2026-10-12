@@ -1,0 +1,460 @@
+
+=== PDF PAGE 1 ===
+User’s Guide
+Manual Control Board
+Advanced Visual Docking Guidance System
+
+=== PDF PAGE 2 ===
+Disclaimer
+This document contains Honeywell proprietary information.
+Information contained herein is to be used solely for the purpose submitted, and no part of 
+this document or its contents shall be reproduced, published, or disclosed to a third party 
+without the express permission of Honeywell International Inc.
+While this information is presented in good faith and believed to be accurate, Honeywell 
+disclaims the implied warranties of merchantability and fitness for a purpose and makes no 
+express warranties except as may be stated in its written agreement with and for its cus-
+tomer.
+In no event is Honeywell liable to anyone for any direct, special, or consequential damages. 
+The information and specifications in this document are subject to change without notice.
+Copyright  2020 - Honeywell International Inc.
+Document History
+Document number: HAB-45002065
+Issue Date Description
+1 12th February 2020 First version
+1.1 09th June 2020 Image updates
+Passcode information
+Additional step for MCB address change
+
+=== PDF PAGE 3 ===
+1                                                                                                                                        MCB v3 User’s Guide
+TABLE OF CONTENTS
+Chapter 1 - About this Guide .......................................................................... 1
+Intended Audience and Assumed Knowledge .................................................................... 1
+Glossary of Terms........................................................................................................................... 2
+Chapter 2 - Introduction .................................................................................. 3
+About MCB........................................................................................................................................ 3
+Safety Guidelines ........................................................................................................................... 4
+Chapter 3 - Features and Functionalities..................................................... 5
+Emergency Stop Button .............................................................................................................. 6
+Home Page........................................................................................................................................ 7
+Connecting to A-VDGS .......................................................................................................... 8
+Operating Modes............................................................................................................................ 9
+Remote......................................................................................................................................... 9
+Local ............................................................................................................................................. 9
+Maintenance.............................................................................................................................. 9
+Operating States.......................................................................................................................... 10
+Passcode Security....................................................................................................................... 11
+Manual Docking Procedure .................................................................................................... 12
+Update the System Status .......................................................................................................16
+Procedure for Maintenance Mode ....................................................................................... 17
+Settings ........................................................................................................................................... 18
+Brightness ............................................................................................................................... 19
+Address ..................................................................................................................................... 20
+
+=== PDF PAGE 4 ===
+MCB v3 User’s Guide   2
+Passcode...................................................................................................................................21
+Test..............................................................................................................................................23
+About ..........................................................................................................................................24
+Error Messages.............................................................................................................................25
+
+=== PDF PAGE 5 ===
+CHAPTER
+1
+1                                                                                                                              MCB v3 User’s Guide
+About this Guide 
+This guide describes the operation of the Manual Control Board (MCB), enabling
+the user to perform manual docking process in conjunction with the A- VDGS. 
+Intended Audience and Assumed Knowledge
+This guide is intended to be used by the following users:
+• Honeywell Engineering team
+• Honeywell Service team
+• Apron/ Gate operator
+• Ground Handler/Marshaller
+It is assumed that the user is trained and familiar with aircraft docking process and other 
+airport operations.
+
+=== PDF PAGE 6 ===
+2                                                                                                                                      MCB v3 User’s Guide
+Glossary of Terms
+This section provides the acronyms used in this document.
+Term Description
+A-VDGS Advanced Visual Docking Guidance System
+CC Control Computer
+DC Docking Controller
+MCB Manual Control Board
+PDU Pilot Display Unit
+
+=== PDF PAGE 7 ===
+CHAPTER
+2
+3                                                                                                                                  MCB v3 User’s Guide
+Introduction 
+About MCB
+Manual Control Board (MCB) is a resistive touch sensitive device, which enables the
+user to manually operate A-VDGS. The resistive touch screen allows the operator to
+use the MCB with gloves on their hands.  
+Operators can use MCB to take local control of the gate and dock aircrafts through
+A-VDGS.  
+During normal situations, the docking activation for A-VDGS is automated through a
+central system.
+  
+The operator can use MCB in certain situations such as:
+• Loss of connectivity between the A-VDGS and central system
+• An unscheduled aircraft arrival for docking
+• Manual overrides for correction  of any activation errors.
+• Initiate emergency stop to abort the docking process in case of any apron 
+emergency
+• View error messages from the A-VDGS unit
+
+=== PDF PAGE 8 ===
+4                                                                                                                                       MCB v3 User’s Guide
+Safety Guidelines
+Mechanical
+• Device should be used only after fixing  it on the wall or similar surface by 
+fasteners
+• See the lock release label to open the top cover or lid
+• Remove any cover on the display and on the top cover before use
+• Use soft cloth to wipe the dust on the top cover
+Electrical
+• Verify the electrical wiring connection
+• Verify the earthing connection
+
+=== PDF PAGE 9 ===
+CHAPTER
+3
+5                                                                                                                                MCB v3 User’s Guide
+Features and Functionalities
+This chapter describes the various featur es and functionalities of MCB and the
+procedure to use them. 
+Following topics are covered in this chapter:
+Topics Go To
+Emergency Stop Button page 6
+Home Page page 7
+Operating Modes page 9
+Operating States page 10
+Passcode Security page 11
+Manual Docking Procedure page 12
+Update the System Status page 16
+Procedure for Maintenance Mode page 17
+Settings page 18
+Error Messages page 25
+Note:
+Before beginning to use, check the MC B’s address and its firmware version.
+Update them if required. 
+For checking the details of the MCB, see the section About on page 24.
+For more information on the MCB address change, see Address on page 20.
+For more information on the MCB firmware updation, refer the section Updating the
+MCB Firmware in MCB Installation guide.
+
+=== PDF PAGE 10 ===
+6                                                                                                                                                          MCB v3 User’s Guide
+Emergency Stop Button 
+MCB is housed in an external enclosure. An emergency stop button is provided on
+the right side of the enclosure. 
+This button is directly connected to the Docking Controller (DC) in PDU.  
+During any of the following emergency situations, the docking process can be
+stopped using the emergency stop button. 
+• Probability of hazard to the aircraft, humans or property.
+• A wrong aircraft entering the gate.
+• Probability of incursion of the airc raft with ground vehicles / objects
+• The aircraft overshooting its expected stop position beyond configured safety 
+limits
+Pressing this button will terminate the docking process and the word STOP is
+displayed in red on the PDU.
+To end the emergency stop signal, turn the Emergency Stop button clockwise and
+release the Emergency Stop key.
+The system returns to its earlier state (prior to Emergency stop was pressed), if no
+other error condition exists. 
+Note:
+If the system is in LOCAL mode and the earlier state was ACTIVE, then, the
+operating state returns to FREE. 
+
+
+=== PDF PAGE 11 ===
+MCB v3 User’s Guide 7
+Home Page 
+When the MCB is switched on, the Home page is displayed. 
+ 
+
+
+=== PDF PAGE 12 ===
+MCB v3 User’s Guide 8
+Connecting to A-VDGS
+MCB is connected to A-VDGS through a serial communicat ion cable and this
+establishes connectivity with the  DC. 
+If MCB is unable to connect to the DC, an error message is displayed as follows. 
+Check the cable and fix it properly. When the cable connection is proper, the error
+disappears automatically . 
+
+
+=== PDF PAGE 13 ===
+MCB v3 User’s Guide 9
+Operating Modes 
+Remote
+B y  d e f a u l t ,  t h e  s y s t e m  i s  i n  R e m o t e  m o d e  a n d  M C B  o p e n s  w i t h  R e m o t e  m o d e
+Screen. 
+In this mode, central system is in control of A-VDGS and data cannot be fed through
+MCB. Docking activation is done by A-VD GS in co-ordination with central system.
+Data for System status, Gate and Aircraft are fetched from the DC.
+Local
+In certain situations such as connectivity  issues, downtime of central system, or
+unplanned  aircraft arrival, the operator at the stand can take local control of A-VDGS
+by using Local mode in MCB.
+In this mode, the operator can perform docking procedures manually.
+Update the system to the Remote mode  when the manual docking procedure is
+complete.
+Maintenance
+The Maintenance mode is used while performi ng test activities or when the gate is
+under maintenance. This option switches A-VDGS to maintenance mode indicating
+that the stand is being used for non-docking activities. 
+
+
+=== PDF PAGE 14 ===
+MCB v3 User’s Guide 10
+Operating States 
+Operating states indicate the occupancy status of the stand. 
+In the Local and Maintenance modes, state of the stand is selected using MCB. 
+Following table provides a brief description of the operating states:
+State Description
+Free Docking position is free and no aircraft is present
+Active Docking position has be en selected for a particular type of aircraft, but  
+aircraft has not yet been detected by the sensor
+Docking Docking procedure is in progress. This state is updated automatically from 
+the DC
+OnBlock The aircraft is in parked po sition in its final docking stage
+
+=== PDF PAGE 15 ===
+MCB v3 User’s Guide 11
+Passcode Security
+Opening the modes under Home tab and some maintenance features under
+Settings tab is secured by Distinct Passcodes. 
+Access Passcode can be used to access the features under Home tab only.
+Maintenance Passcode can be used to access the features in both Home tab  and
+Settings tab.
+To enter a Passcode.
+1 Type the passcode in the text box by  using the numeric pad on the right. 
+2T a p  
+3 If Passcode is incorrect, an error message is displayed. 
+Type the correct Passcode and Tap  to proceed.
+Note: The Passcode is a four-digit number. The default passcode is 9999. It is
+highly recommended to change the passco de after using it the first time. For
+more information on how to change the passcode, see Passcode on page 21.
+
+
+=== PDF PAGE 16 ===
+MCB v3 User’s Guide 12
+Manual Docking Procedure 
+This section describes the procedure to ta ke local control of the gate and initiate
+manual docking through A-VDGS.
+To initiate manual docking process
+1 Tap  and then tap Local.
+System prompts for a passcode.
+2 Type the Access Passcode. For more information on passcode, See  Passcode 
+Security on page 11.
+Local mode screen is displayed after the passcode is validated.
+3 By default, the system status is set to Active. Change the status by tapping Free 
+or Onblock options that are displayed on the right.
+Note:
+If you are already in Home tab, you can click Local from there only.
+
+
+=== PDF PAGE 17 ===
+MCB v3 User’s Guide 13
+4 To choose the Gate and the Aircraft, Tap .
+Select Gate screen is displayed.
+5 Select the required Gate by tapping the appropriate tile. Tap   and  to 
+browse all the options.
+Select Manufacturer screen is displayed.
+
+
+=== PDF PAGE 18 ===
+MCB v3 User’s Guide 14
+6 Tap the required manufacturer’s name.
+Tap   and  to browse all options.
+Select Aircraft screen is displayed.
+
+
+=== PDF PAGE 19 ===
+MCB v3 User’s Guide 15
+7 Tap the required aircraft model number. 
+Tap   and  to browse all options.
+A-VDGS initiates the docking procedure when all the steps are completed. 
+When the docking procedure starts, the System Status is updated to Docking by 
+the DC.
+
+
+=== PDF PAGE 20 ===
+MCB v3 User’s Guide 16
+Update the System Status  
+To update System Status
+1 Tap and then tap Local.
+2 Type the Access Passcode. For more information on passcodes,  see Passcode 
+Security on page 11.
+3 Tap on the fields and update as required.
+
+
+=== PDF PAGE 21 ===
+MCB v3 User’s Guide 17
+Procedure for Maintenance Mode
+To initiate Maintenance Mode
+1 Tap  and then tap Maintenance.
+System prompts for a passcode.
+2 Type the Access Passcode. For more information on passcodes, see  Passcode 
+Security on page 11.
+Maintenance mode screen is displayed after the passcode is validated.
+ 
+3 Repeat Step 3 to Step 7 of Manual Docking Procedure on page 12.
+When completed, the A-VDGS System marks the stand to be in maintenance 
+mode.
+
+
+=== PDF PAGE 22 ===
+MCB v3 User’s Guide 18
+Settings 
+This option helps to configure MCB an d change the display preferences of the
+device. 
+Using some of the features under Settin gs requires Maintenance Passcode. For
+more information on passcodes, see  Passcode Security on page 11.
+Tap  to list the options.
+Note
+User can access Settings with or wi thout connectivity between the MCB and
+the A-VDGS DC. Find the settings icon on the lower-left corner of the screen.
+
+
+=== PDF PAGE 23 ===
+MCB v3 User’s Guide 19
+Brightness
+This feature helps to modify the brightness of the display.
+To change the Brightness
+1T a p  t h e  Brightness option under the Settings tab.
+Brightness screen is displayed. The number displayed in the middle indicates the 
+brightness percentage.
+2 Tap  to decrease the brightness.
+Tap  to increase the brightness.
+The maximum value that can be set is 100. 
+ 
+
+
+=== PDF PAGE 24 ===
+MCB v3 User’s Guide 20
+Address
+A-VDGS can have two MCBs connected to it. This feature helps user to change the
+address between 1 and 2.
+You can check the current address of the MCB by using the About feature. For more
+information, see About on page 24.
+To change the Address
+1T a p  t h e  Address option under Settings tab.
+System prompts for a Passcode.
+2 Type the Maintenance Passcode. For mo re information on passcodes, see 
+Passcode Security on page 11.
+Address screen is displayed. The number in the middle indicates the current 
+address of the MCB.
+3 Tap  to change the address from 2 to 1. 
+Tap  to change the address from 1 to 2.
+4 Power cycle the VDGS unit.
+or 
+Restart the docking controller by typing reboot.
+
+
+=== PDF PAGE 25 ===
+MCB v3 User’s Guide 21
+Passcode
+Passcode feature helps the user to change Access and Maintenance Passcode. 
+To change the Passcode
+1T a p  Passcode option under the Settings tab.
+System prompts for a Passcode.
+2 Type the Maintenance Passcode. For mo re information on passcodes, see 
+Passcode Security on page 11.
+After validation, Passcode change screen is displayed. If the Old Passcode typed 
+is in incorrect, then an error message is displayed.  Go back to Passcode screen 
+and start again. 
+3 To change Access Passcode, Tap Access tab (By default, the Access tab is 
+selected).
+To change the Maintenance passcode, Tap Maintenance tab.
+
+
+=== PDF PAGE 26 ===
+MCB v3 User’s Guide 22
+4 Using the numeric pad appearing on the left, 
+Type the New Passcode in the first text box.
+Re-type the New Passcode in the second text-box.
+Tap Submit.
+5 When both the Passcodes match, then the new passcode is accepted and a 
+confirmation message is displayed on the right top corner of the screen.
+
+
+=== PDF PAGE 27 ===
+MCB v3 User’s Guide 23
+Test
+Test feature allows the user to run tests on  the PDU. This feature is applicable only
+for PA3 systems.
+Pre-requisite: The MCB has to be in Local / Maintenance mode for the Test feature
+to work. If the MCB is in remote mode, an error message is displayed. 
+To run the Test
+1T a p  Test under the Settings tab.
+2T a p  
+PDU displays the TEST image to confirm that the PDU is operational.
+
+
+=== PDF PAGE 28 ===
+MCB v3 User’s Guide 24
+About
+This feature displays the software information about MCB.
+Tapping the About option under the Settings tab displays the version, address and
+build details of MCB.
+
+
+=== PDF PAGE 29 ===
+MCB v3 User’s Guide 25
+Error Messages
+Error Messages may occur on the MCB disp lay. Following table provides a list of
+error messages. 
+For possible cause of fault and sugges tions for rectification, refer section Error
+codes of A-VDGS PDU in the A-VDGS PA3+ Maintenance Manual.
+List of Error Messages
+Internal Error Messages
+Communication Error! Check communication cable
+BRIDGE POSITION ERROR
+Not Available in System-Mode Remote
+Error Messages from DC
+Serial data link failure between DC and MCB
+AC unit faulty or DC (PIO) faulty
+Serial data link failure between DC and PDU
+Faulty display processor or faulty LCD panel or faulty bus driver for LCD panel
+System error during docking
+Serial data link failure between DC and IPU
+101.Sensor board failure
+102.Interconnection failure between sensor board and interface board
+104.Camera image distortion
+105.Change in camera position
+109.Ethernet data link failure between DC and IPU
+One of processes in IPU not running
+Errors in interface board
+100.No model information for selected aircraft type
+110.Aircraft detection fault
+120.Wrong aircraft type detected by tracking program
+210.Internal error - Maintenance work required
+
+=== PDF PAGE 30 ===
+MCB v3 User’s Guide 26
+This page is intentionally left blank
+
+=== PDF PAGE 31 ===
+™ 
+Honeywell Airport Business
+HON Building Solutions GmbH, 
+Broedermannsweg 1,
+224533, Hamburg, Germany
+Phone: +49 (0) 4103 8004 333
+Fax: +49 40 611 44-06
+http://www.honeywellairports.com/
+This copyrighted work and all information are
+the property of Honeywell Airport Systems
+GmbH, contain trade secrets and may not, in
+whole or in part, be  used, duplicated, or
+disclosed for any purpose without prior written
+permission of Honeywell Airport Business.
+Doc. HAB-45002065-HBE 
+September 2020
+© 2020 Honeywell International Inc.

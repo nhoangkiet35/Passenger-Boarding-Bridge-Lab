@@ -1,0 +1,5696 @@
+
+=== PDF PAGE 1 ===
+www.itwgse.com 
+ 
+ 
+ 
+ 
+Original User Manual 
+ITW GSE 3500 PCA 
+(Pre-Conditioned Air) 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+Serial no.:   
+   
+Type: AEF -           /            
+   
+ 
+
+
+=== PDF PAGE 2 ===
+  
+Document No. 572.610BB Page 2 of 132 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Diagrams and drawings are subject to change without prior notice.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Printed: January 2025
+ 
+IMPORTANT NOTE 
+ 
+ 
+We recommend that the battery that 
+stores the PCA settings etc. 
+is changed after 5 years of use in 
+order to prevent data loss. 
+ 
+ 
+Refer to section 8.2  
+for further information. 
+ 
+
+=== PDF PAGE 3 ===
+Operation Manual – ITW GSE 3500 
+ 
+ 
+Document No. 572.610BB Page 3 of 132 
+ 
+About this user manual 
+ 
+INSTALLATION, OPERATION AND MAINTENANCE  
+MANUAL FOR ITW GSE 3500 PRE-CONDITIONED AIR UNITS. 
+ 
+This manual provides information about the ITW GSE 3500 Pre-Conditioned Air units.  
+The manual covers the range of the 3500 series and options described in section 11. 
+ 
+If you have any questions regarding this manual, please contact your local agent, or contact details can 
+be found at www.itwgse.com 
+ 
+ 
+ 
+Manufacturer and contact details 
+North/South America Europe - Asia/Pacific - Middle East - Africa 
+ 
+ITW GSE Inc. ITW GSE Aps 
+11001 US Highway 41 North Smedebakken 31-33 
+Palmetto, FL 34221 DK-5270 Odense N 
+USA Denmark 
+DUNS: 05-127-1278 CVR/VAT number: DK7421 8814 
+DUNS: 305 939 290 
+Toll free (+1) 877 874 5322  
+Tel: (+1) 941 721 1000 Tel: (+45) 63 18 60 00 
+Email: support@itwgse.us Email: support@itwgse.com 
+Web: http://itwgse.com Web: http://itwgse.com 
+
+
+=== PDF PAGE 4 ===
+Operation Manual – ITW GSE 3500 
+ 
+ 
+Document No. 572.610BB Page 4 of 132 
+ 
+Abbreviations 
+ 
+AEF Air conditioning unit type designation for a fixed 3500 unit 
+APU Auxiliary Power Unit 
+AWG American Wire Gauge 
+BMS Building Management System 
+CAN Controller Area Network 
+DIP Dual In-Line Package 
+DSP Digital Signal Processor 
+EMC Electromagnetic Compatibility 
+EMI Electromagnetic Interference 
+EPO Emergency Power Off 
+ESD Electro Static Discharge 
+GSE Ground Support Equipment 
+IGBT Insulated Gate Bipolar Transistor 
+IPM Intelligent Power Management 
+I/O Input/Output 
+ITW Illinois Tool Works 
+LED Light-Emitting Diode 
+MARS Multiple Aircraft Ramp System 
+MCA Minimum Circuit Ampacity 
+MOP Maximum Overcurrent Protection 
+MMI Man Machine Interface 
+MTBF Mean Time Before Failure 
+MTTR Mean Time To Repair 
+NC Normally Closed 
+NO Normally Open 
+PBB Passenger Boarding Bridge 
+PCA Pre-Conditioned Air unit 
+PCB Printed Circuit Boards 
+PE Protective Earth 
+PF Power Factor 
+RCM Residual Current Monitor 
+RDS Refrigerant Detection System 
+RFI Radio Frequency Interference 
+RTU Remote Terminal Unit 
+RH Relative Humidity 
+TCP/IP Transmission Control Protocol/Internet Protocol 
+USB Universal Serial Bus 
+VFD Variable Frequency Drive 
+ 
+  
+
+=== PDF PAGE 5 ===
+Operation Manual – ITW GSE 3500 
+ 
+ 
+Document No. 572.610BB Page 5 of 132 
+ 
+Pictograms used in manual 
+ 
+General warning sign 
+ 
+Electricity hazard 
+ Flammable 
+substance 
+ 
+Crushing of hands 
+ 
+Hot surface   
+ Electrostatic-sensitive 
+devices 
+ 
+Sharp elements   
+Overview of types and ratings 
+ 
+Type * Marking Refrigerant Compressor 
+capacity 
+Number of 
+cooling 
+modules 
+Heater 
+capacity 
+Part 
+number 
+Schematic 
+AEF-150/2 CE R410A 45 tons 2 pcs. - 572 720 472 700 
+AEF-150/2 UL R410A 45 tons 2 pcs. - 572 725 472 705 
+AEF-150/2 UL R454B 45 tons 2 pcs. - 572 727 472 705 
+AEF-150/2 H CE R410A 45 tons 2 pcs. 72 kW 572 721 472 700 
+AEF-150/2 H UL R410A 45 tons 2 pcs. 72 kW 572 726 472 705 
+AEF-150/2 H UL R454B 45 tons 2 pcs. 72 kW 572 728 472 705 
+AEF-150/2X CE R410A 60 tons 2 pcs. - 572 710 472 700 
+AEF-150/2X UL R410A 60 tons 2 pcs. - 572 715 472 705 
+AEF-150/2X UL R454B 60 tons 2 pcs. - 572 717 472 705 
+AEF-150/2X H CE R410A 60 tons 2 pcs. 72 kW 572 711 472 700 
+AEF-150/2X H UL R410A 60 tons 2 pcs. 72 kW 572 716 472 705 
+AEF-150/2X H UL R454B 60 tons 2 pcs. 72 kW 572 718 472 705 
+AEF-210/3 CE R410A 90 tons 3 pcs. - 572 620 472 600 
+AEF-210/3 UL R410A 90 tons 3 pcs. - 572 625 472 605 
+AEF-210/3 UL R454B 90 tons 3 pcs. - 572 627 472 605 
+AEF-210/3 H CE R410A 90 tons 3 pcs. 120 kW 572 621 472 600 
+AEF-210/3 H UL R410A 90 tons 3 pcs. 120 kW 572 626 472 605 
+AEF-210/3 H UL R454B 90 tons 3 pcs. 120 kW 572 628 472 605 
+AEF-210/4 CE R410A 120 tons 4 pcs. - 572 610 472 600 
+AEF-210/4 UL R410A 120 tons 4 pcs. - 572 615 472 605 
+AEF-210/4 UL R454B 120 tons 4 pcs. - 572 617 472 605 
+AEF-210/4 H CE R410A 120 tons 4 pcs. 120 kW 572 611 472 600 
+AEF-210/4 H UL R410A 120 tons 4 pcs. 120 kW 572 616 472 605 
+AEF-210/4 H UL R454B 120 tons 4 pcs. 120 kW 572 618 472 605 
+  
+* PCAs equipped with IPM will have an ‘I’ or ‘II’ suffix in the type designation.      
+ 
+
+
+=== PDF PAGE 6 ===
+Operation Manual – ITW GSE 3500 
+Contents 
+Document No. 572.610BB Page 6 of 132 
+ 
+ 
+CONTENTS 
+
+
+=== PDF PAGE 7 ===
+Operation Manual – ITW GSE 3500 
+Contents 
+Document No. 572.610BB Page 7 of 132 
+ 
+ 
+
+
+=== PDF PAGE 8 ===
+Operation Manual – ITW GSE 3500 
+Contents 
+Document No. 572.610BB Page 8 of 132 
+ 
+ 
+  
+
+=== PDF PAGE 9 ===
+Operation Manual – ITW GSE 3500 
+Declaration of Conformity 
+Document No. 572.610BB Page 9 of 132 
+ 
+ 
+1.0 Declaration of Conformity 
+ 
+
+
+=== PDF PAGE 10 ===
+Operation Manual – ITW GSE 3500 
+Safety Instructions 
+Document No. 572.610BB Page 10 of 132 
+ 
+2.0 Safety Instructions 
+ 
+2.1 IMPORTANT SAFEGUARDS 
+ 
+DANGER: TO REDUCE THE RISK OF FIRE OR ELECTRIC SHOCK, FOLLOW 
+THESE INSTRUCTIONS CAREFULLY 
+ 
+This unit is only intended to be operated and maintained by competent persons having the 
+necessary knowledge regarding delivery of pre-conditioned air to aircraft. Prior to use, 
+service and maintenance, the operator must be familiar with all parts of this manual.  
+ 
+This unit is not intended for use by persons (including children) with reduced physical, sensory or 
+mental capabilities, or lack of experience and knowledge, unless they have been given supervision or 
+instruction concerning use of the unit by a person responsible for their safety. 
+ 
+This unit is for outdoor use and not accessible for general public. 
+ 
+The appliance shall be installed in accordance with national wiring regulations. 
+ 
+Electric shock 
+• To ensure personal health and safety, the electrical installation must fulfil local 
+regulations and legislation. 
+• Touching live electrical parts can cause fatal shocks and severe burns. 
+• Internal parts where the voltage exceeds 50 V are covered and/or marked with:  
+• Keep all panels and covers securely in place. 
+• Always switch off and lock the input breaker before accessing internal parts. 
+• Only allow qualified people to remove covers for maintenance or troubleshooting. 
+ 
+Moving/mechanical/hot parts 
+• Keep away from fans. 
+• Keep panels, covers and guards closed and securely in place. 
+• Only allow qualified people to remove covers for maintenance or troubleshooting. 
+• Keep hands, hair, loose clothing and tools away from moving parts. 
+• Keep cooling modules securely in place during maintenance and repair.  
+• Do not touch hot parts.  
+• Allow for a cooling period before doing maintenance. 
+ 
+Hose(s)  
+• Always connect the hose(s) to the aircraft before starting the unit to avoid personal 
+injury or damage to equipment that may be present on the apron. Loose hoses may 
+constitute a risk if put under pressure when not connected. 
+
+
+=== PDF PAGE 11 ===
+Operation Manual – ITW GSE 3500 
+Safety Instructions 
+Document No. 572.610BB Page 11 of 132 
+ 
+ 
+Refrigerant  
+• Do not open/break the refrigerant system. 
+• Only people with the right knowledge, education and authorization according to local 
+and national rules are allowed to maintain and work on the refrigerant system.  
+• In accordance with the Montreal Protocol of 16 September 1987, intentional venting 
+of refrigerant into the atmosphere is not permitted. Observe local and national 
+regulations concerning the handling of refrigerant chemicals. 
+ 
+DANGER: For units with R454B refrigerant 
+• WARNING - Risk of Fire. Flammable Refrigerant Used. To Be Repaired 
+Only By Trained Service Personnel. Do Not Punctuate Refrigerant Tubing. 
+ 
+• WARNING – Risk of Fire. Dispose Of Properly in Accordance With Federal 
+Or Local Regulations. Flammable Refrigerant Used. 
+ 
+• WARNING – Risk of Fire. Flammable Refrigerant Used. Consult Repair 
+Manual/Owner’s Guide Before Attempting To Service This Product. All 
+Safety Precautions Must Be Followed. 
+ 
+• WARNING – Risk of Fire due to Flammable Refrigerant Used. Follow 
+Handling Instructions Carefully in Compliance with National Regulations. 
+ 
+• The unit is not designed or approved for installation and operation in ATEX or EX zones. 
+ 
+• Do not pierce or burn. 
+ 
+• Refer to unit nameplate, cooling module marking and/or section 5.1 for refrigerant type and 
+amount. 
+ 
+• R454B is classified as flammable refrigerant, therefore local and national regulations 
+concerning working, handling, maintenance, repair, decommissioning, recovery, removal, 
+transportation and disposal of A2L classified refrigerants and refrigerant circuits must be 
+observed. 
+ 
+• The equipment owner is responsible for assessing and mitigating risks arising from the 
+probable presence of open flame and ignition source(s) at the installation location of the unit 
+and storage of spare refrigerant circuit(s), considering a leak sensor and adequate ventilation 
+according to room size and refrigerant amount. 
+ 
+• Be aware that refrigerant may not contain an odour. 
+ 
+• Unit has been tested with external static pressure of 40” inH2O. 
+ 
+• Refer to section 2.2, for all instructions for handling, installation, cleaning, servicing and 
+disposal of A2L refrigerant. 
+Refrigerant 
+Safety Group 
+A2L 
+
+=== PDF PAGE 12 ===
+Operation Manual – ITW GSE 3500 
+Safety Instructions 
+Document No. 572.610BB Page 12 of 132 
+ 
+ 
+2.2 Instructions for handling, installation, cleaning, servicing and 
+disposal of A2L refrigerant 
+ 
+• Auxiliary devices which may be a potential ignition source shall not be installed in the duct 
+work. Examples of such potential ignition sources are hot surfaces with a temperature 
+exceeding 700°C / 1290°F and electric switching devices. 
+• For units using A2L refrigerant connected via an air duct system to one or more rooms, 
+manufacturer or declared suitable with the refrigerant shall be installed in connecting ductwork. 
+The manufacturer shall list in the instructions all approved auxiliary devices by manufacturer 
+and model number for use with the specific unit, if those devices have a potential to become an 
+ignition source. 
+• If the unit using flammable refrigerant is installed in an unventilated area, the area shall be so 
+constructed that should any refrigerant leak, it will not stagnate so as to create a fire or 
+explosion hazard. 
+• Continuous air circulation required for proper functioning. Unit must be powered except for 
+service. 
+• Work procedures to perform repairs, decommissioning, or maintenance shall be in accordance 
+with local and national regulations and as per below requirements. 
+• Work shall be undertaken under a controlled procedure so as to minimise the risk of a 
+flammable gas or vapour being present while the work is being performed. 
+• All maintenance staff and others working in the local area shall be instructed on the nature of 
+work being carried out. Work in confined spaces shall be avoided. 
+• The area shall be checked with an appropriate refrigerant detector prior to and during work, to 
+ensure the technician is aware of potentially toxic or flammable atmospheres. 
+• Ensure that the leak detection equipment being used is suitable for use with all applicable 
+refrigerants, i. e. non-sparking, adequately sealed or intrinsically safe. 
+• If any hot work is to be conducted on the refrigerating equipment or any associated parts, 
+appropriate fire extinguishing equipment shall be available to hand. 
+• Have a dry powder or CO2 fire extinguisher adjacent to the charging area. 
+• No person carrying out work in relation to a REFRIGERATING SYSTEM which involves 
+exposing any pipe work shall use any sources of ignition in such a manner that it may lead to 
+the risk of fire or explosion. 
+• All possible ignition sources, including cigarette smoking, should be kept sufficiently far away 
+from the site of installation, repairing, removing and disposal, during which refrigerant can 
+possibly be released to the surrounding space. 
+• Prior to work taking place, the area around the equipment is to be surveyed to make sure that 
+there are no flammable hazards or ignition risks. 
+• No Smoking' signs shall be displayed. 
+• Ensure that the area is in the open or that it is adequately ventilated before breaking into the 
+system or conducting any hot work. 
+• A degree of ventilation shall continue during the period that the work is carried out. 
+• The ventilation should safely disperse any released refrigerant and preferably expel it externally 
+into the atmosphere. 
+
+=== PDF PAGE 13 ===
+Operation Manual – ITW GSE 3500 
+Safety Instructions 
+Document No. 572.610BB Page 13 of 132 
+ 
+• Where electrical components are being changed, they shall be fit for the purpose and to the 
+correct specification. 
+ 
+• At all times the manufacturer’s maintenance and service guidelines shall be followed. If in 
+doubt, consult the manufacturer’s technical department for assistance. 
+• Repair and maintenance to electrical components shall include initial safety checks and 
+component inspection procedures. 
+• If a fault exists that could compromise safety, then no electrical supply shall be connected to 
+the circuit until it is satisfactorily dealt with. If the fault cannot be corrected immediately but it is 
+necessary to continue operation, an adequate temporary solution shall be used. This shall be 
+reported to the owner of the equipment, so all parties are advised. 
+• Initial safety checks shall include that capacitors are discharged. This shall be done in a safe 
+manner to avoid possibility of sparking and that no live electrical components and wiring are 
+exposed while charging, recovering, or purging to system. There should be continuity of earth 
+bonding. 
+• Sealed electrical components shall be replaced. 
+• Intrinsically safe components must be replaced. 
+• Check that cabling will not be subject to wear, corrosion, excessive pressure, vibration, sharp 
+edges or any other adverse environmental effects. The check shall also take into account the 
+effects of aging or continual vibration from sources such as compressors or fans. 
+• Under no circumstances shall potential sources of ignition be used in the searching for or 
+detection of refrigerant leaks. A halide torch (or any other detector using a naked flame) shall 
+not be used. The following leak detection methods are deemed acceptable for all refrigerant 
+systems: Electronic leak detectors may be used to detect refrigerant leaks but, in the case of 
+FLAMMABLE REFRIGERANTS, the sensitivity may not be adequate, or may need re-
+calibration. (Detection equipment shall be calibrated in a refrigerant-free area.) 
+• Ensure that the detector is not a potential source of ignition and is suitable for the refrigerant 
+used. 
+• Leak detection equipment shall be set at a percentage of the LFL of the refrigerant and shall be 
+calibrated to the refrigerant employed, and the appropriate percentage of gas (25 % maximum) 
+is confirmed. 
+• Leak detection fluids are also suitable for use with most refrigerants but the use of detergents 
+containing chlorine shall be avoided as the chlorine may react with the refrigerant and corrode 
+the copper pipe-work. 
+• When breaking into the refrigerant circuit to make repairs – or for any other purpose – 
+conventional procedures shall be used. However, for FLAMMABLE REFRIGERANTS it is 
+important that best practice is followed since flammability is a consideration. 
+• The following procedure shall be adhered to: 
+   a) safely remove refrigerant following local and national regulations; 
+   b) purge the circuit with inert gas; 
+   c) evacuate (optional for A2L); 
+   d) purge with inert gas (optional for A2L); 
+   e) open the circuit by cutting or brazing 
+• The refrigerant charge shall be recovered into the correct recovery cylinders if venting is not 
+allowed by local and national codes. 
+
+=== PDF PAGE 14 ===
+Operation Manual – ITW GSE 3500 
+Safety Instructions 
+Document No. 572.610BB Page 14 of 132 
+ 
+• For units containing flammable refrigerants, the system shall be purged with oxygen-free 
+nitrogen to render the unit safe for flammable refrigerants. 
+ 
+• This process might need to be repeated several times. Compressed air or oxygen shall not be 
+used for purging refrigerant systems. 
+• For units containing flammable refrigerants, refrigerants purging shall be achieved by breaking 
+the vacuum in the system with oxygen-free nitrogen and continuing to fill until the working 
+pressure is achieved, then venting to atmosphere, and finally pulling down to a vacuum 
+(optional for A2L) 
+• This process shall be repeated until no refrigerant is within the system (optional for A2L). 
+• When the final oxygen-free nitrogen charge is used, the system shall be vented down to 
+atmospheric pressure to enable work to take place. 
+• Ensure that the outlet for the vacuum pump is not close to any potential ignition sources and 
+that ventilation is available. 
+In addition to conventional charging procedures, the following requirements shall be followed: 
+o Ensure that contamination of different refrigerants does not occur when using charging 
+equipment. 
+• Hoses or lines shall be as short as possible to minimise the amount of refrigerant contained in 
+them. 
+• Cylinders shall be kept in an appropriate position according to the instructions. 
+• Ensure that the REFRIGERATING SYSTEM is earthed prior to charging the system with 
+refrigerant. 
+• Label the system when charging is complete (if not already). 
+• Extreme care shall be taken not to overfill the REFRIGERATING SYSTEM. 
+• Prior to recharging the system, it shall be pressure-tested with the appropriate purging gas. 
+• The system shall be leak-tested on completion of charging but prior to commissioning. 
+• Follow up leak test shall be carried out prior to leaving the site. 
+• Before carrying out this procedure, it is essential that the technician is completely familiar with 
+the equipment and all its detail. 
+• It is recommended good practice that all refrigerants are recovered safely. 
+• Prior to the task being carried out, an oil and refrigerant sample shall be taken in case analysis 
+is required prior to re-use of recovered refrigerant. 
+• It is essential that electrical power is available before the task is commenced. 
+   a) Become familiar with the equipment and its operation. 
+   b) Isolate system electrically. 
+   c) Before attempting the procedure, ensure that: 
+o mechanical handling equipment is available, if required, for handling refrigerant 
+cylinders; 
+o all personal protective equipment is available and being used correctly; 
+o the recovery process is supervised at all times by a competent person; 
+o recovery equipment and cylinders conform to the appropriate standards. 
+d) Pump down refrigerant system, if possible, 
+e) If a vacuum is not possible, make a manifold so that refrigerant can be removed from 
+various parts of the system. 
+• Equipment shall be labelled stating that it has been de-commissioned and emptied of 
+refrigerant. 
+
+=== PDF PAGE 15 ===
+Operation Manual – ITW GSE 3500 
+Safety Instructions 
+Document No. 572.610BB Page 15 of 132 
+ 
+• The label shall be dated and signed. 
+ 
+• For units containing FLAMMABLE REFRIGERANTS, ensure that there are labels on the 
+equipment stating the equipment contains FLAMMABLE REFRIGERANT. 
+• When transferring refrigerant into cylinders, ensure that only appropriate refrigerant recovery 
+cylinders are employed. 
+• Ensure that the correct number of cylinders for holding the total system charge is available 
+• All cylinders to be used are designated for the recovered refrigerant and labelled for that 
+refrigerant (i. e. special cylinders for the recovery of refrigerant). 
+• Cylinders shall be complete with pressure-relief valve and associated shut-off valves in good 
+working order. 
+• Empty recovery cylinders are evacuated and, if possible, cooled before recovery occurs. 
+The recovery equipment shall be in good working order with a set of instructions concerning the 
+equipment that is at hand and shall be suitable for the recovery of all appropriate refrigerants 
+including, when applicable, FLAMMABLE REFRIGERANTS. 
+• In addition, a set of calibrated weighing scales shall be available and in good working order. 
+• Hoses shall be complete with leak-free disconnect couplings and in good condition. 
+• Before using the recovery machine, check that it is in satisfactory working order, has been 
+properly maintained and that any associated electrical components are sealed to prevent 
+ignition in the event of a refrigerant release. Consult manufacturer if in doubt. 
+• The recovered refrigerant shall be returned to the refrigerant supplier in the correct recovery 
+cylinder, and the relevant waste transfer note arranged. 
+• Do not mix refrigerants in recovery units and especially not in cylinders. 
+• If compressors or compressor oils are to be removed, ensure that they have been evacuated to 
+an acceptable level to make certain that FLAMMABLE REFRIGERANT does not remain within 
+the lubricant. 
+• The evacuation process shall be carried out prior to returning the compressor to the suppliers. 
+• Only electric heating to the compressor body shall be employed to accelerate this process. 
+• When oil is drained from a system, it shall be carried out safely. 
+ 
+ 
+  
+
+=== PDF PAGE 16 ===
+Operation Manual – ITW GSE 3500 
+Product Decription 
+Document No. 572.610BB Page 16 of 132 
+ 
+ 
+3.0 Product Description 
+The ITW GSE 3500 PCA is a completely self -contained all-electric bridge or ground -mounted unit for 
+comfortable air conditioning of narrow-body, wide-body, jumbo and super jumbo aircraft cabins. The PCA 
+suits all types of aircraft and all climates in countries with a mains voltage frequency of 50/60 Hz. 
+ 
+The PCA is built in a modular design, which ensures easy maintenance and cleaning. The modular 
+design also helps to keep the MTTR (Mean Time To Repair) to the very minimum. 
+The compressors and main blower are powered by individual VFDs (Variable Frequency Drive s), all 
+regulated and controlled by a central control module. This type of control for the two types of components 
+is a unique feature of the ITW GSE 3500 PCA – ensuring that the PCA’s air and cooling provision 
+matches the actual levels required. 
+ 
+Due to the modular design , the range of trained staff 
+required is kept to a minimum. For instance , it is not 
+necessary to have maintenance staff capable of handling 
+refrigerant on duty at all times, as it is possible to replace 
+a Self-Contained Cooling Module instead. 
+ 
+The cooling power required to cool an aircraft down to a 
+comfortable temperature is dependent on three main 
+conditions: 
+ - The required aircraft cabin temperature 
+ - The size/type of aircraft 
+ - The ambient outside air temperature/humidity 
+ 
+A ‘comfortable’ aircraft cabin temperature will typically be in the range of 24-28 °C.  
+Unless otherwise specified, the climatic condition s relating to the outside ambient temperature and 
+humidity are taken from the ASHRAE Handbook – Fundamentals, Chapter 14 (American Society of 
+Heating, Refrigerating and Air -Conditioning Engineers). The figures used are based on the 0.4% 
+percentile. The values given in the ASHRAE Handbook – Fundamentals are based on several years of 
+data collected from various locations around the world, and are thus based on solid statistical material. 
+ 
+This means that during a year (8760 hours) , for 99.6% (100 minus 0.4%) of the time on average, the 
+ambient temperature will not exceed the value used for the calculation of the cooling capacity. It also 
+means that for 99.6% of the time on average, the PCA system will be able to cool/maintain the aircraft 
+cabin at the design temperature (or lower) and that for only 0.4% of the time (35 hours per year) the 
+aircraft cabin temperature is likely to be slightly higher than the design temperature.  
+  
+
+
+=== PDF PAGE 17 ===
+Operation Manual – ITW GSE 3500 
+Product Decription 
+Document No. 572.610BB Page 17 of 132 
+ 
+ 
+3.1 Mechanical design 
+The ITW GSE 3500 PCA is constructed around an anti -corrosion treated, bolted steel frame, which 
+supports the modular design, including the main blower, cooling modules, internal air ducts, electrical 
+panel and magnetics. 
+ 
+The main blower is a direct -driven centrifugal-type fan and can easily be accessed by removing a side 
+cover. To avoid vibrations, the main blower is mounted on vibration dampers , with flexible connections 
+between the main blower and the stainless steel air ducts. 
+ 
+All cooling modules can be accessed by extracting their respective trays. By means of a forklift, a cooling 
+module can easily be removed for maintenance, without the need for any on-site welding or other kinds 
+of hot work. The extractable cooling modules also allow access to the internal stainless steel air ducts 
+for inspection and cleaning. More information regarding cooling modules be found in section 3.3. 
+ 
+The internal air duct (s) are made of stainless steel and supplied with  integrated drain tubing for 
+connection with the membrane-type condensate pumps, which are located at the main blower. The air 
+duct following the main blower is insulated with 10 mm thick closed-cell rubber foam insulation to reduce 
+losses and avoid condensation. The same duct is equipped with a photoelectric smoke detector, enabling 
+the PCA to be shut down before any smoke reaches the aircraft cabin. 
+ 
+The electrical panel can be accessed from the opposite side of the main blower. With two hinged covers, 
+all of the modules, components and fuses in the electric panel are eas ily accessible and quickly 
+replaceable. The magnetics are positioned just behind the electrical panel.  
+ 
+More pictures can be found in the Illustrated Parts List in section 10.0. 
+ 
+ 
+ 
+ 
+Overall layout drawing showing the main components of the ITW GSE 3500 PCA (4-module version 
+shown) 
+ 
+  
+Main blower 
+Cooling module 
+Electrical panel 
+Air intake/filter 
+Air discharge 
+12-pulse transformer & choke Input transformer 
+Heater Section 
+
+=== PDF PAGE 18 ===
+Operation Manual – ITW GSE 3500 
+Product Decription 
+Document No. 572.610BB Page 18 of 132 
+ 
+ 
+3.2 Electrical design 
+The below figure shows the basic electrical design principle. 
+ 
+
+
+=== PDF PAGE 19 ===
+Operation Manual – ITW GSE 3500 
+Product Decription 
+Document No. 572.610BB Page 19 of 132 
+ 
+ 
+Input Disconnect (Q1): 
+The input disconnect/breaker disconnects all power to the PCA. Upon closing the input disconnect, the 
+PCA passes through an initialisation test and then into standby mode.  
+ 
+Input Contactor (Q2): 
+The PCA is equipped with a 3 -phase input contactor. The contactor is engaged on start-up of the PCA 
+and is disengaged when the stop button is activated or a system error occurs.  
+ 
+Step-up Transformer, Input Choke and 12-Pulse Transformer (T5, L1 and T1): 
+To accommodate the compressors ’ extended frequency range, the voltage is stepped up by T5. The 
+following combination of the choke, the 12-pulse transformer and the rectifier situated at the DC module 
+ensures an almost sinusoidal line current with a Total Current Harmonic Distortion of just 10% (ITHD) at 
+nominal load. This means less stress on the main supply network and distribution transformers. 
+ 
+ 
+DC Module (A9), Softstart and Busbar: 
+Through the 12 -pulse rectifier (V1 -V6) and soft -start circuit 
+(Q8), the DC is distributed to all of the VFDs, from a common 
+DC busbar. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Supply Module (G1): 
+The generation of the 24 VDC (adjusted from factory = 25 VDC) regulated control voltage is done by 
+the Supply Module G1. It is pre-fused from the 3-phase circuit breaker Q9. 
+ 
+ 
+  
+
+
+=== PDF PAGE 20 ===
+Operation Manual – ITW GSE 3500 
+Product Decription 
+Document No. 572.610BB Page 20 of 132 
+ 
+ 
+Interface Board (A2): 
+This board acts as an interface between the Control Board and the rest of the PCA. The interface module 
+includes the following functions: 
+ 
+• Interface to the Display Board (CAN Bus, 24 VDC 
+and EPO (External Emergency Stop)). 
+• Fuse (F1-F6) for supply, display, I/O, damper motor 
+and condensate pumps. 
+• User EPO input. 
+• Soft-start control of Q8. 
+• Input for temperature sensors. 
+• Input for pressure sensors. 
+• Input for Cabin Sensor. 
+• Relays for Condenser Fans and Pumps. 
+• I/O ports for remote control (Start, Stop etc.), single 
+output. 
+• Interface for RS232. 
+• EEPROM contains the unique identity key of the 
+unit. 
+ 
+ 
+ 
+ 
+ 
+ 
+ID Chip (A6): 
+The ID Chip is connected to Interface Board A2 and is fixed to the I/O zone plate. It contains 
+information about the GPU configuration and stores all setup values, Black Box and Power Log 
+records. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
+
+=== PDF PAGE 21 ===
+Operation Manual – ITW GSE 3500 
+Product Decription 
+Document No. 572.610BB Page 21 of 132 
+ 
+ 
+3.3 Control Boards and Display Boards 
+The Control Board (A1) is based on a MicroController and a DSP. Together they regulate, supervise and 
+diagnose possible external and internal faults. As soon as the PCA is connected to the mains, and 
+constantly during normal operation, the Control Board runs a self -check program which checks all 
+internal functions of the ground power unit. If an internal or external error is detected, the display shows 
+the nature of the error. All immediate parameters related to a shutdown are stored in the PCA’s memory. 
+The Control Board has an on-board Ethernet RJ45 connector, which can be used to communicate with 
+the BMS and USB host Type A connection to retrieve data from the PCA or to update the software. 
+ 
+The unit may be equipped with standard or alternative types of Control Boards and Display Boards. 
+These boards can be used in any combination. 
+ 
+Control Boards: 
+ 
+579.526 (Standard) 579.573 (Alternative) 
+ 
+ 
+ 
+Front  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Back 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Note 
+The easiest way to detect which type of board is installed:  
+On the standard control board (579.526), a coin cell battery type is located on the back. 
+On the alternative control board (579.573), an on-soldered battery type is located on the front.  
+ 
+  
+
+
+=== PDF PAGE 22 ===
+Operation Manual – ITW GSE 3500 
+Product Decription 
+Document No. 572.610BB Page 22 of 132 
+ 
+ 
+Display Board: 
+The display module (A3) serves as the interface for day-to-day operations.  
+ 
+The display communicates with the Control Board via a CAN bus (Controller Area Network) and can be 
+positioned up to 100 m away from the unit when using the Remote Control Box. Furthermore, the 
+display module includes a USB connection, which can be used to download the Black Box information 
+and Power Log, and for updating the display software. 
+ 
+ 
+     579.536 (Standard) 579.574 (Alternative) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
+
+=== PDF PAGE 23 ===
+Operation Manual – ITW GSE 3500 
+Product Decription 
+Document No. 572.610BB Page 23 of 132 
+ 
+ 
+Please be aware that Control Board and Display Board can or may be occurring in any combination, this 
+will have impact on the software that has to be loaded on the boards. 
+ 
+Total four combinations may be used: 
+ 
+ 
+Standard Control Board  
+NXP SW 072103 Rev. J 
++ Standard Display Board 
+NXP SW 072103 Rev. J  
+ 
+   
+Alternative Control Board 
+STW SW 072120 Rev. G 
+(Requires Interface Board rev. B) 
++ Standard Display Board 
+NXP SW 072103 Rev. J  
+ 
+   
+Standard Control Board  
+NXP SW 072103 Rev. J 
++ Alternative Display Board 
+STW SW 072120 Rev. G 
+   
+Alternative Control Board 
+STW SW 072120 Rev. G 
+(Requires Interface Board rev. B) 
++ Alternative Display Board 
+STW SW 072120 Rev. G 
+ 
+ 
+ 
+Note 
+Software revision may be newer than manual indicates. 
+ 
+Please refer to Section 6.5 for updating software. 
+ 
+ 
+ 
+Any troubles / issues updating software do not hesitate to contact ITW GSE Support. 
+ 
+  
+
+=== PDF PAGE 24 ===
+Operation Manual – ITW GSE 3500 
+Product Decription 
+Document No. 572.610BB Page 24 of 132 
+ 
+ 
+3.4 Modular cooling design   
+Depending on the configuration and rating, the ITW GSE 3500 
+PCA is equipped with 2-4 cooling modules. A module can easily 
+be pulled out of the ITW GSE 3500 PCA by means of a forklif t 
+and replaced by a new module.  
+ 
+ 
+As this operation does not cause any interruption to the cooling 
+circuit of a given module, it can be done by staff without any 
+specific knowledge of refrigeration. 
+ 
+ 
+ 
+The modular design of the ITW GSE 3500 PCA ensures that it is able to continue to provide cooling even 
+when one or more of its modules are inactive. This does of course reduce the overall capacity of the 
+PCA, but the reduced cooling may still be sufficient to prevent the aircraft’s APU from starting up. The 
+cooling circuit is designed to provide high efficiency , as well as good rigidity of the unit. In addition, the 
+cooling modules come with hermetically closed scroll compressors, which are specially designed for 
+variable frequency control. 
+ 
+VFDs allow the unit to maximise performance during aircraft pull-down. Furthermore, the VFDs help the 
+ITW GSE 3500 PCA to minimise energy use for maintenance cooling. 
+ 
+Rigid all-aluminium micro-channel condenser coils ensure good heat dissipation. An expansion valve 
+and a large evaporator face area ensure efficient cooling of the air supply, while multiple step cooling 
+efficiently condenses the air humidity and protects the last cooling step from icing. 
+ 
+ 
+ 
+Fig. 3.4.2 ITW GSE 3500 PCA with one cooling module pulled out 
+  
+Fig. 3.4.1 Self-Contained Cooling Module 
+
+
+=== PDF PAGE 25 ===
+Operation Manual – ITW GSE 3500 
+Product Decription 
+Document No. 572.610BB Page 25 of 132 
+ 
+ 
+Figure 3.4.3 (below) shows the cooling module design. Note: the main blower and condenser fan are 
+not shown on the drawing. 
+ 
+To ensure optimal performance of the compressor, the VFD is equipped with sensor feedback from 
+suction and discharge pressures/temperatures, as well as the condenser temperature, to keep the 
+compressor within the correct operating envelope. For additional safety, the VFD will stop the 
+compressor in the event of high or low pressure. 
+ 
+The last module is further equipped with a hot gas bypass valve, which is only activated during de-icing 
+cycles. 
+ 
+ 
+ 
+Fig. 3.4.3 Cooling circuit design (variations may occur) 
+ 
+Pictures can be found in the Illustrated Parts List in section 10.0. 
+  
+Suction pressure 
+Suction temperature 
+Low pressure switch 
+Discharge pressure 
+Discharge temperature 
+High pressure switch 
+Compressor 
+Vapor 
+Vapor/Liquid 
+Liquid 
+Evaporator 
+Condenser 
+Condenser temperature 
+Receiver/Filter 
+Sight glass 
+Thermostatic 
+Expansion valve 
+High pressure Low pressure 
+
+=== PDF PAGE 26 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 26 of 132 
+ 
+ 
+4.0 Transportation and Installation 
+4.1 Storage before installation 
+To ensure optimal storage conditions prior to mounting and installation, it is recommended that the ITW 
+GSE 3500 PCA is stored inside to protect it from rain and excessive humidity when switched off. Only 
+equipment wrapped in seaworthy packing should be stored outside. For storage conditions, please 
+refer to section 5.0. 
+ 
+In the event of long-term storage, the PCA should be unpacked and operated for a minimum of 2 
+minutes every month, in Ventilation Mode / Narrow Body Aircraft, to keep the main blower bearings in 
+good condition. 
+ 
+ 
+Do not stand, walk, crawl or place heavy items on top of the PCA 
+during handling, storage, installation and operation. Standing, 
+walking, crawling or placing heavy items may damage the roof.  
+ 
+4.2 Disposal of packaging material 
+The ITW GSE 3500 PCA is shipped on a wooden pallet and covered with a tarpaulin and plastic. 
+These materials can be recycled and must be disposed of in accordance with the applicable laws and 
+regulations of the relevant country. All wood used in the packaging of the ITW GSE 3500 is in 
+compliance with ISPM-15 and is not subjected to any chemical conservation treatment. 
+ 
+4.3 Disposal of unit (end of life) 
+All ITW GSE products are marked with the crossed-out wheelie bin 
+symbol, and state the date of manufacture on the nameplates/rating 
+plates in accordance with EU Directive 2012/19/EU on waste 
+electrical and electronic equipment (WEEE).  
+ 
+The Directive states that electrical and electronic equipment (EEE) on 
+reaching the end of its life must not be disposed of as unsorted 
+municipal/local waste. WEEE must be disposed of at appropriate 
+collection points and not in the normal waste stream. WEEE covers 
+all EEE used by consumers and EEE intended for professional use. 
+ 
+The ITW GSE 3500 consists of metal (steel frame, ducts and plates), non-ferrous metals (copper and 
+aluminium), refrigerant (R410A or R454B), electronic components (PCBs, capacitors, fuses, MCBs and 
+contactors), wires and cables. Refer to Appendix 08, for information for disposal of refrigerant. 
+ 
+Non-recyclable materials must be disposed of according to applicable environmental laws and 
+regulations in each country. The waste and recycling service providers must be properly authorised by 
+national environmental agencies to carry out these activities. 
+
+
+=== PDF PAGE 27 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 27 of 132 
+ 
+ 
+4.4 Operational and environmental conditioning after installation 
+When the ITW GSE 3500 PCA has been installed, the unit should preferably be kept with the input 
+power on at all times to provide optimal conditions for the compressors and electronic components and 
+to avoid humidity in the form of condensate water from reaching vital parts. 
+ 
+ 
+It is strongly recommended to allow the compressors to pre-heat 
+for 24 hours after applying the input power and before starting 
+the PCA. 
+ 
+ 
+The PCA will automatically run a 3-hour pre-heating cycle, if the PCA has been without input voltage 
+for more than 1 hour AND the ambient temperature + compressor discharge temperatures are below 
+18°C / 64°F. During the pre-heating cycle, cooling modes are disabled and the below message is 
+shown. Ventilation and heating modes are available during compressor pre-heating. 
+ 
+PREHEAT TIME       HH : MM : SS 
+            Compressor Preheating
+Cooling modes are disabled .
+Ventilation and heating modes are 
+available.
+  Back
+!
+ 
+ 
+In the event of long-term standby, the PCA should be operated for a minimum of 2 minutes every 
+month, in Ventilation Mode / Narrow Body Aircraft, to keep the main blower bearings in good condition. 
+ 
+If, for any reason, the PCA has been without input power for a period of time, a visual inspection 
+should be carried out. If humidity is discovered on any internal electronic parts, the parts must be 
+allowed to dry out before applying the input power. 
+ 
+ 
+4.5 Transportation and mounting 
+The ITW GSE 3500 PCA is delivered on a wooden pallet. Transportation and mounting of the PCA is 
+carried out by lifting the unit by means of a forklift truck, crane or similar and conveying it to the 
+intended mounting position while it is still placed on the pallet. The centre of gravity is very close to the 
+centre of the PCA. 
+  
+
+
+=== PDF PAGE 28 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 28 of 132 
+ 
+ 
+ 
+Forklift specifications: 
+Lifting capacity : min. 5 tons / 11 000 lb 
+Fork lengths : min. 3 metres / 10 feet 
+ 
+Figure 4.5.1: Transportation and installation of the ITW GSE 3500 PCA by forklift 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 4.5.2: Transportation and mounting of the ITW GSE 3500 PCA by crane 
+  
+Lifting gear not part 
+of the delivery 
+ 
+ 
+
+
+=== PDF PAGE 29 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 29 of 132 
+ 
+ 
+When installing the unit on a passenger boarding bridge, it is recommended to have the bridge in a 
+horizontal position and only use the recommended dimensions of mounting bolts.  
+ 
+For bridge installations where the mounting bracket(s) between the PCA and PBB is made out of rails, 
+extending along the PCA’s full length, an additional 10 mm spacer is required at each mounting point 
+for roof water drainage. See illustrative examples below. 
+ 
+ 
+ 
+Figure 4.5.3: Cross section of additional spacer between PCA and mounting rail 
+ 
+ 
+ 
+Figure 4.5.4: Side view of additional spacer between PCA and mounting rail 
+ 
+ 
+
+
+=== PDF PAGE 30 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 30 of 132 
+ 
+ 
+The PCA should be kept strapped to the transport pallet, which is delivered with the unit from ITW 
+GSE, until it has been firmly mounted to the bridge. If possible, the original pallet should be kept for 
+service, maintenance or end-of-life dismounting. 
+ 
+ 
+ 
+If the height of the lowest point of the PCA is lower than 2.5 m, clearly label the PCA with 
+safety signs (“Mind your head” or similar). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 4.5.5: PBB installation by forklift 
+  
+
+
+=== PDF PAGE 31 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 31 of 132 
+ 
+ 
+4.6 PCA 150 apron installation and fastening outlines 
+ 
+ 
+ 
+Figure 4.6 PCA 150 apron installation  
+
+
+=== PDF PAGE 32 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 32 of 132 
+ 
+ 
+4.7 PCA 150 bridge installation and fastening outlines 
+ 
+ 
+ 
+Figure 4.7 PCA 150 bridge installation 
+  
+
+
+=== PDF PAGE 33 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 33 of 132 
+ 
+ 
+4.8 PCA 210 apron installation and fastening outlines 
+ 
+      
+Figure 4.8 PCA 210 apron installation  
+
+
+=== PDF PAGE 34 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 34 of 132 
+ 
+ 
+4.9 PCA 210 bridge installation and fastening outlines 
+ 
+Figure 4.9 PCA 210 bridge installation 
+  
+
+
+=== PDF PAGE 35 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 35 of 132 
+ 
+ 
+4.10 Space requirements 
+ 
+ 
+Figure 4.10 Space requirements 
+  
+
+
+=== PDF PAGE 36 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 36 of 132 
+ 
+ 
+4.11 Installation and fastening of Remote Control Station 
+The Remote Control Station should be positioned for best operator access. For bridge installations, it is 
+typically installed on the drive column of the passenger boarding bridge. 
+ 
+Note: PCAs for North America are delivered without Emergency Stop pushbutton. 
+ 
+ 
+Figure 4.11 Remote Control Station (shown for PCAs with Emergency Stop pushbutton) 
+ 
+  
+
+
+=== PDF PAGE 37 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 37 of 132 
+ 
+ 
+4.12 Connection of cables and accessories  
+The electrical installation of the ITW GSE 3500 PCA is carried out as described in the following 
+section. All cable entries to the unit should pass through the designated gland plate located on the 
+bottom right side of the ITW GSE 3500 PCA electrical panel, see also drawings on following pages for 
+location. 
+ 
+4.13 Mains/utility input  
+ 
+The ITW GSE 3500 PCA must always be installed in accordance with national wiring 
+regulations. For reasons of  personal health and safety, the ITW GSE 3500 PCA must 
+always be protected by grounding the PE terminal (  -bolt).  
+ 
+Note: It is important that the phase sequence is correct (ABC), for full functionality. Incorrect phase 
+sequence will not be shown on the display. 
+ 
+The mains/utility input connection to the PCA should be in line with tables 4.13.1 (CE units) and 4.13.2 
+(UL units) below. 
+ 
+Please notice that for CE units, the stated pre-fuse sizes are the maximum recommended. It is 
+possible to use lower rating, together with the Intelligent Power Management (IPM) system. Please 
+consult ITW GSE for further details. 
+ 
+ CE Models 
+(3 x 400 V/ 50 Hz) 
+Input 
+current 
+Maximum 
+recommended 
+pre-fuse size 
+Comment 
+ [A] [A]  
+AEF-150/2 (H) 145 225 - 
+AEF-150/2 (H) I 175 225 1x IPM Outlet* 
+    
+AEF-150/2X (H) 175 225 - 
+AEF-150/2X (H) I 205 315 1x IPM Outlet* 
+    
+AEF-210/3 (H) 275 350 - 
+AEF-210/3 (H) I 335 500 1x IPM Outlet* 
+AEF-210/3 (H) II 395 500 2x IPM Outlet* 
+    
+AEF-210/4 (H) 345 400 - 
+AEF-210/4 (H) I 405 500 1x IPM Outlet* 
+AEF-210/4 (H) II 465 500 2x IPM Outlet* 
+Table 4.13.1 Pre-fusing for CE units. 
+  
+
+
+=== PDF PAGE 38 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 38 of 132 
+ 
+ 
+ 
+UL Models 
+(3 x 480 V / 60 Hz) 
+Input 
+current 
+Recommended 
+pre-fuse size 
+Comment 
+ [A] [A]  
+AEF-150/2 (H) 145 150 - 
+AEF-150/2 (H) I 175 175 1x IPM Outlet* 
+    
+AEF-150/2X (H) 159 175 - 
+AEF-150/2X (H) I 189 200 1x IPM Outlet* 
+    
+AEF-210/3 (H) 236 250 - 
+AEF-210/3 (H) I 286 300 1x IPM Outlet* 
+AEF-210/3 (H) II 336 350 2x IPM Outlet* 
+    
+AEF-210/4 (H) 289 300 - 
+AEF-210/4 (H) I 339 350 1x IPM Outlet* 
+AEF-210/4 (H) II 389 400 2x IPM Outlet* 
+Table 4.13.2 Pre-fusing for UL units. 
+ 
+* Intelligent Power Management functionality, see further details in section 11. 
+ 
+ 
+Due to the RFI filter at the input, the leakage current for the ITW GSE 3500 is > 40 mA. 
+  
+
+
+=== PDF PAGE 39 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 39 of 132 
+ 
+ 
+ 
+                    
+ 
+ 
+Figure 4.13.1: PCA 150 Input Gland Plate (viewed from below) 
+ 
+ 
+ 
+ 
+Figure 4.13.2: PCA 210 Input Gland Plate (viewed from below) 
+  
+
+
+=== PDF PAGE 40 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 40 of 132 
+ 
+ 
+4.14 Remote Control Station 
+For operation of the ITW GSE 3500 PCA, the unit is equipped with a Remote Control Station  (ordered 
+separately, see further details in section 11). The cable from the Remote Control Station is connected to 
+X33 (Display) of the Interface Module A2. 
+ 
+ 
+For units with CE marking, the Remote Control Station is equipped with an emergency stop 
+as standard, which shuts down the PCA electromechanically. 
+ 
+Whenever the PCA is part of an airport bridge installation (or other equipment), it falls within the 
+responsibility of the main contractor to perform an overall risk assessment. For such installations, it is 
+recommended to use one or more common emergency stop buttons, which disengage all ground 
+equipment.  
+ 
+If a common emergency stop is used, the emergency stop of the Remote Control Station should be 
+removed to prevent any mistakes. 
+ 
+ 
+4.15 PCA hose connections 
+The hose connections are located at the end of the PCA unit and the hoses can be connected to these 
+points. The standard connection is a 14” outlet, to which the hose can be fastened with clamps. (Hoses 
+and clamps are not included in the delivery).  
+ 
+The PCA 150 is delivered with a single 14” outlet only. 
+ 
+The PCA 210 is delivered as standard with two 14” outlets from the factory, but c an also be delivered 
+with a single 14” or 18” outlet, depending on the specific configuration needed.  
+ 
+On a PCA 210 with a second outlet (lowest), the PCA is equipped with an internal 14” damper, which 
+automatically opens, either when an interlock signal from hose no. 2 is present or a Jumbo/Cat. E aircraft 
+or bigger is selected (damper operating mode is configured in the setup, as shown in section 6.3). The 
+opening/closing sequence takes approximately 40 seconds. 
+ 
+For the location of hose connections in the various configurations, see the illustrations on the next page. 
+ 
+ 
+Always use the hose interlock facility to avoid unwanted starts with blocked hoses. If the 
+hose interlock is not used, clearly label the hose storage facility with safety warnings (“Do 
+not turn on air flow unless aircraft couplers are in place” or similar). 
+ 
+  
+
+
+=== PDF PAGE 41 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 41 of 132 
+ 
+ 
+Single 14” outlet: 
+(PCA 150 and PCA 210) 
+ 
+Dual 14” outlet with motorised damper: 
+(PCA 210 only) 
+ 
+ 
+Single 18” outlet: 
+(PCA 210 only) 
+ 
+ Figure 4.15: Position of PCA hose connections 
+ 
+ 
+  
+
+
+=== PDF PAGE 42 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 42 of 132 
+ 
+ 
+4.16 Condensate water pump and drainage to building 
+To ensure that the condensate water i s led away from the PCA unit, condensate water pumps are 
+connected to the internal plenums with a drainage connection at the end. 
+ 
+The size of the connection is G 3/4” male and the maximum amount of water is 20 litres per minute (5.3 
+GPM) at a counter pressure of up to 2 bar (30 psi). 
+ 
+The duty cycle on the condensate pumps can be changed via the setup menu. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 4.16: Connection to drainage 
+ 
+4.17 Cabin sensor 
+The optional cabin sensor box is installed in the passenger boarding bridge 
+head, near the aircraft door. Place the cabin sensor as far into the aircraft as 
+the cable length allows, to obtain the best possible cabin temperature 
+measurement. 
+ 
+With the cabin sensor, the PCA unit will regulate the temperature inside the 
+aircraft to a comfortable level. 
+ 
+The cabin sensor box has a built -in inductive sensor. As soon as the cabin 
+sensor is lifted from the holder, the PCA is automatically released for 
+operation. This helps the operator to use the cabin sensor as intended and 
+avoids wrong measurement of the aircraft cabin temperature. 
+ 
+Figure 4.17: Cabin sensor  
+  
+
+
+=== PDF PAGE 43 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 43 of 132 
+ 
+ 
+4.18 Remote I/O terminals 
+By using the remote I/O terminals, situated behind the lower front door, it is possible to interface with: 
+ 
+ 
+X1: I/O signals 
+ 
+X1: 1-2 24V DC supply 
+X1: 3-4 Cabin sensor hook input* 
+X1: 5-6 PCA activated output (max. 50V AC/DC, 2A) 
+X1: 7-8 Bridge temperature sensor input** 
+X1: 9-10 Cabin temperature sensor input* 
+ 
+* For further information about the cabin sensor option, 
+see section 11. 
+ 
+** For further information about the bridge sensor option, 
+see section 11. 
+ 
+ 
+ 
+ 
+ 
+X6: I/O signals 
+ 
+X6: 1-2 24V DC supply 
+X6: 3-4 External start input signal (24V DC) 
+X6: 5-6 External stop input signal* (24V DC) 
+X6: 7-8 PCA enable input signal** (24V DC) 
+X6: 9-10 Reserved for RCM input 
+ 
+* Signal type (N.O. or N.C.) can be selected in the  
+setup menu (see section 6.3). 
+ 
+** The “PCA enable” functionality requires activation in the  
+setup menu (see section 6.3). 
+  
+
+
+=== PDF PAGE 44 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 44 of 132 
+ 
+ 
+X7: I/O signals 
+ 
+X7: 1-2 24V DC supply 
+X7: 3-4 PCA error output (max. 50V AC/DC, 2A) 
+X7: 5-6 PCA ready output (max. 50V AC/DC, 2A) 
+X7: 7-8 PCA activated output (max. 50V AC/DC, 2A) 
+X7: 9-10 PCA activated output (max. 50V AC/DC, 2A) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+X12: Dry contacts (Smoke Detector) 
+ 
+X12: 1-2 PCA activated (NC) Opens when input contactor is engaged 
+X12: 3-4 Smoke detector (NO) Closes when smoke detector alarm is present 
+X12: 4-5 Smoke detector (NC) Opens when smoke detector alarm is present 
+X12: 6-7 R TEST / AUX OUT- Input terminals for smoke detector test (short circuit to test) 
+X12: 7-8 R RESET / AUX OUT- Input terminals for smoke detector reset (short circuit to reset) 
+ 
+ 
+ 
+Note: Max. 50V AC/DC, 2A 
+  
+
+
+=== PDF PAGE 45 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 45 of 132 
+ 
+ 
+X32: User EPO (External Emergency Stop) 
+ 
+The User EPO I/O terminals, A2:X32, provide a connection to an external common EPO circuitry. 
+Either the internal 24V DC or an external 24V DC voltage can be used on the input terminals. In 
+any case, the SW1 “EPO JUMPER” must be removed. 
+ 
+X32: 1-2 EPO IN:  Input terminals (remove SW1) 
+X32: 3-4 EPO OUT:  Output terminals (dry contact) 
+ 
+ 
+  
+
+
+=== PDF PAGE 46 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 46 of 132 
+ 
+ 
+X2 & X3: Hose interlock signals 
+ 
+The hose interlock signals are used for connection to an external hose drum retriever or similar. 
+When fully integrated, the ITW GSE 3500 can wind/unwind the hose from the remote control, as 
+well as block the retriever from coiling during operation. 
+ 
+PCA 150: X2 terminal row is installed only 
+ 
+PCA 210: X2 and X3 terminal rows are installed 
+ 
+ 
+Always use the hose interlock facility to avoid unwanted starts with blocked hoses. If the hose 
+interlock is not used, clearly label the hose storage facility with safety warnings (“Do not turn 
+on air flow unless aircraft couplers are in place” or similar). 
+ 
+Note: For units with two outlets, “ Hose 2 Interlock” input is required for opening the output 2 
+damper. (See section 6.3 for configuration of damper operating mode.) 
+ 
+ 
+  
+
+
+=== PDF PAGE 47 ===
+Operation Manual – ITW GSE 3500 
+Transportation and Installation 
+Document No. 572.610BB Page 47 of 132 
+ 
+ 
+4.19 TCP/IP on-board interface 
+ 
+The ITW GSE 3500 is equipped with a TCP/IP (RJ45) 
+communication port for supervision and monitoring of the 
+PCA, e.g. by means of a central computer. The port is 
+located on the Control Board (A1). 
+ 
+The protocol is limited to MODBUS TCP/IP. The data 
+available from the PCA is comprehensive and should meet 
+most requirements.  
+ 
+Supported Modbus function codes 
+ 
+The ITW GSE 3500 implements a subset of the Modbus 
+Application Protocol Specification V.1.1b. 
+ 
+The following function codes are supported in Modbus requests: 
+- 03 (0x03) Read Holding Registers 
+- 04 (0x04) Read Input Registers 
+- 06 (0x06) Write Single Register 
+- 16 (0x10) Write Multiple Registers 
+ 
+Here is a summary of the different kinds of data available: 
+• The most common modes are: system in use, system in standby and system in fault. 
+ 
+• The PCA provides a comprehensive range of internal and external parameter measurements 
+and information, e.g. voltages, currents, temperatures, time, date etc. 
+ 
+• The PCA provides two kinds of logs:   
+The Black Box, which contains the last 100 errors detected together with all relevant 
+parameters and status information available in connection with a shutdown. 
+The Power Log, which contains the time in use and the power consumption for the last 100 
+operations. 
+ 
+Please note: 
+Detailed information about Modbus communication and available parameters can be obtained from ITW 
+GSE upon request. Refer to chapter 6.3 for communication setup. 
+RJ45 Connector 
+
+=== PDF PAGE 48 ===
+Operation Manual – ITW GSE 3500 
+Technical Specifications 
+Document No. 572.610BB Page 48 of 132 
+ 
+ 
+5.0 Technical Specifications 
+5.1 Generic data 
+Standards: 
+ UL60335-2-40 Heating and cooling equipment (480V units only) 
+ 2014/30/EU EMC Directive 
+ 2014/35/EU LVD Directive 
+ 2006/42/EC Machinery Directive 
+ EN 61000-6-2 EMC – Immunity standard 
+ EN 61000-6-4 EMC – Emission standard 
+ EN 62040-1-1 LVD – Safety standard 
+ EN 61558-2-6 LVD – Safety standard 
+ EN 1915-1 & 2 Machinery – General safety requirements 
+ EN 12312-17 Machinery – Specific safety requirements 
+   
+Input:  
+ Phase sequence ABC 
+ Rectification  12-pulse 
+ Line voltage tolerance ± 10% 
+ Line current distortion < 10% 
+ Power factor > 0.97 at 100% load 
+   
+Output:  
+ Supply temperature Down to 0°C/32°F (depending on ambient temp., RH and airflow) 
+   
+Physical/Environmental:  
+ Construction Bolted steel frame construction. Stainless steel ducts. 
+ Colour RAL7035 standard, other colours on request. 
+ Storage temperature +10 to +35°C  / +50 to +95°F / 20-70% RH 
+ Operating temperature -30 to +50°C / -22 to +122°F / 10-100% RH (non-condensing) 
+ Noise level < 85 dB (A) @ 4.6m / 15’ 
+ Ingress protection IP54 (electrical panel) / NEMA 3R (electrical panel) / For Outdoor 
+Use 
+ Clearance Minimum 1 m / 3’ to combustible surfaces 
+   
+Miscellaneous:  
+ MTTR Typically 20 minutes  
+ Refrigerants Per cooling module: 
+R410A: 8.9 kg / 20.6 lb 
+R454B: 9.9 kg / 21.8 lb  
+(Actual refrigerant type is indicated on module and unit nameplate) 
+ 
+Specifications subject to change without prior notice  
+
+=== PDF PAGE 49 ===
+Operation Manual – ITW GSE 3500 
+Technical Specifications 
+Document No. 572.610BB Page 49 of 132 
+ 
+ 
+5.2 Type-specific data 
+ 
+Model AEF-150/2 (H) AEF-150/2X (H) AEF-210/3 (H) AEF-210/4 (H) 
+Marking CE UL CE UL CE UL CE UL 
+Input voltage [V] 3x400 3x480 3x400 3x480 3x400 3x480 3x400 3x480 
+Frequency [Hz] 50 60 50 60 50 60 50 60 
+Line current [A] 145 145 175 159 275 236 345 289 
+Nominal compressor 
+rating 
+[Tons] 45 45 60 60 90 90 120 120 
+Airflow [kg/min] 150 150 150 150 210 210 210 210 
+Airflow [lb/min] 280 280 280 280 460 460 460 460 
+Pressure [Pa] 10 000 10 000 10 000 10 000 10 000 10 000 10 000 10 000 
+Pressure [inH2O] 40 40 40 40 40 40 40 40 
+Weight [kg] 3 200 3 200 3 200 3 200 4 000 4 000 4 500 4 500 
+Weight [lb] 7 000 7 000 7 000 7 000 8 800 8 800 9 900 9 900 
+Heater (optional) [kW] 72 72 72 72 120 120 120 120 
+ 
+Dimensions:  Refer to outline drawings on the following pages.  
+Figures are shown in millimetres and [inches]. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Specifications subject to change without prior notice  
+
+=== PDF PAGE 50 ===
+Operation Manual – ITW GSE 3500 
+Technical Specifications 
+Document No. 572.610BB Page 50 of 132 
+ 
+ 
+PCA 150 bridge and apron-mounted unit 
+ 
+  
+ 
+ 
+PCA 210 bridge and apron-mounted unit 
+
+
+=== PDF PAGE 51 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 51 of 132 
+ 
+6.0 Operating Instructions 
+6.1 Using the display/keypad 
+To enable smooth and easy operation, the operator control panel has a simple layout. The LED display 
+is located at the top. It is used to provide information during operation/service/maintenance. It shows 
+operational data, warnings or failure information in plain text combined with a time stamp and a four-
+digit code, which can be used in combination with the manual to show more detailed information about 
+the reported message.  
+ 
+ 
+ 
+ 
+ 
+Fig. 6.1.1 Display/operator panel 
+  
+3 x LED indications 
+ 
+Blue LED: 
+As soon as the main power is 
+connected and the unit is switched on, 
+this LED is illuminated. 
+ 
+Yellow- LED: 
+If any warnings are reported, this LED 
+is illuminated to draw the operator’s 
+attention. See section 9.1 for further 
+details. 
+ 
+Red LED: 
+This LED is illuminated as soon as the 
+unit shuts down due to a failure. 
+ 
+ 
+2 x push buttons 
+ 
+Hose up/down for controlling external 
+hose retrievers 
+ 
+ 
+Colour LCD panel with clear 
+status messages for operators 
+and technicians 
+ 
+Navigation keypad equipped with 
+4 arrows and 1 selector push 
+button 
+Push buttons for selection of 
+aircraft, flight confirmation and 
+operating modes 
+ 
+ Single push button for 
+starting/stopping the unit.  
+ 
+The PCA LED turns green when 
+the unit is supplying air at the 
+outlet. 
+ 
+The push button also functions as 
+a reset button. 
+ 
+ Push button for emergency stop 
+of the PCA 
+
+=== PDF PAGE 52 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 52 of 132 
+ 
+ 
+6.2 Operating the unit 
+ 
+• Connect the air delivery hose to the aircraft. Make sure that the hose is connected correctly, 
+otherwise the air may not be guided correctly into the aircraft.  
+ 
+• Press the Aircraft and Mode buttons to set the PCA for the 
+corresponding aircraft to be served.  
+ 
+• For MARS stand configuration, press the Aircraft button to select whether the aircraft is 
+serviced with one or two PCAs. 
+ 
+Wide Body
+ Single PCA
+◄ Back
+PCA
+              
+Wide Body
+ Dual PCA
+◄ Back
+PCA
+PCA  
+ 
+• For cabin temperature-dependent modes, place the cabin sensor in the aircraft cabin.  
+ 
+• Press the Start/Stop button 
+ 
+• The unit is now in operation and supplies the aircraft with pre-conditioned 
+air. This is indicated via the green LED close to the Start/Stop button. 
+From the default display screen and during operation, various parameters 
+can be viewed via the display. Use the navigation keys ▼▲ to browse through the available 
+screens, shown on the next pages. 
+ 
+• After operation, the unit must be turned off before removing the air delivery hose.  
+ 
+• Press the Start/Stop button  
+ 
+• The air delivery hose can now be removed from the aircraft and placed in the hose storage 
+facility. 
+ 
+Please note: 
+The Start/Stop button also functions as a  Reset push button. 
+ 
+If, for any reason, the unit stops due to an error/failure, press the Start/Stop/Reset button to reset the 
+unit. 
+  
+
+
+=== PDF PAGE 53 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 53 of 132 
+ 
+Default Display Screen Standby
+TEMPERATURE
+Ambient :                35.0 °C
+Outlet :                35.0 °C
+Cabin :                35.0 °C
+Bridge :                35.0 °C
+  Back   /  Next/Prev
+OUTLET
+Pressure :               0.0 kPA
+Airflow :                  0 m
+3
+/h
+  Back   /  Next/PrevUse  /  to browse through the various screens.
+Use    to leave the sub-menu and return to 
+Default Screen.
+Notice!
+Parameters may vary depending on the mode of 
+the unit Standby / operating / load profile etc.
+Default Display Screen Operating
+Use  /  to browse through the various screens.
+Use    to leave the sub-menu and return to 
+Default Screen.
+Notice!
+Parameters may vary depending on the mode of 
+the unit Standby / operating / configuration etc.
+TEMPERATURE
+Ambient :                35.0 °C
+Outlet :                  2.0 °C
+Cabin:                24.0 °C
+Bridge :                25.0 °C
+  Back   /  Next/Prev
+OUTLET
+Pressure :               5.4 kPA
+Airflow :           6500 m3/h
+  Back   /  Next/Prev
+12:55.21                                               07 -07-2015
+  PCA Activated
+            Wide B ody
+  Mode     Cabin Cooling
+  Set Point :                 24.0 °C
+PCA
+12:55.21                                               07 -07-2015
+  Read y fo r Use
+            Wide B ody
+  Mode     Cabin Automatic
+  Set Point :                 24.0 °C
+PCA
+PCA
+PCA
+ 
+  
+
+=== PDF PAGE 54 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 54 of 132 
+ 
+ 
+Automatic Flight Selection from VDGS
+Airbus
+A330-200
+Source: VDGS
+_______________________________________
+                 Confirm Aircraft
+             
+                 Change Aircraft
+When the aircraft type is transferred from VDGS , it 
+will be shown in the display .
+Press the confirm button if the suggested aircraft 
+matches the actual aircraft .
+Press the aircraft button to change aircraft type .
+Use the  /  to browse through the various selections .
+Use    to leave the sub -menu and return to previous 
+screen.
+Press   to confirm selection .
+Notice!
+Sub-menus, aircraft types , etc. may vary depending 
+on the actual setup and unit configuration .
+SELECT AIRCRAFT
+VDGS
+Airbus
+Boeing
+               
+  Back   /  Next/Prev    Select
+SELECT AIRCRAFT
+VDGS
+Narrow Body
+Wide Body
+Jumbo
+Super Jumbo
+  Back   /  Next/Prev    Select
+12:55.21                                              07-07-2015
+  Ready for Use
+            A330-200
+  Mode     Cabin Automatic
+  Set Point:                 24.0 °C
+PCA
+Confirm Change
+Body type
+SELECT AIRCRAFT
+VDGS
+B737-100
+B737-200
+B737-300
+B737-400
+B737-500
+  Back   /  Next/Prev    Select
+12:55.21                                              07-07-2015
+  Ready for Use
+            B737-100
+  Mode     Cabin Automatic
+  Set Point:                 24.0 °C
+PCA
+SELECT AIRCRAFT
+VDGS
+Category C
+Category D
+Category E
+Category F
+  Back   /  Next/Prev    Select
+Category
+Boeing
+B737-100
+Source: Manual
+_______________________________________
+                 Confirm Aircraft
+             
+                 Change Aircraft
+ 
+
+=== PDF PAGE 55 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 55 of 132 
+ 
+ 
+Manual Flight Selection
+If there is no aircraft type transferred from VDGS , it 
+is possible to select it manually .
+Press the aircraft button to change aircraft type .
+Notice!
+Parameters may vary depending on the mode of 
+the unit Standby / operating / load profile etc .
+Use the  /  to browse through the various selections .
+Use    to leave the sub -menu and return to previous 
+screen.
+Press   to confirm selection .
+Notice!
+Sub-menus, aircraft types , etc. may vary depending 
+on the actual setup and unit configuration .
+SELECT AIRCRAFT
+VDGS
+Airbus
+Boeing
+               
+  Back   /  Next/Prev    Select
+SELECT AIRCRAFT
+VDGS
+Narrow Body
+Wide Body
+Jumbo
+Super Jumbo
+  Back   /  Next/Prev    Select
+Body type
+SELECT AIRCRAFT
+VDGS
+B737-100
+B737-200
+B737-300
+B737-400
+B737-500
+  Back   /  Next/Prev    Select
+12:55.21                                              07-07-2015
+  Ready for Use
+            B737-100
+  Mode     Cabin Automatic
+  Set Point:                 24.0 °C
+PCA
+SELECT AIRCRAFT
+VDGS
+Category C
+Category D
+Category E
+Category F
+  Back   /  Next/Prev    Select
+Category
+12:55.21                                              07-07-2015
+  Ready for Use
+      Select Aircraft
+  Mode     Cabin Automatic
+  Set Point:                 24.0 °C
+PCA
+None
+Source: Manual
+_______________________________________
+                 Confirm Aircraft
+             
+                 Change Aircraft
+Boeing
+B737-100
+Source: Manual
+_______________________________________
+                 Confirm Aircraft
+             
+                 Change Aircraft
+ 
+
+=== PDF PAGE 56 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 56 of 132 
+ 
+ 
+6.3 Menu structure 
+ 
+Home
+Black Box
+Setup
+Save / Upload
+Power Log View Parameters
+The basic Icon Menu is shown above with the available sub-menus.
+To enter the Icon Menu, press the   from the default menu and hold it down for approximately 10 
+seconds.
+To select a sub-menu, simply use the navigation keys      to highlight the icon and then press 
+the   to enter the sub-menu. 
+To leave the Icon Menu highlight the  Home  icon and press  
+Icon explanation:
+Back to Default screen
+Viewing actual PCA parameters
+Set-up menu for changing PCA parameters
+Black Box with last 100 failures / errors
+Power Log with last 100 operations
+Save  Black Box  /  Power Log  records or update control card software                  
+  
+
+=== PDF PAGE 57 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 57 of 132 
+ 
+ 
+Parameters – Menu structure
+TEMPERATURE
+Ambient :                20.0 °C
+Outlet :                20.0 °C
+Cabin:                20.0 °C
+Bridge :                20.0 °C
+  Back   /  Next/Prev
+OUTLET
+Pressure :               0.0 kPA
+Airflow :                  0 m3/h
+  Back   /  Next/Prev
+INPUT                              
+Voltage :                               400 V
+Curren t:                                   0 A
+Actual Power :                               0 kW
+Apparent Power :                    0 kVA
+  Back   /  Next/Prev
+DC L INK                              
+DC-Voltage :                                   0 V
+DC-Rip ple:                                   0 V
+  Back   /  Next/Prev
+COOLING MODULE X                             
+P-Discharge :                    13.0 bar
+P-Suction :                13.0 bar
+Frequency :                  0.0 Hz
+Status :                          0
+  Back   /  Next/Prev
+Highlight  the              by using the navigation 
+     keys. 
+Press   to select  View parameters  sub-menu.
+Use  /  to browse through the various screens.
+Use    to leave the sub-menu and return to basic 
+Icon Menu.
+Notice!
+Parameters may vary depending on the mode of 
+the unit Standby / operating / configuration etc.
+COOLING MODULE X                             
+T-Discharge :                    20.0 °C
+T-Suction :                20.0 °C
+T-Cond enser:                20.0 °C
+Curren t:                   < 5 A   
+  Back   /  Next/Prev
+ 
+  
+
+=== PDF PAGE 58 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 58 of 132 
+ 
+ 
+Parameters  (continued) – Menu structure
+Inp ut / Outp ut Port Status                 
+          1      2      3      4      5      6      7      8      9      
+I                              
+N
+         10    11    12    13    14    15    16    17    18
+O        1       2       3       4       5       6       7       8
+U
+T         
+           9      10     11     12     13     14     15     16
+Use  /  to browse through the various screens.
+= Active
+= Not Active
+Use    to leave the sub-menu and return to basic 
+Icon Menu.
+Notice!
+I/O Port status may vary depending on the mode 
+of the unit Standby / operating etc.
+UNIT  INF ORMATION
+Display FW :                                     072100 -
+Contro l FW:                                     072100 -
+Unit Serial :                                   xxxxx /1.1
+Unit Rating :                                           4x30
+MAC:                                    C8:02:58:00:00:00
+  Back   /  Next/Prev
+TOTAL
+Hour Meter :            00:00:00
+Consumption :                                          0 kWh
+  Back   /  Next/Prev
+CONDENSER FAN
+Frequency :                  0.0 Hz
+Status :                0
+  Back   /  Next/Prev
+MAIN  BLOWER
+Frequency :                0.0 Hz
+Curren t:                                          < 5 A
+Status :                       0
+  Back   /  Next/Prev
+ 
+ 
+ 
+ 
+See next page for I/O Port status 
+  
+
+=== PDF PAGE 59 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 59 of 132 
+ 
+ 
+Standard I/O configuration: 
+ 
+Inputs  Outputs 
+No. Function Ref.  No. Function Ref. 
+1 Cabin Sensor Hook X1: I1  1 PCA Activated X1: O1 
+2 Hose 1 Interlock X2: I2  2 Hose 1 OUT X2: O2 
+3 Hose 2 Interlock X3: I3  3 Hose 1 IN X2: O3 
+4 Damper 1 Closed (Bridge) X4: I4  4 Hose 1 Outlet Active X2: O4 
+5 Damper 1 Opened (Bridge) X4: I5  5 Hose 2 OUT X3: O5 
+6 Damper 2 Closed (Hose 2) X5: I6  6 Hose 2 IN X3: O6 
+7 Damper 2 Opened (Hose 2) X5: I7  7 Hose 2 Outlet Active X3: O7 
+8 External Start X6: I8  8 Damper 1 Close (Bridge) X4: O8 
+9 External Stop X6: I9  9 Damper 1 Open (Bridge) X4: O9 
+10 PCA Enable X6: I10  10 Damper 2 Close (Hose 2) X5: O10 
+11 RCM Relay Alarm X6: I11  11 Damper 2 Open (Hose 2) X5: O11 
+12 Start Bridge Air X9: I12  12 Bridge Air ON X8: 012 
+13 Stop Bridge Air X9: I13  13 Bridge Air OFF X8: O13 
+14 3-Phase Monitor Alarm X9: I14  14 Bridge Air Interlock (NO) X8: O14 
+15 Heater Thermostat X9: I15  15 Bridge Air Interlock (NC) X8: O15 
+16 Pump Active 1 X12: I16  16 PCA Error X7: O16 
+17 Pump Active 2 X12: I17  17 PCA Ready X7: O17 
+18 -   18 PCA Activated X7: O18 
+ 
+ 
+Note: Please refer to schematic for further I/O Port information. 
+ 
+  
+
+=== PDF PAGE 60 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 60 of 132 
+ 
+ 
+11:27:47     Setup Men u            07/07/2015
+Cabin Temp . (Cooling )
+Cabin Temp . (Heating )
+Max. Cabin Outlet T emp .
+Outlet Temp . (Cooling )
+Outlet Temp . (Heating )
+Bridge Temp . (Cooling )
+Bridge Temp . (Heating )
+  Back    Select Parameter .
+Highlight  the              by using the 
+navigation      keys. 
+Press   to select  Setup  sub-menu.
+Use  /  to browse through the 
+various setup lines / parameters. 
+The selectable line will be 
+highlighted in green.
+Press   to select the parameter you 
+want to change.
+Press   to modify parameter. 
+Parameter will now be highlighted in 
+green.
+Use  /  to adjust parameter. 
+Press   to save changes.
+Use    to leave the sub-menu and 
+return to basic Icon Menu.
+Notice!
+Availability of parameters may vary 
+depending on the mode of the unit 
+Standby / operating / configuration 
+etc.
+Settings:
++15 to +30 °C / 59 to 86 °F
+(Increment : 0,5°C)
+Settings:
++15 to +30 °C / 59 to 86 °F
+(Increment : 0.5°C)
+Setup  – Menu structure
+11:27:47     Setup Men u            07/07/2015
+Cabin Temp. (Cooling)
+25.0 °C
+  Back    Modify
+11:27:47     Setup Men u            07/07/2015
+Cabin Temp. (Heating)
+22.0 °C
+  Back    Modify
+Settings:
+0 to +15 °C / 32 to 59 °F
+(Increment : 0.5°C)
+Settings:
++35 to +60 °C / 95 to 140 °F
+(Increment : 0.5°C)
+11:27:47     Setup Men u            07/07/2015
+Outlet Temp. (Cooling)
+2.0 °C
+  Back    Modify
+11:27:47     Setup Men u            07/07/2015
+Outlet Temp. (Heating)
+50.0 °C
+  Back    Modify
+11:27:47     Setup Men u            07/07/2015
+Bridge Temp. (Cooling)
+22.0 °C
+  Back    Modify
+11:27:47     Setup Men u            07/07/2015
+Bridge Temp. (Heating)
+19.0 °C
+  Back    Modify
+Settings:
++20 to +70 °C / 68 to 158 °F
+(Increment : 0.5°C)
+11:27:47     Setup Men u            07/07/2015
+Max. Cabin Outlet Temp .
+50.0 °C
+  Back    Modify
+Settings:
++15 to +30 °C / 59 to 86 °F
+(Increment : 0.5°C)
+Settings:
++15 to +30 °C / 59 to 86 °F
+(Increment : 0.5°C)
+  
+
+=== PDF PAGE 61 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 61 of 132 
+ 
+ 
+Settings:
+Single PCA
+Dual PCA
+11:27:47     Setup Men u            28/06/2013
+Selectab le Aircraft
+Selectab le Modes
+Gate Configuration
+Airflow
+Max Pressure
+Hose Compen sation
+Number of Mo dules
+  Back    Select Parameter .
+Setup (continued) – Menu structure
+Use  /  to browse through the 
+various setup lines / parameters. 
+The selectable line will be 
+highlighted in green.
+Press   to select the parameter you 
+want to change.
+Press   to modify parameter. 
+Parameter will now be highlighted in 
+green.
+Use  /  to adjust parameter. 
+Press   to save changes.
+Use    to leave the sub-menu and 
+return to basic Icon Menu.
+Notice!
+Availability of parameters may vary 
+depending on the mode of the unit 
+Standby / operating / load profile 
+etc.
+11:27:47     Setup Men u            07/07/2015
+Gate Configuration
+Single PCA
+  Back    Modify
+    Selectab le Aircraft
+ 
+v   Catego ry C
+x   Category D
+x   Category E
+x   Category F
+ 
+  Back    Select Parameter
+    Selectab le Modes
+ 
+v   Cabin Automatic
+x   Cab in Co olin g
+x   Cab in Heating
+x   Cooling
+ 
+  Back    Select Parameter
+Settings:
+0 – 4000 Pa
+(Increment : 50 Pa)
+11:27:47     Setup Men u            07/07/2015
+Hose Compensation
+0 Pa
+  Back    Modify
+Settings:
+2500 – 10000 m3/h / 0 - 460 lbs/min
+(Increment : 50 m
+3
+/h / 1.0 lbs/min)
+11:27:47     Setup Men u            07/07/2015
+Cat. C / Narrow Body
+Cat. D / Wide Body
+Cat. D / Wide Body (dual)
+Cat. E / Jumbo
+Cat. E / Jumbo (dual)
+Cat. F / Super Jumbo
+  Back    Modify
+11:27:47     Setup Men u            07/07/2015
+Cat. C / Narrow Body
+Cat. D / Wide Body
+Cat. D / Wide Body (dual)
+Cat. E / Jumbo
+Cat. E / Jumbo (dual)
+Cat. F / Super Jumbo
+  Back    Modify
+Settings:
+2500 – 10000 Pa / 0 – 40.2 inH2O
+(Increment : 50 Pa / 0.1 inH2O)
+Settings:
+2 - 4
+11:27:47     Setup Men u            07/07/2015
+Number of Modules
+3
+  Back    Modify
+Use  /  to browse through 
+the various screens.
+= Active
+= Not Active
+Use    to leave the sub-menu 
+and return to basic Icon Menu.
+Notice!
+Available aircraft/modes may 
+vary depending on the unit 
+configuration.
+  
+
+=== PDF PAGE 62 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 62 of 132 
+ 
+ 
+11:27:47     Setup Menu            07/07/2015
+Max Prefuse Current
+PCA Enable
+Damper Control
+Hose Interlock
+Remote Stop Function
+Pump Duty Cycle
+Real Time Clock
+  Back    Select Parameter.
+Settings:
+ 0 – 100  
+(Increment: 1%)
+Setup (continued)  – Menu structure
+11:27:47     Setup Menu            07/07/2015
+Pump Duty Cycle
+50 %
+  Back    Modify
+Use the  /  to browse through the 
+various set-up lines / parameters. 
+The selectable line will be 
+highlighed in green.
+Press   to select the parameter you 
+want to change.
+Press   to Modify parameter. 
+Parameter will now be highlighted in 
+green.
+Use the  /  to adjust parameter. 
+Press   to save changes.
+Use    to leave the sub -menu and 
+return to basic Icon Menu.
+Notice!
+Availability of parameters may vary 
+depending on the mode of the unit 
+Standby / operating / load profile 
+etc.
+11:27:47     Setup Menu            07/07/2015
+Remote Stop Function
+Normally Open
+  Back    Modify
+Settings:
+Normally Open
+Normally Closed
+11:27:47     Setup Menu            07/07/2015
+Hose Interlock
+Bypassed
+  Back    Modify
+Settings:
+Bypassed
+Active
+Settings:
+Bypassed
+Active
+11:27:47     Setup Menu            07/07/2015
+Damper Control
+Hose Interlock
+  Back    Modify
+Settings:
+Hose Interlock
+Aircraft
+11:27:47     Setup Menu            07/07/2015
+PCA Enable
+Bypassed
+  Back    Modify
+Settings:
+100 – 315 A (PCA150)
+100 – 500 A (PCA210)
+(Increment: 5 A)
+11:27:47     Setup Menu            07/07/2015
+Max Prefuse Current
+450 A
+  Back    Modify
+Settings in additional sub-menu:
+Month , Day, Year, Hour, Minute, 
+Second
+11:27:47     Setup Menu            07/07/2015
+Real Time Clock Setup
+  Back    Modify
+ 
+ 
+
+=== PDF PAGE 63 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 63 of 132 
+ 
+ 
+11:27:47     Setup Men u            28/06/2013
+Date/Time Format
+Eth ernet C onfiguratio n
+Modbu s Slave Address
+LED Brightness
+Unit of Measure
+Customer ID
+Service Mod e
+  Back    Select Parameter .
+11:27:47     Setup Men u            07/07/2015
+LED Brightness
+High
+  Back    Modify
+Settings:
+Low
+Medium
+High
+Setup (continued)  – Menu structure
+Use  /  to browse through the 
+various setup lines / parameters. 
+The selectable line will be 
+highlighted in green.
+Press   to select the parameter you 
+want to change.
+Press   to modify parameter. 
+Parameter will now be highlighted in 
+green.
+Use  /  to adjust parameter. 
+Note!
+   can be used when entering 
+Customer ID
+Press   to save changes.
+Use    to leave the sub-menu and 
+return to basic Icon Menu.
+Notice!
+Availability of parameters may vary 
+depending on the mode of the unit 
+Standby / operating / load profile 
+etc.
+11:27:47     Setup Men u            07/07/2015
+Service Mode
+  Back    Modify
+Settings in additional sub -menu:
+Main Blower Freq .     : 0 - 53 Hz
+Condenser Fan Freq .: 0 - 50 Hz
+Compressor Freq .     : 0, 35 - 75 Hz
+Heater Power             : 0 - 120 kW
+Settings:
+Metric
+Imperial
+11:27:47     Setup Men u            07/07/2015
+Unit of Measure
+Metric
+  Back    Modify
+11:27:47     Setup Men u            07/07/2015
+Customer ID
+<UNDEFINED>
+  Back    Modify
+11:27:47     Setup Men u            07/07/2015
+Date / Time Format
+HH:MM:SS  I  DD:MM:YYYY
+  Back    Modify
+Settings:
+HH:MM:SS  I  DD:MM:YYYY
+HH:MM:SS AM  I  MM:DD:YYYY
+11:27:47     Setup Men u            07/07/2015
+Ethernet Configuration
+  Back    Modify
+Settings in additional sub -menu:
+Ethernet Mode
+IP Address, Subnet Mask, 
+Gateway, DNS1
+Format:       000.000.000.000
+11:27:47     Setup Men u            07/07/2015
+Modbus Slave Address
+1
+  Back    Modify
+Settings:
+1 - 247
+6 Characters:
+A – Z , 0 – 9 , Space -
+ 
+
+=== PDF PAGE 64 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 64 of 132 
+ 
+ 
+11:27:47     Setup Men u            28/06/2013
+Battery Replaced
+Language
+  Back    Select Parameter .
+Setup (continued)  – Menu structure
+Use  /  to browse through the 
+various setup lines / parameters. 
+The selectable line will be 
+highlighted in green.
+Press   to select the parameter you 
+want to change.
+Press   to modify parameter. 
+Parameter will now be highlighted in 
+green.
+Use  /  to adjust parameter. 
+Press   to save changes.
+Use    to leave the sub-menu and 
+return to basic Icon Menu.
+Notice!
+Availability of parameters may vary 
+depending on the mode of the unit 
+Standby / operating / load profile 
+etc.
+11:27:47     Setup Men u            07/07/2015
+Warnin g: Do not confirm unless the
+Contro l Board  battery has been replaced
+Confirm Battery Replaced
+No
+  Back    Modify
+Settings:
+Yes
+No
+11:27:47     Setup Men u            07/07/2015
+Language
+English
+  Back    Modify
+Settings:
+English, German, French, Russian, 
+Danish, Spanish, Norwegian etc.
+  
+
+=== PDF PAGE 65 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 65 of 132 
+ 
+ 
+14:54:33      Black Box              07/07/2015
+                 Date                   Time            Error
+001:     06/28/2013          14 :54:33          4307
+002:     06/28/2013          10 :33:44          4207
+003:     06/28/2013          10 :25:10          0301
+004:     06/28/2013          10 :24:17          0301
+005:     06/28/2013          10 :11:24          0301
+  Back    View Error
+14:54:33       07/07/2015                      0400
+                  EMERGEN CY STOP
+                  ACTIVATED
+   Alarm Data                                         001/100
+Highlight  the              by using the navigation 
+     keys. 
+Press   to select  View Error  sub-menu.
+Use  /  to highlight the failure you want to view.
+Press   to select View information on the error.
+The error is then explained in clear text.
+Press   to view detailed Alarm Data.
+Use  /  to browse through the recorded data.
+Use    to leave the sub-menu and return to basic 
+Icon Menu.
+Notice!
+The Black Box contains up to 100 recordings. 
+When the limit is reached, the oldest failure is 
+deleted.
+SETT INGS
+Aircraft :      Narrow Bo dy
+Mode:    Cabin Cooling
+Warnin g: 0
+  Back   /  Next/Prev
+OUTLET
+Pressure :               0.0 kPA
+Airflow :                  0 m3/h
+  Back   /  Next/Prev
+ELECT RICAL                             
+Inp ut Voltag e:     400 V        Cu rrent:             0 A
+DC-Lin k:         0 V        Ripple :               0 V
+Heater Power :        0 kW
+  Back   /  Next/Prev
+Black Box – Menu structure
+TEMPERATURE
+Ambient :                20.0 °C
+Outlet :                20.0 °C
+Cabin :                20.0 °C
+  Back   /  Next/Prev
+  
+
+=== PDF PAGE 66 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 66 of 132 
+ 
+ 
+Highlight  the              by using the navigation 
+     keys. 
+Press   to select  View Error  sub-menu.
+Use  /  to highlight the failure you want to view.
+Press   to select View information on the error.
+The error is then explained in clear text.
+Press   to view detailed Alarm Data.
+Use  /  to browse through the recorded data.
+Use    to leave the sub-menu and return to basic 
+Icon Menu.
+Notice!
+The Black Box contains up to 100 recordings. 
+When the limit is reached, the oldest failure is 
+deleted.
+CONDENSER FAN
+Frequency :                  0.0 Hz
+Status :                0
+  Back   /  Next/Prev
+COOLING MODULE X                             
+P-Discharge :                    13.0 bar
+P-Suction :                13.0 bar
+Frequency :                  0.0 Hz
+Status :                          0
+  Back   /  Next/Prev
+COOLING MODULE X                             
+T-Discharge :                    20.0 °C
+T-Suction :                20.0 °C
+T-Cond enser:                20.0 °C
+Curren t:                   < 5 A   
+  Back   /  Next/Prev
+Black Box (continued) – Menu structure
+MAIN  BLOWER
+Frequency :                0.0 Hz
+Curren t:                                          < 5 A
+Status :                       0
+  Back   /  Next/Prev
+CYCLE                             
+Hour Meter :              00:00:00
+Consumption :                         0 kWh
+  Back   /  Next/Prev
+  
+
+=== PDF PAGE 67 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 67 of 132 
+ 
+ 
+11:29:00         Power Log          07/07/2015
+                 Date                   Time             kWh
+001:     06/28/2013          10 :34:28          0132
+002:     06/28/2013          10 :27:21          0038
+003:     06/28/2013          10 :03:03          0001
+004:     06/28/2013          10 :02:34          0001
+005:     06/28/2013          10 :02:00          0000
+  Back    View Log
+Power Log                             001/100
+Start Date :                      07/07/2015
+Start Time :                               10:34
+Minu tes Used:                                   22
+kWh Used :                               132.0
+  Back   /  Next/Prev   Graph 
+Power Log                             002/100
+Start Date :                      07/07/2015
+Start Time :                               10:27
+Minu tes Used:                                     6
+kWh Used :                                 38.0
+  Back   /  Next/Prev   Graph
+Power Log                             100/100
+Start Date :                      06/27/2013
+Start Time :                               22:17
+Minu tes Used:                                   64
+kWh Used :                                 74.0
+  Back   /  Next/Prev   Graph
+Total T ime:    22.0 Minu tes
+                       0 – 92 kW
+                     93 – 184 kW
+                    37%     36%
+       21%                    185 – 276 kW
+                     6%
+                          > 276 kW
+  Back
+Total T ime:     6.0 Minu tes
+                       0 – 92 kW
+      61%
+                     93 – 184 kW
+                                             30%
+                   21%       185 – 276 kW
+       0%                      
+                          > 276 kW
+  Back
+Highlight  the              by using the navigation
+     keys. 
+Press   to select  Power Log  sub-menu.
+Use  /  to highlight the Power Log you want to 
+view.
+Press   to select View Log.
+The Power Log parameters are then displayed.
+Press   to select Graph view.
+or
+Use  /  to browse to the next recorded event.
+Use    to leave the sub-menu and return to basic 
+Icon Menu.
+Notice!
+The Power Log contains up to 100 recordings. 
+When limit is reached, the oldest Log is deleted.
+Total T ime:   64.0 Minu tes
+       85%                  0 – 30 kW
+      
+                     30 – 60 kW
+                                             
+                                              15%     60 – 90 kW
+       0%         0%                      
+                          > 90 kW
+  Back
+Power Log – Menu structure
+ 
+  
+
+=== PDF PAGE 68 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 68 of 132 
+ 
+ 
+Save/Upload  – Menu structure
+10:30:00     USB MENU            28/06/2013
+Update Display Software
+Update Control Card Software
+Save Logs
+Load C onfig F ile
+  Back    Select
+Highlight  the              by using the navigation 
+     keys. 
+Press   to select  USB Menu  sub-menu.
+The default, green highlighted function is: 
+ Update Display Software  otherwise use the 
+ /  to highlight the function  Update Display 
+Software .
+Before pressing   to select  Update Display 
+Software , please remember to insert a USB 
+stick into the USB port on the Display (located 
+inside the Remote Control Box). 
+Press   to select function.
+Press   to confirm update firmware.
+The firmware is now being uploaded to the 
+display card. Upload % is counting from 0% to 
+100% and  Update Succesful! Please 
+reboot  is displayed, when the update has 
+been completed.
+To Reboot the unit, press   button.
+10:30:00     USB MENU            28/06/2013
+Updating Display
+18%
+ 
+10:30:00     USB MENU            28/06/2013
+USB Firmware Update Detected
+Do you  wish  to upd ate?
+0.0%
+Press   to up date firmware
+10:30:00     USB MENU            28/06/2013
+Updating Display
+Update Succesful ! Please Reboot !
+ 
+USB connection Display
+ 
+
+=== PDF PAGE 69 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 69 of 132 
+ 
+ 
+Save/Upload (continued)  – Menu structure
+10:30:00     USB MENU            28/06/2013
+Update Display Software
+Update Control Card Software
+Save Logs
+Load Config File
+  Back    Select
+Highlight  the              by using the navigation 
+     keys. 
+Press   to select  USB Menu  sub-menu.
+Use the  /  to highlight the function  Update 
+Control Card software .
+Before pressing   to select  Update control 
+card software , please remember to insert an 
+USB stick into the USB port on the control 
+card (located on the interface board ).
+Press   to select function .
+Press   to confirm update firmware .
+The firmware is now being uploaded to the 
+control card . Upload % is counting from 0% to 
+100% and  Update Succesful ! Please reboot  
+is displayed, when the update has been 
+completed.
+To Reboot the unit , press    button.
+10:30:00     USB MENU            28/06/2013
+Updating Control Card
+8%
+ 
+10:30:00     USB MENU            28/06/2013
+USB Firmware Update Detected
+Do you wish to update?
+0.0%
+Press   to update firmware
+10:30:00     USB MENU            28/06/2013
+Updating Control Card
+Update Succesful! Please Reboot!
+ 
+USB connection 
+Control card
+ 
+  
+
+=== PDF PAGE 70 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 70 of 132 
+ 
+ 
+Save/Upload(continued) – Menu structure
+10:30:00     USB MENU            28/06/2013
+Update Display Software
+Update Control Card Software
+Save Logs
+Load Config File
+Load Aircraft Table
+  Back    Select
+Highlight  the              by using the navigation 
+     keys. 
+Press   to select  USB MENU  sub-menu.
+Use the  /  to highlight the function 
+ Save Logs  
+Before pressing   to select Save logs, please 
+remember to insert a USB stick into the USB port 
+on the display (located inside the Remote Control 
+Box).
+Press   to select function.
+The logs are now saved to the USB stick. Saving 
+log % is counting from 0% to 100% and  Done  is 
+displayed, when the saving has been completed. 
+The logs are saved as one CSV File and can be 
+viewed with the ITW GSE Service Tool .
+Notice!
+The USB stick can be inserted while the unit is 
+connected to the power.
+10:30:00     USB MENU            28/06/2013
+Done
+  Back  
+10:30:00     USB MENU            28/06/2013
+Saving log
+22%
+USB connection Display
+ 
+  
+
+=== PDF PAGE 71 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 71 of 132 
+ 
+ 
+Save/Upload(continued) – Menu structure
+10:30:00     USB MENU            28/06/2013
+Update Display Software
+Update Control Card Software
+Save Logs
+Load Config File
+Load Aircraft Table
+  Back    Select
+Highlight  the              by using the navigation 
+     keys. 
+Press   to select  USB MENU  sub-menu.
+Use the  /  to highlight the function 
+ Load Config File  
+Before pressing   to select Load Config File, 
+please remember to insert a USB stick into the 
+USB port on the display (located inside the 
+Remote Control Box).
+Press   to select function.
+The new configuration of the unit is now 
+uploaded from the USB stick and  Configuration 
+Complete  is displayed, when upload has been 
+succesfully completed.
+Press   to reset Control Card.
+Notice!
+The USB stick can be inserted while the unit is 
+connected to the power.
+10:30:00     USB MENU            28/06/2013
+Configuration Complete
+Press   to reset Control Card  
+10:30:00     USB MENU            28/06/2013
+Reading Flash Drive. Please Wait
+USB connection Display
+ 
+  
+
+=== PDF PAGE 72 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 72 of 132 
+ 
+ 
+6.4 Setup menu – Default factory settings 
+ 
+Parameter  Setting 
+   
+Cabin Temperature (Cooling):  25°C / 77°F  
+Cabin Temperature (Heating): *  22°C / 72°F 
+Max. Cabin Outlet Temp.:   50°C / 122°F 
+Outlet Temperature (Cooling):  2°C   / 36°F 
+Outlet Temperature (Heating): *  50°C / 122°F 
+Bridge Temperature (Cooling): *  22°C / 72°F 
+Bridge Temperature (Heating): *  19°C / 66°F 
+Bridge Timer: *  1440 min. 
+Selectable Aircrafts: 
+  Regional Jet (PCA 150 only) Not Active 
+  Category C Not Active 
+  Category D Not Active 
+  Category E Not Active 
+  Category F Not Active 
+  Narrow Body Active 
+  Wide Body Active 
+  Jumbo Not Active 
+  Super Jumbo Not Active 
+  BMS (Building Mgt. System) Not Active 
+Selectable Modes: 
+  Cabin Automatic Active 
+  Cabin Cooling Active 
+  Cabin Heating * Active 
+  Cooling  Active 
+  Heating * Active 
+  Ventilation Active 
+  Bridge Air * Active 
+Hose Compensation:  0 Pa 
+Gate Configuration:  Single 
+Airflow:  See section 7.1 
+Max. Pressure:  See section 7.1 
+Number of Modules:  Actual 
+Max. Prefuse Current:  250 A (PCA 150) / 450 A (PCA 210) 
+Remote Stop:  Normally Open 
+ 
+  
+
+=== PDF PAGE 73 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 73 of 132 
+ 
+ 
+Parameter  Setting 
+   
+PCA Enable:  Bypassed 
+Damper Control:  Hose Interlock 
+Hose Interlock:  Bypassed 
+Pump Duty Cycle:  Actual 
+Real Time Clock:  Actual 
+Date/Time Format:  HH:MM:SS / DD:MM:YYYY 
+Ethernet Configuration:  192.168.1.100 
+MODBUS Slave Address:  1 
+LED Brightness:  Medium 
+Unit of Measure:  Metric 
+Customer ID:  Undefined 
+Service Mode (Submenu):  Not Active 
+Battery Replaced:  No 
+Language:  Actual 
+ 
+* Only for units with this option installed 
+ 
+ 
+6.5 Hardware – Default factory settings 
+ 
+Component Ref. Setting 
+   
+RCM relay A5 10 A / 1 sec. 
+Power supply G1 25 VDC 
+Filter guard S3 450 Pa 
+Airflow (differential pressure) S4 1 000 Pa 
+Motor overload protection 
+relays 
+Q4-Q7, Q10 13 A 
+ 
+ 
+  
+
+=== PDF PAGE 74 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 74 of 132 
+ 
+ 
+6.6 VDF DIP Switch Settings 
+Below illustrations show the settings for the individual VFDs on cooling modules and main blower. 
+Please note that cooling module locations may vary depending on PCA type, as shown in section 10. 
+ 
+ 
+Cooling Module VFD DIP switch settings: 
+ 
+ 
+ 
+SW3 (refrigerant type):   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SW2 (module number): 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Main Blower VFD DIP switch settings: 
+ 
+ 
+ 
+SW3 (refrigerant type): 
+R410A: Without RDS sensor 
+R454B: With RDS sensor  
+   
+ 
+ 
+ 
+ 
+ 
+SW2 (main blower):    
+  
+
+
+=== PDF PAGE 75 ===
+Operation Manual – ITW GSE 3500 
+Operating Instructions 
+Document No. 572.610BB Page 75 of 132 
+ 
+ 
+6.7 Preventing changes to setup parameters 
+ 
+To avoid unintentional modifications to the Setup 
+parameters, it is possible to block access to the 
+Setup Mode, by means of a DIP switch situated on 
+the Display Board A3.  
+ 
+Note! 
+If the DIP switch is set to blocked,  pressing SW1 
+enables the user to enter the Setup menu within 
+10 seconds. When this time has elapsed, the 
+menu will be blocked again. 
+ 
+ 
+ 
+ 
+Figure 6.6   Display Board A3 
+ 
+SW1 
+To prevent 
+changes to the 
+setup parameters, 
+move the switch 
+SW2:1 to the OFF 
+position (DOWN). 
+
+=== PDF PAGE 76 ===
+Operation Manual – ITW GSE 3500 
+Special Features 
+ 
+Document No. 572.610BB Page 76 of 132 
+ 
+7.0 Special Features 
+7.1 Airflow and pressure limit settings for the aircraft 
+When the aircraft size/code has been selected on the operator panel, the PCA adjusts the airflow rate 
+automatically for this aircraft in accordance with the settings in the display setup menu, described in 
+section 6.3. If the pressure limit is reached, the airflow rate is automatically reduced until the pressure 
+is below the limit.  
+ 
+If the aircraft is supplied from a single PCA, the PCA “Gate Configuration” should be set for “Single 
+PCA” operation. For MARS stand configurations, the aircraft can be supplied from two PCAs. In this 
+case, the PCA “Gate Configuration” should be set for “Dual PCA” operation, as shown in section 7.2. 
+ 
+The factory settings for airflow and pressure limits in cooling and heating modes are shown in table 
+7.1.1. The airflow in heating mode is adjusted as a percentage of airflow in cooling mode. The heating 
+factor can be adjusted in the airflow settings in the setup menu, shown in section 6.3. 
+ 
+PCA 150: Heating Factor = 67% (Regional Jet is fixed at 100%) 
+Aircraft size / ICAO category 
+(Mode) 
+Airflow [m³/h] 
+Cooling / Heating 
+Airflow [lb/min] 
+Cooling / Heating 
+Max. 
+pressure 
+[Pa] 
+Max.  
+pressure 
+[inH2O] 
+Regional Jet 2 500 / 2 500 117 / 117 8 600 35 
+Narrow Body / Cat. C 4 550 / 3 049 214 / 143 6 000 24 
+Wide Body / Cat. D (Single) 7 000 / 4 690 329 / 220 10 000 40 
+Wide Body / Cat. D (Dual) 3 500 / 2 345 164 / 110 10 000 40 
+Jumbo / Cat. E (Single) 7 000 / 4 690 329 / 220 10 000 40 
+Jumbo / Cat. E (Dual) 4 200 / 2 814 197 / 132 10 000 40 
+Super Jumbo / Cat. F 7 000 / 4 690 329 / 220 8 600 35 
+         
+PCA 210: Heating Factor = 67% 
+Aircraft size / ICAO category 
+(Mode) 
+Airflow [m³/h] 
+Cooling / Heating 
+Airflow [lb/min] 
+Cooling / Heating 
+Max. 
+pressure 
+[Pa] 
+Max.  
+pressure 
+[inH2O] 
+Narrow Body / Cat. C 4 550 / 3 049 214 / 143 6 000 24 
+Wide Body / Cat. D (Single) 7 000 / 4 690 329 / 220 10 000 40 
+Wide Body / Cat. D (Dual) 3 500 / 2 345 164 / 110 10 000 40 
+Jumbo / Cat. E (Single) 8 500 / 5 695 399 / 267 10 000 40 
+Jumbo / Cat. E (Dual) 4 200 / 2 814 197 / 132 10 000 40 
+Super Jumbo / Cat. F 9 000 / 6 030 422 / 283 8 600 35 
+ 
+Table 7.1.1: Factory settings – Airflow and pressure limits  
+
+=== PDF PAGE 77 ===
+Operation Manual – ITW GSE 3500 
+Special Features 
+ 
+Document No. 572.610BB Page 77 of 132 
+ 
+PCA performance in high altitudes 
+Using the PCA in high altitudes affects the unit performance, due to a lower barometric pressure and 
+air density. Therefore, the mass airflow will be lower and the condenser fans will be less effective. This 
+is normal for HVAC equipment and should be taken into account in the daily operation. 
+ 
+The overall performance will be according to tables 7.1.2, where the performance is stated for an 
+ambient temperature of 20°C / 68°F at altitudes up to 3 000 m / 10 000 feet. 
+ 
+Altitude [m] Altitude [feet] Rated performance 
+0 0 100% 
+300 1 000 98% 
+600 2 000 96% 
+900 3 000 95% 
+1 200 4 000 93% 
+1 500 5 000 91% 
+1 800 6 000 90% 
+2 100 7 000 88% 
+2 400 8 000 86% 
+2 700 9 000 85% 
+3 000 10 000 83% 
+ 
+Table 7.1.2: Performance at high altitudes 
+ 
+ 
+ 
+  
+
+=== PDF PAGE 78 ===
+Operation Manual – ITW GSE 3500 
+Special Features 
+ 
+Document No. 572.610BB Page 78 of 132 
+ 
+Aircraft manufacturers’ airflow and pressure limits are shown in table 7.1.3. The listed values were 
+valid January 2025. Please refer to the manufacturers’ websites for the latest updated limits. 
+ 
+ 
+It is strongly recommended to adjust airflow and pressure settings for the actual aircraft to 
+be serviced. If the airflow or pressure exceeds the aircraft’s specifications, the aircraft may 
+be damaged. 
+ 
+Updated January 2025, sorted by brand/category 
+Type Brand ICAO 
+cat. 
+Qty. 
+inlets 
+Airflow 
+limit 
+[m3/h] 
+Airflow 
+limit 
+[lb/min] 
+Pressure 
+limit 
+[Pa] 
+Pressure 
+limit 
+[inH2O] 
+A318-100 Airbus C 1 3 700 175 4 000 16 
+A319-100/Neo Airbus C 1 3 700 175 4 000 16 
+A320-200/Neo Airbus C 1 3 700 175 4 000 16 
+A321-100/200/Neo Airbus C 1 3 700 175 4 000 16 
+A300-100/200/600 Airbus D 1 7 000 330 6 000 24 
+A310-200/300 Airbus D 1 6 800 320 6 000 24 
+A330-200/300 Airbus E 2 6 200 290 5 000 20 
+A340-200/300 Airbus E 2 6 200 290 5 000 20 
+A340-500/600 Airbus E 2 9 000 420 5 700 23 
+A350-900 Airbus E 2 8 400 390 8 000 32 
+A350-1000 Airbus E 2 10 000 470 8 000 32 
+A380-800 Airbus F 4 18 000 840 8 600 35 
+B737-100/200 Boeing C 1 3 400 160 5 000 20 
+B737-300/500 Boeing C 1 4 500 210 5 000 20 
+B737-400 Boeing C 1 5 300 250 4 250 17 
+B737-600/700 Boeing C 1 4 500 210 4 250 17 
+B737-800/900 Boeing C 1 5 300 250 4 250 17 
+B737-MAX 7/8/9/10 Boeing C 1 5 300 250 4 250 17 
+B757-200 Boeing D 1 5 100 240 4 000 16 
+B757-300 Boeing D 1 10 600 500 10 000 40 
+B767-xxx Boeing D 1 7 600 360 10 000 40 
+B747-100/200 Boeing E 2 15 000 700 12 500 50 
+B747-300/400 Boeing E 2 15 000 700 12 500 50 
+B777-xxx Boeing E 2 15 000 700 12 500 50 
+B787-8 Boeing E 1 9 000 420 10 500 42 
+B787-9/10 Boeing E 2 12 000 560 10 500 42 
+B747-8 Boeing F 2 17 000 800 13 000 52 
+ 
+Table 7.1.3: Aircraft manufacturers’ specifications – Airflow and pressure limits 
+  
+
+
+=== PDF PAGE 79 ===
+Operation Manual – ITW GSE 3500 
+Special Features 
+ 
+Document No. 572.610BB Page 79 of 132 
+ 
+7.2 Single & dual PCA configuration 
+For MARS gates where two or more PBBs can be docked to the same aircraft, there will be a risk of 
+over-pressurising the fuselage if two PCAs are connected simultaneously. With the ITW GSE 3500 
+PCA set for dual PCA operation, the airflow will be reduced from each PCA, ensuring that the 
+maximum allowed airflow is not exceeded. 
+ 
+Below are two examples with the same aircraft type, but parked at different gate types. On a stand-
+alone PBB gate, the single PCA operation mode is selected and full airflow will be available. On a 
+MARS gate, with two PCAs connected to the same aircraft, dual PCA operation is selected and each 
+PCA reduces the airflow to avoid over-pressure in the fuselage. 
+ 
+Single PCA operation: Dual PCA operation: 
+ 
+Jumbo
+ Single PCA
+◄ Back
+PCA
+ 
+Jumbo
+ Dual PCA
+◄ Back
+PCA
+PCA  
+Full airflow from a single PCA Reduced airflow from each PCA 
+ 
+ 
+ 
+Figure 7.2: Single and dual PCA operation on a Jumbo aircraft 
+  
+
+
+=== PDF PAGE 80 ===
+Operation Manual – ITW GSE 3500 
+Special Features 
+ 
+Document No. 572.610BB Page 80 of 132 
+ 
+7.3 Hose compensation 
+The airflow through an air delivery system (e.g. aircraft service hose, hose retriever, transition, 
+telescopic duct etc.) generates a pressure drop between the PCA and the aircraft. This pressure drop 
+will be added to the back pressure in the aircraft, resulting in a total outlet pressure (air delivery system 
++ aircraft back pressure = total outlet pressure), which is what the PCA unit will experience. 
+ 
+If the PCA unit reaches maximum pressure (limits are shown in section 7.1) before full airflow is 
+reached, then this may be due to the pressure drop in the air delivery system. The PCA unit can 
+compensate for the pressure drop in the air delivery system by adding a Hose Compensation to the 
+maximum pressure setting. The PCA unit will thus be able to increase to the requested airflow and 
+provide a better performance.  
+ 
+Note: Even with Hose Compensation set to maximum (4000 Pa / 16 inH2O), the outlet pressure can 
+never exceed the maximum rating for the unit. 
+ 
+Air Flow
+Output 
+Pressure
+Max. Pressure
+Requested/set Airflow 
+with Compensation
+Achieved Airflow 
+without Compensation
+Pressure with 
+Compensation
+Hose 
+Compensation
+ 
+Figure 7.3   PCA Hose Compensation 
+ 
+Hose Compensation is calibrated as follows: 
+1. Deploy the service hose(s) on a straight line on the apron, not connected to an aircraft. 
+2. Select the aircraft/category with the lowest airflow. 
+3. Start the unit and allow the airflow to stabilise for 10 minutes.   
+4. Note down the outlet pressure and stop the unit. 
+5. Adjust Hose Compensation in the setup menu (see section 6.3 for further details).  
+
+=== PDF PAGE 81 ===
+Operation Manual – ITW GSE 3500 
+Special Features 
+ 
+Document No. 572.610BB Page 81 of 132 
+ 
+7.4 Operating the PCA in Automatic Modes 
+When the PCA is used with a cabin or bridge sensor, the temperature will be regulated automatically, 
+in accordance with the figure shown below. Depending on the actual temperatures of the ambient and 
+cabin/bridge air, the PCA will automatically heat, ventilate or cool the aircraft/bridge. 
+ 
+Note: The outlet temperature will not exceed “Max. Cabin Outlet Temp.” or go below “Outlet 
+Temperature (Cooling)” in the setup menu. 
+ 
+Examples of Cabin Automatic Mode:  
+ 
+1) Ambient temperature = 10°C / 50°F, Cabin Temperature = 20°C / 68°F PCA will be Heating 
+2) Ambient temperature = 20°C / 68°F, Cabin Temperature = 20°C / 68°F PCA will be Ventilating 
+3) Ambient temperature = 20°C / 68°F, Cabin Temperature = 29°C / 84°F PCA will be Cooling 
+ 
+ 
+Figure 7.4   PCA Automatic Modes 
+  
+
+
+=== PDF PAGE 82 ===
+Operation Manual – ITW GSE 3500 
+Special Features 
+ 
+Document No. 572.610BB Page 82 of 132 
+ 
+7.5 Intelligent Power Management (IPM) 
+With an Intelligent Power Management-enabled PCA, it is possible to simplify the complete installation, 
+achieve savings on infrastructure and use less space in the electrical room. 
+The GPU(s) input cable is connected to a circuit breaker in the PCA’s electrical panel instead of the 
+electrical room. (See figure 7.5.1 for an installation example.) For further details about IPM-related 
+hardware, see section 11. 
+ 
+ 
+Figure 7.5.1 Code C installation example 
+ 
+The PCA will monitor the total power consumption of the PCA and GPU(s). If the total current exceeds 
+a pre-set limit, the GPU(s) will be given priority to continue operation, whereas the PCA will adjust its 
+own consumption to keep the total current below the limit. In the event of a 400Hz peak load, the result 
+is a minor drop in the PCA’s cooling for a short moment, until there is available power again for the 
+PCA to regulate back to normal operation. Figure 7.5.2 shows an example of a code C load profile 
+during a turnaround. At 17.00h-17.02h, the 400Hz load is peaking, which results in a reduction of the 
+PCA cooling. After the 400Hz peak, at 17.02h, the PCA automatically regulates back up. 
+ 
+ 
+Figure 7.5.2 Example of Code C aircraft load profile 
+  
+
+
+=== PDF PAGE 83 ===
+Operation Manual – ITW GSE 3500 
+Special Features 
+ 
+Document No. 572.610BB Page 83 of 132 
+ 
+Principle behind IPM 
+The PCA monitors the total input 
+current and, by means of the VFDs, 
+the PCA regulates the cooling 
+capacity and thereby the consumption 
+of the PCA.  
+ 
+In the event of a 400Hz peak load, the 
+PCA will regulate the PCA 
+consumption down below the pre-
+adjusted limit. After the 400Hz peak 
+load, the PCA will regulate back up. 
+ 
+During maintenance on either the PCA 
+or GPU, the other equipment can still be used. 
+Figure 7.5.3 IPM principle 
+ 
+Consumption and overload protection 
+The selection of a proper pre-fusing should be based on the available power, climate conditions and 
+expected typical consumption of the PCA and Power Coil(s) within the environment in which they will 
+be operated. Please consult ITW GSE for further advice regarding equipment consumption. 
+ 
+Example: 
+For a Code C installation in a medium/dry climate, typical consumption values would be as follows: 
+ 
+PCA 150/2 :  120 A (at 35°C / 40% RH) 
+Power Coil :   30 A (average load during a turnaround) 
+Total : 150 A 
+ 
+In the above example, a 180 A pre-fusing (or next higher available fuse rating) could be considered 
+sufficient to cover a temporary 400Hz peak load with little or no reduction of the PCA cooling. 
+ 
+When the input cable and corresponding pre-fusing have been selected, it is important to adjust the 
+current limit in the setup menu. The maximum current limit is adjusted in the setup menu. (See section 
+6.3 for details about navigating through the display.) 
+ 
+Settings:
+100 – 315 A (PCA150)
+100 – 500 A (PCA210)
+(Increment: 5 A)
+11:27:47     Setup Menu            07/07/2015
+Max Prefuse Current
+450 A
+  Back    Modify
+ 
+Figure 7.5.4 Current limit adjustment 
+
+
+=== PDF PAGE 84 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 84 of 132 
+ 
+8.0 Service, Maintenance and Overhaul 
+To ensure that the unit is always ready for use, it must be maintained on a regular basis. 
+ 
+ 
+Only allow qualified people to remove covers for maintenance or troubleshooting. 
+ 
+8.1 Lockout/Tagout procedure 
+  
+
+
+=== PDF PAGE 85 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 85 of 132 
+ 
+8.2 Battery back-up & replacement (only applicable for Coin Cell) 
+ 
+Note: The following section is only applicable for the Coin Cell battery type. The on-soldered 
+battery type, on the alternative Control Board 579573, does not need to be changed in the 
+expected lifetime of the unit. 
+ 
+Situated on the back of the control board, is a coin type lithium battery which ensures that firmware, 
+setup data etc. are not lost during mains/utility drop-outs. The expected life of the battery is 
+approximately 7 years. A low battery voltage does not affect the internal safety system of the PCA that 
+monitors the output voltage, among others. Thus aircraft connected to the PCA are not exposed to any 
+danger. However, to avoid loss of data and Control Board lock-up *, we require the battery to be 
+changed every 5 years.   
+ 
+Note: A time stamp is stored in the ID chip (A6) upon production and after 5 years a warning occurs at 
+the display, telling the user/operator to replace the Control Board battery.  
+It is strongly recommended to change the battery when this message is shown:  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fig. 8.3.1 
+ 
+To allow the user/operator to use the PCA, it is possible to postpone the battery change, by pressing 
+the ◄ (left arrow) push button. The warning message occurs 90 seconds after the unit is powered on 
+or the output contactor(s) are opened (the unit is in Standby Mode). If this message is ignored for 6 
+months the controls will be locked out and the below failure message will be displayed. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fig. 8.3.2 
+ 
+The battery has to be changed before the unit can be operated again.  
+                Replace Control Board                                    
+                Battery
+Important: 
+Read the instructions in the manual before                      
+removing the battery. 
+Press ◄ to postpone. 
+14:54:33       01/01/2017                      0700
+                CONTROL  BOARD BATT ERY
+                FAILURE
+Read  the instructions in the
+Manual before removing th e
+Battery .
+   Alarm Data                                         
+
+
+=== PDF PAGE 86 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 86 of 132 
+ 
+ 
+To ensure high reliability of the back -up battery, the only type of battery that can be 
+used on the Control Board is the Panasonic BR-2032 
+ 
+ 
+Before removing the Control Board please take ESD (Electro Static Discharge) 
+precautions to avoid any static discharge to the Control Board during the replacement 
+of the battery. 
+ 
+Important Notice! 
+Software 072103, revision - and forward: 
+Tamper Protection has been removed.  
+Only allowing the Control Board without power for 30 seconds does not apply any more.  (The 
+Control Board can stay without power for more than 30 seconds.) 
+After battery exchange, please remember to set Time & Date to correct values. 
+ 
+Earlier versions of software: 
+Before you remove the battery from the holder, make sure that the replacement battery is within reach, 
+as the Control Board must not be without battery power for more than 30 seconds. Otherwise, all 
+firmware and the setup data will be erased. * 
+ 
+How to change the battery (Coin Cell): 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fig. 8.3.3 Control Board (front view) 
+ 
+To replace the battery, Switch OFF the unit by means of Q1. Remove the Control Board from its 4 
+posts marked with a  in Figure 8.3.3. Place the PCB on an insulated surface, with the back side face 
+up. 
+  
+ 
+ Blue LED (D5) 
+
+=== PDF PAGE 87 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 87 of 132 
+ 
+8.3 Recommended maintenance schedules 
+ 
+ 
+Maintenance Instructions for PCA 
+- Daily Inspection 
+These maintenance instructions do not in any way replace local rules and regulations. 
+ 
+No. Task OK / Fail 
+01. Inspect the air delivery hose(s) for leaks, damage, wear and tear or loose 
+clamps. Always replace any damaged hoses before operating the unit. 
+ 
+ 
+02. Inspect hose storage facility per supplier maintenance manual. 
+ 
+ 
+03. If installed, check the cabin sensor via display on the control station and make a 
+visual inspection as well. Replace if necessary. 
+ 
+Display screen, with Cabin Sensor in holder 
+ 
+Display screen, with Cabin Sensor not in holder 
+ 
+ 
+  
+
+
+=== PDF PAGE 88 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 88 of 132 
+ 
+ 
+Maintenance Instructions for PCA 
+- Monthly Inspection 
+These maintenance instructions do not in any way replace local rules and regulations. 
+ 
+No. Task OK / Fail 
+01. This procedure must be done with the Output 1 air delivery hose fully extracted, 
+unless otherwise stated. 
+ 
+ 
+02. Check that all doors/panels are securely fastened and free of damage. 
+ 
+ 
+03. Check that all bolts related to brackets/feet are correctly tightened, by observing 
+the leaf springs. 
+  
+ 
+04. Remove air filter cover(s) and check the air filter for any restrictions, such as dirt, 
+leaves or any other objects. Remove objects and/or change filter. 
+ 
+ 
+05. Check that the condensate pipe is free of any bends and damage. 
+ 
+ 
+06. Rinse/clean the condensers quarterly in accordance with the cleaning 
+procedures, as stated in the Manufacturers Literature (separate appendix to this 
+manual). Ensure that electronic components are kept dry during cleaning. 
+ 
+ 
+07. Check the functioning of the remote control station: display, push buttons and 
+LEDs. Also carry out a visual inspection. Repair if necessary. 
+ 
+ 
+08. Run the PCA for at least 2 minutes in Ventilation Mode / Narrow Body Aircraft 
+mode. Check the main blower for any unusual noise/vibrations during operation. 
+ 
+ 
+09. For PCA 210s with WEG brand motors (blue casing, see picture below): 
+Check the total hour meter on the display. If it has reached/increased 5 000 
+hours since installation or the latest main blower lubrication, it is time to lubricate 
+the motor bearings in accordance with the maintenance procedures, which can 
+be found in the Manufacturers literature appendix. 
+ 
+Remember to update the lubrication log 
+label, which can be found inside the 
+electrical panel: 
+ 
+ 
+  
+
+
+=== PDF PAGE 89 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 89 of 132 
+ 
+ 
+Maintenance Instructions for PCA 
+- Pre-Seasonal Cooling Inspection (Spring) 
+In case of full-year use of cooling, this procedure must be done twice a year. 
+These maintenance instructions do not in any way replace local rules and regulations. 
+Refer to Appendix 08, for information for handling, installation, cleaning, servicing and 
+disposal of refrigerant. 
+ 
+No. Task OK / Fail 
+01. This procedure must be done with the Output 1 air delivery hose fully extracted, 
+unless otherwise stated. 
+ 
+ 
+02. Switch the Input Breaker to the OFF position. 
+ 
+Switch the 50/60 Hz mains supply OFF at the input distribution panel and ensure 
+against re-connection, in accordance with local safety rules and regulations. 
+ 
+Open the door of the electrical panel. Remove 
+input terminal safety cover and check input 
+cables for bad connection or signs of damage.  
+ 
+When completed, re -install input terminal 
+safety cover in correct position. 
+ 
+ 
+03. Check all external interfacing cables for bad connection or signs of damage. 
+ 
+ 
+04. Check all internal wiring in the electrical panel for bad connection or signs of 
+damage. 
+ 
+ 
+ 
+  
+
+
+=== PDF PAGE 90 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 90 of 132 
+ 
+No. Task OK / Fail 
+05. Remove cover of Main Blower VFD and inspect for bad connection or signs of 
+damage.  
+ 
+When completed, re-install cover. 
+ 
+06. Check circuit breakers for bad connection or signs of damage.  
+Check proper mechanical functionality by switching Off/On. 
+ 
+ 
+07. Close doors of the electrical panel. 
+ 
+ 
+08. Remove covers and extract all cooling modules for easy access. Secure module 
+trays with bolts or tools, as shown in the PCA Manual. 
+ 
+ 
+09. If installed, check free movement of internal damper on the second outlet. Push 
+the black manual override button in the top to release damper for testing. 
+ 
+Check for any damage, wear and tear. Wipe dust and dirt away with a clean 
+cloth. If necessary, use a degreasing fluid (approved for plastic) and wipe 
+residual dirt away. 
+ 
+ 
+ 
+ 
+  
+
+
+=== PDF PAGE 91 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 91 of 132 
+ 
+No. Task OK / Fail 
+10. Check vibration dampers on the Main Blower and Compressors for signs of 
+damage. Replace if necessary. 
+ 
+Check the rubber sealing at inlet and outlet of the main blower for signs of 
+damage. Replace if necessary. Remove covers for easy access if necessary. 
+ 
+ 
+11. Remove covers for Compressor VFDs and inspect for bad connection or signs of 
+damage. When completed, re-install covers. 
+ 
+ 
+12. Clean the condensers in accordance with the cleaning procedures, as stated in 
+the Manufacturers Literature (separate appendix to this manual). Ensure that 
+electronic components are kept dry during cleaning. 
+ 
+ 
+13. If necessary, clean the condensate drain pan with plain water to optimise the 
+efficiency of the PCA. If there is extensive dirt, use only pH-neutral cleaning 
+detergent approved for local use. 
+ 
+ 
+14. Check the condenser fans for any signs of damage. 
+ 
+ 
+15. Re-insert cooling modules and re-install their respective covers. 
+ 
+ 
+16. Select Ventilation Mode / Narrow Body Aircraft and push the Start button. 
+Check the main blower for unusual noise during operation. 
+ 
+ 
+17. Check Interlock signal functionality between Hose Basket / Hose Retriever / Pit 
+and PCA, in accordance with the local installation scheme. 
+ 
+ 
+18. Check Interlock signal functionality with Passenger Boarding Bridge and PCA, in 
+accordance with the local installation scheme. 
+ 
+ 
+19. Check that the ambient and outlet temperatures appear correctly in the display 
+on the remote control station, observing the actual ambient conditions. 
+  
+ 
+20. Check that the cooling module temperatures and pressures appear correctly in 
+the display on the remote control station, observing the actual ambient 
+conditions. Use a refrigerant slide or similar to compare temperature/pressure. 
+ 
+ 
+21. Check that the outlet airflow and pressure appear correctly in the display on the 
+remote control station. For Narrow Body Aircraft, the airflow should be 
+approximately 4 550 m3/h. 
+ 
+ 
+  
+
+=== PDF PAGE 92 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 92 of 132 
+ 
+No. Task OK / Fail 
+22. Select Cooling Mode / Narrow Body Aircraft and push the Start button. Check 
+the condenser fans for unusual noise during operation. 
+ 
+Check refrigerant sight glass on each cooling module during operation when 
+cooling modules have reached a steady state, using a torch for better visibility. 
+Bubbles in the sight glass indicate low refrigerant level, no subcooling or 
+excessive pressure drop in the filter.  
+ 
+Check refrigerant sight glass colour. Green is OK. Yellow indicates high humidity 
+in the refrigerant circuit. If yellow, please contact ITW GSE or a local A/C 
+technician for further support.  
+ 
+The sight glass can be seen from the outside of the condenser through the micro 
+channel panel. If bubbles are seen, please contact ITW GSE or a local A/C 
+technician for further support.  
+ 
+ 
+ 
+ 
+23. Check the operation of the condensate pumps. If necessary, pour water in the 
+drain pan to test the pumps. When completed, stop the unit and allow the unit to 
+power down. 
+ 
+ 
+24. Switch the Input Breaker to the OFF position and lock the Service Mode by 
+changing the DIP switch settings in accordance with section 6.6 of the PCA 
+Manual. 
+ 
+Switch Input Breaker to ON position. 
+ 
+ 
+ 
+  
+
+
+=== PDF PAGE 93 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 93 of 132 
+ 
+ 
+Maintenance Instructions for PCA 
+ 
+- Pre-Seasonal Heater Inspection (Autumn) 
+Only for PCAs with optional heater section installed. 
+These maintenance instructions do not in any way replace local rules and regulations. 
+ 
+No. Task OK / Fail 
+01. This procedure must be done with the Output 1 air delivery hose fully extracted, 
+unless otherwise stated. 
+ 
+ 
+02. Switch the Input Breaker to the OFF position. 
+ 
+Switch the 50/60 Hz mains supply OFF at the input distribution panel and ensure 
+against re-connection in accordance with local safety rules and regulations. 
+ 
+Open the door of the electrical panel. Remove 
+input terminal safety cover and check input 
+cables for bad connection or signs of damage.  
+ 
+When completed, re-install input terminal safety 
+cover in correct position. 
+ 
+03. Check all external interfacing cables for bad connection or signs of damage. 
+ 
+ 
+04. Check all internal wiring in the electrical panel for bad connection or signs of 
+damage. 
+ 
+ 
+05. Remove cover for Main Blower variable frequency drive and inspect for bad 
+connection or signs of damage. When completed, re-install cover. 
+ 
+ 
+  
+
+
+=== PDF PAGE 94 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 94 of 132 
+ 
+No. Task OK / Fail 
+06. Check circuit breakers for bad connection or signs of damage.  
+Check proper mechanical functionality by switching Off/On. 
+ 
+ 
+07. Close doors of the electrical panel. 
+ 
+ 
+08. Check vibration dampers on the Main Blower for signs of damage. Replace if 
+necessary. 
+Check the rubber sealing at the inlet and outlet of the main blower for signs of 
+damage. Replace if necessary. Remove covers for easy access if necessary. 
+ 
+ 
+09. Remove air delivery hose(s) on the PCA outlet(s). 
+ 
+Check electric strip heaters for signs 
+of damage, and if necessary clean 
+them with water (low pressure only) 
+and a soft brush. Allow sufficient time 
+to dry. 
+ 
+Remove cover for heater wiring and 
+check for bad connections or signs of 
+damage.  
+ 
+When completed, re-install covers and 
+air delivery hose(s) in the reverse 
+order. 
+ 
+10. Switch the 50/60 Hz mains supply ON and switch the Input Breaker to the ON 
+position. 
+ 
+ 
+ 
+  
+
+
+=== PDF PAGE 95 ===
+Operation Manual – ITW GSE 3500 
+Service, Maintenance and Overhaul  
+ 
+Document No. 572.610BB Page 95 of 132 
+ 
+No. Task OK / Fail 
+11. Select Ventilation Mode / Narrow Body Aircraft and push the Start button. 
+Check the main blower for unusual noise during operation. 
+ 
+ 
+12. Check Interlock signal functionality between Hose Basket / Hose Retriever / Pit 
+and PCA in accordance with the local installation scheme. 
+ 
+ 
+13. Check Interlock signal functionality with Passenger Boarding Bridge and PCA in 
+accordance with the local installation scheme. 
+ 
+ 
+14. Check that the ambient and outlet temperatures appear correctly in the display 
+on the remote control station, observing the actual ambient conditions. 
+  
+ 
+15. Check that the outlet airflow and pressure appear correctly in the display on the 
+remote control station. For Narrow Body Aircraft, the airflow should be 
+approximately 4 550 m3/h. 
+ 
+When completed, stop the unit and allow the unit to power down. 
+ 
+ 
+16. Select Heating Mode / Narrow Body Aircraft 
+Adjust the outlet temperature for 40°C in the setup menu and push the Start 
+button. 
+ 
+Check that the heater and input power appear correctly in the display on the 
+remote control station. Verify that the ambient air is heated, by checking the air 
+adapter at the end of air delivery hose. 
+ 
+When completed, stop the unit and allow the unit to power down.  
+ 
+Check that the cabin temperature appears correctly in the display on the remote 
+control station, observing the actual ambient conditions. 
+ 
+ 
+ 
+ 
+  
+
+=== PDF PAGE 96 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 96 of 132 
+ 
+9.0 Error Diagnostics 
+ 
+ 
+Only allow qualified personnel to remove covers for troubleshooting and repair.  
+Please be aware that the DC capacitors can remain charged to a dangerous voltage up to 5 
+minutes after the mains input power has been disconnected. 
+ 
+Usually, the display text provides sufficient information to get the PCA operating again. If the display is 
+blank, please check Q9 (Circuit Breaker) and fuse F4 at the Interface Board A2. The following fuses 
+are located on the Interface Board (A2): 
+ 
+Fuse no. Applicable for Type Rated voltage Rating 
+F1  Supply Fuse ATO Blade Fuse 32 V 2 A 
+F2  Damper Fuse ATO Blade Fuse 32 V 2 A 
+F3  I/O Fuse ATO Blade Fuse 32 V 2 A 
+F4  Display Fuse ATO Blade Fuse 32 V 2 A 
+F5  Pump Fuse 1 ATO Blade Fuse 32 V 10 A 
+F6  Pump Fuse 2 ATO Blade Fuse 32 V 10 A 
+ 
+ 
+        
+ 
+Figure 9.0.1 Fuses F1-F6 (A2 Interface Board) 
+ 
+If the displayed text does not provide sufficient information to solve the problem, section 9.2 suggests 
+corrective actions to be carried out for each error code. 
+  
+
+
+=== PDF PAGE 97 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 97 of 132 
+ 
+9.1 Warning/status codes 
+If a warning code appears during operation of the PCA unit, the yellow LED “Warning” on the 
+Operator’s Interface is lit. A warning does not shut down the unit, but indicates that action needs to be 
+taken in accordance with the following tables: 
+ 
+Warning message Origin of fault Description/corrective action 
+Cooling Module X Warning VFD A11 (CM X)  Refer to Cooling Module Status om next page 
+Filter Clogged Filter Guard S3  Check filters and clean or replace, if needed 
+Condensate Pump Failure Pump Fuses F5/F6 Check pump(s) and clean or replace, if needed 
+Pre-Fuse Current Reached Current Sensor T2 Reduce PCA load, if possible. 
+Check input current and pre-fuse setting.  
+Cabin sensor too hot or defective Cabin Sensor S11 Check Cabin Sensor. Replace, if needed 
+ 
+ 
+Examples of Warning messages: 
+ 
+12:55.21                                               07-07-2015
+  Filter Clogged
+            Wide Body
+  Mode     Cabin Automatic
+  Set Point:                 24.0 °C
+PCA
+12:55.21                                               07-07-2015
+  Condensate Pump Failure
+            Wide Body
+  Mode     Cabin Automatic
+  Set Point:                 24.0 °C
+PCA
+ 
+  
+
+=== PDF PAGE 98 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 98 of 132 
+ 
+COOLING MODULES (if Cooling Module warning is present): 
+ 
+Note: In parameter view, under the relevant cooling module, check the status value and cross check 
+with the second column in the below table. 
+ 
+Warning 
+code 
+Status 
+value 
+Origin of fault Reported 
+from 
+Description/corrective action 
+0 0 No failure VFD No failure 
+1 1 IGBT ICE current too high VFD Check compressor for short circuit. 
+2 2 IGBT temperature high VFD Check VFD fan / replace VFD or fan 
+3 4 Current high, I > 110A VFD Check compressor/refrigerant charge  
+4 8 Compressor temperature high VFD Check condenser for air restriction 
+5 16 Crank Case Heater Failure VFD Check heater resistance (approx. 4 Ω) 
+6 32 Suction pressure low VFD Check for low refrigerant 
+7 64 Discharge pressure high VFD Check condenser fan/condenser 
+8 128 DC Voltage too low/high  VFD Check VFD input DC voltage 
+(must be done during operation). 
+  or   
+  Watchdog error (NXP boards)  Reinstall/update VFD software. 
+Check/replate VFD control board. 
+9 256 Compressor not starting A1 Control 
+Card 
+Frequency <10Hz.  
+Check CAN-bus, VFD and cabling. 
+10 512 Compressor not running A1 Control 
+Card 
+Frequency >10Hz, current <15A or 
+pressure-Δ <1 bar/15 psi. Check 
+current, pressure sensors and cabling. 
+11 1024 Module not active A1 Control 
+Card 
+VFD not responding. 
+Check CAN bus, VFD and cabling. 
+- 2048 Heater Outlet Temperature High VFD Check Thermostat TR2, contactor Q10 
+or heater elements. PCA will also report 
+an error code 4300. 
+- 4096 Compressor Current High VFD Compressor current is high during 
+heating mode. PCA will also report an 
+error code 4500. 
+- 8192 VFD Software Update Failed VFD Update failed. PCA will also report an 
+error code 6000. 
+- 16384 No / wrong refrigerant selected VFD Dipswitch SW3 on the VFD not set 
+correctly.Check/correct settings on 
+dipswitch SW3. 
+17 If the warning code is 17, the exact failure must be retrieved as a combination of two status values.  
+Example: Status value = 12. The origin of the failure should be found under 4 and 8 (as 4+8=12):  
+Current high, I > 110A   +   Compressor temperature high 
+
+=== PDF PAGE 99 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 99 of 132 
+ 
+9.2 Fault guidance 
+If you need to contact ITW GSE for further fault guidance, please do not forget to enter the serial 
+number of the PCA (which can be found on the rating plate) and the actual error code on the fault 
+finding formula, which can be downloaded from www.itwgse.com. 
+ 
+The following list shows the complete list of error codes, descriptions and corrective actions. The error 
+codes are organised in groups. Each group contains up to 100 numbers and the error code consists of 
+four digits. 
+ 
+xxyy = four-digit error code    
+xx  = group number  : type of error 
+yy = location number : location of error 
+ 
+Group numbers start at 00 and end at 99. 
+NB Not all 100 location numbers within a group are necessarily used. 
+ 
+Corrective actions should be carried out in the order of the steps: Start with step one. If the 
+error persists, proceed to step two, etc. Before changing any PCBs/modules, check the 
+corresponding connection and wiring. 
+ 
+Error code Error message, description and corrective actions 
+  
+0100 - 0199 LOGGING UNSUCCESSFUL 
+ Logging of detected error was interrupted due to disappearing internal supply voltage. 
+Original error code lost. 
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check/replace power supply G1 
+3. Check/replace control board A1 
+  
+0200 - 0299 CONTROL BOARD FAILURE 
+ Failure detected on control board 
+00: Watchdog Timeout 
+01: Memory Error / ID Chip Error 
+02: Wrong Software Version 
+50: Display Update Reset 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Retry software installation 
+3. Check/replace control board 
+4. Check/replace display board 
+
+=== PDF PAGE 100 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 100 of 132 
+ 
+  
+0300 - 0399 CONTROL VOLTAGE LOW 
+ Control voltage < 20 VDC 
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check/replace power supply G1 
+3. Check/replace Control Board A1 
+  
+0400 - 0499 EMERGENCY STOP ACTIVATED 
+ Only 00 is used. 
+  
+ Corrective actions: 
+1. Resolve emergency situation 
+2. Release EPO and press start to reset 
+3. Check push button, related wiring and connectors 
+4. Check/replace Interface Board A2 
+5. Check/replace Control Board A1 
+  
+0700 - 0799 CONTROL BOARD BATTERY FAILURE 
+ Only 00 is used. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check/replace back-up battery on Control Board A1 (see section 8.1). 
+3. Check/replace Control Board A1 
+ 
+0800 - 0899 REAL-TIME CLOCK NOT SET 
+ Only 00 is used. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Set current time and date 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
+=== PDF PAGE 101 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 101 of 132 
+ 
+1000 - 1099 SOFTSTART ERROR 
+ DC voltage < 400V. Error detected during power up of rectifier stage. Possible error on 
+input, softstart and/or aux. contactors or related circuitry.  
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check input voltage and input fuses F1-F3 
+3. Check 3-Phase input monitor (UL units only) 
+4. Check/replace input contactor Q2, softstart contactor Q8 and aux. contactor 
+Q12 
+5. Check/replace Interface Board A2 
+  
+1100 - 1199 DC VOLTAGE TOO LOW 
+ DC voltage < 300V – 30ms. Error detected on DC rectifier stage during operation, due 
+to low input voltage, blown fuse(s) or error on rectifier stage.  
+Only 00 is used.  
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check input voltage and input fuses F1-F3 
+3. Check 3-Phase input monitor (UL units only) 
+4. Check/replace input contactor Q2, softstart contactor Q8, aux. contactor Q12 
+5. Check/replace Interface Board A2 
+6. Check/replace Control Board A1 
+  
+1200 - 1299 DC VOLTAGE TOO HIGH 
+ 01: DC voltage > 800V – 30s 
+02: DC voltage > 850V – 2.5ms 
+High DC voltage detected, most likely due to temporary high input voltage. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check input voltage and input fuses F1-F3 
+3. Check heater section and compressors for short circuit or isolate heaters  
+(see section 9.4 for further details) 
+4. Check/replace Interface Board A2 
+5. Check/replace Control Board A1 
+ 
+ 
+ 
+ 
+ 
+  
+
+=== PDF PAGE 102 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 102 of 132 
+ 
+1500 - 1399 DC CAPACITOR SHARING ERROR 
+ DC voltage > 850V. Unbalanced DC voltage detected, most likely due to temporary 
+high input voltage. 
+Only 00 is used.  
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check input voltage and input fuses F1-F3 
+3. Check/replace Interface Board A2 
+4. Check/replace Control Board A1 
+  
+1400 - 1499 DC RIPPLE TOO HIGH 
+ DC ripple > 20V – 5s. 
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check input voltage and input fuses F1-F3 
+3. Check/replace DC Module A9 
+4. Check/replace Interface Board A2 
+5. Check/replace Control Board A1 
+  
+2000 - 2099 SMOKE DETECTOR ERROR 
+ Smoke/fumes detected in PCA, most likely smoke/fumes from intake air. Refer to 
+section 9.3 for further information. 
+Only 00 is used. 
+  
+3100 - 3199 CONDENSER FAN ERROR 
+ Error detected at the condenser fan VFD. 
+01: IGBT ICE current too high 
+02: IGBT temperature too high 
+04: Condenser fan current too high 
+  
+ Corrective actions: 
+1. Check condenser fans for damage or blocking objects 
+2. Press start to reset 
+3. Check 24VDC supply on condenser fan VFD 
+4. Check, reset or replace condenser fan contactors Q4-Q7 
+5. Check/replace condenser fan VFD 
+6. Check/replace condenser fan 
+ 
+ 
+ 
+  
+
+=== PDF PAGE 103 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 103 of 132 
+ 
+3200 - 3299 CONDENSER FAN SOFTSTART ERROR 
+ Error detected during softstart. 
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Check condenser fans for damage or blocking objects 
+2. Press start to reset 
+3. Check, reset or replace condenser fan contactors Q4-Q7 
+4. Check/replace condenser fan VFD 
+5. Check/replace condenser fan 
+  
+3300 - 3399 VFD SOFTSTART FAILURE 
+ Error detected during softstart. 
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check input voltage, input fuses F1-F3 and DC voltage  
+3. Update VFD software to latest revision 
+4. Check/replace corresponding VFD and related cabling 
+  
+3400 - 3499 MAIN BLOWER SOFTSTART ERROR 
+ Error detected during softstart. 
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check input voltage, input fuses F1-F3 and DC voltage 
+3. Update VFD software to latest revision 
+4. Check/replace Main Blower VFD and related cabling 
+5. Check/replace Main Blower 
+  
+3500 - 3599 MAIN BLOWER ERROR 
+ Error detected at the main blower VFD. 
+01: IGBT ICE current too high 
+02: IGBT temperature too high 
+04: Main blower current too high  
+08: Main blower temperature too high 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check/replace Main Blower VFD and related cabling 
+3. Check/replace Main Blower 
+  
+
+=== PDF PAGE 104 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 104 of 132 
+ 
+3600 - 3699 CANBUS ERROR 
+ CANBUS to VFD communication error detected. 
+01: CANBUS to cooling modules not running 
+02: CANBUS to main blower not running 
+04: CANBUS to condenser fans not running 
+08: Condenser fan CANBUS string not running 
+16: Main blower CANBUS string not running 
+32: VFDs are not stopped 
+Note: Error code may appear as a combination. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check/replace end termination and data cables for related VFDs 
+3. Check/replace reporting VFD for bad connection 
+4. Check/replace Interface Board A2 for bad connection 
+  
+3700 - 3799 FLOW FAILURE 
+ Output air flow signal wrong or missing. 
+01: Main blower not starting (low current, airflow and pressure)  
+02: Flow limited for more than 60 s. due to pressure limit reached (heater mode only) 
+03: Flow is low for more than 60 s. due to other reason (heater mode only) 
+  
+ Corrective actions: 
+1. Check outlet(s) and hose(s) for restrictions 
+2. Press start to reset 
+3. Check/replace airflow sensor S4 and pressure sensor S5 
+  
+3800 - 3899 OUTPUT TEMPERATURE FAILURE 
+ Output air temperature exceeded 80°C / 176°F. 
+Only 00 is used.  
+  
+ Corrective actions: 
+1. Let the heater cool down and press start to reset 
+2. Check/compare input and heater power in the display for malfunction 
+3. Check/replace temperature sensors S2a-S2d for failure (see section 9.5) 
+4. Check/replace DC module A9 for shorted IGBT(s) 
+5. Check/replace heater section A10 for shortage 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
+=== PDF PAGE 105 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 105 of 132 
+ 
+3900 - 3999 RECTIFIER TEMP. TOO HIGH 
+ Rectifier heat sink temperature is too high. 
+Only 00 is used.  
+  
+ Corrective actions: 
+1. Let the heat sink cool down and press start to reset 
+2. Check/replace ATO fuse F3 
+3. Check/replace thermostat TR1 
+4. Check/replace DC rectifier fans M3-M4 (ON when PCA is activated) 
+  
+4300 - 4300 HEATER OUTLET TEMP. TOO HIGH 
+ Heater temperature is too high. 
+Only 00 is used.  
+  
+ Corrective actions: 
+1. Check outlet(s) and hose(s) for restrictions 
+2. Let the heater cool down and press start to reset 
+3. Check/replace thermostat TR2 
+4. Check/replace temperature sensor S10 for failure (see section 9.5) 
+5. Check/replace temperature sensors S2a-S2d for failure (see section 9.5) 
+6. Check/replace temperature sensors S1 for failure (see section 9.5) 
+7. Check/compare input and heater power in the display for malfunction 
+8. Check heater elements for shortage 
+ 
+4310 - 4310 HEATER TEMPERATURE TOO HIGH SAFETY SHUTDOWN 
+ Heater temperature thermostat was triggered, due to high temperature or failure on 
+thermostat or related electronics. (Only on UL units) 
+Only 10 is used.  
+  
+ Corrective actions: 
+1. Let the heater cool down and press start to reset 
+2. Reset thermostat TR3 (UL units only) 
+3. Check outlet(s) and hose(s) for restrictions 
+4. Check/replace temperature sensor S10 for failure (see section 9.5) 
+5. Check/compare input and heater power in the display for malfunction 
+6. Check heater elements for shortage 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== PDF PAGE 106 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 106 of 132 
+ 
+5000 - 5099 DAMPER FAILURE 
+ Missing/wrong signal from damper limit switches. 
+00: Damper Outlet 1 limit switch feedback missing. 
+10: Damper Outlet 2 limit switch feedback missing. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check corresponding damper for full, unrestricted movement 
+3. Check, adjust or replace corresponding limit switch 
+4. Check/replace corresponding damper motor 
+ 
+5500 - 5599 EARTH LEAKAGE ERROR 
+ Earth leakage exceeds the pre-set limits, due to earth shortage in either the heater or 
+in a cooling module. 
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Press reset button on RCM relay A5 (see section 9.4 for further details). 
+2. Press start to reset 
+3. If error persists, see section 9.4 for further details. 
+ 
+6000 - 6599 VFD SOFTWARE UPDATE FAILED 
+ Update of compressor or main blower VFD failed. 
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Check USB for compatibility and retry update process: 
+1) Insert USB in VFD 
+2) Switch input voltage OFF, wait 5 secs. and switch back ON. 
+3) The blue LED on the VFD will turn off. The update process has started. 
+4) When the blue LED begins to blink, the update process is complete. 
+5) Remove USB from VFD. 
+6) Switch input voltage OFF, wait 5 secs. and switch back ON. 
+7) The blue LED will be constantly lit. 
+ 
+Note: CANBUS errors may occur during the process. Please complete the 
+update process and check if the CANBUS errors re-appears. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== PDF PAGE 107 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 107 of 132 
+ 
+7000 - 7599 PHASE MONITOR ERROR 
+ Loss of one or more phases on the 480V input or voltage too low. (Only on UL units) 
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Press start to reset 
+2. Check input voltage and input fuses F1-F3 
+3. Check 3-Phase Monitor relay outputs 
+4. Check terminals X9:7-8 (I14) for correct feedback 
+ 
+8000 - 8599 RDS ERROR 
+ Safety shutdown of the PCA, due to a refrigerant leak detected (only for R454B) 
+Main blower VFD reports a status value of 32768 in the display. 
+Only 00 is used. 
+  
+ Corrective actions: 
+1. Allow the PCA to complete the shutdown procedure, where it continues to 
+operate the main blower for 8 min. and then ramps down. 
+2. Press start to reset 
+3. Check cabling on the Main blower VFD A8 
+4. Check cabling on the RDS Sensor S18 
+5. Switch off the power, according to the lockout/tagout procedure in section 8.1. 
+Check each cooling module for refrigerant leak, observing the necessary safety 
+precautions. 
+ 
+  
+
+=== PDF PAGE 108 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 108 of 132 
+ 
+9.3 Smoke detector 
+The PCA is equipped with an optical type smoke detector, which monitors the air that is delivered into 
+the aircraft. 
+ 
+The status of the smoke detector can be read via the LED located on the front 
+lower part of the smoke detector, marked with the blue circle in fig. 9.3.1: 
+ 
+Standby Mode:  Green LED flashes every 5 sec. 
+Alarm Mode:  Red LED constantly lit. 
+ 
+Smoke detector reset procedure 
+If smoke is detected, the smoke detector will pass into Alarm Mode and 
+activate an alarm relay signal to the control module. The PCA will immediately 
+shut down and show an error on the display.  
+ 
+In the event of an alarm, please use one of the following methods: 
+ 
+Recommended method: The smoke detector can be reset by briefly 
+disconnecting the input power to the PCA. 
+ 
+Alternative method: The smoke detector can be reset by pressing and 
+releasing the Test/Reset push button, marked with a red circle in fig. 9.3.1 or 
+briefly short-circuiting wire terminals X12:7 and X12:8.   Thereafter, the PCA 
+can be reset on the PCA remote control panel.                                  
+ 
+ 
+Figure 9.3.1: Smoke detector 
+ 
+ 
+• When inspecting/testing the smoke detector, keep away from electrical parts. 
+• Touching live electrical parts can cause fatal shocks and severe burns. 
+• Only allow qualified people to remove covers for maintenance or troubleshooting. 
+ 
+Testing the smoke detector 
+The smoke detector can be tested by pressing and holding (for at least 2 seconds) the Test/Reset 
+push button, marked with a red circle in fig. 9.3.1 or briefly short-circuiting wire terminals X12:6 and 
+X12:7. After testing, follow the above-mentioned procedure to reset the smoke detector. 
+ 
+Note: The smoke detector cannot be reset using the PCA remote control panel’s ‘Reset’ push 
+button alone! 
+  
+
+
+=== PDF PAGE 109 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 109 of 132 
+ 
+9.4 Residual current monitoring system 
+The ITW GSE 3500 is equipped with a residual current monitoring system. If residual current is 
+detected, the relay will pass into Fault status and activate a signal to the control section. The PCA will 
+immediately shut down and show an error in the display.  
+ 
+ 
+ 
+Legend: 
+1) Sensitivity setting, IΔ(A): 10 A (IΔn=1A & dipswitch no. 4: x10) 
+2) Delay time setting, Δt (s): 1 s (Δt=0.1 & dipswitch no. 2: x10) 
+3) TEST push button 
+4) RESET push button 
+5) Green LED: RCM is powered on 
+6) Red LED: Fault status 
+  
+ Minidip settings: see figure 9.4.1 
+ 
+Figure 9.4.1:  RCM relay – front view 
+ 
+Testing the RCM relay 
+The RCM relay can be tested by pressing the TEST push button until the red “Fault” LED is ON. Verify 
+that the PCA shows the corresponding error on the display. After the test, follow the procedure shown 
+below to reset the RCM relay. 
+ 
+RCM relay reset procedure 
+In the event of an error, please use one of the following methods: 
+ 
+Recommended method: The RCM relay can be reset by briefly disconnecting the input power to the 
+PCA. If the error persists, see the next page for troubleshooting guidance. 
+ 
+Alternative method: The RCM relay can be reset by pressing and releasing the RESET push button. 
+Thereafter, the PCA must be reset on the PCA remote control panel. If the error persists, see the next 
+page for troubleshooting guidance. 
+ 
+ 
+• When inspecting/testing the RCM relay, keep away from electrical parts. 
+• Touching live electrical parts can cause fatal shocks and severe burns. 
+• Only allow qualified people to remove/open covers for maintenance or troubleshooting 
+ 
+Note: The RCM relay cannot be reset using the PCA remote control panel alone! 
+ 
+ 
+ 
+
+
+=== PDF PAGE 110 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 110 of 132 
+ 
+RCM troubleshooting guidance 
+The RCM system consists of two components:  
+• Current transformer, T7, measuring on the DC module input cables  
+• RCM relay, A5, situated below the control section and connected to the interface board, A2, on 
+terminals X6, 9-10 (see separate diagram for further details) 
+ 
+If the PCA is in standby mode and there is a persistent error, it is likely that there is a problem with the 
+wiring, relay settings, relay and/or control module. It would therefore be relevant to check the relay 
+settings, wiring, relay and/or control section. 
+ 
+If the PCA trips with an error during operation, it is likely due to a residual current in either a cooling 
+module or in the heater section. 
+ 
+To check a cooling module, disconnect the compressor cables, U-V-W, on the VFD and test the 
+compressor with a megohmmeter between the phases and ground (max. voltage: 1000 VDC). A 
+correct reading should be >10 MΩ.  
+ 
+Note: Observe correct phasing during re-connection of the compressor 
+ 
+To check the heater section, disconnect the “-” input cable from the common minus busbar, marked 
+with a red circle below on the heater section. Test the heater section with a megohmmeter between the 
+“-“ cables on the secondary side of common minus busbar (marked with blue circle) and ground (max. 
+voltage: 1000 VDC). A correct reading should be >10 MΩ. Disconnect individual cables and repeat, if 
+further troubleshooting is needed. Re-connect all cables after completed troubleshooting. 
+ 
+ 
+ 
+Figure 9.4.1:  Disconnection of heater section (shown for a PCA210) 
+  
+
+
+=== PDF PAGE 111 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 111 of 132 
+ 
+9.5 Temperature vs resistance tables 
+The ITW GSE 3500 is equipped with multiple Pt100 temperature sensors. To verify that a sensor is 
+functional, check the sensor with a ohmmeter and compare the result with the temperature of the 
+sensor, using the table(s) below. 
+ 
+Example: If the sensor is 0°C/32°F, the sensor resistance must be approx. 100.0 Ω (±0.5 Ω) 
+ 
+Please note that the outlet temperature feedback consists of four Pt100 sensors in a bridge 
+connection. If there is suspicion of a defective sensor, disconnect the sensors and test each of the 
+sensors separately. 
+ 
+Table 9.5.2 Pt100 resistances vs Fahrenheit 
+  
+Celsius [°C] 0 1 2 3 4 5 6 7 8 9 
+0 100.0 100.4 100.8 101.2 101.5 101.9 102.3 102.7 103.1 103.5 
+10 103.9 104.2 104.6 105.0 105.4 105.8 106.2 106.5 106.9 107.3 
+20 107.7 108.1 108.5 108.9 109.2 109.6 110.0 110.4 110.8 111.2 
+30 111.6 111.9 112.3 112.7 113.1 113.5 113.9 114.2 114.6 115.0 
+40 115.4 115.8 116.2 116.6 116.9 117.3 117.7 118.1 118.5 118.9 
+50 119.3 119.6 120.0 120.4 120.8 121.2 121.6 122.0 122.3 122.7 
+60 123.1 123.5 123.9 124.3 124.6 125.0 125.4 125.8 126.2 126.6 
+70 127.0 127.3 127.7 128.1 128.5 128.9 129.3 129.7 150.0 150.4 
+80 150.8 131.2 131.6 132.0 132.3 132.7 133.1 133.5 133.9 134.3 
+Table 9.5.1 Pt100 resistances vs Celsius 
+            
+Fahrenheit [°F] 0 2 4 6 8 10 12 14 16 18 
+30 99.6 100.0 100.4 100.9 101.3 101.7 102.1 102.6 103.0 103.4 
+50 103.9 104.3 104.7 105.1 105.6 106.0 106.4 106.9 107.3 107.7 
+70 108.1 108.6 109.0 109.4 109.8 110.3 110.7 111.1 111.6 112.0 
+90 112.4 112.8 113.3 113.7 114.1 114.6 115.0 115.4 115.8 116.3 
+110 116.7 117.1 117.6 118.0 118.4 118.8 119.3 119.7 120.1 120.6 
+150 121.0 121.4 121.8 122.3 122.7 123.1 123.6 124.0 124.4 124.8 
+150 125.3 125.7 126.1 126.6 127.0 127.4 127.8 128.3 128.7 129.1 
+170 129.5 150.0 150.4 150.8 131.3 131.7 132.1 132.5 133.0 133.4 
+
+=== PDF PAGE 112 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 112 of 132 
+ 
+9.6 Refrigerant temperature vs pressure 
+The refrigerant temperature and pressure relationship is stated in the below table. For values not 
+shown in this table, use a refrigerant slider/software or equivalent. Note the actual refrigerant type on 
+the cooling module labelling, before looking up the temperature and pressure. Available refrigerant 
+types may vary depending on location of installation. 
+ 
+Example: If the temperature is 20°C / 68°F, the pressure of R410A should be approx. 195 PSIG/13.4 
+bar(g) and pressure of R454B should be approx. 177 PSIG/12.2 Bar(g). 
+ 
+Temperature R410A Pressure R454B Pressure 
+[°C] [°F] [PSIG] [barg] [PSIG] [barg] 
+-20 -4 43.2 3.0 38.1 2.6 
+-15 5 55.0 3.8 48.9 3.4 
+-10 14 68.3 4.7 61.0 4.2 
+-5 23 83.7 5.8 75.1 5.2 
+0 32 101.1 7.0 91.1 6.3 
+5 41 120.6 8.3 109.0 7.5 
+10 50 142.5 9.8 129.3 8.9 
+15 59 167.2 11.5 152.0 10.5 
+20 68 194.6 13.4 177.2 12.2 
+25 77 224.9 15.5 205.2 14.2 
+30 86 258.4 17.8 236.1 16.3 
+35 95 295.4 20.4 270.3 18.6 
+40 104 336.0 23.2 308.0 21.2 
+45 113 380.6 26.3 349.3 24.1 
+50 122 429.5 29.6 394.7 27.2 
+55 131 482.9 33.3 444.3 30.6 
+60 140 541.4 37.3 498.7 34.4 
+65 149 605.4 41.8 558.3 38.5 
+Table 9.6.1: Temperature/pressure relationship 
+ 
+It is recommended to use smartphone refrigerant software from reputable companies. Examples are 
+shown below.  
+ 
+ 
+    
+Danfoss Ref. Tools Daikin Refr. Bitzer Refrigerant Ruler Honeywell PT Chart 
+  
+
+
+=== PDF PAGE 113 ===
+Operation Manual – ITW GSE 3500 
+Error Diagnostics 
+ 
+Document No. 572.610BB Page 113 of 132 
+ 
+9.7 DC power supply adjustment 
+If the DC control voltage needs to be adjusted, it can be done on the DC power supply, G1, which is 
+situated on the electrical panel. On a small adjustment potentiometer on the front side, the voltage can 
+be adjusted (marked with a red circle on the below variants). The factory setting is 25V in standby 
+mode. Verify that the green LED (DC OK/Output OK) is ON and, if available, the red LED 
+(Overload/Output Low) is OFF. 
+ 
+PCA 150 variants 
+  
+  
+ 
+Figure 9.7.1 PULS or ABB power supplies in a PCA 150 
+ 
+PCA 210 variants 
+   
+ 
+Figure 9.7.2 PULS or Mean Well power supplies in a PCA 210
+
+
+=== PDF PAGE 114 ===
+Operation Manual – ITW GSE 3500 
+Illustrated Parts List 
+Document No. 572.610BB Page 114 of 132 
+ 
+10.0 Illustrated Parts List 
+Cooling module no. x 
+PCA type Slot A Slot B Slot C Slot D 
+AEF-150/2.. Slot not installed No.1 No.2 
+AEF-210/3.. Empty No.1 No.2 No.3 
+AEF-210/4 No.1 No.2 No.3 No.4 
+ 
+ 
+ 
+ 
+ 
+ 
+ Figure 10.1 Complete PCA (four-module, dual outlet version shown)  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 10.1 Complete PCA (four-module, dual outlet version shown) 
+  
+AIR INTAKE 
+AIR OUTLET(S) 
+AIR OUTLET(S) 
+S18 RDS sensor 
+Module slot B 
+Electrical panel 
+T5 + L1 + T1 magnetics 
+Module slot D 
+Module slot C 
+Module slot A 
+M2 main blower 
+Air filter 
+M5 – M8 condensate 
+pumps 
+S6 smoke detector 
+S3 filter guard 
+M9 damper motor 
+S5 pressure 
+transmitter 
+S2x outlet 
+temperature 
+sensors 
+S4 airflow sensor 
+Heater section 
+S1 ambient temperature 
+sensor 
+TR3 heater thermostat 
+S10 heater 
+temperature sensor 
+
+=== PDF PAGE 115 ===
+Operation Manual – ITW GSE 3500 
+Illustrated Parts List 
+Document No. 572.610BB Page 115 of 132 
+ 
+ 
+ 
+ 
+ 
+Figure 10.2 Electronic zone (variations may occur) 
+  
+S4 Δ-pressure 
+sensor for airflow 
+feedback 
+Q8 softstart & busbar 
+for DC distribution 
+RFI board 
+Input power 
+terminals 
+PE terminal 
+G1 24VDC supply 
+A9 DC module 
+T2 input current 
+transformer 
+Q1 input breaker 
+F1-F3 input fuses 
+Q2 input contactor 
+Q4 – Q7 condenser 
+fan contactors 
+A2 interface 
+module 
+A1 control module 
+Q9 automatic 
+fuse 
+Q12 aux. 
+contactor 
+X2-X12 terminal 
+rows 
+
+=== PDF PAGE 116 ===
+Operation Manual – ITW GSE 3500 
+Illustrated Parts List 
+Document No. 572.610BB Page 116 of 132 
+ 
+ 
+ 
+ 
+Figure 10.3 Cooling Module 
+ 
+ 
+ 
+ 
+ 
+Figure 10.4 Main blower / condensate pump assembly (variations may occur) 
+  
+Evaporator 
+Expansion valve 
+Sight glass 
+VFD 
+Compressor 
+Discharge temp. 
+Suction temp. / pressure sensors Low 
+pressure switch / service valve 
+Condenser fan 
+Discharge pressure sensor / 
+High pressure switch / service valve 
+Crank case heater 
+Drier filter 
+Condensate temp. 
+M2 main blower 
+M5 – M8 condensate pumps 
+A8 VFD f. main blower 
+
+=== PDF PAGE 117 ===
+Operation Manual – ITW GSE 3500 
+Illustrated Parts List 
+Document No. 572.610BB Page 117 of 132 
+ 
+ 
+ 
+ 
+Figure 10.5 Remote Control Station (variations may occur) 
+ 
+ 
+ 
+ 
+Figure 10.6 Cabin Sensor (optional) 
+  
+S1 emergency button 
+(CE units only) 
+A4 operator keyboard  
+A3 display module 
+6 m / 20’ of spiral cable 
+Junction box 
+ Cabin sensor head 
+
+=== PDF PAGE 118 ===
+Operation Manual – ITW GSE 3500 
+Illustrated Parts List 
+Document No. 572.610BB Page 118 of 132 
+ 
+ 
+10.1 Placement of labels 
+ 
+Doors – electrical panel 
+ 
+45 mm
+90 mm
+WARNING!
+RISK OF ELECTRIC SHOCK .
+CAN CAUSE INJURY OR DEATH . 
+DISCONNECT ALL REMOTE ELECTRIC 
+POWER SUPPLIES BEFORE 
+SERVICING.
+45 mm
+90 mm
+AVERTISSEMENT!
+RISQUE DE CHOCS ÉLECTRIQUES . 
+PEUT CAUSER DES BLESSURES ET 
+MÊNE ENTRAÎNER LA MORT . COUPER 
+LES SOURCES D ALIMENTATION À 
+DISTANCE AVANT LE DÉPANNAGE .
+45 mm
+90 mm
+!ATENCION!
+RIESGO DE DESCARGA ELÉCTRICA. 
+PUEDE CAUSAR GRAVES LESIONES 
+Y LA MUERTE. DESCONECTE TODAS 
+LAS FUENTES DE ENERGÍA ELÉC-
+TRICA ANTES DE DAR SERVICIO.
+ 
+ 
+Cooling Module covers (left corner) 
+ 
+45 mm
+90 mm
+WARNING!
+Please read the manual carefully before installation , 
+operation and maintenance .
+ATTENTION!
+Etudier soigneusement la notice avant installation , 
+operation et maintenance .
+!ATENCION!
+Lea atentamente el manual antes de instalar , operar o 
+realizar tareas de mantenimiento .
+  
+
+=== PDF PAGE 119 ===
+Operation Manual – ITW GSE 3500 
+Illustrated Parts List 
+Document No. 572.610BB Page 119 of 132 
+ 
+ 
+Electrical Panel – upper part 
+ 
+WARNING!
+Capacitors remain charged to dange-
+rous voltages. Discharge time: 5 min.
+ATTENTION!
+Condensateurs sous tension dange-
+reuse. Temps de decharge: 5 min.
+!ATENCION!
+Los condensadores permanecen 
+cargados con tensiones peligrosas.
+Tiempo de descarga 5 min.
+60 mm
+90 mm
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                         F5     F6
+10 A
+10 A
+25.4 mm
+76.2 mm
+Use only:
+Littlefuse®   
+ATO Blade Fuse
+10 A/32 VDC
+ 
+ 
+                                                  F10   F11 20 A
+20 A
+25.4 mm
+76.2 mm
+Use only:
+Bussmann®   
+PV-20A10F
+20 A/1000 VDC
+ 
+               F12   F13   F14   F15
+20 A
+20 A
+25.4 mm
+76.2 mm
+20 A
+20 A
+ 
+  
+93 mm
+81 mm
+VFD Labels:  
+Refer to VFD label section 
+PCA 150: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PCA 210: 
+
+
+=== PDF PAGE 120 ===
+Operation Manual – ITW GSE 3500 
+Illustrated Parts List 
+Document No. 572.610BB Page 120 of 132 
+ 
+ 
+Electrical Panel – lower part 
+ 
+WARNING!
+High leakage current. Protect by 
+grounding before use.
+ATTENTION!
+Courant de fuite eleve. Mise a la masse 
+avant l utilisation pour protection.
+!ATENCION!
+Corriente de fuga elevada. Proteger 
+mediante conexión a tierra antes de 
+usar.
+60 mm
+90 mm
+WARNING!
+Please read the manual carefully before 
+installation, operation and maintenance.
+ATTENTION!
+Etudier soigneusement la notice avant 
+installation, operation et maintenance.
+!ATENCION!
+Lea atentamente el manual antes de 
+instalar, operar o realizar tareas de 
+mantenimiento.
+60 mm
+90 mm
+  
+WARNING!
+High leakage current. Protect by 
+grounding before use.
+ATTENTION!
+Courant de fuite eleve. Mise a la masse 
+avant l utilisation pour protection.
+!ATENCION!
+Corriente de fuga elevada. Proteger 
+mediante conexión a tierra antes de 
+usar.
+60 mm
+90 mm
+WARNING!
+Please read the manual carefully before 
+installation, operation and maintenance.
+ATTENTION!
+Etudier soigneusement la notice avant 
+installation, operation et maintenance.
+!ATENCION!
+Lea atentamente el manual antes de 
+instalar, operar o realizar tareas de 
+mantenimiento.
+60 mm
+90 mm
+ 
+ 
+60 mm
+90 mm
+WARNING!
+Use suitable wire rated 85°C.
+ATTENTION!
+Utilisez du câbel appropré, classé au 
+minimum à 85°C.
+!ATENCION!
+Utilice un cable adecuado.
+Temperatura nominal 85°C minimo.
+ 
+ 
+ 
+ 
+ 
+ 
+                                       F4     F3     F2     F1
+2 A
+2 A
+2 A
+2 A
+25.4 mm
+76.2 mm
+Use only:
+Littlefuse®   
+ATO Blade fuse
+2 A/32 VDC
+ 
+ 
+ 
+  
+93 mm
+81 mm
+
+=== PDF PAGE 121 ===
+Operation Manual – ITW GSE 3500 
+Illustrated Parts List 
+Document No. 572.610BB Page 121 of 132 
+ 
+WARNING!
+Capacitors remain charged to dange -
+rous voltages . Discharge time : 5 min.
+ATTENTION!
+Condensateurs sous tension dange -
+reuse. Temps de decharge : 5 min.
+!ATENCION!
+Los condensadores permanecen 
+cargados con tensiones peligrosas .
+Tiempo de descarga 5 min.
+60 mm
+90 mm
+ 
+VFDs (Compressors, Main Blower and Condenser Fans) 
+ 
+Under the front cover: 
+93 mm
+81 mm
+ 
+ 
+ 
+ 
+WARNING!
+RISK OF ELECTRIC SHOCK .
+CAN CAUSE INJURY OR DEATH . 
+DISCONNECT ALL REMOTE ELECTRIC 
+POWER SUPPLIES BEFORE 
+SERVICING.
+60 mm
+90 mm
+AVERTISSEMENT!
+RISQUE DE CHOCS ÉLECTRIQUES . 
+PEUT CAUSER DES BLESSURES ET 
+MÊNE ENTRAÎNER LA MORT . COUPER 
+LES SOURCES D ALIMENTATION À 
+DISTANCE AVANT LE DÉPANNAGE .
+60 mm
+90 mm
+!ATENCION!
+RIESGO DE DESCARGA ELÉCTRICA. 
+PUEDE CAUSAR GRAVES LESIONES 
+Y LA MUERTE. DESCONECTE TODAS 
+LAS FUENTES DE ENERGÍA ELÉC-
+TRICA ANTES DE DAR SERVICIO.
+60 mm
+90 mm
+ Figure 10.1.2 VFD labels (languages may vary) 
+ 
+  
+
+=== PDF PAGE 122 ===
+Operation Manual – ITW GSE 3500 
+Illustrated Parts List 
+Document No. 572.610BB Page 122 of 132 
+ 
+ 
+Cooling Modules 
+ 
+46 mm
+41 mm
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+On each side and in module trays (not shown): 
+ 
+IMPORTANT!
+SECURE MODULE IN
+DRAWN OUT POSITION.
+SÉCURISEZ LE MODULE
+LORS DE SON ENLÉVEMENT.
+ASEGURAR MODULO EN
+POSICIÒN EXTRAÍDA.
+60 mm
+90 mm
+      
+IMPORTANT!
+SECURE MODULE IN
+DRAWN OUT POSITION.
+SÉCURISEZ LE MODULE
+LORS DE SON ENLÉVEMENT.
+ASEGURAR MODULO EN
+POSICIÒN EXTRAÍDA.
+60 mm
+90 mm   
+
+=== PDF PAGE 123 ===
+Operation Manual – ITW GSE 3500 
+Options 
+ 
+Document No. 572.610BB Page 123 of 132 
+ 
+11.0 Options 
+11.1 Options list 
+The following standard options are available (for North/South America, use AP numbers where 
+available): 
+  
+International N/S America Description 
+572 810  AP-572 810 Cabin Sensor 
+572 813  AP-572 813 Extended Cable for Remote Box 
+572 825  AP-572 825 RS485 Interface 
+572 840  AP-572 840 Intelligent Power Management – PCA 150 + 1 GPU 
+572 841  AP-572 841 Intelligent Power Management – PCA 210 + 1 GPU 
+572 842 AP-572 842 Intelligent Power Management – PCA 210 + 2 GPU 
+572 845 AP-572 845 Remote Control Box (with BMS) 
+572 851 AP-572 851 18” Single Outlet (PCA 210 only) 
+572 852 AP-572 852 14” Single Outlet (PCA 210 only) 
+572 853 AP-572 853 Apron Mounting (PCA 210) 
+572 854 AP-572 854 Apron Mounting (PCA 150) 
+572 864 AP-572 864 Module Grille Covers (PCA210) 
+572 865 AP-572 865 Module Grille Covers (PCA150) 
+572 880  Power Share – Bridge – CE (32 A / 63 A / 125 A) 
+572 881  Power Share – Apron – CE (32 A / 63 A / 125 A) 
+ AP-572 882 Power Share – Bridge – UL (60 A / 150 A) 
+ AP-572 883 Power Share – Apron – UL (60 A / 150 A) 
+ AP-572 884 Power Share – Bridge – UL (150 A) 
+ AP-572 885 Power Share – Apron – UL (150 A) 
+ AP-572 886 Power Share – Bridge – UL (60 A) 
+ AP-572 887 Power Share – Apron – UL (60 A) 
+578 816  AP-578 816 ITW GSE Service Tool 
+   
+ 
+ 
+See following pages for further description.  
+
+=== PDF PAGE 124 ===
+Operation Manual – ITW GSE 3500 
+Options 
+ 
+Document No. 572.610BB Page 124 of 132 
+ 
+572 810 / AP-572 810  Cabin Sensor 
+For automatic regulation of the cabin temperature, a cabin sensor can be used. The regulation is done 
+by setting the cabin temperature set points in the setup menu. Hereafter, the PCA regulates the PCA’s 
+output air temperature to reach the pre-set cabin temperature. 
+ 
+Refer to section 7.4 for further details regarding automatic modes. 
+ 
+Sensor temperature range: 0-50°C/32-122°F. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+572 813 / AP-572 813 Extended Cable for Remote Box 
+The remote control box is normally supplied with a 30 m / 100’ data cable. For installations where the 
+remote control box is installed further away from the PCA, a 90 m / 300’ data cable can be supplied. 
+ 
+ 
+572 825 / AP-572 825  RS485 Interface 
+As standard, the ITW GSE 3500 PCA units are supplied with connections 
+for TCP/IP and RS232. The RS485 Interface option provides an isolated 
+RS485 connection and allows for multi-point connection.  
+  
+
+
+=== PDF PAGE 125 ===
+Operation Manual – ITW GSE 3500 
+Options 
+ 
+Document No. 572.610BB Page 125 of 132 
+ 
+572 840 Intelligent Power Management – PCA 150 + 1 GPU 
+With an Intelligent Power Management-enabled PCA, it is possible to simplify the complete installation, 
+achieve savings on infrastructure and use less space in the electrical room. 
+The GPU(s) input cable is connected to a circuit breaker in the PCA’s electrical panel instead of the 
+electrical room, and the PCA will then monitor the total power consumption of the PCA and GPU(s). If 
+the total current exceeds a pre-set limit, the GPU(s) will be given priority to continue operation, 
+whereas the PCA will adjust its own consumption to keep the total current below the limit. In the event 
+of a 400 Hz peak load, the result is a minor drop in the PCA’s cooling for a short moment until there is 
+available power again for the PCA to regulate back to normal operation. 
+ 
+The option includes: 
+• One 3-phase 150A circuit breaker for a GPU 
+• Transparent safety cover inside the electrical panel 
+• Integrated current monitoring capability and fully automatic SW-based PCA capacity regulation 
+ 
+Not included: 
+• Power cables to the PCA and between the PCA and GPU 
+ 
+Please note that the maximum overcurrent protection is 315 A. Consult your ITW GSE sales contact 
+for further advice regarding PCA and GPU consumption. 
+ 
+               
+Illustration of the circuit breaker and transparent cover Electrical diagram 
+  
+
+
+=== PDF PAGE 126 ===
+Operation Manual – ITW GSE 3500 
+Options 
+ 
+Document No. 572.610BB Page 126 of 132 
+ 
+572 841 Intelligent Power Management – PCA 210 + 1 GPU 
+See description under 572840. 
+ 
+The option includes: 
+• One 3-phase 150A circuit breaker for a GPU 
+• Transparent safety cover inside the electrical panel 
+• Integrated current monitoring capability and fully automatic SW-based PCA capacity regulation 
+ 
+Not included: 
+• Power cables to the PCA and between the PCA and GPU 
+ 
+Please note that the maximum overcurrent protection is 500 A. Consult your ITW GSE sales contact 
+for further advice regarding PCA and GPU consumption. 
+ 
+ 
+572 842 Intelligent Power Management – PCA 210 + 2 GPU 
+See description under 572840. 
+ 
+The option includes: 
+• Two 3-phase 150A circuit breakers for two GPU(s) 
+• Transparent safety cover inside the electrical panel 
+• Integrated current monitoring capability and fully automatic SW-based PCA capacity regulation 
+ 
+Not included: 
+• Power cables to the PCA and between the PCA and GPU 
+ 
+Please note that the maximum overcurrent protection is 500 A. Consult your ITW GSE sales contact 
+for further advice regarding PCA and GPU consumption. 
+ 
+            
+Illustration of the circuit breaker and transparent cover.  Electrical diagram 
+  
+
+
+=== PDF PAGE 127 ===
+Operation Manual – ITW GSE 3500 
+Options 
+ 
+Document No. 572.610BB Page 127 of 132 
+ 
+572 845 / AP-572 845 Remote Control Box (with BMS) 
+The Remote Control Box is used for selection of aircraft, operating mode, start, stop, reset, coil in/out 
+of PCA hoses (requires additional interface wiring) and monitoring purposes in the LCD display. It also 
+includes blackbox, powerlog, settings menu and other features. 
+ 
+ 
+ 
+572 851 / AP-572 851 18” Single Outlet (PCA  10 only) 
+As standard, the PCA 210 is delivered with two 14” outlets. For installations where there is a need for a 
+single 18” outlet, this option includes the mechanical solution. 
+ 
+572 852 / AP-572 852 14” Single Outlet (PCA  10 only) 
+As standard, the PCA 210 is delivered with two 14” outlets. For installations where there is a need for a 
+single 14” outlet, this option includes the mechanical solution. 
+ 
+  
+
+
+=== PDF PAGE 128 ===
+Operation Manual – ITW GSE 3500 
+Options 
+ 
+Document No. 572.610BB Page 128 of 132 
+ 
+572 853 / AP-572 853 Apron Mounting (PCA 210) 
+See description in next section. 
+ 
+572 854 / AP-572 854 Apron Mounting (PCA 150) 
+For easy and safe installation of the PCA directly on the apron, a set of feet is available (dimensions 
+shown in millimetres. 
+ 
+            
+ 
+572 864 / AP-572 864 Module Grill Covers (PCA210) 
+The PCA is standard equipped with transverse upper and lower brackets to lock the cooling module. 
+With module grill covers, the esthetical appearance will be similar to that of the 3400 series PCA. Each 
+cooling module will be equipped with grill cover in front of the condenser. 
+ 
+572 865 / AP-572 865 Module Grill Covers (PCA150) 
+The PCA is standard equipped with transverse upper and lower brackets to lock the cooling module. 
+With module grill covers, the esthetical appearance will be similar to that of the 3400 series PCA. Each 
+cooling module will be equipped with grill cover in front of the condenser. 
+  
+
+
+=== PDF PAGE 129 ===
+Operation Manual – ITW GSE 3500 
+Options 
+ 
+Document No. 572.610BB Page 129 of 132 
+ 
+Power Share – available in following configurations: 
+Charge your eGPU or other AC units with excess power from your 3500 PCA – without having to 
+upgrade gate infrastructure. Always prioritizes the needs of your PCA - supply to other equipment is 
+toggled automatically when power is available. 
+ 
+Note: 
+• Only one receptacle can be used at the time. 
+• No neutral is present in the receptacles. 
+ 
+572880  Bridge (Mennekes outlet - 32 A, 63 A, 125 A) 
+ 
+572881  Apron (Mennekes outlet - 32 A, 63 A, 125 A) 
+ 
+AP-572882  Bridge (Meltric outlet - 60 A, 150 A) 
+ 
+AP-572883  Apron (Meltric outlet - 60 A, 150 A) 
+ 
+AP-572884  Bridge (Meltric outlet - 150 A) 
+ 
+AP-572885  Apron (Meltric outlet - 150 A) 
+ 
+AP-572886  Bridge (Meltric outlet - 60 A) 
+ 
+AP-572887  Apron (Meltric outlet - 60 A) 
+  
+
+=== PDF PAGE 130 ===
+Operation Manual – ITW GSE 3500 
+Options 
+ 
+Document No. 572.610BB Page 130 of 132 
+ 
+CE version layout: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Example: Bridge Apron 
+Layout Drawing: (178881) (178882) 
+ 
+ 
+UL version layout: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Example: Bridge Apron 
+Layout Drawing: (178884) (178885) 
+ 
+  
+
+
+=== PDF PAGE 131 ===
+Operation Manual – ITW GSE 3500 
+Options 
+ 
+Document No. 572.610BB Page 131 of 132 
+ 
+578 816 / AP-578 816 ITW GSE Service Tool 
+In a standard PCA, error and power logs as well as real-time readings are available via the display 
+located on the Remote Control Station. With the service tool, it possible to download the error and 
+power logs to a PC or laptop and furthermore it is possible to view the real-time readings on the 
+monitor. 
+ 
+The tool includes software on a USB stick for installation on a PC or laptop (PC/laptop is not included). 
+A LAN connection to the TCP/IP port on the Control Board A1 is required; alternatively, a log file 
+downloaded from the display can be imported and viewed in the service tool. 
+ 
+ 
+ 
+Language: English 
+ 
+Requirement: Windows 7 or later  
+Windows CE, RT, Mobile and other versions are not supported. 
+ 
+
+
+=== PDF PAGE 132 ===
+Operation Manual – ITW GSE 3500 
+Supplier’s Documentation 
+ 
+Document No. 572.610BB Page 132 of 132 
+ 
+12.0 Supplier’s Documentation 
+Supplier’s documentation, drawings and materials regarding standard components used in the ITW 
+GSE 3500 PCA unit can be found in the separate appendixes to the manual. 
+ 
+• Schematics (laminated) 
+• Main Blower documentation (booklet) 
+• Manufacturers Literature (appendix) 
+▪ 01 Compressor 
+▪ 02 Condenser Fans 
+▪ 03 Condenser Maintenance Procedure 
+▪ 04 Smoke Detector 
+▪ 05 Material Safety Data Sheet (MSDS): Refrigerant R410A 
+▪ 06 Material Safety Data Sheet (MSDS): Refrigerant R454B 
+▪ 07 O&M Manual – WEG main blower motor 

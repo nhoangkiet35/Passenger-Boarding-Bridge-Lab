@@ -1,0 +1,274 @@
+
+=== PDF PAGE 1 ===
+FEATURES
+The Honeywell Navitas
+TM
+ Gate and Turnaround 
+Solution introduces the latest Honeywell 
+Navitas® Smart Visual Docking which enables 
+automated, precise and safe docking.
+The solution is based on multi-sensor data fusion with advanced sensor technologies 
+such as long-range, high-resolution 3D Digital LIDAR and High Dynamic Range 
+CMOS* (HDRC) video sensor. This provides a smooth, seamless docking experience, 
+even in airports with complex gate layouts and low-visibility conditions.
+Honeywell Navitas® Smart Visual Docking is fully compliant with International 
+Civil Aviation Organization (ICAO) requirements: ICAO Annex 14 Aerodromes 
+Vol. I, 8th Edition, 2018 Chapter 5.3.26, and Aerodrome Design Manual 
+Document (Doc 9157-AN/901), Part 4, Visual Aids. The conformity to EN 
+50512:2009 is affirmed. Thereby the prerequisites for operation according 
+EASA Certification Specifications and Guidance Material for Aerodromes Design 
+CS-ADR-DSN, Issue 3 from December 08th, 2016, Book 1, Chapter M, CS-ADR-
+DSN.M.760 and Book 2, Chapter M, GM1 ADR-DSN.M.760 are fulfilled.
+HONEY WELL  N AV I TA S® SMART VISUAL 
+DOCKING
+PERFORMANCE
+DISPLACEMENT ACCURACY Azimuth: +/- 10cm at the Stop Point
+Distance: +/- 10cm at the stop point
+PILOT DISPLAY TYPE Multi-Color LED display
+DISPLAY VIEW ANGLE H 160º V 120 º
+DISTANCE OF DISPLAY READABILITY up to 120m
+MODEL STOP POINT DISTANCE
+<NGVDGS> 8mm 8 to 40 meters
+<NGVDGS> 12mm 30 to 65 meters
+• Advanced sensor fusion technology
+using HDRC & Digital LIDAR sensor
+• Pre-calibrated system
+• True 3D image processing
+• Multicolor LED Pilot display unit
+• Remote and manual docking control
+• Integral gate surveillance
+• Supports all weather and 
+visibility conditions (CAT3B)
+• Real-time stand situational awareness
+• Seamless interface with ramp 
+equipment, maximizing safety
+• Ramp information display
+• Obstacle detection and 
+wingtip collision detection.
+BENEFITS
+• Safe and reliable docking
+• Performance
+• Flexibility
+• Reliability
+• Low power consumption
+• Reduced maintenance
+• Reduced total cost of ownership
+
+=== PDF PAGE 2 ===
+Honeywell Navitas® Smart Visual Docking   |   www.honeywell.com   |    2
+Honeywell Navitas Advanced Visual Docking  Technical Specifications
+PILOT DISPLAY UNIT – SPECIFICATION OF CORE COMPONENTS
+SENSOR 
+UNIT
+BASE TECHNOLOGY
+Sensor Type Field of View Horizontal 59.5o / Vertical 33.4o 
+DIGITAL LIDAR Vertical Resolution 64 channels
+Horizontal Resolution Options 512/ 1024/ 2048
+Range 240m
+Rotation Rate Options 10 Hz or 20 Hz
+Vertical Angular Resolution 0.18o to 0.73o
+(Multiple Options)
+Precision Depending on Range ±2.5cm to 8cm
+Points Per Second 1310720
+HDRC VIDEO Sensor Interface USB3.0/ GigE/ Camera Link
+Sensor Format and Type 2/3 inch Monochrome/Color
+Resolution 1280 (H) x 1024 (V)
+Pixel Pitch 6.8µm
+Mode Rolling/Global Shutter Differential
+Spectral Response Visible
+Dynamic Range 140dB t
+ypical
+Analog to Digital Converter (ADC) 14bits
+Frame Rate 37fps
+PILOT 
+DISPLAY 
+UNIT
+Base Technology SMD (Surface Mounted Diode) LED 
+Panel Resolution 96 x 96 pixels, 3 x 3 modules
+Colour Multicolor display
+Display Brightness (at 100%) >= 7000nits
+Dimension of Active Display Area960mm x 960mm
+Displayable Contents Alphanumeric characters, images
+PROCESSOR
+Type x64
+Computing Processor: Intel® 9th/ 8th-Gen Core™ hexa-core processor  |  GPU: NVIDIA® RTX A Series GPU
+RAM: 32GB DDR4
+Storage 128GB M.2 2280 M key NVMe (Gen3 x4)   |  1TB SATA SSD
+OPTIONS
+Webcam Axis P1377 or similar
+Video Surveillance Camera Obstacle detection  |  Adjacent stand validation and wing tip collision detection
+MANUAL CONTROL BOARD
+BASE TECHNOLOGY Computer controlled user terminal with resistive touch sensitive LC Display
+I/O Serial RS485 interface
+OPERATING MODES 3 modes, selection protected by PIN code:
+- Local
+- Remote
+- Maintenance
+SAFETY Emergency stop button integrated in MCB housing
+FEATURED INFORMATIONS Stand name, aircraft manufacturer, aircraft type, selected aircraft 
+State: Free, Active, Parked
+Mode: Local, Remote, Maintenance
+System setup: Brightness, Address, Passcode, Test
+POWER SUPPLY & POWER CONSUMPTION
+PILOT DISPLAY UNIT (INCLUDING 
+SENSOR BOX)
+Mains 110VAC/60Hz, 230VAC/50Hz
+Power consumption 600W Average Power Consumption 
+(Without heater and network camera)
+861W Average Power Consumption 
+(With heater and network camera)
+EXTERNAL INTERFACES Power requirement 24V DC, 500mA provided by the PDU` `
+
+=== PDF PAGE 3 ===
+Honeywell Navitas® Smart Visual Docking   |    www.honeywell.com   |   3
+Honeywell Navitas Advanced Visual Docking  Technical Specifications
+COMMUNICATION & EXTERNAL INTERFACES
+NETWORK Base technology Gigabit Ethernet
+Fiber Optic
+Medium CAT 6 Cable
+Fiber Optic Cable G50/125µ, 1300nm 
+wavelength
+EXTERNAL INTERFACES
+Main supply L, N, PE
+Interface: Plug connection
+Connector type:  CNLINKO LP 24
+MCB 24V, RS485, ESTOP button
+Optional Dual MCB Support
+Interface: Internal terminal block
+I/O 16 x IN
+8 x OUT (dry contacts)
+Interface: Multi-level modular terminal block 
+expandable max up to (24 x IN and 12 x OUT)
+IASS RS485 
+Interface: Internal Terminal Block
+Webcam Ethernet
+ENVIRONMENTAL CONDITIONS
+OPERATING TEMPERATURE HAB-45005254 Normal Variant 110V 0ºC to 35ºC 
+HAB-45005255 Normal Variant 230V 0ºC to 35ºC  
+HAB-45005256 Cold Variant 110V -20ºC to 35 ºC 
+HAB-45005257 Cold Variant 230V -20ºC to 35 ºC 
+HAB-45005258 Hot Variant 110V 0ºC to 55ºC  
+HAB-45005259 Hot Variant 230V 0ºC to 55ºC 
+RELATIVE HUMIDITY 5% ~ 95%, non-condensing
+PROTECTION CLASS PDU: IP54  |  MCB:  
+• Front Panel: IP65    
+• Rear Panel: IP20 
+• Housing: IP54
+MATERIAL DIMENSIONS AND WEIGHTS
+MATERIAL Pilot display unit 
+Housing: Aluminium 
+Sensor Box 
+Housing: Aluminium 
+Front door: Aluminium with Poly-Carbonate window inlays for sensors
+MCB 
+Powder coated metal housing 
+SURFACE COATING Display
+Top Box Powder coating 
+Display, Sensor Box 
+RAL 7035 Light grey or RAL 9016 Traffic Matt
+MCB 
+Light Grey 
+COLOUR
+DIMENSIONS Sensor Box 
+1155 mm x 448 mm x 545 mm (W x H x D)
+PDU Display 
+1020 mm x 1020 mm x 150 mm (W x H x D)
+MCB 
+300mm x 200mm x 180 mm (W x H x D)  
+WEIGHTS
+Total Weight: 120 kg 
+- Sensor Box: 70 kg 
+- Display: 50 kg 
+- Accessories: + 10 kg 
+- MCB: 1.2 kg 
+
+=== PDF PAGE 4 ===
+Honeywell Navitas Advanced Visual Docking  Technical Specifications
+STANDARDS AND REGULATIONS1
+ELECTROMAGNETIC COMPATIBILITY EN  61000-6-4: 20112
+EN  61000-6-2: 2006
+CONDUCTED / RADIATED EMISSION EN 55016-2
+INTERFERENCE IMMUNITY EN 61000-4
+ENVIRONMENTAL CONDITIONS EN 60068-2 and EN 60529
+VIBRATION (OPERATION) EN 60068-2-64
+ICAO Annex 14, 7. Edition 08/2018
+TEST METHOD A-VDGS EN 50512: 2009
+POWER SUPPLY EN 60038: 2011
+ELECTRICAL ASSEMBLY IEC 60364
+REACH AND RoHS CONFORMITY Compliance
+SAFETY FEATURES
+GATE CLEARANCE BUTTON Push the button to get confirmation from ground handler on gate 
+readiness to dock the aircraft
+OBSTACLE DETECTION Detection of obstacles in the ramp are during the tracking and docking 
+of the aircraft. Configurable region of interest for every gate and 
+nonstandard layouts.
+WING TIP SAFETY Prevention of wing tip collision by adjacent stand conflict validation 
+(Available as a solution with TMAN only)
+CHOCKS ON BUTTON Chocks on button with Hold brake information display.
+ID FAIL STOP indication for Wrong aircraft detection
+INTERNAL SYSTEM VALIDATION STOP indication in case of internal system errors.
+Notice
+This document contains Honeywell proprietary information. Information contained herein is to be used solely 
+for the purpose submitted, and no part of this document or its contents shall be reproduced, published, or 
+disclosed to a third party without the express permission of Honeywell Airports Business.
+While this information is presented in good faith and believed to be accurate, Honeywell disclaims the implied warranties of merchantability 
+and fitness for a purpose and makes no express warranties except as may be stated in its written agreement with and for its customer.
+In no event is Honeywell liable to anyone for any direct, special, or consequential damages. The 
+information and specifications in this document are subject to change without notice.
+Honeywell Airports Business reserves the right to make any changes in the interests of technical advancement.
+Copyright 2022– Honeywell Airports Business
+Honeywell trademark
+All rights conferred by patent grant or registration of a utility model are reserved by the Honeywell airports business. Third party 
+products are always referred to without reference to patent rights. The existence of such rights cannot therefore be ruled out.
+Other trademarks
+Trademarks that appear in this document are used only to the benefit of the trademark owner, with no intention of trademark infringement.
+Safety Information
+Read this safety precaution very carefully before performing work of any kind on the Honeywell Navitas® Smart Visual Docking.
+The product described in this document is intended exclusively for qualified and trained personnel and engineers who are 
+familiar with the safety concepts of electrical engineering and in particular airport lighting and applicable national standards. The 
+respective user manual includes further documentation for the respective task, in particular the safety and warning information 
+contained therein. Honeywell assumes no liability for any errors or damage that may occur to Honeywell and third-party products 
+as a result of disregarding the information in the installation and user manual or improper use. Due to their training and experience, 
+qualified personnel are capable of recognizing risks and avoiding potential hazards when using these products / systems
+Honeywell Navitas® Smart Visual Docking   |    www.honeywell.com   |   4
+
+=== PDF PAGE 5 ===
+October 2022
+© 2022 Honeywell International Inc.
+Find Out More
+To learn more about Honeywell 
+Airports Business email: 
+AirportSolutions@Honeywell.com
+buildings.honeywell.com/us/
+en/industries/airports
+Honeywell Airport 
+Business Americas
+715 Peachtree Street, 
+N.E. Atlanta, Georgia–30308 
+USA
+Europe & North Africa
+Broedermannsweg 1
+Hamburg 22453, Germany
+Tel: +49 (0) 40 611 4427
+Fax: +49(0)40 611 4406
+Middle East, Indian Subcontinent 
+& Central Africa
+Emaar Business Park Building 
+2, Level 2, Office 201
+P.O. Box 232362, Sheikh 
+Zayed Road Dubai, UAE
+Tel: +971 4 4505800
+Fax: +971 4 3241 343
+PRC & Korea
+17B/F, Eagle Plaza, No.26 
+Xiaoyun Road Beijing 100 125, PRC
+Tel: +86 10 6410 3147
+Fax: + +86 10 6410 3407
+Pacific & South East Asia
+2 Richardson Place, North Ryde 
+Sydney 2113, Australia
+Tel: +61 2 9353 8530
+Fax: +61 2 9353 8425
+Honeywell Building Solutions
+1985 Douglas Drive North Golden Valley, 
+MN 55422-3992 honeywell.com

@@ -1,0 +1,613 @@
+
+=== PDF PAGE 1 ===
+
+
+=== PDF PAGE 2 ===
+
+
+=== PDF PAGE 3 ===
+
+
+=== PDF PAGE 4 ===
+
+
+=== PDF PAGE 5 ===
+
+
+=== PDF PAGE 6 ===
+ VTG EQUIPMENT AND TECHNOLOGY JOINT STOCK COMPANY Address: Room 201, B2 Tower, Roman Plaza Building, To Huu Road, Dai Mo Ward, Nam Tu Liem District, Hanoi City. Phone: 024 3203 661 Fax: 024 3204 5919 Website: www.vtgcorp.com.vn  SUBMIT DOCUMENT: REQUEST FOR APPROVAL OF MATERIAL FOR POTABLE WATER SYSTEM ( BY AIRPORT EQUIPMENT) ĐỀ NGHỊ PHÊ DUYỆT VẬT TƯ CHO HỆ THỐNG CẤP NƯỚC SẠCH TÀU BAY  ( TỪ NHÀ SẢN XUẤT AIRPORT EQUIPMENT)  Gói Thầu/ Package  : GÓI THẦU SỐ 5.10 – THI CÔNG XÂY DỰNG VÀ LẮP ĐẶT THIẾT BỊ CÔNG TRÌNH NHÀ GA HÀNH KHÁCH/ PACKAGE NO. 5.10 – CONSTRUCTION AND EQUIPMENT INSTALLATION FOR PASSENGER TERMINAL BUILDING Phần/ Section : 40000 – THIẾT BỊ NHÀ GA/ TERMINAL EQUIPMENT Tên dự án/ Project : DỰ ÁN THÀNH PHẦN 3: CÁC CÔNG TRÌNH THIẾT YẾU TRONG CẢNG HÀNG KHÔNG THUỘC DỰ ÁN ĐẦU TƯ XÂY DỰNG CẢNG HKQT LONG THÀNH GIAI ĐOẠN 1/ COMPONENT PROJECT NO. 3 – AIRPORT ESSENTIAL FACILITIES Chủ Đầu Tư/ Employer : TỔNG CÔNG TY CẢNG HÀNG KHÔNG VIỆT NAM – CTCP/ AIRPORT CORPORATION OF VIETNAM – JSC Tư Vấn Giám Sát/ Supervision consultant : LIÊN DANH JAC – CONINCO/ JAC – CONINCO JOINT VENTURE Nhà Thầu/ Contractor : LIÊN DANH VIETUR/ VIETUR JOINT VENTURE 
+
+
+=== PDF PAGE 7 ===
+ VTG EQUIPMENT AND TECHNOLOGY JOINT STOCK COMPANY Address: Room 201, B2 Tower, Roman Plaza Building, To Huu Road, Dai Mo Ward, Nam Tu Liem District, Hanoi City. Phone: 024 3203 661 Fax: 024 3204 5919 Website: www.vtgcorp.com.vn       CONTENTS/ DANH MỤC HỒ SƠ ĐỆ TRÌNH 1. LIST OF MATERIAL SUBMISSION/ DANH MỤC VẬT TƯ ĐỆ TRÌNH 2. COMPLIANCE STATEMENT/ CÔNG BỐ SỰ TUÂN THỦ 3. DOCUMENTS REFERENCE IN THE CONTRACT/ TÀI LIỆU VIỆN DẪN THEO HỢP ĐỒNG 4. TECHNICAL CATALOGUE/ HỒ SƠ KỸ THUẬT                      
+
+=== PDF PAGE 8 ===
+ VTG EQUIPMENT AND TECHNOLOGY JOINT STOCK COMPANY Address: Room 201, B2 Tower, Roman Plaza Building, To Huu Road, Dai Mo Ward, Nam Tu Liem District, Hanoi City. Phone: 024 3203 661 Fax: 024 3204 5919 Website: www.vtgcorp.com.vn                1. LIST OF MATERIAL SUBMISSION/  DANH MỤC VẬT TƯ ĐỆ TRÌNH    
+
+=== PDF PAGE 9 ===
+COMPONENT LIST 
+ 
+ 
+ 
+ 
+ 
+ITEM ID SUB-ASSY DESCRIPTION Original QTY UNITS 
+1 CABINET ENCLOSURE NEW ZEALAND 1 EA 
+2 CABINET CONDUIT, ELECTRICAL NEW ZEALAND X N/A 
+3 CABINET UNISTRUT NEW ZEALAND 4 EA 
+4 CABINET DRAIN NEW ZEALAND 1 EA 
+5 LEVEL-WIND SYSTEM REEL ASSEMBLY USA 1 EA 
+6 LEVEL-WIND SYSTEM REEL GUIDE USA 1 EA 
+7 LEVEL-WIND SYSTEM ROLLERS, HORIZONTAL USA 2 EA 
+8 LEVEL-WIND SYSTEM ROLLERS, VERTICALS USA 1 EA 
+9 LEVEL-WIND SYSTEM PIVOT ARM, LEFT AUSTRALIA 1 EA 
+10 LEVEL-WIND SYSTEM PIVOT ARM, RIGHT AUSTRALIA 1 EA 
+11 LEVEL-WIND SYSTEM BRACKET, LIMIT SWITCH AUSTRALIA 1 EA 
+12 PIPPING & WATER 
+SUPPLY 
+INLET CONNECTOR, PANEL MOUNT, 
+32mm to 25mm reducer NEW ZEALAND 1 EA 
+13 PIPPING & WATER 
+SUPPLY 
+CHECK VALVE, INLINE, 25MM NEW ZEALAND 2 EA 
+14 PIPPING & WATER 
+SUPPLY 
+BALL VALVE, 25MM, TEFLON NEW ZEALAND 2 EA 
+15 PIPPING & WATER 
+SUPPLY 
+STRAIT SECTION (NIPPLES), 25MM, SS 316 NEW ZEALAND 6 EA 
+16 PIPPING & WATER 
+SUPPLY 
+FITTING, 90 DEG. 25MM, SS 316 NEW ZEALAND 3 EA 
+17 PIPPING & WATER 
+SUPPLY 
+PRESSURE REDUCING VALVE, W/ GAUGE, 
+25MM NEW ZEALAND 1 EA 
+18 PIPPING & WATER 
+SUPPLY 
+FLOW METER, MAGNETIC INDUCTION NEW ZEALAND 1 EA 
+19 CONTROL UNIT PUSH BUTTON, NO NEW ZEALAND 1 EA 
+20 CONTROL UNIT E-STOP W/ LABEL NEW ZEALAND 1 EA 
+21 CONTROL UNIT POTENTIOMETER  W/ KNOB NEW ZEALAND 1 EA 
+22 CONTROL UNIT ENCLOSURE, ELECTRICAL NEW ZEALAND 1 EA 
+23 CONTROL UNIT INVERTER, XXXVAC-24VDC, 400W NEW ZEALAND 1 EA 
+24 CONTROL UNIT 24V DC SPEED CONTROLER NEW ZEALAND 1 EA 
+25 CONTROL UNIT RELAY NEW ZEALAND 2 EA 
+26 CONTROL UNIT ENCLOSURE NEW ZEALAND 1 EA 
+27 CONTROL UNIT DIN3 RAIL NEW ZEALAND  EA 
+28 HOSE ASSY CONNECTOR, AIRCRAFT NEW ZEALAND 1 EA 
+29 HOSE ASSY VALVE, AIRCRAFT NEW ZEALAND 1 EA 
+30 HOSE ASSY DRAG HEAD NEW ZEALAND 2 EA 
+31 HOSE ASSY CAP, HOSE END NEW ZEALAND 1 EA 
+32 HOSE ASSY HOSE, 25MM x 30M, HOTWASH AUSTRALIA 30 Mtr 
+33 HOSE ASSY SOFT HOSE, 32MM AUSTRALIA 1 EA 
+34 HOSE ASSY FEXIBLE PIPE NEW ZEALAND 1 EA 
+35 HOSE ASSY TEFLON TAPE NEW ZEALAND 2 Mtr 
+36 HOSE ASSY 90deg. BEND, 25MM NEW ZEALAND 3 EA 
+37 HOSE ASSY FITTING, BARBED, 25MM NEW ZEALAND 2 EA 
+38 HOSE ASSY HOSE CLAMP, 25MM NEW ZEALAND 2 EA 
+39 MAIN MISC. HARDWARE NEW ZEALAND X EA 
+40 MAIN ELECTRONIC COMPONENTS (WIRES, 
+TERMINALS, ETC) NEW ZEALAND X EA 
+ 
+
+
+=== PDF PAGE 10 ===
+ VTG EQUIPMENT AND TECHNOLOGY JOINT STOCK COMPANY Address: Room 201, B2 Tower, Roman Plaza Building, To Huu Road, Dai Mo Ward, Nam Tu Liem District, Hanoi City. Phone: 024 3203 661 Fax: 024 3204 5919 Website: www.vtgcorp.com.vn             2. COMPLIANCE STATEMENT/ CÔNG BỐ SỰ TUÂN THỦ    
+
+=== PDF PAGE 11 ===
+DescriptionComply Not comply Noted2.2 WATER SUPPLYA. The Potable Water System shall be provided and connected to the cold water supply system of the terminal building (Division 51000).●B. The supply line must incorporate the following: 32mm NPT to 25mm NPT reducer, 25mm NPT 0-150 PSI pressure regulator set at 80 PSI with 0-160 PSI pressure gauge, and a 25mm NPT ball valve mounted on inside wall within 600mm of through-wall penetration to facilitate connection to the water supply hose mounted on the PBB.●2.3 PIPING MATERIALSA. Refer to Division 50030 "Piping / accessories" for applications of pipe, tube, fitting, and joining materials.●B. Pipe and fixing1. PVC Plastic pipe ASTMD 1785, schedule 40 and 80. PVC PolyVinyl Chloride●C. Joining materials1. Refer to Division 50030 "Piping / accessories" for commonly used joining materials.●2. Transition Couplings:a. Aboveground Piping: Pipe fitting same size as, with pressure rating at least equal to and ends compatible with, piping to be joined.●b. Plastic Pipe-Flange Gasket, Bolts, and Nuts: Type and material recommended by piping system manufacturer, unless otherwise indicated.●D. Piping specialties1. Dielectric Fittings: Combination of copper alloy and ferrous; threaded, solder, or plain end types; and matching piping system materials.●2. Dielectric Unions: Factory-fabricated union assembly, designed for 1725-kPa minimum working pressure at 82 deg C. Include insulating material that isolates dissimilar metals and ends with inside threads according to ASME B1.20.1.●3. Dielectric Flanges: Factory-fabricated companion-flange assembly, for 1035- or 2070-kPa minimum working pressure to suit system pressures●4. Dielectric-Flange Insulation Kits: Field-assembled companion-flange assembly, full-face or ring type. Components include neoprene or phenolic gasket, phenolic or polyethylene bolt sleeves, phenolic washers, and steel backing washers.●5. Provide separate companion flanges and steel bolts and nuts for 1035- or 2070-kPa minimum working pressure to suit system pressures.●6. Dielectric Couplings: Galvanized-steel couplings with inert and noncorrosive thermoplastic lining, with threaded ends and 2070-kPa minimum working pressure at 107 deg C.●7. Dielectric Nipples: Electroplated steel nipples with inert and noncorrosive thermoplastic lining, with combination of plain, threaded, or grooved end types and 2070-kPa minimum working pressure at 107 deg C.●2.4 OVER THE BRIDGE SUPPLY HOSEA. The water supply hose shall be an FDA approved 25mm (1”) inside diameter reinforced PVC hose. The hose shall be capable of handling a static pressure of 80 PSI with a minimum life expectancy of five (5) years under normal operating conditions.●B. The hose shall be constructed of material that will:1. Be of sufficient strength to retain its normal shape through continuous bending, stretching, and flattering;●2. Remain sufficiently flexible to provide ease of handling during the servicing of aircraft;●3. Not alter the normal taste of the water if the correct operation procedures are followed; and●4. Meet FDA-CFR Title#21, Parts 170 to 199 app●
+COMPLIANCE LIST FOR DESIGN AND SUPPLY
+
+=== PDF PAGE 12 ===
+5. Meet NSF certification.●6. Fixed Piping Components:●a. 1 inch Teflon seated ball valve;●b. Flexible inch hose reel connector;●c. 1 inch brass supply piping and fittings;●d. 0-75 PSI pressure regulated with 0-160 PSI gauge;●e. Reduce pressure backflow preventer;●f. Filter Housing with 50 micron Filter.●7. Service Hose Componentsa. Quick disconnect ¾ inch aluminum nozzle with dust cap, lanyard, and drag cushion;b. Two (2) 5 inch diameter rubber hose stops;c. Bronze Teflon seated ball valve.●2.5 LEVEL-WIND SYSTEMSA. A hinged four-way roller guide and level-wind system assists in correctly stowing the hose and reducing the possibility of hose chaffing during the extension and retraction process. The system also actuates the retract limit switch, which shuts off the rewind motor and closes the bottom door. (Service Stair Landing mount models);●B. A manual level wind system assists in correctly stowing the hose. (Drive column mount and static mount models)●
+
+=== PDF PAGE 13 ===
+ VTG EQUIPMENT AND TECHNOLOGY JOINT STOCK COMPANY Address: Room 201, B2 Tower, Roman Plaza Building, To Huu Road, Dai Mo Ward, Nam Tu Liem District, Hanoi City. Phone: 024 3203 661 Fax: 024 3204 5919 Website: www.vtgcorp.com.vn                  3. DOCUMENTS REFERENCE IN THE CONTRACT/ TÀI LIỆU VIỆN DẪN THEO HỢP ĐỒNG    
+
+=== PDF PAGE 14 ===
+
+
+=== PDF PAGE 15 ===
+
+
+=== PDF PAGE 16 ===
+
+
+=== PDF PAGE 17 ===
+
+
+=== PDF PAGE 18 ===
+
+
+=== PDF PAGE 19 ===
+
+
+=== PDF PAGE 20 ===
+
+
+=== PDF PAGE 21 ===
+
+
+=== PDF PAGE 22 ===
+
+
+=== PDF PAGE 23 ===
+
+
+=== PDF PAGE 24 ===
+
+
+=== PDF PAGE 25 ===
+
+
+=== PDF PAGE 26 ===
+
+
+=== PDF PAGE 27 ===
+
+
+=== PDF PAGE 28 ===
+
+
+=== PDF PAGE 29 ===
+
+
+=== PDF PAGE 30 ===
+
+
+=== PDF PAGE 31 ===
+
+
+=== PDF PAGE 32 ===
+
+
+=== PDF PAGE 33 ===
+
+
+=== PDF PAGE 34 ===
+
+
+=== PDF PAGE 35 ===
+
+
+=== PDF PAGE 36 ===
+
+
+=== PDF PAGE 37 ===
+
+
+=== PDF PAGE 38 ===
+
+
+=== PDF PAGE 39 ===
+  AU 1800 765 783               NZ 0800 663574                INFO@AIRPORT-EQUIPMENT.COM              AIRPORT-EQUIPMENT.COM   
+GATEWAY SYSTEMS 
+MOTORISED POTABLE WATER REELER
+GENERAL SPECIFICATION
+22 February 2025
+Specification 20337 
+
+=== PDF PAGE 40 ===
+POTABLE WATER REELER  |  GENERAL SPECIFICATION
+PROPRIETARY / CONFIDENTIAL DOCUMENTATION. © 2024 AIRPORT EQUIPMENT.
+PAGE 1 
+1: INTRODUCTION
+This specification outlines the requirements for a potable water supply system to be mounted 
+on a passenger boarding bridge (PBB) at airports. The system is designed to provide safe, clean 
+drinking water for passengers and crew.
+2: SCOPE
+The potable water supply system will include all necessary components to ensure the delivery of 
+potable water, including piping, fittings, valves, filtration systems, and connections to the airport’s 
+water supply.
+3: REGULATORY COMPLIANCE
+The system must comply with all local, state, and federal regulations regarding potable water 
+supply.
+All materials must be certified for drinking water use.
+4: SYSTEM COMPONENTS
+4.1: Piping:
+1. Material: Stainless Steel grade 316 to ISO 10312:2008 and AS/NZS4020:1999 (for potable water)..
+2. Size: Minimum diameter of 25mm to ensure adequate flow rate.
+4.2: Valves:
+1. Type: Includes shut-off valves and pressure-regulating valves.
+2. Material: Stainless Steel or Lead free Brass.
+3. Backflow prevention (RPZ) to prevent contamination of the potable water supply.
+4. Systems shall be designed to 500KPa supply pressure and maximum flow rate 100 litres per 
+minute.
+4.3: Filtration System:
+1. Includes a 50 micron filtration system to remove particulates, chlorine, and other 
+contaminants.
+2. Regular maintenance and filter replacement schedule should be established.
+4.4: Connections:
+1. 1" BSP Male connection exterior to reel enclosure to accept airport water supply.
+2. 400V from airport supply to electrical cabinet.
+3. Data connection point inside enclosure for connection to flow sensor (IO link)
+4.5: Operation:
+Manual pull to extend, motor driven retraction vis deadman push button.
+
+=== PDF PAGE 41 ===
+POTABLE WATER REELER  |  GENERAL SPECIFICATION
+PROPRIETARY / CONFIDENTIAL DOCUMENTATION. © 2024 AIRPORT EQUIPMENT.
+PAGE 2 
+5: ACCESSIBILITY AND MOUNTING
+The system should be designed for easy access for maintenance and inspection.
+Mounting brackets and supports must be designed to securely attach the system to the boarding 
+bridge without compromising structural integrity.
+6: USER INTERFACE
+Simple and easily understood operation and function.
+Clear signage indicating the source and potability of the water must be displayed.
+7: MAINTENANCE AND SERVICEABILITY
+Detailed maintenance manual, including schedules for inspections, cleaning, and replacement of 
+parts shall be provided.
+The system should have easy access points for service and maintenance.
+8: INSTALLATION REQUIREMENTS
+Installation must be carried out by certified personnel following all safety regulations.
+System should undergo pressure testing and quality assurance checks upon installation.
+9: DOCUMENTATION
+Complete documentation, including installation guidelines, and maintenance manuals shall be 
+provided.
+10: WARRANTY
+The system includes 2 year parts warranty covering parts from the date of supply.
+
+=== PDF PAGE 42 ===
+POTABLE WATER REELER  |  GENERAL SPECIFICATION
+PROPRIETARY / CONFIDENTIAL DOCUMENTATION. © 2024 AIRPORT EQUIPMENT.
+PAGE 3 
+11: MAIN COMPONENTS
+Component Picture Comment
+Reel
+Stainless Steel Construction
+To take 30 meters 25mm potable water hose
+24V DC Motor
+Filter
+  
+Heavy Duty Stainless Steel Water Filter 
+Housing and cast Stainless Steel Head with 25mm 
+(1 inch) ports.
+Stainless steel 50 micron filter cartridge.
+RPZ Valve
+Stainless Steel Body
+Single access cover and modular check 
+construction for ease of maintenance
+Top entry - all internals immediately accessible
+Captured springs for safe maintenance
+Internal relief valve for reduced installation 
+clearances
+Temperature Range: 0.5°C – 90°C
+Maximum Working Pressure: 1600kPa (16bar)
+Magnetic-inductive flow 
+meter
+Stainless Steel
+Measuring range: 0.2...100 l/min
+Communication interface: IO-Link
+Water Delivery Hose
+White food grade EPDM - AS 2070-1999 and US 
+FDA 21 CFR Parts 170 to 199
+Temperature Range : 40 °C +120 °C
+Internal Diameter  25mm (1")
+External Diameter  37mm
+Max Working Pressure: 225 psi
+Pressure Reducing 
+Valve
+Inclined pressure reducing valve. Replaceable 
+cartridge and strainer. With 1/4” F pressure gauge 
+connection. Connection: Rp 1" (EN 10226-1) F. 
+Maximum upstream pressure: 2000 kPa. Medium 
+temperature range: 2–80 °C. Adjustment pressure 
+range: 1–6 bar. Material: dezincification resistant 
+brass DR
+Isolating Valves
+Stainless Steel   FM-FM DN25 G 1 x G 1 Ball Valve
+Push Button Controller
+2 Station poly carbonate push button controller
+1x Emergency stop
+1x non-maintained push button (for retracting 
+hose)
+
+=== PDF PAGE 43 ===
+POTABLE WATER REELER  |  GENERAL SPECIFICATION
+PROPRIETARY / CONFIDENTIAL DOCUMENTATION. © 2024 AIRPORT EQUIPMENT.
+PAGE 4 
+12: DRAWING
+12.1: 4062028 Reeler General Arrangement
+
+=== PDF PAGE 44 ===
+POTABLE WATER REELER  |  GENERAL SPECIFICATION
+PROPRIETARY / CONFIDENTIAL DOCUMENTATION. © 2024 AIRPORT EQUIPMENT.
+PAGE 5 
+POTABLE WATER SYSTEM
+ENCLOSURE NOT SHOWN
+1
+1
+2
+2
+3
+3
+4
+4
+5
+5
+6
+6
+A A
+B B
+C C
+D D
+*4062028*
+DESIGNED:
+STATUS:
+OF:
+JH
+-
+1 4 
+3RD ANGLE PROJECTION 4062028
+ BRIDGE MOUNTED MOTORISED
+REEL 400V/24V
+IN DESIGN
+CHECKED:
+ADM
+DRAWING: REV:
+DRAWN:
+ADM
+FINISH
+SPEC:
+SHEET:
+COLOUR:
+STOCK : BC170054
+DATE:
+MASS: 288 Kg
+31/08/2024
+VTG POTABLE WATER REELER 
+PROJECT:
+aaiirrppoorrtt--eeqquuiippmmeenntt..ccoomm
+AAUU  11880000  776655  778833
+NNZZ  00880000  666633557744
+++6644  44  556666  3355774455
+iinnffoo@@aaiirrppoorrtt--eeqquuiippmmeenntt..ccoomm
+THIS DRAWING IS PREPARED BY, AND IS THE COPYRIGHT OF AIRPORT EQUIPMENT. IT IS SUPPLIED ON LOAN SOLELY FOR YOUR CONFIDENTIAL INFORMATION AND MUST NOT BE COPIED OR REPRODUCED, 
+NOR THE DESIGN OR INFORMATION DISCLOSED WITHOUT THE WRITTEN CONSENT OF THE OWNERS AND MUST BE RETURNED FORTHWITH ON REQUEST.
+REVISION HISTORY
+REV DESCRIPTION BY CKD DATE
+-  JH ADM  
+JUNCTION BOX
+• INCOMING POWER
+• CONTROLS
+REWIND CONTROL BUTTON
+EMERGENCY STOP
+INCOMING WATER
+PIPING
+AIRCRAFT CONNECTOR
+(STORED)
+POWER REELER WITH 30M 
+OF 25MM WATER HOSE
+INCOMING POWER - 400VAC 50HZ 3 PH
+MOTOR - 24VDC
+MAX PRESSURE - 500KPa
+MAX FLOW - 100 LTR/MIN
+
+=== PDF PAGE 45 ===
+POTABLE WATER REELER  |  GENERAL SPECIFICATION
+PROPRIETARY / CONFIDENTIAL DOCUMENTATION. © 2024 AIRPORT EQUIPMENT.
+PAGE 6 
+FRONT VIEW
+PLAN VIEW ( 1 : 10 )
+SIDE VIEW ( 1 : 10 )
+REEL DETAIL ( 1 : 10 )
+1
+1
+2
+2
+3
+3
+4
+4
+5
+5
+6
+6
+A A
+B B
+C C
+D D
+*4062028*
+DESIGNED:
+STATUS:
+OF:
+JH
+-
+2 4 
+3RD ANGLE PROJECTION 4062028
+ BRIDGE MOUNTED MOTORISED
+REEL 400V/24V
+IN DESIGN
+CHECKED:
+ADM
+DRAWING: REV:
+DRAWN:
+ADM
+FINISH
+SPEC:
+SHEET:
+COLOUR:
+STOCK : BC170054
+DATE:
+MASS: 288 Kg
+31/08/2024
+VTG POTABLE WATER REELER 
+PROJECT:
+aaiirrppoorrtt--eeqquuiippmmeenntt..ccoomm
+AAUU  11880000  776655  778833
+NNZZ  00880000  666633557744
+++6644  44  556666  3355774455
+iinnffoo@@aaiirrppoorrtt--eeqquuiippmmeenntt..ccoomm
+THIS DRAWING IS PREPARED BY, AND IS THE COPYRIGHT OF AIRPORT EQUIPMENT. IT IS SUPPLIED ON LOAN SOLELY FOR YOUR CONFIDENTIAL INFORMATION AND MUST NOT BE COPIED OR REPRODUCED, 
+NOR THE DESIGN OR INFORMATION DISCLOSED WITHOUT THE WRITTEN CONSENT OF THE OWNERS AND MUST BE RETURNED FORTHWITH ON REQUEST.
+905
+1030
+905
+980
+A
+TO AIRCRAFT
+394
+578 n
+n271
+24VDC MOTOR
+WATER 
+CONNECTION
+596
+(329)
+25mm MALE CONNECTION
+FOR INCOMING WATER SUPPLY
+A
+TO AIRCRAFT
+
+=== PDF PAGE 46 ===
+POTABLE WATER REELER  |  GENERAL SPECIFICATION
+PROPRIETARY / CONFIDENTIAL DOCUMENTATION. © 2024 AIRPORT EQUIPMENT.
+PAGE 7 
+INCOMING WATER PIPING
+1
+1
+2
+2
+3
+3
+4
+4
+5
+5
+6
+6
+A A
+B B
+C C
+D D
+*4068209*
+DESIGNED:
+STATUS:
+OF:
+JH
+-
+3 4 
+3RD ANGLE PROJECTION 4068209
+INCOMING WATER PIPEWORK
+IN DESIGN
+CHECKED:
+ADM
+DRAWING: REV:
+DRAWN:
+ADM
+FINISH
+SPEC:
+SHEET:
+COLOUR:
+STOCK :
+DATE:
+MASS: 44 Kg
+31/08/2024
+VTG POTABLE WATER REELER
+PROJECT:
+aaiirrppoorrtt--eeqquuiippmmeenntt..ccoomm
+AAUU  11880000  776655  778833
+NNZZ  00880000  666633557744
+++6644  44  556666  3355774455
+iinnffoo@@aaiirrppoorrtt--eeqquuiippmmeenntt..ccoomm
+THIS DRAWING IS PREPARED BY, AND IS THE COPYRIGHT OF AIRPORT EQUIPMENT. IT IS SUPPLIED ON LOAN SOLELY FOR YOUR CONFIDENTIAL INFORMATION AND MUST NOT BE COPIED OR REPRODUCED, 
+NOR THE DESIGN OR INFORMATION DISCLOSED WITHOUT THE WRITTEN CONSENT OF THE OWNERS AND MUST BE RETURNED FORTHWITH ON REQUEST.
+25mm MALE CONNECTION
+TO INCOMING SUPPLY
+ISOLATING BALL VALVE
+STRAINER
+25MM RPZ VALVE
+ISOLATING BALL VALVEDN25 PRESSURE REDUCING VALVE
+50 MICRON SST FILTER
+50 MICRON SST FILTER
+DN25 PRESSURE 
+REDUCING VALVE
+ISOLATING BALL VALVE
+25MM RPZ VALVE
+STRAINER
+ISOLATING BALL VALVE
+25mm MALE CONNECTION
+TO INCOMING SUPPLY
+FLEXIBLE CONNECTION TO REEL
+FLOW METER
+25MM STAINLESS STEEL
+PIPE (TYPICAL)
+25MM STAINLESS STEEL
+PIPE (TYPICAL)
+ 
+,ss
+316
+,ss
+316
+,ss
+316
+
+=== PDF PAGE 47 ===
+POTABLE WATER REELER  |  GENERAL SPECIFICATION
+PROPRIETARY / CONFIDENTIAL DOCUMENTATION. © 2024 AIRPORT EQUIPMENT.
+PAGE 8 
+1
+1
+2
+2
+3
+3
+4
+4
+5
+5
+6
+6
+A A
+B B
+C C
+D D
+*4068192*
+DESIGNED:
+STATUS:
+OF:
+JH
+-
+4 4 
+3RD ANGLE PROJECTION 4068192
+AIRCRAFT CONNECTOR
+IN DESIGN
+CHECKED:
+ADM
+DRAWING: REV:
+DRAWN:
+ADM
+FINISH
+SPEC:
+SHEET:
+COLOUR:
+STOCK :
+DATE:
+MASS: 3.3 Kg
+31/08/2024
+VTG POTABLE WATER REELER
+PROJECT:
+aaiirrppoorrtt--eeqquuiippmmeenntt..ccoomm
+AAUU  11880000  776655  778833
+NNZZ  00880000  666633557744
+++6644  44  556666  3355774455
+iinnffoo@@aaiirrppoorrtt--eeqquuiippmmeenntt..ccoomm
+THIS DRAWING IS PREPARED BY, AND IS THE COPYRIGHT OF AIRPORT EQUIPMENT. IT IS SUPPLIED ON LOAN SOLELY FOR YOUR CONFIDENTIAL INFORMATION AND MUST NOT BE COPIED OR REPRODUCED, 
+NOR THE DESIGN OR INFORMATION DISCLOSED WITHOUT THE WRITTEN CONSENT OF THE OWNERS AND MUST BE RETURNED FORTHWITH ON REQUEST.
+REMOVABLE HOSE PLUG
+NYLON SCUFF GUARD
+BALL VALVE ISOLATOR
+ALUMINUM CONNECTOR BODY
+BARBED HOSETAIL SWAGED TO 25MM HOSE
+BALL VALVE ISOLATOR
+NYLON SCUFF GUARD
+ALUMINUM CONNECTOR BODY
+REMOVABLE HOSE PLUG
+
+=== PDF PAGE 48 ===
+POTABLE WATER REELER  |  GENERAL SPECIFICATION
+PROPRIETARY / CONFIDENTIAL DOCUMENTATION. © 2024 AIRPORT EQUIPMENT.
+PAGE 9 
+12.2: W800794 Rev1 INSTALLATION OF PWS (For Reference)

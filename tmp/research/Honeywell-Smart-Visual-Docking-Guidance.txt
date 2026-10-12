@@ -1,0 +1,222 @@
+
+=== PDF PAGE 1 ===
+Maintain the passenger 
+experience despite increasing 
+air traffic by optimizing gate 
+operations while maintaining 
+safety and security. The latest, 
+most advanced visual docking 
+guidance from Honeywell can 
+help speed up turnaround 
+operations, getting aircraft 
+ready for departure faster by 
+providing greater situational 
+awareness for the pilots and the 
+airside operations team alike.
+TURNAROUND   EFFICIENCY  KEEPS  TRA VELERS  HAPPY
+Honeywell Navitas® 
+Smart Visual Docking
+
+=== PDF PAGE 2 ===
+Honeywell Navitas® Smart Visual Docking is a 
+next generation docking solution in optimizing 
+airport gate capacity and efficiency. Honeywell Gate 
+and Turnaround Solutions provide integration with 
+advanced surface movement guidance systems and 
+other airside IT systems. The result: precise guidance 
+for safer docking through improved situational 
+awareness for the apron/ramp controllers.
+The unit’s lower-weight modular design is easy and cost 
+effective to install. Flexible mounting options support  
+full visibility for pilots and complex gate layouts such 
+as curved and over steered. A rich multi-color LED 
+display with a wide angle view of 160° and a viewing 
+distance of up to 120 meters. And while Navitas 
+Advanced Visual Docking can be integrated with other 
+airport systems, it can also be used as a standalone 
+docking solution with a manual control board.
+TURN SMOOTH ARRIV ALS  INTO TIMEL Y DEPARTURES
+WHY DOES ALL THIS MATTER?
+Enhanced Safety And Reliability
+The all-weather capability of Navitas Smart Visual Docking is 
+made possible using multisensory fusion which overcomes 
+the limitations of individual sensor technologies. Early 
+detection of aircraft type helps prevent incidents during 
+docking. Advanced safety algorithms with machine learning 
+such as continuous obstacle detection and adjacent 
+stand validation enhances safety during the docking.
+Performance
+The precision made possible by Navitas Smart Visual 
+Docking will position you for future upgrades to docking 
+with an autonomous passenger boarding bridge. 
+Capturing milestones such as in and out Off Block 
+time  provides accurate CDM milestones for connected 
+airside and terminal side systems such as billing, 
+ERP, and flight information display systems. 
+Fewer Maintenance Cycles
+Pre-calibrated sensors and minimal mechanical 
+moving parts means frequent recalibrations are 
+not required, reducing system downtime.
+Multiple Centerline Support
+Multiple apron ramp system support helps optimize 
+the number of visual docking guidance units 
+needed when there is dual centerline scenario.
+Automated Incident Reporting
+Video-based incident reporting shows docking 
+events overlaid with time synchronization. Tamper 
+proof report generated with a single click.
+Honeywell provides a full suite of airside solutions designed to bring 
+situational awareness and data-driven analytics to the challenge of 
+maintaining the quality of the traveling experience while optimizing 
+turnaround efficiency during times of growing passenger volume. 
+
+=== PDF PAGE 3 ===
+END-TO-END TURNAROUND CONTROL
+• Aircraft type detection to 
+enable safer clearance
+• Enhanced uptime for 
+airside operations 
+during Irregular 
+Operations (IROPS)
+• Safer docking in all 
+weather situations
+• Complex gate layout 
+support for curved and 
+oversteered entries
+• Safety features 
+including continuous 
+gate clearance check 
+and adjacent stand 
+validation to prevent 
+wingtip collision
+• Configurable Docking 
+workflow based on 
+Airports ConOps
+• Block time registration
+• Integration with IAAS  
+and other airside systems
+• Fixed calibration. No 
+mechanical moving parts
+• Sensor blind alerts
+• Emergency stop if a 
+component fails
+• Cyber secure hardware 
+and software platform. 
+Fully encrypted and 
+compliant to ISA 
+62443-4-2 cyber 
+security mandates 
+RELIABLE PERFORMANCEIN ALL CONDITIONS
+
+=== PDF PAGE 4 ===
+HERE’S HOW THE NAVITAS SYSTEM PROVIDES A SAFER, MORE EFFICIENT TURNAROUND
+Aircraft @TMO,  
+or at approach
+Aircraft enters 
+the gate area
+In block time 
+recording
+Target Off-Block 
+Time countdown
+Record Actual 
+Off-Block Time
+• Displays Estimated 
+In-Block Time (EIBT) 
+to ground handler
+• Apron controller 
+assesses the allocated 
+slot by checking 
+status of all gate 
+ecosystems
+1
+3
+5 7
+9
+2
+6
+8
+4
+Aircraft landed Display TOBT  
+and TSAT messages
+Pushback 
+detection
+Docking
+• Displays EIBT/actual 
+landing time (ALDT)
+• System performs gate 
+clearance check – 
+obstacle detection
+• Initiates aircraft scanning
+• Lock the bridges
+• Adjacent stand validation
+System displays the 
+CDM milestones-based 
+airports ConOps
+Detect push back when 
+ aircraft leaves from the gate
+• Display docking guidance 
+messages to pilot.
+• Over speeding validation 
+and slow messages
+• STOP messages at 
+designated stop point
+• Displays HOLD BRAKES 
+until chocks placed
+• Aircraft type 
+verification
+• Continuous obstacle 
+detection check
+• Bridge position 
+monitoring
+Record in-block time 
+and transfer this to 
+off-block time.
+TOBT count down last 
+30 minutes of push back 
+(configurable)
+Record AOBT and 
+transfer to connected 
+airside systems
+Inbound Outbound
+
+
+=== PDF PAGE 5 ===
+© 2023 Honeywell International Inc.
+Find Out More
+To learn more about Honeywell 
+Airports Business email: 
+AirportSolutions@Honeywell.com
+buildings.honeywell.com/us/
+en/industries/airports
+Honeywell Airport 
+Business Americas
+715 Peachtree Street, 
+N.E. Atlanta, Georgia–30308 
+USA
+Europe & North Africa
+Broedermannsweg 1
+Hamburg 22453, Germany
+Tel: +49 (0) 40 611 4427
+Fax: +49(0)40 611 4406
+Middle East, Indian Subcontinent 
+& Central Africa
+Emaar Business Park Building 
+2, Level 2, Office 201
+P.O. Box 232362, Sheikh 
+Zayed Road Dubai, UAE
+Tel: +971 4 4505800
+Fax: +971 4 3241 343
+PRC & Korea
+17B/F, Eagle Plaza, No.26 
+Xiaoyun Road Beijing 100 125, PRC
+Tel: +86 10 6410 3147
+Fax: + +86 10 6410 3407
+Pacific & South East Asia
+2 Richardson Place, North Ryde 
+Sydney 2113, Australia
+Tel: +61 2 9353 8530
+Fax: +61 2 9353 8425
+Honeywell Building Solutions
+1985 Douglas Drive North Golden 
+Valley, MN 55422-3992 
+honeywell.coms

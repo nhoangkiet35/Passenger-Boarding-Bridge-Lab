@@ -1,0 +1,1561 @@
+
+=== PDF PAGE 1 ===
+Mã số linh kiện: 2213987
+Translated from English to Vietnamese - www.onlinedoctranslator.com
+
+=== PDF PAGE 2 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Trang này được cố ý để trống.
+Trang2của66
+
+=== PDF PAGE 3 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+NỘI DUNG
+1. Giới thiệu..................................................................................................................................................5
+1.1. Lịch sử sửa đổi ....................................................................................................................................5
+1.2. Mô tả............................................................................................................................................5
+2. AN TOÀN ..........................................................................................................................................................6
+2.1. Các ký hiệu an toàn......................................................................................................................................6
+2.2. Lưu ý quan trọng ...................................................................................................................................7
+3. MÔ TẢ HỆ THỐNG...................................................................................................................................8
+3.1. Vận hành hệ thống .................................................................................................................................8
+3.1.1. Hoạt động hệ thống - GPU..............................................................................................................9
+3.1.1. Vận hành hệ thống – Cuộn cáp .................................................................................................. 14
+3.2. Giá đỡ cầu nối..................................................................................................................................... 16
+3.3. Lắp đặt cố định (Gắn sàn) ........................................................................................................ 18
+3.4. Rơ moóc kéo .................................................................................................................................. 19
+4. GIAO HÀNG & ĐỊNH VỊ ......................................................................................................................... 21
+4.1. Giao hàng.............................................................................................................................................. 21
+4.2. Danh sách đóng gói ........................................................................................................................................ 21
+4.3. Các tùy chọn bổ sung .................................................................................................................................. 21
+4.4. Lưu trữ............................................................................................................................................... 21
+4.5. Tháo dỡ và vận chuyển ......................................................................................................................... 22
+4.5.1. Nâng hạ bằng xe nâng........................................................................................................................ 22
+4.6. Tìm vị trí phù hợp (Lắp đặt cố định) ................................................................................. 23
+4.7. Lắp đặt điện ......................................................................................................................... 24
+4.7.1. Cửa trước ................................................................................................................................. 24
+4.7.2. Tấm đệm cáp/Lỗ luồn cáp........................................................................................................... 25
+4.7.3. Kết nối điện - GPU ..................................................................................................... 27
+4.7.4. Kết nối điện – Cuộn dây cáp............................................................................................ 29
+4.7.5. Nguồn điện chính.................................................................................................................. 30
+4.7.6. Đầu ra 400Hz ............................................................................................................................ 31
+4.7.7. Kết nối điều khiển từ xa (PCB PV-PIT) ............................................................................... 32
+4.7.8. Cầu chì kết nối điều khiển từ xa / khóa liên động......................................................................... 36
+5. VẬN HÀNH THỬ ...................................................................................................................................... 37
+5.1. Điều kiện vận hành và môi trường sau khi vận hành thử.................................................... 37
+6. VẬN HÀNH HỆ THỐNG.................................................................................................................................. 38
+6.1. Màn hình ............................................................................................................................................... 38
+6.1.1. Hiển thị đo lường (Đầu ra 400Hz).............................................................................................. 39
+6.1.2. Menu Hiển thị – Chỉnh sửa Cài đặt ........................................................................................... 44
+6.1.3. Thiết lập 400Hz - Ví dụ .............................................................................................................. 44
+6.1.4. Hiển thị cảnh báo ........................................................................................................................... 45
+6.2. Trình tự Khởi động/Tắt máy .......................................................................................................... 50
+6.2.1. Khởi động (Đối với trạng thái chờ/sẵn sàng):........................................................................................... 50
+6.2.2. Tắt máy (Đối với trạng thái chờ/sẵn sàng): ...................................................................................... 50
+6.3. Thao tác cơ bản ................................................................................................................................. 50
+6.3.1. Kéo ra ..................................................................................................................................... 50
+6.3.2. Quy trình khởi động (Hoạt động bình thường, với máy bay): .......................................................... 50
+6.3.3. Quy trình tắt nguồn (Hoạt động bình thường, với máy bay):.......................................................... 50
+6.3.4. Cuộn dây vào ........................................................................................................................................ 51
+6.3.5. Hệ thống an toàn khóa liên động máy bay ................................................................................................ 51
+6.3.6. Hệ thống liên kết dân sự/quân sự: ....................................................................................................... 51
+Trang3của66
+
+=== PDF PAGE 4 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+6.3.7. Quy trình cập nhật phần mềm ...................................................................................................... 52
+7. DỊCH VỤ & BẢO TRÌ......................................................................................................................... 53
+7.1. Bảo trì định kỳ được khuyến nghị............................................................................................... 53
+7.2. Thay thế bộ lọc khí đầu vào............................................................................................................... 54
+7.2.1. Vệ sinh bộ lọc:........................................................................................................................... 55
+7.3. Thay thế cáp............................................................................................................................ 56
+7.4. Mô-đun nguồn có thể cắm................................................................................................................... 58
+7.5. Thay thế quạt ............................................................................................................................... 61
+7.6. Bảo hành.................................................................................................................................. 62
+7.7. Bảo hành mở rộng.................................................................................................................. 62
+7.8. Dịch vụ bảo trì và sao lưu ..................................................................................................... 62
+7.9. THÔNG SỐ KỸ THUẬT ............................................................................................................................... 63
+8. HƯỚNG DẪN THẢI BỎ .......................................................................................................................... 64
+8.1. Tháo dỡ........................................................................................................................................ 64
+8.2. Xử lý.............................................................................................................................................. 64
+Trang4của66
+
+=== PDF PAGE 5 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+1. Giới thiệu
+1.1. Lịch sử sửa đổi
+Mục sư
+MỘT
+Ngày Sự miêu tả Ai
+J Ware03.10.22 Tài liệu mới
+Bảng 1: Lịch sử sửa đổi.
+1.2. Mô tả
+Hệ thống điện Skywinder là một thiết bị cấp điện mặt đất được thiết kế để phục vụ các máy bay hiện đại 
+với công suất đầu ra 90kVA (ba pha 200V/400Hz) lấy từ nguồn điện lưới (ba pha 360-480VAC 50/60Hz).
+Có nhiều tùy chọn lắp đặt khác nhau cho hệ thống, tùy thuộc vào điều kiện phù hợp nhất với người vận hành và môi trường máy 
+bay, bao gồm lắp đặt trên cầu điều khiển, lắp đặt cố định/trên sàn hoặc lắp đặt trên xe kéo di động.
+Các tính năng thiết kế chính bao gồm:
+• Hiệu suất hệ thống tổng thể lên đến 95%.
+• Vỏ bằng thép không gỉ cho hiệu suất và độ bền vượt trội khi sử dụng ngoài trời.
+• Cuộn cảm AC và bộ chỉnh lưu 12 xung giúp giảm tổng méo hài (THDi) của dòng điện đầu vào.
+• Hệ thống lọc tiên tiến cung cấp tín hiệu sóng sin chất lượng cao, phù hợp với tất cả các loại máy bay hiện có (<2% THDv)
+• Tuân thủ các tiêu chuẩn ngành mới nhất về thiết bị hỗ trợ mặt đất điện, bao gồm ISO 6858:2017 & MIL-STD 704F.
+Trang5của66
+
+=== PDF PAGE 6 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+2. AN TOÀN
+Chỉ những nhân viên điện có trình độ chuyên môn, am hiểu về cấu tạo và hoạt động của thiết bị này cũng như các mối nguy hiểm 
+liên quan mới được phép lắp đặt, điều chỉnh, bảo trì hoặc sửa chữa thiết bị này.
+Hãy đọc và hiểu toàn bộ hướng dẫn này trước khi tiếp tục. Việc không tuân thủ các biện pháp phòng ngừa này có 
+thể dẫn đến thương tích nghiêm trọng hoặc tử vong.
+2.1. Các ký hiệu an toàn
+Các ký hiệu an toàn là một trong những cách chính để cảnh báo bạn về những mối nguy hiểm tiềm ẩn liên quan đến hoạt động của thiết 
+bị. Để đảm bảo an toàn, hãy tuân thủ các biện pháp phòng ngừa được liệt kê trong hướng dẫn sử dụng này trước khi lắp đặt, trong quá 
+trình vận hành và các quy trình bảo trì định kỳ.
+Cẩn thận!
+Rủi ro chung liên quan đến tất cả các khía cạnh của việc lắp đặt, điều chỉnh, bảo trì và sửa 
+chữa.
+Nguy cơ bị điện giật!
+Rủi ro cụ thể liên quan đến điện giật.
+Bề mặt nóng!
+Nguy cơ đặc biệt liên quan đến các bề mặt/vật nóng có thể gây bỏng.
+Hàng nặng!
+Rủi ro cụ thể liên quan đến việc nâng vật nặng và những nguy hiểm tiềm ẩn.
+Nguy cơ bị vướng!
+Rủi ro cụ thể liên quan đến các bộ phận chuyển động và khả năng bị vướng vào nhau.
+Trang6của66
+
+=== PDF PAGE 7 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+2.2. Những lưu ý quan trọng
+Chỉ những nhân viên điện có trình độ chuyên môn, am hiểu về cấu tạo và hoạt động của thiết bị này cũng 
+như các mối nguy hiểm liên quan mới được phép lắp đặt, bảo trì hoặc sửa chữa thiết bị này.
+• Vui lòng đọc kỹ hướng dẫn này trước khi vận hành hệ thống.
+• Tất cả các cảnh báo trong sách hướng dẫn này phải được tuân thủ.
+• Cần tuân thủ nghiêm ngặt tất cả các hướng dẫn vận hành.
+• Hệ thống này yêu cầu nguồn điện đầu vào ba pha và nối đất.KHÔNG ĐƯỢC Vận hành hệ thống mà không cần nguồn 
+điện đầu vào nối đất.
+• Sổ tay hướng dẫn này cần được cất giữ ở nơi an toàn và bảo mật, đồng thời phải luôn sẵn sàng cho những người có 
+trình độ chuyên môn và được ủy quyền sử dụng.
+• Tuyệt đối không được nhét bất kỳ vật gì vào lỗ thông gió hoặc các khe hở khác.
+• Cầu chì bị đứt phải luôn được thay thế bằng cầu chì cùng loại và cùng định mức. Nếu không làm vậy có thể 
+gây ra nguy cơ hỏa hoạn.
+• Vui lòng tham khảo bảng tổng quan thiết bị, trong đó nêu chi tiết trọng lượng và kích thước của các thiết 
+bị được cung cấp. Tuân thủ các quy tắc và quy định về việc nâng hạ thiết bị. Nếu không chắc chắn, hãy tìm 
+người hỗ trợ khi nâng và di chuyển các vật nặng.
+Ngay cả khi nguồn điện xoay chiều đầu vào đã được ngắt, vẫn còn các bộ phận mang điện nguy hiểm bên 
+trong hệ thống. Hãy ngắt nguồn điện lưới/nguồn cấp cho GPU tại bảng phân phối điện hoặc cột cấp điện 
+cục bộ, sau đó chờ ít nhất 10 phút để các tụ điện DC xả hết điện trước khi mở bất kỳ cửa hoặc tháo bất kỳ 
+nắp đậy nào.
+Cẩn thận khi di chuyển/nâng vật nặng bằng xe nâng! Đặt càng nâng càng rộng hết cỡ để đảm bảo 
+độ ổn định tốt nhất. Đánh giá cẩn thận từng lần nâng để đảm bảo an toàn cho người lái và bất kỳ 
+nhân viên/người dân nào xung quanh.
+Tốc độ kéo tối đa của rơ moóc Skywinder Power Trailer là 25 km/h (15 MPH), việc không 
+tuân thủ cảnh báo này có thể dẫn đến hỏng lốp và hư hại nghiêm trọng.
+AN TOÀN LUÔN LÀ MỐI QUAN TÂM HÀNG ĐẦU
+Trang7của66
+
+=== PDF PAGE 8 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+3. MÔ TẢ HỆ THỐNG
+3.1. Vận hành hệ thống
+Các sơ đồ bên dưới thể hiện cấu trúc tổng thể của Skywinder Power, được chia thành GPU và cuộn dây cáp.
+Trang8của66
+
+=== PDF PAGE 9 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+3.1.1. Hoạt động hệ thống - GPU
+Bộ cách ly đầu vào
+Được trang bị tấm chắn đầu nối và khóa liên động cửa cơ khí, điều này đảm bảo an toàn tối đa cho người sử dụng vì 
+cửa không thể mở cho đến khi công tắc ở vị trí tắt. Khi công tắc được bật, hệ thống sẽ ở chế độ chờ sẵn sàng sử 
+dụng. Bộ cách ly đầu vào cũng cung cấp điện cho hệ thống điện tử thông qua MCB 1.
+Bộ lọc EMC (PCB PV-FILTER)
+Mạch lọc khí thải được thiết kế để tuân thủ các quy định về khí thải. Cả mạch lọc đầu vào (bộ chỉnh lưu) và đầu ra đều 
+nằm trên bo mạch PV-FILTER. Bo mạch PV-FILTER nằm phía sau bo mạch PV-CONTROL (tham khảo hình ảnh bên dưới).
+Cuộn cảm AC & Biến áp 12 xung
+Hiệu chỉnh hệ số công suất và giảm sóng hài dòng điện đầu vào giúp giảm tải cho cơ sở hạ 
+tầng điện.
+Mô-đun nguồn (PM90-4)
+Mô-đun nguồn chứa tất cả các thiết bị chuyển đổi nguồn cho bộ chỉnh lưu (AC-DC) và bộ biến tần (DC-AC) trong một khối 
+duy nhất, điều này giúp giảm thời gian sửa chữa trung bình và do đó giảm thời gian ngừng hoạt động. Mô-đun nguồn bao 
+gồm các thành phần chính sau:
+Mô-đun nguồn PM90-4
+Trang9của66
+
+=== PDF PAGE 10 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+• Điốt chỉnh lưu:6 mô-đun đi-ốt để tạo thành cầu đi-ốt 12 xung dùng cho dẫn điện thuận và chỉnh lưu nguồn 
+điện xoay chiều đầu vào, được cấp nguồn qua phích cắm có thể tháo rời PL1.
+• Tụ điện DC: 4 tụ điện DC 10000uF tạo ra nguồn dự trữ DC lớn để làm mịn đường dây DC và được mắc song song 
+với mạch chỉnh lưu. Tạo ra dòng điện DC có độ gợn sóng thấp.
+• Công tắc tơ DC:Công tắc tơ cung cấp khả năng điều khiển thời gian kết nối của Bus DC chính trong quá trình cấp điện. 
+Được bỏ qua thông qua mạch Khởi động mềm để hạn chế dòng điện đột biến vào các tụ điện DC.
+• PCB PV-POWER: Dùng để điều khiển mạch điều khiển tần số cao cần thiết cho các mô-đun IGBT biến tần để 
+tạo ra dạng sóng AC ba pha. Giao tiếp thông qua tín hiệu và bus CAN với bo mạch PV-CONTROL thông qua 
+cáp dẹt PL2 37 chân.
+• Mô-đun IGBT biến tần: 6 mô-đun IGBT (Transistor lưỡng cực cổng cách điện) để chuyển đổi DC sang AC được điều 
+khiển bởi mạch in PV-CONTROL/PV-POWER.
+Biến áp điều chỉnh tần số và tụ lọc AC:
+Biến áp có điện kháng cao cùng với các tụ lọc AC cung cấp nguồn điện 400Hz sạch và cách ly cho máy bay. 
+Biến áp có một điện trở nhiệt để theo dõi nhiệt độ, được giám sát thông qua mạch in PV-CONTROL.
+Bộ lọc EMC (PCB PV-FILTER)
+Mạch lọc khí thải được thiết kế để tuân thủ các quy định về khí thải. Cả mạch lọc đầu vào và đầu ra đều nằm 
+trên bo mạch PV-FILTER.
+Công tắc tơ đầu ra:Được điều khiển từ mạch PCB PV-CONTROL, công tắc tơ được phối hợp với hoạt động của dây 
+'F' từ máy bay. Khi người dùng nhấn nút 'ON', bộ biến tần khởi động và công tắc tơ này đóng lại và sẽ duy trì trạng 
+thái đóng cho đến khi tín hiệu khóa liên động từ máy bay được giữ ổn định. Nếu không có phản hồi từ máy bay 
+trong vòng 5 giây (tương thích với Boeing 787 và có thể điều chỉnh bởi người dùng), công tắc tơ sẽ ngắt và bộ biến 
+tần sẽ tắt. Có thể lắp thêm công tắc tơ tùy chọn cho đầu ra thứ cấp 400Hz hoặc 28VDC.
+NGUỒN ĐIỆN CHÍNH:Bộ nguồn cho nguồn điện chính cách ly 24V để vận hành tất cả các thiết bị điện tử (mạch in, quạt, v.v.)
+Trang10của66
+
+=== PDF PAGE 11 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+PCB điều khiển PV:Bộ điều khiển này vận hành quạt, màn hình hiển thị, giao tiếp với mô-đun nguồn và các đầu 
+vào/đầu ra bên ngoài. Hình ảnh bên dưới cung cấp thêm chi tiết về các kết nối và cầu chì được lắp đặt:
+• Công tắc gạt IO-CONTROL SW1:4 chế độ chuyển mạch để bảo trì:
+Công tắc Chức năng TRÊN TẮT
+1 Dự phòng
+2 Dự phòng
+3 Dự phòng
+4 Buộc khởi động Bootloader (Khi khởi động) Đã bật Tàn tật
+(mặc định)
+Trang11của66
+
+=== PDF PAGE 12 ===
+máy điều hòa không khí có thể
+Trang12của66
+
+=== PDF PAGE 13 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+PCB PV-PIT:
+Bo mạch PV-PIT PCB cung cấp một bộ đầu nối tiện lợi cho các kết nối điều khiển từ xa (Bộ dẫn cáp hoặc Bộ điều khiển cuộn cáp, v.v.). 
+Một bo mạch được trang bị tiêu chuẩn, một bo mạch PV-PIT PCB bổ sung có thể được lắp đặt tại nhà máy để tạo đầu ra thứ cấp (Tùy 
+chọn).
+Xem Mục 4.7.8 để biết thêm thông tin.
+PCB PV-ID:
+Trong thiết bị có ba bo mạch PV-ID chứa bộ nhớ lập trình (EEPROM) để nhận dạng điện tử các mô-đun (Số sê-ri duy 
+nhất). Một bo mạch được lắp đặt cạnh bo mạch PV-CONTROL (để lưu trữ thông tin của thiết bị chính), một bo mạch được 
+lắp đặt cạnh bo mạch SW-CONTROL (để lưu trữ thông tin cuộn dây cáp), và một bo mạch nằm bên trong mô-đun nguồn 
+PM90-4. Bo mạch PV-ID cũng lưu trữ các cài đặt hệ thống.
+Trang13của66
+
+=== PDF PAGE 14 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+3.1.1. Vận hành hệ thống – Cuộn cáp
+Bo mạch điều khiển phần mềm (SW-CONTROL PCB):Điều khiển mọi khía cạnh của cuộn dây cáp (tức là không bao gồm việc 
+chuyển đổi điện năng)..Bo mạch PCB này điều khiển mô-đun biến tần để điều khiển động cơ và cuộn cáp vào/ra, dựa trên các tín 
+hiệu đầu vào từ màn hình hiển thị bên ngoài hoặc các nút trên đầu phích cắm. Ngoài ra, bo mạch SW-Control giao tiếp với bo 
+mạch PV-Control để lấy trạng thái của GPU và các lệnh bổ sung. Hình ảnh bên dưới cung cấp thêm chi tiết về các kết nối và cầu 
+chì được lắp đặt:
+• SW-CONTROL SW1 – Công tắc DIP IO:6 chế độ chuyển mạch để bảo trì:
+Công tắc Chức năng TRÊN TẮT
+1 Dự phòng
+2 Dự phòng
+3 Dự phòng
+4 Dự phòng
+5 Dự phòng
+6 Dự phòng
+PCB PV-Split-F:
+Việc sử dụng chân cắm Split-F trong đầu cắm cho phép phát hiện việc cắm cáp vào máy bay thông qua phương 
+pháp điện độc lập, thay vì sử dụng công tắc cơ học. Bo mạch PV-Split-F cung cấp giao diện này.
+Trang14của66
+
+=== PDF PAGE 15 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Giữa chân cắm trong phích cắm và mạch PCB điều khiển SW, nhờ đó đảm bảo cuộn dây cáp không thể cuộn vào trong khi vẫn còn 
+kết nối với máy bay.
+Mô-đun biến tần:
+Mô-đun biến tần được điều khiển trực tiếp bởi mạch PCB điều khiển phần mềm. Nó thiết lập hướng và tốc độ quay của động 
+cơ, và chuyển đổi tín hiệu.
+Động cơ & Phanh:
+Việc sử dụng chân cắm Split-F trong phích cắm cho phép phát hiện việc cắm cáp vào máy bay thông qua phương 
+pháp điện độc lập, thay vì sử dụng công tắc cơ học. Bo mạch PV-Split-F cung cấp giao diện giữa chân cắm trong 
+phích cắm và bo mạch SW-Control, nhờ đó đảm bảo cuộn cáp không thể bị cuốn vào trong khi vẫn còn kết nối với 
+máy bay.
+Trang15của66
+
+=== PDF PAGE 16 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+3.2. Giá đỡ cầu
+Trang16của66
+
+=== PDF PAGE 17 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Lưu ý: Kích thước tính bằng mm
+Trang17của66
+
+=== PDF PAGE 18 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+3.3. Lắp đặt cố định (Gắn sàn)
+Lưu ý: Kích thước tính bằng mm
+Trang18của66
+
+=== PDF PAGE 19 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+3.4. Rơ moóc kéo
+Trang19của66
+
+=== PDF PAGE 20 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Lưu ý: Kích thước tính bằng mm
+Trang20của66
+
+=== PDF PAGE 21 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4. GIAO HÀNG & ĐỊNH VỊ
+4.1. Giao hàng
+Hệ thống thường sẽ được vận chuyển trên pallet để dễ vận chuyển. Trước khi nhận hàng, hãy đảm 
+bảo rằng hệ thống không bị hư hỏng.
+Hãy sử dụng thiết bị nâng hạ phù hợp để dỡ và di chuyển GPU, không được cố gắng dùng sức người để 
+di chuyển.
+4.2. Danh sách đóng gói
+• Bộ nguồn mặt đất Skywinder
+• Chìa khóa cửa
+• Hướng dẫn sử dụng
+• 3 vòng ferrite đầu ra (được lắp vào cáp đầu ra bên trong GPU)
+4.3. Các tùy chọn bổ sung
+• Cáp đầu vào đa độ dài với phích cắm Commando 5 chân 125A
+• Cáp đầu ra đa độ dài với đầu nối kiểu máy bay
+• Rơ moóc kéo điện Skywinder
+• Khung gắn cầu nối nguồn Skywinder
+4.4. Lưu trữ
+Hệ thống cần được bảo quản ở nơi khô ráo, thoáng mát cho đến khi sẵn sàng lắp đặt. Không xếp chồng các vật 
+dụng/thiết bị khác lên trên hệ thống vì điều này có thể làm hỏng vỏ máy. Nếu có thể, hệ thống nên được giữ nguyên 
+trong bao bì.
+Để tránh hiện tượng ngưng tụ hơi nước và hư hỏng các linh kiện điện tử, không nên bảo quản sản phẩm 
+ngoài trời hoặc ở những môi trường dễ xảy ra hiện tượng ngưng tụ hơi nước.
+Trang21của66
+
+=== PDF PAGE 22 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4.5. Dỡ hàng & Di chuyển
+Tháo bỏ lớp màng bọc và dây buộc rồi vứt bỏ đúng cách. Bao bì nên được tái chế nếu có 
+thể.
+Sử dụng xe nâng hoặc xe nâng pallet để di chuyển hệ thống đến vị trí mong muốn. Để đảm bảo an toàn, hãy chắc chắn rằng càng nâng 
+được đặt ở vị trí rộng nhất có thể trước khi nâng.
+Nếu thiết bị được di chuyển từ môi trường lạnh đến vị trí vận hành, hiện tượng ngưng tụ hơi ẩm có 
+thể xảy ra. Trước khi đưa hệ thống vào vận hành, thiết bị phải hoàn toàn khô ráo. Do đó, cần có thời 
+gian thích nghi ít nhất hai giờ.
+Cẩn thận khi di chuyển/nâng vật nặng bằng xe nâng! Đặt càng nâng càng rộng hết cỡ để đảm bảo 
+độ ổn định tốt nhất. Đánh giá cẩn thận từng lần nâng để đảm bảo an toàn cho người lái và bất kỳ 
+nhân viên/người dân nào xung quanh.
+Hãy sử dụng thiết bị nâng hạ phù hợp để lấy GPU ra khỏi pallet/thùng, không được dùng 
+sức người để di chuyển.
+4.5.1. Nâng hạ bằng xe nâng
+Thiết bị này được thiết kế để có thể nâng bằng xe nâng, với các rãnh bên dưới giúp việc nâng hạ dễ dàng hơn.
+Trang22của66
+
+=== PDF PAGE 23 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4.6. Tìm vị trí lắp đặt phù hợp (Lắp đặt cố định)
+Vị trí lắp đặt hệ thống rất quan trọng đối với hoạt động và bảo trì hệ thống một cách chính xác. Những điểm cần 
+xem xét:
+• Địa điểm này có tránh được ngập lụt không?
+• Liệu có đủ không gian cho cửa hút/thoát khí không?
+• Địa điểm này có bằng phẳng không?
+• Liệu có đủ không gian để luồn dây cáp không?
+• Không gian để bảo trì có đủ không?
+Nếu câu trả lời cho bất kỳ câu hỏi nào ở trên là không, bạn nên xem xét lại vị trí lắp đặt. Vui lòng liên hệ với nhóm hỗ trợ kỹ 
+thuật của chúng tôi nếu bạn không chắc chắn. Vui lòng xem trang cuối của hướng dẫn sử dụng này để biết thông tin liên hệ.
+Cẩn thận khi di chuyển/nâng vật nặng bằng xe nâng! Đặt càng nâng càng rộng hết cỡ để đảm bảo 
+độ ổn định tốt nhất. Đánh giá cẩn thận từng lần nâng để đảm bảo an toàn cho người lái và bất kỳ 
+nhân viên/người dân nào xung quanh.
+Hãy sử dụng thiết bị nâng hạ phù hợp để đặt GPU vào vị trí, không được cố gắng di chuyển bằng tay.
+Trang23của66
+
+=== PDF PAGE 24 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4.7. Lắp đặt điện
+Máy cắt cỏ Skywinder Power được trang bị công tắc ngắt điện có khóa cửa, 
+giúp ngăn cửa mở khi công tắc ở vị trí bật. Nên ngắt nguồn điện của máy tại 
+cầu dao/cầu chì trước khi mở cửa.
+4.7.1. Cửa trước
+Tất cả các kết nối điện đều nằm phía sau cửa trước. Trước khi cố gắng mở cửa, hãy đảm bảo công tắc 
+ngắt điện ở vị trí tắt, sau đó sử dụng chìa khóa phù hợp (được cung cấp) để mở khóa cửa.
+Trang24của66
+
+=== PDF PAGE 25 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Để tiện tham khảo trong tương lai, hình ảnh bên trái cung 
+cấp chi tiết về chìa khóa dùng cho cửa trước.
+4.7.2. Tấm che đầu nối cáp/Lỗ luồn cáp
+4.7.2.1 Cuộn cáp – Lối vào cáp phía sau
+Trang25của66
+
+=== PDF PAGE 26 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4.7.2.2 Đầu vào cáp GPU
+Trang26của66
+
+=== PDF PAGE 27 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4.7.3. Kết nối điện - GPU
+Sơ đồ dưới đây mô tả chi tiết các điểm kết nối nguồn điện chính và những điểm đáng chú ý:
+2
+9 3
+4
+6
+1
+7
+5
+8
+Trang27của66
+
+=== PDF PAGE 28 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+10
+Trang28của66
+
+=== PDF PAGE 29 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+KHÔNG. Sự miêu tả Kết nối
+1 Bộ cách ly đầu vào chính (cửa có khóa liên động) Công suất đầu vào (L1, L2 & L3). Xem mục 4.7.5
+2 Công tắc tơ đầu ra 1 (tiêu chuẩn) Ngõ ra 400Hz 1 (L1, L2 & L3). Xem mục 4.7.6
+3 Công tắc tơ đầu ra 2 (được UL chứng nhận) Ngõ ra 400Hz 2 (L1, L2 & L3). Xem mục 4.7.6
+4 PCB PV-PIT (Tín hiệu giao diện) Cáp tín hiệu (Dành cho bộ điều khiển từ xa dạng 
+cuộn/giá đỡ cáp ngoài). 12 lõi mỗi đầu ra
+Được đề xuất. Xem mục 4.7.7.
+5 MCB1 (Cầu dao tự động nguồn điện tử) Không áp dụng
+6 Bộ nguồn chính Không áp dụng
+7 Bộ phận liên lạc bên ngoài (Tùy chọn) Dành cho các giao thức RS-485/Modbus/Ethernet
+8 Bộ sưởi chống ngưng tụ (Tùy chọn) Không áp dụng
+9 Bo mạch điều khiển PV (Bo mạch lọc PV 
+nằm phía sau)
+Không áp dụng
+10 Mô-đun nguồn PM90-4 Không áp dụng
+4.7.4. Kết nối điện – Cuộn dây cáp
+4 6
+2 81 5 73
+KHÔNG. Sự miêu tả Kết nối
+1 Các đầu nối đầu vào chính (Từ GPU 
+đến cáp đầu ra)
+L1, L2, L3, N
+2 PCB tách PV-F PCB điều khiển phần mềm
+2 PCB điều khiển phần mềm
+4 Biến tần động cơ Cầu dao tự động 3 cực (3 Pole MCB)
+5 Máy sưởi chống ngưng tụ
+6 Bộ nguồn chính Cầu dao tự động 2 cực (MCB)
+7 Cầu dao tự động MCB (1x3 cực, 2x2 cực) Biến tần động cơ, bộ nguồn và phanh
+8 Bộ cách ly đầu vào (Tùy chọn) Đầu vào nguồn điện lưới cho MCB
+Trang29của66
+
+=== PDF PAGE 30 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4.7.5. Nguồn điện chính / Nguồn cấp
+Để đạt được công suất đầu ra tối đa, nên sử dụng nguồn cấp từ cầu chì hoặc aptomat 160A (điện áp đầu vào 
+400V) / 125A (điện áp đầu vào 480V). Có thể sử dụng nguồn cấp nhỏ hơn, tuy nhiên điều này sẽ hạn chế khả năng 
+chịu tải đầu ra.
+Thiết bị này chỉ tương thích với nguồn điện đầu vào 3 pha kiểu STAR/WYE có dây nối đất độc lập.
+Các hệ thống tam giác nối đất ở góc như sơ đồ bên dưới KHÔNG tương thích và sẽ làm 
+hỏng thiết bị.
+Việc cấp đúng điện áp đầu vào cho hệ thống là vô cùng quan trọng; vui lòng kiểm tra 
+nhãn thông số kỹ thuật trước khi kết nối. Xem thêm Mục 9.0 Dữ liệu kỹ thuật.
+Hệ thống có bộ lọc EMC (phù hợp điện từ); do bản chất của bộ lọc EMC nên sẽ có 
+một số rò rỉ xuống đất, vì vậy không nên sử dụng RCD (thiết bị chống rò rỉ dòng 
+điện) cho nguồn cấp đầu vào ở mức nhỏ hơn <50mA.
+Hệ thống này yêu cầu nguồn điện đầu vào ba pha và nối đất.
+Vì lý do an toàn, không được vận hành hệ thống khi không có nguồn điện đầu vào nối đất.
+Đối với việc lắp đặt cáp đầu vào, hãy tuân theo tiêu chuẩn BS 7671:2018 hoặc tiêu chuẩn tương đương của địa 
+phương về lắp đặt điện.
+Nên sử dụng dây cáp phù hợp với nhiệt độ ít nhất 90⁰C (194⁰F) cho kết nối nguồn.
+Trang30của66
+
+=== PDF PAGE 31 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Các dây cáp đầu vào được đấu nối trực tiếp vào bộ cách ly đầu vào (L1, L2 & L3) với dây nối đất được đấu nối 
+trực tiếp vào cọc nối đất chính.
+sự liên quan
+ĐẦU VÀO
+L2
+Thể dục
+L1 L3
+4.7.6. Đầu ra 400Hz
+Theo tiêu chuẩn, dây trung tính đầu ra được nối đất thông qua một dây nối đất/trung tính. Điều quan trọng là phải tuân thủ luật 
+pháp địa phương và do đó, trong một số trường hợp (khi dây trung tính được nối ở nơi khác), dây nối này cần được loại bỏ.
+N ĐẦU RA 400Hz
+L1
+L2
+L3
+Thể dục
+Các vòng ferrite bổ sung được cung cấp riêng lẻ cùng với GPU, chúng dành cho mỗi đầu ra 400Hz và nên 
+được lắp vào cáp đầu ra trong quá trình lắp đặt. Các vòng này giúp giảm nhiễu điện đầu ra cho máy bay.Lưu 
+ý: Đảm bảo cả 4 lõi (L1, L2, L3 & N) đều đi qua các vòng theo cùng một hướng.
+Trang31của66
+
+=== PDF PAGE 32 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4.7.7. Kết nối điều khiển từ xa (PCB PV-PIT)
+Bo mạch PV-PIT điều khiển hầu hết các tín hiệu đến/đi từ xa. Một bo mạch PV-PIT được trang bị tiêu 
+chuẩn và một bo mạch thứ hai khi sử dụng đầu ra phụ (tùy chọn). Để dễ dàng kết nối hơn, hình ảnh bên 
+dưới hiển thị các số khác nhau tương ứng với phần giải thích/sơ đồ thích hợp bên dưới. Các chức năng 
+điều khiển này phải được kích hoạt thông qua menu Điều khiển Pit 1/2 trong Cài đặt Hệ thống.
+4.7.7.1 Đầu ra điều khiển hố 1:
+Chức năng và các chân kết nối liên quan của các cổng kết nối từ xa được mô tả bên dưới:
+• Pit-24V:Cung cấp đầu ra 24V DC. Phải nối tắt giữa chân 1-2 của P19 nếu sử dụng nguồn điện 24V cách 
+ly bên ngoài. Ngoài ra, cũng có sẵn nguồn điện 24V cách ly bên trong (công suất 6W, dòng điện 
+250mA). Có thể sử dụng nguồn này bằng cách nối tắt giữa chân 2-3 của P19. Cần cấu hình chân nối đất 
+P18 tương tự.
+• Bắt đầu:Ngõ vào này cho phép bật từ xa đầu ra GPU tương ứng. Nó có thể được cấu hình 
+là NO/NC thông qua menu Điều khiển Pit.
+• Dừng lại:Ngõ vào này cho phép tắt từ xa đầu ra GPU tương ứng. Nó có thể được cấu hình 
+là NO/NC thông qua menu Điều khiển Pit.
+• Ngõ ra BẬT (Đèn LED sáng):Một đầu ra hiển thị trạng thái của đầu ra GPU.
+• Hỗ trợ tần số 400Hz (Có đèn LED):Thông báo này cho biết liệu đầu ra GPU có khả dụng hay không. Điều này phụ thuộc 
+vào việc đáp ứng tất cả các điều kiện cần thiết, ví dụ: không có lỗi, công tắc 90% hiện diện (nếu được bật), công tắc nhiệt 
+độ hiện diện (nếu được bật), chức năng Kích hoạt bên ngoài hiện diện (nếu được bật), v.v.
+• E (Khóa liên động chốt E)
+• F (Chốt khóa liên động F)
+• Trung lập
+• 90% (Chuyển đổi 90%) - Tùy chọn:Đầu vào này được kết nối với một công tắc trong phích cắm máy bay, công tắc này sẽ thay 
+đổi trạng thái khi phích cắm được cắm vào đầu nối trên máy bay được 90%. Nó có thể được cấu hình là NO/NC hoặc tắt thông 
+qua menu Điều khiển trong buồng lái.
+Trang32của66
+
+=== PDF PAGE 33 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+• Nhiệt độ (Công tắc nhiệt độ) – Tùy chọn:Công tắc sẽ chuyển trạng thái nếu phích cắm quá nóng, do đó 
+có thể ngắt nguồn điện vì lý do an toàn. Nó có thể được cấu hình là NO/NC hoặc tắt thông qua menu Điều 
+khiển Pit.
+• EPO:Chức năng Tắt nguồn khẩn cấp GPU. Có thể kết nối EPO bên ngoài nếu nó là NC (Thường đóng). Nếu 
+không, phải lắp một cầu nối vào P20 (Điều khiển Pit 1)/P21 (Điều khiển Pit 2) để bỏ qua EPO bên ngoài.
+• Báo động:Tín hiệu đầu ra cho biết liệu có bất kỳ cảnh báo hệ thống nào được thiết lập trên GPU hoặc trên (các) đầu ra hay không.
+• Kích hoạt bên ngoài (External Enable) - Tùy chọn:Tín hiệu từ thiết bị bên ngoài (ví dụ: đầu đọc thẻ) có thể 
+được sử dụng để kích hoạt đầu ra GPU. Đầu ra sẽ hoạt động được cho đến khi tín hiệu kích hoạt bị mất. Có thể 
+cấu hình thành NO/NC hoặc tắt thông qua menu Điều khiển Pit.
+• Ext. En. GND (External Enable Ground) - Tùy chọn:Kết nối nối đất cho chức năng Kích hoạt bên ngoài. Có thể 
+kết nối một dây nối đất riêng để sử dụng với chức năng Kích hoạt. Ngoài ra, có thể dùng một dây nối tắt giữa 
+chân 1-2 của P24 (Điều khiển Pit 1)/P25 (Điều khiển Pit 2) để kết nối với dây nối đất Pit, hoặc giữa chân 2-3 để kết 
+nối với dây nối đất cách ly bên ngoài. Nếu sử dụng dây nối tắt này,Ext En. GNDKhông cần phải kết nối chân cắm.
+• Pit-GND (Sân mỏ):Phải nối tắt giữa chân 1-2 của P18 nếu sử dụng nối đất cách ly bên ngoài, 
+hoặc giữa chân 2-3 nếu sử dụng nối đất cách ly bên trong. Cần cấu hình cầu nối 24V P19 theo 
+cách tương tự.
+Trang33của66
+
+=== PDF PAGE 34 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4.7.7.2 Phụ tùng thay thế cho hệ thống điều khiển tại khu vực pit (Tùy chọn):
+Có một mạch in (PCB) tùy chọn có thể được lắp thêm để sử dụng một số kết nối bổ sung. Mạch in này cũng sử dụng cùng 
+một kết nối Pit-24V/Pit Ground như trên:
+• ILOCK-LED (Đèn LED khóa liên động 1/2):Một tín hiệu hiển thị trạng thái của thiết bị khóa liên động trên đầu ra 1/2.
+• SW-PRES (Công tắc hiện có 1/2):Một đầu ra hiển thị trạng thái của các công tắc đang được sử dụng (công 
+tắc 90%/công tắc nhiệt độ/cả hai) trên Đầu ra 1/2.
+• Đầu vào dự phòng (Đầu vào dự phòng 1/2):Các chân đầu vào dự phòng
+• Đầu vào dự phòng GND (Đầu vào dự phòng 1/2 nối đất):Kết nối nối đất cho Đầu vào Dự phòng 1/2. Có thể kết nối một dây 
+nối đất riêng biệt, cách ly để sử dụng với Đầu vào. Ngoài ra, có thể đặt một dây nối tắt trên P23 (Đầu vào Dự phòng 1)/P22 
+(Đầu vào Dự phòng 2) để kết nối dây nối đất của Đầu vào Dự phòng với dây nối đất của Hố. Nếu sử dụng dây nối tắt thì chân 
+này không cần phải được kết nối.
+• ĐẦU RA DỰ PHÒNG (Đầu ra dự phòng 1/2 C):Cực chung của rơle đầu ra. Có thể sử dụng kết nối riêng biệt, cách ly. 
+Ngoài ra, có thể đặt một cầu nối trên P26 (Đầu ra dự phòng 1)/P27 (Đầu ra dự phòng 2) để kết nối chân này với điểm 
+nối đất của hố ga.
+• ĐẦU RA DỰ PHÒNG SỐ (Đầu ra dự phòng 1/2 SỐ):Tiếp điểm thường mở của rơle đầu ra.
+• Đầu ra dự phòng NC (Đầu ra dự phòng 1/2 NC):Tiếp điểm thường đóng của rơle đầu ra.
+Trang34của66
+
+=== PDF PAGE 35 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4.7.7.3 Kết nối khóa liên động máy bay① /②
+Mỗi đầu ra có một kết nối khóa liên động máy bay; nếu chỉ lắp đặt một đầu ra thì chỉ có...① được sử dụng. Sơ đồ 
+bên dưới hiển thị thêm chi tiết:
+PCB điều khiển PV
+Trang35của66
+
+=== PDF PAGE 36 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+4.7.8. Cầu chì kết nối điều khiển từ xa / khóa liên động
+Cả nguồn điện 24VDC cho PV-PIT và Interlock (kiểu quân sự) đều được bảo vệ bằng cầu chì trên bo mạch PV-CONTROL. Thông số kỹ thuật và chi tiết của cầu 
+chì được hiển thị bên dưới:
+4.7.8.1 Ghi dữ liệu USB
+Cổng lưu trữ dữ liệu dung lượng lớn USB Dongle (tùy chọn), cho phép lưu trữ thêm các bản ghi dữ liệu. Vui lòng liên 
+hệ với đại diện bán hàng để biết thông tin ứng dụng cụ thể.
+4.7.8.2 Giao diện thông qua hệ thống không dây Link
+Hệ thống giám sát liên lạc không dây 4G dựa trên nền tảng đám mây (Link) (tùy chọn) có thể được cung cấp để phù hợp 
+với nhu cầu liên lạc của khách hàng. Vui lòng liên hệ với đại diện bán hàng để biết thông tin ứng dụng cụ thể.
+4.7.8.3 Giao diện qua RS232 / RS485 (tùy chọn)
+Giao diện RS232 / RS485 (tùy chọn) có thể được cung cấp để phù hợp với nhu cầu giao tiếp của khách hàng. Vui lòng liên 
+hệ với đại diện bán hàng để biết thông tin ứng dụng cụ thể.
+4.7.8.4 Giao diện qua TCP/IP (tùy chọn)
+Giao diện LAN / TCP/IP (tùy chọn) có thể được cung cấp để phù hợp với nhu cầu liên lạc của khách hàng. Vui lòng liên hệ 
+với đại diện bán hàng để biết thông tin ứng dụng cụ thể.
+Trang36của66
+
+=== PDF PAGE 37 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+5. VẬN HÀNH THỬ
+5.1. Điều kiện vận hành và môi trường sau khi vận hành thử
+Đối với các hệ thống có nguy cơ ngưng tụ hơi nước, thiết bị phải được để bật (chế độ chờ), điều này tạo 
+điều kiện tối ưu cho các linh kiện điện tử và tránh hơi ẩm dưới dạng nước ngưng tụ tiếp xúc với các bộ 
+phận quan trọng.
+Để tránh hiện tượng ngưng tụ hơi nước và hư hỏng các linh kiện điện tử, thiết 
+bị phải luôn được bật (chế độ chờ).
+Nếu vì lý do nào đó thiết bị không được cấp nguồn trong một thời gian, cần kiểm tra trực quan xem có 
+dấu hiệu ẩm mốc hay không. Nếu phát hiện hơi ẩm trên bất kỳ bộ phận nào bên trong, cần để các bộ 
+phận đó khô hoàn toàn trước khi cấp nguồn trở lại.
+Nguy cơ bị điện giật! Chỉ những kỹ sư có chuyên môn mới được phép vận hành hệ 
+thống này, việc vận hành không đúng cách có thể làm mất hiệu lực bảo hành.
+LƯU Ý: Các điểm sau đây chỉ dành cho mục đích vận hành thử và không phải là một phần của quy trình 'Khởi động' / 'Tắt 
+máy' thông thường.
+1. Kiểm tra bằng mắt thường xem có hư hỏng cơ học và các đầu nối/kết nối bị lỏng hay không.
+2. Đối với các hệ thống được cung cấp trên xe đẩy hoặc xe moóc, hãy kiểm tra áp suất lốp (nếu có) cũng như hoạt động của 
+phanh.
+3. Hãy đảm bảo rằng nguồn điện đầu vào được kết nối đúng cách và chắc chắn.
+4. Hãy đảm bảo các dây cáp đầu ra được kết nối đúng cách và chắc chắn.
+5. Đảm bảo các vòng ferrite được lắp đúng cách vào các dây cáp đầu ra.
+6. Đảm bảo cáp khóa liên động và cáp điều khiển từ xa được kết nối đúng cách và chắc chắn.
+7. Tiến hành các thử nghiệm ngắt mạch cần thiết trên cáp đầu ra để xác nhận không có hiện tượng ngắn mạch giữa bất kỳ pha nào và cả 
+giữa dây nối đất.
+8. Đóng chặt tất cả các cửa, sau đó bật nguồn cấp điện cho hệ thống.
+9. Kiểm tra xem MCB1 có ở vị trí BẬT và EPO đã được xả hết chưa.
+10. Bật công tắc ngắt mạch đầu vào ở phía sau hệ thống.
+11. Chờ hệ thống khởi tạo và màn hình hiển thị hoạt động, hiển thị dấu tích màu xanh lá cây báo hiệu hệ thống hoạt động 
+tốt.
+12. Bây giờ bạn có thể nhấn nút màu xanh lá cây để khởi động bộ biến tần. Màn hình sẽ hiển thị điện áp đầu ra chính 
+xác của bộ biến tần.
+13. Kiểm tra hệ thống với tải giả để xác nhận điện áp đầu ra, thứ tự pha và chức năng khóa liên động.
+14. Thiết lập bù sụt áp đầu ra bằng tải giả trong giới hạn tiêu chuẩn. Nên sử dụng tải 115.0VAC @ 
+72kW. Xem phần Hiển thị để biết chi tiết về thiết lập và cài đặt bù sụt áp.
+15. Kiểm tra các gioăng chống thấm, đặc biệt là gioăng bu lông mái có thể đã bị tháo ra để lắp các móc nâng.
+16. Đảm bảo tất cả các tấm bảo vệ bên trong được lắp đặt và cửa được đóng kín đúng cách.
+Trang37của66
+
+=== PDF PAGE 38 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+6. VẬN HÀNH HỆ THỐNG
+6.1. Màn hình
+Nút bấm
+⃝
+Các nút ở phía dưới màn hình tương ứng với chức năng được hiển thị 
+phía trên chúng.-
+-
+-⃝➢
+-
+- Điều hướng – Phím Lên/Xuống/Trái/Phải và phím Enter để sử dụng các menu khác nhau.
+Biểu tượng hiển thị
+- Đầu ra 400Hz - Đã chọn đầu ra 400Hz
+Chuyển đổi giữa chế độ vào 
+và ra
+- Trang chủ -
+- Kéo vào - Cáp đã được kết nối hoàn toàn
+- Cuộn ra - Cáp đã được rút hoàn toàn
+Trang38của66
+
+=== PDF PAGE 39 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+- Bắt đầu xuất dữ liệu GPU - Dừng xuất dữ liệu GPU
+- ĐƯỢC RỒI - Hủy bỏ
+Các chỉ báo hiển thị sẽ khác nhau tùy thuộc vào cấu hình nào được chọn ở trên. Xem thêm chi tiết 
+bên dưới:
+6.1.1. Hiển thị đo lường (Đầu ra 400Hz)
+Màn hình hiển thị cung cấp các phép đo tất cả các thông số đầu ra, hỗ trợ người dùng trong quá trình thiết lập và 
+tìm lỗi.
+Các màn hình khác nhau được mô tả chi tiết bên dưới.
+Màn hình Chức năng
+Màn hình khởi tạo: • Đang chờ liên lạc với các hệ thống 
+con khác nhau.
+Trang39của66
+
+=== PDF PAGE 40 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Màn hình chính: • Điều khiển cuộn dây GPU/Cáp
+Màn hình điều khiển GPU/Skywinder – Cuộn phim ra: • Đổi hướng
+• Cuộn ra
+• Trở lại trang chính
+Trang40của66
+
+=== PDF PAGE 41 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Màn hình điều khiển GPU/Skywinder – Sẵn sàng xuất dữ liệu: • Khi dây cáp được kéo ra đủ dài, màn 
+hình sẽ chuyển sang trang tiếp theo.
+Màn hình điều khiển GPU/Skywinder – Đầu ra BẬT: • Yêu cầu khởi động GPU
+Trang41của66
+
+=== PDF PAGE 42 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Màn hình chính – Bật đầu ra: • Yêu cầu dừng GPU
+Yêu cầu dừng GPU: • Hủy bỏ
+• Xác nhận tắt đầu ra
+Trang42của66
+
+=== PDF PAGE 43 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Màn hình điều khiển GPU/Skywinder – Thu dây: • Khi tắt đầu ra, màn hình sẽ tự động chuyển 
+sang chế độ Cuộn phim vào.
+Màn hình điều khiển GPU/Skywinder – Cáp đã được cắm hoàn toàn: • Dây cáp đã được cuộn hết vào trong.
+Trang43của66
+
+=== PDF PAGE 44 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+6.1.2. Menu Hiển thị – Chỉnh sửa cài đặt
+Trong quá trình hoạt động bình thường, các cài đặt hệ thống không thể được sửa đổi mà chỉ có thể được xem.
+Truy cập vào menu liên quan và chỉnh sửa cài đặt nếu cần.
+Cảnh báo: Chỉ những người được đào tạo mới được phép điều chỉnh các thông số trong menu này. Việc vô hiệu hóa/điều 
+chỉnh các tính năng an toàn có thể dẫn đến thương tích nghiêm trọng.
+Hãy đảm bảo công tắc SW1-1 trên bo mạch PV-DISPLAY được đặt ở vị trí TẮT sau khi thiết lập/vận 
+hành ban đầu.
+6.1.3. Thiết lập 400Hz - Ví dụ
+• Bù trừ sụt giảm dòng
+Tính năng này tự động điều chỉnh điện áp đầu ra để bù lại sự sụt giảm điện áp trong cáp đầu ra. 
+Thông thường không cần thiết phải điều chỉnh cài đặt này sau khi vận hành ban đầu vì cài đặt sẽ 
+được lưu trữ trong bộ nhớ không khả biến của hệ thống.
+Chúng tôi khuyến nghị điều chỉnh cài đặt này khi lắp đặt cáp mới hoặc khi xảy ra sự cố về 
+dung sai điện áp trên máy bay.
+Chỉ được phép điều chỉnh cài đặt này bằng cách sử dụng bộ tải giả và vôn kế đã hiệu 
+chuẩn; không nên điều chỉnh khi đang kết nối với máy bay.
+o
+o
+o
+o
+o
+o
+Kết nối bộ tải giả và đặt tải hợp lý (>50%). Đo điện áp tại bộ 
+tải giả bằng vôn kế 400Hz đã hiệu chuẩn. Nhấn nút Menu.
+Chọn biểu tượng Cài đặt đầu ra
+Điều hướng cho đến khi hiển thị Line Drop Comp (%) cho đầu ra đã chọn (L1, L2 hoặc L3).
+Sử dụng núm xoay và nút bấm để tăng/giảm tỷ lệ bù sụt áp nhằm đạt được điện áp 
+chính xác tại bộ tải. Thao tác này phải được lặp lại cho từng pha.
+Nhấn nút Menu để thoát sau khi đã thực hiện tất cả các điều chỉnh cần thiết. 
+Nhấn nút Menu để trở về màn hình mặc định.
+o
+o
+• Điều chỉnh điện áp đầu ra
+Đôi khi người vận hành có thể muốn điện áp đầu ra danh nghĩa cao hơn hoặc thấp hơn một chút, ví dụ như điều 
+chỉnh điện áp đầu ra danh nghĩa từ 115,0 volt lên 115,5 volt.
+o
+o
+o
+o
+o
+o
+Nhấn nút Menu, chọn biểu 
+tượng Cài đặt đầu ra.
+Di chuyển cho đến khi hiển thị mục Điều chỉnh điện áp cho đầu ra đã chọn (L1, L2 hoặc L3). Sử 
+dụng núm xoay và nút bấm để tăng/giảm điện áp đầu ra theo yêu cầu. Nhấn nút Menu để 
+thoát sau khi đã thực hiện tất cả các điều chỉnh cần thiết.
+Nhấn nút Menu để trở về màn hình mặc định.
+Trang44của66
+
+=== PDF PAGE 45 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Cảnh báo: Hãy đo điện áp đầu ra bằng vôn kế đã hiệu chuẩn trước khi kết nối với máy 
+bay.
+6.1.4. Hiển thị cảnh báo
+Phần sau đây cần được đọc cùng với Phần 7 (Khắc phục sự cố & Sửa chữa).
+Theo nguyên tắc chung, vui lòng nhấn và giữ nút TẮT màu đỏ và xem thiết bị có tự khôi phục lại hay không. 
+Các bước dưới đây giả định rằng kỹ sư đã tắt hoàn toàn thiết bị trước khi kiểm tra bất kỳ bộ phận điện tử nào 
+được mô tả bên dưới.
+Báo thức Sự miêu tả Nguyên nhân có thể xảy ra / Hành động được đề xuất
+Hệ thống
+Kiểm tra điện áp nguồn đầu vào và số pha. Kiểm tra xem MCB 1 có 
+đang bật hay không.
+Kiểm tra xem bộ nguồn điện (PSU) có hoạt động không (Thay thế 
+nếu cần).
+Nếu sự cố vẫn tiếp diễn, hãy thay thế bo mạch PCB điều khiển PV.
+AC-DC
+Lỗi nguồn điện
+Điện áp của bộ nguồn DC chính nằm ngoài 
+phạm vi cho phép hoặc bị lỗi.1
+Đường dẫn EPO đã bị gián đoạn. Kiểm tra độ thông mạch 
+của công tắc EPO để đảm bảo hoạt động chính xác. Kiểm 
+tra xem các đường dẫn điều khiển bên ngoài 'Output 1' và 
+'Output 2' đã được đóng chưa. Kiểm tra độ thông mạch 
+của dây dẫn EPO đến bo mạch PV-PIT. Thay thế bo mạch 
+PV-CONTROL nếu không tìm thấy lỗi nào khác.
+EPO
+Báo thức
+2 Đã nhấn nút báo động của EPO.
+Nhấn và giữ nút TẮT màu đỏ để Khởi động lại. Nếu 
+một hoặc nhiều quạt gặp sự cố, đèn báo lỗi quạt sẽ 
+sáng. Thay thế cụm quạt; nếu sự cố vẫn tiếp diễn, 
+hãy thay thế bo mạch điều khiển PV-CONTROL.
+Cảnh báo quạt có nghĩa là tín hiệu phản hồi từ 
+một trong các quạt bị sai. Thiết bị sẽ cho các 
+quạt còn lại hoạt động ở tốc độ tối đa để cố 
+gắng duy trì hoạt động.
+Cái quạt
+Cảnh báo
+3
+Nhấn và giữ nút TẮT màu đỏ để Khởi động lại. 
+Nếu một hoặc nhiều quạt gặp sự cố, đèn báo lỗi 
+quạt sẽ sáng. Thay thế cụm quạt; nếu sự cố vẫn 
+tiếp diễn, hãy thay thế bo mạch điều khiển PV-
+CONTROL.
+Cái quạt
+Lỗi
+Cả hai quạt đều bị hỏng, bộ biến tần hiện đã bị vô 
+hiệu hóa.
+4
+Tắt thiết bị, chờ 10 phút để dòng điện một chiều (DC) 
+tản hết hoàn toàn. Kiểm tra bộ lọc không khí xem có bị 
+tắc nghẽn/bụi bẩn không, vệ sinh nếu cần. Nếu cảnh 
+báo/lỗi quạt cũng xuất hiện thì đây có thể là nguyên 
+nhân gây ra lỗi. Tham khảo cảnh báo/lỗi quạt bên 
+dưới.
+Tản nhiệt
+Quá nhiệt
+Một trong các công tắc nhiệt đã phát hiện 
+nhiệt độ cao.5
+Tắt thiết bị, chờ 10 phút để dòng điện một chiều (DC) tản 
+hết hoàn toàn. Kiểm tra bộ lọc không khí xem có bị tắc 
+nghẽn/bụi bẩn không, vệ sinh nếu cần. Nếu đèn cảnh báo/
+lỗi quạt cũng xuất hiện thì đây có thể là nguyên nhân gây 
+ra sự cố.
+Máy biến áp
+Quá nhiệt
+Một trong các công tắc nhiệt đã phát hiện 
+nhiệt độ cao.6
+Kiểm tra các kết nối dây trung tính và dây nối đất đầu ra, phích cắm 
+và dây dẫn xem có bị hư hỏng không. Kiểm tra việc nối đất và xem có 
+điện áp thực tế so với dây trung tính hay không. Nếu không có điện 
+áp, hãy thay thế bo mạch điều khiển PV-CONTROL.
+Neut - Trái Đất
+Rơle
+Rơle điện áp trung tính/nối đất (tùy chọn) đã 
+hoạt động.7
+Trang45của66
+
+=== PDF PAGE 46 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Kiểm tra kết nối tiếp đất đầu vào và đảm bảo 
+hệ thống được nối đất đúng cách vì mục đích 
+an toàn. KHÔNG được vận hành thiết bị nếu 
+điều kiện tiếp đất bị lỗi.
+Đầu vào nối đất
+Mất tích
+Mạch PCB chống rò rỉ đất (Tùy chọn) đã phát hiện ra 
+sự cố rò rỉ đất.
+8
+Kiểm tra các kết nối dây trung tính và dây nối đất đầu ra, phích cắm 
+và dây dẫn xem có bị hư hỏng không. Kiểm tra việc nối đất và xem có 
+điện áp thực tế so với dây trung tính hay không. Nếu không có điện 
+áp, hãy thay thế bo mạch điều khiển PV-CONTROL.
+Đầu ra Trái đất
+Lỗi9 -
+Cung cấp
+Tần số cung cấp
+Thấp
+Kiểm tra xem nguồn cung cấp đầu vào có chính xác và nằm trong phạm vi 
+dung sai của hệ thống hay không (Xem mục 9. Dữ liệu kỹ thuật).
+10 Tần số nguồn điện xoay chiều đầu vào nhỏ hơn 46Hz.
+Tần số cung cấp
+Cao
+Kiểm tra xem nguồn cung cấp đầu vào có chính xác và nằm trong phạm vi 
+dung sai của hệ thống hay không (Xem mục 9. Dữ liệu kỹ thuật).
+11 Tần số nguồn điện xoay chiều đầu vào lớn hơn 66Hz.
+Kiểm tra nguồn cấp vào có chính xác và nằm trong phạm vi dung sai 
+của hệ thống hay không (Xem mục 9. Dữ liệu kỹ thuật). Kiểm tra các 
+kết nối đầu vào từ bộ cách ly đầu vào đến mạch in PV-FILTER và 
+mạch in PV-CONTROL.
+Kiểm tra xem MCB 1 đã được bật chưa.
+Nếu sự cố vẫn tiếp diễn, hãy thay thế bo mạch PCB điều khiển PV.
+Cung cấp
+Điện áp thấp
+Nguồn điện đầu vào (AC/DC) thấp hơn mức 
+cho phép.
+12
+Kiểm tra nguồn cấp vào có chính xác và nằm trong phạm vi dung sai 
+của hệ thống hay không (Xem mục 9. Dữ liệu kỹ thuật). Kiểm tra các 
+kết nối đầu vào từ bộ cách ly đầu vào đến mạch in PV-FILTER và 
+mạch in PV-CONTROL.
+Kiểm tra xem MCB 1 đã được bật chưa.
+Nếu sự cố vẫn tiếp diễn, hãy thay thế bo mạch PCB điều khiển PV.
+Cung cấp
+Quá áp
+Nguồn điện đầu vào (AC/DC) thấp hơn mức 
+cho phép.
+13
+Chiều quay pha là ngược chiều kim đồng hồ. Lưu ý: 
+Chiều quay pha thuận chiều kim đồng hồ chỉ cần thiết 
+cho bộ chỉnh lưu 24 xung (tùy chọn).
+Giai đoạn cung ứng
+Xoay
+Hoán đổi các pha đầu vào để tạo ra sự quay 
+pha theo chiều kim đồng hồ.
+14
+Bộ chỉnh lưu
+Quá trình hoạt động của bộ chỉnh lưu bị gián đoạn bởi 
+một hoặc nhiều cảnh báo sau:
+• Điện áp nguồn thấp/cao
+• Mất cân bằng DC của bộ chỉnh lưu
+• quay pha
+• Quạt bị lỗi
+• Vô hiệu hóa/Ngăn chặn bên ngoài
+• Báo động EPO
+Tất cả các cảnh báo này đều hiển thị riêng lẻ trên 
+thanh cuộn - điều này sẽ chỉ ra nguyên nhân gây ra 
+cảnh báo - vui lòng tham khảo phần đó trong bảng 
+này.
+Một số cảnh báo, chẳng hạn như lỗi nguồn AC-DC, 
+có thể do sự gián đoạn ngắn của nguồn điện lưới 
+và có thể được đặt lại bằng cách nhấn và giữ nút 
+TẮT màu đỏ.
+Bộ chỉnh lưu
+Ức chế15
+Kiểm tra nguồn cấp đầu vào có chính xác và nằm trong 
+phạm vi dung sai của hệ thống hay không (Xem mục 9. 
+Thông số kỹ thuật). Nhấn và giữ nút TẮT màu đỏ, nếu lỗi 
+vẫn tiếp diễn thì hãy thay thế mô-đun nguồn.
+Bộ chỉnh lưu số
+Phản hồi DC
+Điện áp bus DC không có mặt khi 
+dự kiến.16
+Bộ chỉnh lưu mềm
+Thời gian chờ bắt đầu
+Bộ tiếp điểm khởi động mềm bên trong mô-
+đun nguồn không đóng/mở như mong đợi.
+Nhấn và giữ nút TẮT màu đỏ, nếu lỗi vẫn tiếp 
+diễn thì hãy thay thế mô-đun nguồn.17
+Kiểm tra nguồn cấp đầu vào có chính xác và nằm trong 
+phạm vi dung sai của hệ thống hay không (Xem mục 9. 
+Thông số kỹ thuật). Nhấn và giữ nút TẮT màu đỏ, nếu lỗi 
+vẫn tiếp diễn thì hãy thay thế mô-đun nguồn.
+Bộ chỉnh lưu DC
+Điện áp thấp18 Điện áp bus DC thấp hơn mức tối đa.
+Bộ chỉnh lưu DC
+Mất cân bằng
+Hiện tượng mất cân bằng DC xảy ra trên bus DC nội bộ 
+của mô-đun nguồn.
+Nhấn và giữ nút TẮT màu đỏ, nếu lỗi vẫn tiếp 
+diễn thì hãy thay thế mô-đun nguồn.19
+Bộ chỉnh lưu DC
+Quá áp
+Điện áp bus DC đang ở mức cao hơn mức tối đa. Nhấn và giữ nút TẮT màu đỏ, nếu lỗi vẫn tiếp 
+diễn thì hãy thay thế mô-đun nguồn.20
+Trang46của66
+
+=== PDF PAGE 47 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Điện áp gợn sóng trên đường dây DC vượt quá mức 
+tối đa.
+Nhấn và giữ nút TẮT màu đỏ, nếu lỗi vẫn tiếp 
+diễn thì hãy thay thế mô-đun nguồn.
+Bộ chỉnh lưu DC
+Gợn sóng
+21
+Biến tần
+Biến tần
+Cảnh báo GPU DC
+22 Lưu ý: Để phục vụ cho sự phát triển trong tương lai. Lưu ý: Để phục vụ cho sự phát triển trong tương lai.
+Thông báo này thường sẽ xuất hiện cùng với các 
+thông báo khác, hãy vào phần tương ứng để giải 
+quyết:
+• Điện áp nguồn thấp/cao
+• Quá tải
+• Không có phản hồi DC
+• Lỗi bộ nguồn AC-DC
+Biến tần
+DC thấp
+Điện áp bus DC thấp hơn mức tối thiểu để 
+vận hành bộ biến tần.23
+Biến tần
+Điện áp quá tải DC
+Nhấn và giữ nút TẮT màu đỏ, nếu lỗi vẫn tiếp 
+diễn thì hãy thay thế mô-đun nguồn.24 Điện áp bus DC đang ở mức cao hơn mức tối đa.
+Kiểm tra nguồn cấp đầu vào có chính xác và nằm trong 
+phạm vi dung sai của hệ thống hay không (Xem mục 9. 
+Thông số kỹ thuật). Nhấn và giữ nút TẮT màu đỏ, nếu lỗi 
+vẫn tiếp diễn thì hãy thay thế mô-đun nguồn.
+Biến tần
+DC
+Điện áp thấp
+25 Điện áp bus DC thấp hơn mức tối đa.
+Tắt thiết bị, chờ 10 phút để dòng điện một chiều (DC) tản 
+hết hoàn toàn. Kiểm tra bộ lọc không khí xem có bị tắc 
+nghẽn/bụi bẩn không, vệ sinh nếu cần. Nếu đèn cảnh báo/
+lỗi quạt cũng xuất hiện thì đây có thể là nguyên nhân gây 
+ra sự cố.
+Biến tần điện
+Quá nhiệt
+Một trong các công tắc nhiệt đã phát hiện 
+nhiệt độ cao.26
+Thông thường, điều này chỉ có thể xảy ra nếu có sự cố 
+ngắn mạch ngoài ý muốn trên dây cáp đầu ra. Nếu 
+không có vấn đề gì với tải đầu ra, hãy thay thế mô-đun 
+nguồn.
+Biến tần
+Lỗi IGBT
+Hệ thống giám sát bộ phận nguồn biến tần đã 
+phát hiện lỗi.27
+Thông thường, điều này sẽ không gây ra sự cố và 
+hữu ích cho mục đích bảo trì và giám sát. Nếu sự cố 
+vẫn tiếp diễn, hãy thay thế mô-đun nguồn, sau đó 
+là bo mạch điều khiển PV-CONTROL.
+Biến tần
+Sự kiện NBPT
+Hệ thống đã phát hiện hiện tượng NBPT (Truyền tải 
+điện không gián đoạn) với máy bay.
+28
+Thông thường, điều này chỉ có thể xảy ra nếu có sự cố 
+ngắn mạch ngoài ý muốn trên dây cáp đầu ra. Nếu 
+không có vấn đề gì với tải đầu ra, hãy thay thế mô-đun 
+nguồn.
+Biến tần
+Quá tải
+Hệ thống giám sát bộ phận nguồn biến tần đã 
+phát hiện lỗi.29
+Kết nối tải giả và theo dõi điện áp tại các đầu cực tải để 
+đảm bảo điện áp chính xác dưới mọi tải. Thay thế mô-
+đun nguồn nếu phát hiện lỗi. Kiểm tra tụ lọc đầu ra AC 
+xem có đủ 340uF mỗi pha hay không, thay thế nếu cần.
+Mô-đun nguồn đã phát hiện điện áp vượt quá 
+thông số kỹ thuật và đã tự động tắt để bảo vệ 
+tải.
+Biến tần
+Quá áp30
+Kết nối tải giả và theo dõi điện áp tại các đầu cực tải để 
+đảm bảo điện áp chính xác dưới mọi tải. Thay thế mô-
+đun nguồn nếu phát hiện lỗi. Kiểm tra tụ lọc đầu ra AC 
+xem có đủ 340uF mỗi pha hay không, thay thế nếu cần.
+Mô-đun nguồn đã phát hiện điện áp vượt quá 
+thông số kỹ thuật và đã tự động tắt để bảo vệ 
+tải.
+Biến tần
+Điện áp thấp31
+Biến tần
+Lỗi nguồn điện
+Mức điện áp của bộ nguồn biến tần nằm ngoài phạm vi 
+bình thường.
+Nhấn và giữ nút TẮT màu đỏ, nếu lỗi vẫn tiếp 
+diễn thì hãy thay thế mô-đun nguồn.32
+Trang47của66
+
+=== PDF PAGE 48 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Thông thường, điều này chỉ có thể xảy ra nếu có sự cố 
+ngắn mạch ngoài ý muốn trên dây cáp đầu ra. Nếu 
+không có vấn đề gì với tải đầu ra, hãy thay thế mô-đun 
+nguồn.
+Biến tần
+Ngắn mạch
+Hệ thống giám sát bộ phận nguồn biến tần đã 
+phát hiện lỗi.33
+Đầu ra 1
+Đảm bảo phích cắm được cắm hoàn toàn vào máy bay và 
+nguồn điện phụ/khóa liên động phải hoạt động.
+Kiểm tra tính liên tục của các dây khóa liên động (E và 
+F) giữa phích cắm nguồn đầu ra và mạch in PV-PIT.
+Khi tín hiệu khóa liên động máy bay được kích hoạt, hãy 
+kiểm tra điện áp 28 VDC giữa cực trung tính đầu ra và chân F 
+của phích cắm khóa liên động trên mạch in PV-PIT.
+Nếu có điện áp 28 VDC nhưng màn hình không hiển thị đèn LED 
+khóa liên động, hãy thay thế bo mạch PV-CONTROL.
+Khóa liên động 1
+Mất tích
+34 Tín hiệu khóa liên động máy bay bị thiếu
+Đảm bảo phích cắm được cắm hoàn toàn vào máy bay và 
+nguồn điện phụ/khóa liên động phải hoạt động.
+Kiểm tra tính liên tục của các dây khóa liên động (E và 
+F) giữa phích cắm nguồn đầu ra và mạch in PV-PIT.
+Khi tín hiệu khóa liên động máy bay được kích hoạt, hãy 
+kiểm tra điện áp 28 VDC giữa cực trung tính đầu ra và chân F 
+của phích cắm khóa liên động trên mạch in PV-PIT.
+Nếu có điện áp 28 VDC nhưng màn hình không hiển thị đèn LED 
+khóa liên động, hãy thay thế bo mạch PV-CONTROL.
+Khóa liên động 1
+Mất35 Tín hiệu khóa liên động máy bay bị mất
+Khóa liên động 1
+Đã ghi đè
+Được người dùng kích hoạt. Tự động tắt sau khi 
+nguồn điện đầu ra được tắt.36 -
+Đảm bảo phích cắm được cắm hoàn toàn vào máy bay. Kiểm tra 
+hoạt động của công tắc vi mạch 90% (phích cắm hàng không).
+Kiểm tra tính liên tục của 90% đường điều khiển từ phích cắm 
+đến mạch PCB PV-PIT.
+Nếu kiểm tra thông mạch tốt và có tín hiệu 24VDC, 
+mạch đóng trên 90% các đường dây, hãy thay thế bo 
+mạch PV-CONTROL.
+90% Công tắc 1
+Mất37 Tín hiệu chuyển mạch 90% (tùy chọn) bị mất
+Kiểm tra hoạt động của công tắc vi mạch nhiệt độ (đầu 
+cắm hàng không).
+Kiểm tra tính liên tục của các đường dây điều khiển nhiệt độ từ phích 
+cắm đến mạch PCB PV-PIT.
+Nếu kiểm tra thông mạch tốt và có tín hiệu 24VDC và mạch 
+đóng trên các đường dây nhiệt độ, hãy thay thế bo mạch PV-
+CONTROL.
+Công tắc nhiệt độ 1
+Mất
+Tín hiệu công tắc nhiệt độ ngoài (tùy 
+chọn) đã bị mất.38
+Kiểm tra dây Z xem có điện áp không – Bộ dây cáp/đầu 
+cắm hàng không có thể bị hỏng hoặc chân trung tính bị 
+đứt. Thay thế nếu cần. Kiểm tra tính liên tục của các 
+đường điều khiển dây Z từ đầu cắm đến mạch PCB PV-
+PIT.
+Nếu kiểm tra thông mạch tốt và không phát hiện thấy điện áp, hãy 
+thay thế bo mạch PV-CONTROL.
+Trung lập
+Điện áp 1
+Dây cảm biến trung tính (dây Z) đã 
+vượt quá giới hạn được lập trình.39
+Trang48của66
+
+=== PDF PAGE 49 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Kết quả đầu ra 2
+Đảm bảo phích cắm được cắm hoàn toàn vào máy bay và 
+nguồn điện phụ/khóa liên động phải hoạt động.
+Kiểm tra tính liên tục của các dây khóa liên động (E và 
+F) giữa phích cắm nguồn đầu ra và mạch in PV-PIT.
+Khi tín hiệu khóa liên động máy bay được kích hoạt, hãy 
+kiểm tra điện áp 28 VDC giữa cực trung tính đầu ra và chân F 
+của phích cắm khóa liên động trên mạch in PV-PIT.
+Nếu có điện áp 28 VDC nhưng màn hình không hiển thị đèn LED 
+khóa liên động, hãy thay thế bo mạch PV-CONTROL.
+Khóa liên động 2
+Mất tích
+40 Tín hiệu khóa liên động máy bay bị thiếu
+Đảm bảo phích cắm được cắm hoàn toàn vào máy bay và 
+nguồn điện phụ/khóa liên động phải hoạt động.
+Kiểm tra tính liên tục của các dây khóa liên động (E và 
+F) giữa phích cắm nguồn đầu ra và mạch in PV-PIT.
+Khi tín hiệu khóa liên động máy bay được kích hoạt, hãy 
+kiểm tra điện áp 28 VDC giữa cực trung tính đầu ra và chân F 
+của phích cắm khóa liên động trên mạch in PV-PIT.
+Nếu có điện áp 28 VDC nhưng màn hình không hiển thị đèn LED 
+khóa liên động, hãy thay thế bo mạch PV-CONTROL.
+Khóa liên động 2
+Mất41 Tín hiệu khóa liên động máy bay bị mất
+Khóa liên động 2
+Đã ghi đè
+Được người dùng kích hoạt. Tự động tắt sau khi 
+nguồn điện đầu ra được tắt.42 -
+Đảm bảo phích cắm được cắm hoàn toàn vào máy bay. Kiểm tra 
+hoạt động của công tắc vi mạch 90% (phích cắm hàng không).
+Kiểm tra tính liên tục của 90% đường điều khiển từ phích cắm 
+đến mạch PCB PV-PIT.
+Nếu kiểm tra thông mạch tốt và có tín hiệu 24VDC, 
+mạch đóng trên 90% các đường dây, hãy thay thế bo 
+mạch PV-CONTROL.
+90% Công tắc 2
+Mất43 Tín hiệu chuyển mạch 90% (tùy chọn) bị mất
+Kiểm tra hoạt động của công tắc vi mạch nhiệt độ (đầu 
+cắm hàng không).
+Kiểm tra tính liên tục của các đường dây điều khiển nhiệt độ từ phích 
+cắm đến mạch PCB PV-PIT.
+Nếu kiểm tra thông mạch tốt và có tín hiệu 24VDC và mạch 
+đóng trên các đường dây nhiệt độ, hãy thay thế bo mạch PV-
+CONTROL.
+Công tắc nhiệt độ 2
+Mất
+Tín hiệu công tắc nhiệt độ ngoài (tùy 
+chọn) đã bị mất.44
+Kiểm tra dây Z xem có điện áp không – Bộ dây cáp/đầu 
+cắm hàng không có thể bị hỏng hoặc chân trung tính bị 
+đứt. Thay thế nếu cần. Kiểm tra tính liên tục của các 
+đường điều khiển dây Z từ đầu cắm đến mạch PCB PV-
+PIT.
+Nếu kiểm tra thông mạch tốt và không phát hiện thấy điện áp, hãy 
+thay thế bo mạch PV-CONTROL.
+Trung lập
+Điện áp 2
+Dây cảm biến trung tính (dây Z) đã 
+vượt quá giới hạn được lập trình.45
+Trang49của66
+
+=== PDF PAGE 50 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+6.2. Trình tự khởi động/tắt máy
+Chỉ những người được đào tạo bài bản mới được phép vận hành thiết bị này.
+Đảm bảo lắp đặt chính xác trước khi cấp điện lần đầu - điện áp, thứ tự pha và tần số.PHẢI Để 
+đảm bảo nằm trong giới hạn cho phép, vui lòng xem Mục 9.0 Dữ liệu kỹ thuật trong tài liệu 
+hướng dẫn này để biết thêm thông tin.
+6.2.1. Khởi động (Đối với trạng thái chờ/sẵn sàng):
+1. Kiểm tra xem nút dừng khẩn cấp đã được nhả ra và MCB1 đang ở vị trí BẬT.
+2. Bật công tắc ngắt điện chính.
+3. Chờ 10-20 giây để hệ thống khởi động trước khi nhấn nút màu xanh lá cây. Kiểm tra xem đèn LED báo hiệu "Tick" (màu 
+xanh lá cây) có sáng và không có cảnh báo nào không. Hệ thống hiện đã sẵn sàng để sử dụng.
+6.2.2. Tắt máy (Đối với trạng thái chờ/sẵn sàng):
+1.Nhấn nút màu đỏ (tắt).
+2.Tắt cầu dao điện chính.
+3.Hãy đợi 10 phút để DC xả hết điện bên trong trước khi mở bất kỳ cửa nào.
+Lưu ý: Nếu thiết bị được tắt và bật lại trong vòng 2 phút, có thể hiển thị các cảnh báo sai, trong trường hợp này, 
+hãy nhấn và giữ nút TẮT màu đỏ (0) để đặt lại các cảnh báo hiển thị.
+6.3. Thao tác cơ bản
+6.3.1. Cuộn dây ra
+1. Để kéo dây cáp ra, có thể thực hiện theo một trong hai cách sau:
+a. Giữ nút REEL OUT/DOWN trên phích cắm.
+b. Giữ nút REEL OUT/DOWN trên màn hình.
+2. Nếu cáp đã được kéo hết cỡ, nó sẽ tự động ngừng cuộn vào.
+3. Nếu chức năng Tự động cuộn dây được bật, sau khi nhấn nút, dây cáp sẽ tự động cuộn ra 5 mét đầu tiên.
+4. Nếu chức năng Bảo vệ phích cắm được kích hoạt, cáp chỉ có thể được cuộn ra bằng nút trên phích cắm (sau 5 mét đầu 
+tiên).
+6.3.2. Quy trình khởi động (Hoạt động bình thường, với máy bay):
+1. Cắm hoàn toàn đầu nối máy bay vào ổ cắm trên máy bay.
+2. Hãy chắc chắn rằng đèn LED Khóa liên động độc lập trên phích cắm đang sáng, cho thấy phích cắm đã được cắm hoàn toàn.
+3. Nhấn nút OUTPUT ON, trên phích cắm hoặc trên màn hình hiển thị. Các đèn LED trên phích cắm sẽ sáng lên để 
+cho thấy nguồn điện 400Hz đang được cung cấp cho máy bay và tín hiệu khóa liên động đang được nhận từ 
+máy bay.
+6.3.3. Quy trình tắt nguồn (Hoạt động bình thường, với máy bay):
+1. Nhấn nút TẮT ĐẦU RA, trên phích cắm hoặc trên màn hình. Đèn LED 400Hz và Khóa liên động trên 
+phích cắm sẽ tắt.
+2. Ngắt kết nối cáp đầu ra khỏi máy bay. Đèn LED Khóa liên động độc lập trên phích cắm sẽ tắt.
+Trang50của66
+
+=== PDF PAGE 51 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+6.3.4. Cuộn dây vào
+1. Để thu dây cáp, có thể thực hiện một trong hai cách sau:
+a. Giữ nút Reel IN/UP trên phích cắm.
+b. Giữ nút Reel IN/UP trên màn hình.
+2. Khi dây cáp được thu vào hoàn toàn, máy sẽ tự động dừng lại.
+3. Nếu chức năng Tự động cuộn dây được bật, cáp sẽ tự động cuộn vào 5 mét cuối cùng mà không cần phải 
+giữ nút.
+4. Nếu chức năng Bảo vệ phích cắm được kích hoạt, cáp chỉ có thể được thu vào bằng nút trên phích cắm (cho đến khi còn 5 mét cuối).
+6.3.5. Hệ thống an toàn khóa liên động máy bay
+Bộ nguồn này tích hợp hệ thống an toàn khóa liên động, tự động ngắt nguồn điện đầu ra nếu tín hiệu khóa liên 
+động từ máy bay bị mất. Khi nhấn nút 'ON', bộ biến tần sẽ khởi động và cung cấp điện cho máy bay; nếu sau 5 
+giây hệ thống không nhận được tín hiệu khóa liên động từ máy bay, nguồn điện đầu ra sẽ bị ngắt.
+Để phục vụ mục đích bảo dưỡng, sửa chữa và kiểm tra, hệ thống khóa liên động có thể được vô hiệu hóa từ bảng điều 
+khiển. Để đảm bảo an toàn và sức khỏe cá nhân, bộ nguồn mặt đất sẽ tự động trở về chế độ khóa liên động ban đầu khi 
+nhận được tín hiệu khóa liên động từ máy bay.
+Hệ thống an toàn khóa liên động của máy bay chỉ được phép vô hiệu hóa bởi nhân viên điện có trình 
+độ chuyên môn khi thực hiện bảo dưỡng và sửa chữa.
+Việc chọn chế độ ghi đè khóa liên động sẽ khiến các chân trên đầu nối máy bay có điện nếu 
+bật nguồn, cần phải thực hiện các biện pháp phòng ngừa thích hợp khi thao tác với đầu nối 
+máy bay.
+Nếu nguồn điện bị ngắt sau 5 giây, trước tiên hãy kiểm tra xem đầu nối máy bay đã được kết nối hoàn toàn chưa và loại khóa liên động 
+(quân sự hoặc dân sự) đã được chọn đúng chưa. Lưu ý: Trong trường hợp này, cảnh báo “Thiếu khóa liên động” sẽ hiển thị. Nếu cần, có 
+thể vô hiệu hóa khóa liên động bằng cách vào mục 'Cài đặt khóa liên động' trong menu 'Cài đặt đầu ra' (chỉ có thể điều chỉnh nếu công tắc 
+DIP SW1-1 được chọn ở vị trí 'BẬT' trên mạch in PV-DISPLAY).
+Chức năng ghi đè khóa liên động sẽ được đặt lại khi nhấn nút 'TẮT' (màu đỏ) hoặc khi ngắt nguồn điện 
+đầu vào.
+6.3.6. Hệ thống liên kết dân sự/quân sự:
+Trong quá trình thử nghiệm tại nhà máy, khóa liên động được đặt mặc định là "Dân sự". Nếu nguồn điện bị ngắt sau 5 giây, trước tiên hãy kiểm tra 
+xem đầu nối máy bay đã được kết nối hoàn toàn chưa và loại khóa liên động chính xác (quân sự hoặc dân sự) đã được chọn chưa.
+Lưu ý: Hệ thống khóa liên động quân sự là một tùy chọn bổ sung và yêu cầu nhà máy phải lắp đặt thêm một bộ nguồn 
+(PSU).
+Trang51của66
+
+=== PDF PAGE 52 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+6.3.7. Quy trình cập nhật phần mềm
+Phần mềm PCB PV-Control và SW-Control có thể được nâng cấp bằng cách lưu phiên bản mới nhất vào ổ USB thông 
+thường.
+Để nâng cấp bo mạch SW-Control, vui lòng cắm ổ USB vào cổng USB được chỉ định trên bo mạch SW-
+CONTROL và làm theo hướng dẫn bên dưới. Để nâng cấp bo mạch PV-CONTROL, vui lòng cắm ổ USB vào cổng 
+USB được chỉ định trên bo mạch PV-CONTROL và làm theo hướng dẫn bên dưới.
+Lưu ý: Để đảm bảo an toàn, bo mạch PV-CONTROL có chức năng buộc hệ thống thực hiện quá trình cập nhật phần mềm. 
+Quá trình này được bắt đầu bằng cách đặt công tắc DIP SW-1 4 (bo mạch IO-PV-CONTROL) vào vị trí Kích hoạt và cấp điện 
+lại cho hệ thống. Nếu thao tác này được thực hiện, công tắc DIP sẽ được bật.phải Cần được đưa về trạng thái mặc định là 
+Đã tắt trước khi đưa vào sử dụng.
+Trang52của66
+
+=== PDF PAGE 53 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+7. DỊCH VỤ & BẢO TRÌ
+LƯU Ý: VIỆC KIỂM TRA VÀ THỬ NGHIỆM THIẾT BỊ NÀY THƯỜNG XUYÊN BỞI CÁC KỸ SƯ DỊCH VỤ CÓ TRÌNH ĐỘ VÀ NĂNG 
+LỰC LÀ VÔ CÙNG QUAN TRỌNG. VUI LÒNG LIÊN HỆ VỚI BỘ PHẬN DỊCH VỤ CỦA CHÚNG TÔI ĐỂ BIẾT THÊM THÔNG TIN/
+CHI TIẾT.
+Chỉ những nhân viên điện có trình độ chuyên môn, am hiểu về cấu tạo và hoạt động của thiết bị này cũng 
+như các mối nguy hiểm liên quan mới được phép lắp đặt, bảo trì hoặc sửa chữa thiết bị này.
+Ngắt nguồn cấp điện cho GPU tại bảng phân phối điện hoặc trụ cấp điện cục bộ, sau đó 
+chờ ít nhất 10 phút để các tụ điện DC xả hết điện trước khi mở bất kỳ cửa hoặc tháo bất 
+kỳ nắp đậy nào.
+7.1. Bảo trì định kỳ được khuyến nghị
+Tất cả các hệ thống cần được kiểm tra thường xuyên theo quy định hiện hành. Danh sách kiểm tra bên dưới nêu chi tiết 
+lịch kiểm tra/thử nghiệm được SAS khuyến nghị, cần tuân thủ để đảm bảo an toàn cũng như duy trì hiệu lực bảo hành 
+thiết bị. Việc kiểm tra hàng ngày dành cho người vận hành/nhân viên sân bay, mọi sự cố cần được báo cáo ngay lập tức.
+Kiểm tra
+Kiểu
+Kiểm tra mục Hằng ngày Hàng tháng 6 tháng
+Điều khiển
+Bảng
+Màn hình hiển thị màu xanh lá cây - LED, không 
+báo động
+-- ---
+Bộ lọc không khí sạch - --
+Tổng quan
+Kiểm tra thiết bị xem có hư hỏng 
+vật lý không.
+Đơn vị --- -
+Nhãn thông tin/an toàn - - --
+Kiểm tra các bu lông cố định xuống 
+đất (nếu có)
+--
+Bánh xe và phanh (nếu có) -- -- --
+Đơn vị Khóa cửa tủ - -- --
+Bản lề cửa tủ - -- --
+Gioăng chắn thời tiết cho cửa tủ/mái 
+nhà
+- - --
+Cơ khí Bôi mỡ vào các điểm cần bôi 
+trơn. - --
+Cuộn dây cáp
+Kiểm tra xích và bánh răng của bộ truyền 
+động cuộn cáp.
+- --
+Trang53của66
+
+=== PDF PAGE 54 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Kiểm tra chức năng công tắc cách ly đầu 
+vào
+- - --
+Kiểm tra chức năng dừng khẩn cấp - - --
+Liên kết Trái đất - - --
+Đơn vị
+Kiểm tra xem tất cả các mối nối điện đã được 
+si chặt chưa.
+- - --
+Kiểm tra công tắc giới hạn và công tắc an toàn -- --
+Kiểm tra hoạt động của quạt. - --
+Kiểm tra trực quan cơ bản - -- --
+Đèn LED và nút BẬT/TẮT -- --
+Kiểm tra đầy đủ chức năng triển khai 
+cáp (và các nút VÀO/RA)
+- -
+Điện -
+Cáp/Phích cắm Kiểm tra toàn diện
+lực chèn tiếp điểm)
+- ---
+Kiểm tra điện trở cách điện của các 
+chân tiếp xúc với nhau / nối đất.
+- ---
+Kiểm tra thông mạch điện trở thấp - - --
+Kiểm tra chức năng khóa liên động - - --
+Thử nghiệm tải giả 1 giờ 
+(khuyến nghị 72kW) - --
+Đầu ra
+Điện áp và tần số ghi nhận nằm trong 
+giới hạn cho phép (theo tiêu chuẩn ISO 
+6858 :2017).
+- --
+7.2. Thay thế bộ lọc khí đầu vào
+Chỉ những nhân viên điện có trình độ chuyên môn, am hiểu về cấu tạo và hoạt động của thiết bị này cũng 
+như các mối nguy hiểm liên quan mới được phép lắp đặt, bảo trì hoặc sửa chữa thiết bị này.
+Máy phát điện Skywinder Power sử dụng quạt để làm mát các linh kiện quan trọng, điều này đòi hỏi luồng không khí đi 
+vào bên trong máy thông qua cửa thông gió và bộ lọc khí đi kèm. Bộ lọc này sẽ bị tắc nghẽn theo thời gian, thời gian cụ 
+thể phụ thuộc vào điều kiện môi trường. Nên kiểm tra bộ lọc thường xuyên và thay thế hoặc làm sạch khi cần thiết. Có thể 
+nhìn thấy bộ lọc từ bên ngoài máy, hãy nhìn lên qua cửa thông gió, có thể cần đến đèn pin.
+Để thay bộ lọc, cần phải mở cửa gió, việc này cần có chìa khóa bảng điều khiển (được cung cấp kèm 
+theo máy). Cửa gió làkhông Được trang bị chốt chặn cơ học, vì lý do an toàn, thiết bị cần được cách ly 
+(tắt) trước khi thay bộ lọc. Không nên thực hiện trong điều kiện thời tiết xấu.
+Ngắt nguồn cấp điện cho GPU bằng cách tắt Bộ cách ly đầu vào [S1], sau đó đợi ít nhất 10 
+phút để các tụ điện DC xả hết điện trước khi mở bất kỳ cửa nào hoặc tháo bất kỳ nắp 
+nào.
+Trang54của66
+
+=== PDF PAGE 55 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+1. Cách ly thiết bị bằng cách tắt công tắc cách ly đầu vào.
+2. Mở cửa chớp bằng chìa khóa bảng điều khiển (được cung cấp) và cố định cửa chớp ở vị trí mở bằng chốt cửa 
+được cung cấp.
+3. Trượt hộp lọc ra bằng cách đẩy lên trước (có lò xo) rồi đẩy về phía thiết bị để bỏ qua chốt 
+giữ.
+4. Tháo hoàn toàn hộp mực.
+5. Thay thế bằng hộp mực mới, sau đó thực hiện các bước 1-5 theo chiều ngược lại.
+7.2.1. Vệ sinh bộ lọc:
+Tháo thanh giữ bằng cách ấn vào vật liệu lọc (cố định bằng đinh vít), sau đó trượt thanh giữ theo đường chéo như hình 
+minh họa bên dưới. Thay vật liệu lọc hoặc lau bụi/hút bụi kỹ lưỡng cho đến khi sạch. Nếu có thời gian, có thể rửa vật liệu 
+lọc bằng nước, lưu ý không lắp đặt khi còn ướt vì điều này có thể gây hư hỏng nghiêm trọng cho thiết bị. Lắp ráp lại hộp 
+lọc và thực hiện các bước 1-5 theo thứ tự ngược lại.
+Trang55của66
+
+=== PDF PAGE 56 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+7.3. Thay thế cáp
+Chỉ những nhân viên điện có trình độ chuyên môn, am hiểu về cấu tạo và hoạt động của thiết bị này cũng 
+như các mối nguy hiểm liên quan mới được phép lắp đặt, bảo trì hoặc sửa chữa thiết bị này.
+Hãy đảm bảo hệ thống được ngắt khỏi nguồn điện khi làm việc bên trong cuộn cáp.
+1. Tháo tấm ốp ở phía bên phải của thiết bị để lộ cuộn cáp.
+2. Vào Chế độ Kiểm tra để tắt tính năng bảo vệ cáp.
+3. Cuộn dây cáp ra cho đến khi nó nằm ở rãnh cuối cùng của tang cuốn cáp.
+4. Ngắt kết nối thiết bị Skywinder khỏi nguồn điện lưới.
+5. Tháo 4 dây cáp nguồn ra khỏi các đầu nối.
+6. Ngắt kết nối cáp tín hiệu khỏi đầu nối, được đặt ở vị trí như hình ảnh bên dưới:
+Trang56của66
+
+=== PDF PAGE 57 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+7. Luồn hai đầu dây cáp qua phần khoét trên tang cuốn, sau đó lấy dây cáp ra qua phía trước của 
+thiết bị.
+8. Luồn hai đầu dây cáp mới qua phía trước thiết bị, vào giữa khe trên tang cuốn.
+9. Gắn 4 đầu nối vào các cực và kết nối đầu nối tín hiệu.
+10. Bật lại thiết bị.
+11. Cuộn dây cáp vào hết cỡ
+12. Điều chỉnh các công tắc giới hạn nếu cần.
+Trang57của66
+
+=== PDF PAGE 58 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+7.4. Mô-đun nguồn có thể cắm
+Hệ thống này được trang bị mô-đun nguồn có thể tháo rời. Trong trường hợp hiếm hoi xảy ra sự cố hệ thống, "trái tim" 
+của máy có thể dễ dàng được thay thế bởi nhân viên bảo trì tuyến đầu chỉ trong vài phút. Mô-đun nguồn chứa tất cả các 
+thiết bị nguồn và mạch điều khiển, có nghĩa là có một giải pháp khắc phục duy nhất cho hầu hết các lỗi.
+7.4.1.1 Thay thế mô-đun nguồn
+Chỉ những nhân viên điện có trình độ chuyên môn, am hiểu về cấu tạo và hoạt động của thiết bị này cũng 
+như các mối nguy hiểm liên quan mới được phép lắp đặt, bảo trì hoặc sửa chữa thiết bị này.
+Trước khi ngắt kết nối mô-đun nguồn này, người có chuyên môn phải đảm bảo 
+các bước sau đã được thực hiện!
+Ngắt nguồn cấp điện cho GPU tại bảng phân phối điện hoặc trụ cấp điện cục bộ, sau đó 
+chờ ít nhất 10 phút để các tụ điện DC xả hết điện trước khi mở bất kỳ cửa hoặc tháo bất 
+kỳ nắp đậy nào.
+Hãy cẩn thận khi nâng mô-đun nguồn, cần hai người để nâng!
+Cẩn thận khi nhấc mô-đun nguồn, nhiệt độ tản nhiệt có thể vượt quá 80°C! Nếu 
+cần, hãy để nguội một thời gian trước khi tháo ra.
+Để thay thế mô-đun nguồn cho Bộ nguồn mặt đất (GPU) này, vui lòng thực hiện các bước 
+sau:
+13. Cách ly GPU khỏi nguồn điện đầu vào.
+14. Chờ 10 phút để các tụ điện DC xả hết điện.
+15. Mở cửa trước (cửa dài hết cỡ có bảng hiển thị)
+16. Tháo tấm chắn an toàn
+Trang58của66
+
+=== PDF PAGE 59 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+17. Dùng đồng hồ đo điện áp để đo giữa các dây cáp 11, 12, 21, 22, 31 và 32 nhằm đảm bảo không còn 
+điện áp nào trên các tụ điện DC (đo giữa mỗi điểm nối và đất). Sau đó, ngắt kết nối 6 dây cáp như 
+hình minh họa bên dưới.
+Việc thay thế các dây cáp này theo đúng trình tự là rất cần thiết, và việc sử dụng mã màu và nhãn dán sẽ giúp ích cho việc này.
+3
+3 2 2 1 1
+Trang59của66
+
+=== PDF PAGE 60 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+18. Sau đó, phải ngắt kết nối các đầu nối được đánh dấu PL1 và PL2 khỏi mô-đun nguồn. PL1 được tháo 
+ra bằng cách kéo cần gạt; PL2 được nới lỏng bằng các vít ở hai bên đầu nối.
+19. Hai giá đỡ cố định cũng được đặt ở hai góc trên và dưới để giữ chặt mô-đun về mặt cơ học. 
+Chúng cũng cần được tháo ra.
+20. Bây giờ có thể thay thế mô-đun nguồn. Hãy đảm bảo mô-đun nguồn được cố định chắc chắn vào vị 
+trí và các giá đỡ được lắp lại.
+21. Nối lại các dây cáp 11, 12, 21, 22, 31 và 32. Đảm bảo tất cả các dây cáp được nối đúng thứ tự và các 
+đầu nối được chắc chắn.
+22. Cắm và cố định các đầu nối PL1 và PL2.
+23. Thay thế tấm chắn an toàn.
+24. Đóng và khóa tất cả các cửa. Lúc này, nguồn điện đầu vào có thể được cấp lại cho GPU và hệ thống có thể được bật nguồn để sử 
+dụng.
+Trang60của66
+
+=== PDF PAGE 61 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+7.5. Thay thế quạt
+Cụm quạt bao gồm 2 quạt làm mát quay 24VDC được đặt trên một cấu trúc khay có thể tháo rời để dễ 
+dàng bảo trì.
+Hãy đảm bảo hệ thống đã được ngắt kết nối khỏi nguồn điện trước khi thực hiện quy trình này.
+1. Tháo tấm ốp lưng để lộ khay quạt.
+2. Tháo bu lông cố định khay quạt.
+3. Tháo rời đầu nối phích cắm/ổ cắm của cụm quạt.
+4. Tháo cụm quạt bằng cách trượt nó ra ngoài.
+5. Thay thế toàn bộ cụm quạt hoặc quạt bị lỗi riêng lẻ (Lưu ý: chú ý đến cực tính của cáp tín hiệu):
+Trang61của66
+
+=== PDF PAGE 62 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+• + 24V / Màu đỏ / Dây số 76 (Quạt 1) & 82 (Quạt 2)
+• PWM / Màu tím / Dây số 77 (Quạt 1) & 78 (Quạt 2)
+• TACHO / MÀU TRẮNG / Số dây 79 (Quạt 1) & 80 (Quạt 2)
+• 0V / MÀU XANH DƯƠNG / Dây số 80 (Quạt 1) & 83 (Quạt 2)
+6. Kết nối lại phích cắm/ổ cắm của cụm quạt và lặp lại các bước trên theo thứ tự ngược lại.
+7. Đóng và khóa tất cả các cửa. Đảm bảo hệ thống được khôi phục về trạng thái ban đầu. Bây giờ có thể cấp 
+lại nguồn điện cho hệ thống.
+7.6. Bảo hành
+Tất cả thiết bị đều được bảo hành đối với các lỗi do thiết kế, linh kiện và tay nghề kém trong điều kiện vận hành 
+bình thường trong thời hạn 24 tháng kể từ ngày mua. Trong thời gian này, tất cả các linh kiện bị lỗi sẽ được thay 
+thế miễn phí. Chi phí nhân công và đi lại sẽ được tính vào (áp dụng cho khu vực đất liền Vương quốc Anh). Tất cả 
+các cuộc gọi sửa chữa không phải do lỗi hoặc sự cố của thiết bị của chúng tôi gây ra sẽ được tính phí theo giá dịch 
+vụ tiêu chuẩn của chúng tôi và do quý khách thanh toán.
+Trách nhiệm của chúng tôi theo chính sách bảo hành này chỉ giới hạn trong các điều khoản nêu trên và chúng tôi không chịu trách nhiệm đối với bất kỳ 
+tổn thất phát sinh nào.
+7.7. Bảo hành mở rộng
+Trong một số trường hợp, thời hạn bảo hành tiêu chuẩn 24 tháng có thể được gia hạn, vui lòng tham khảo tài liệu mua hàng để 
+biết thêm chi tiết. Để bảo hành gia hạn có hiệu lực, thiết bị phải được bảo dưỡng hàng năm bởi Powervamp hoặc nhân viên được 
+đào tạo tại nhà máy. Xem điều khoản và điều kiện để biết thêm chi tiết.
+7.8. Dịch vụ bảo trì và sao lưu
+Tất cả phụ tùng thay thế đều được dự trữ tại Anh (Châu Âu) và Boise, Idaho (Hoa Kỳ lục địa) và được bảo 
+hành tối thiểu mười năm. Sau khi hết thời hạn bảo hành, chúng tôi đặc biệt khuyến nghị nên ký kết Thỏa 
+thuận Bảo trì Chính thức và điều này sẽ đòi hỏi việc đàm phán một hợp đồng riêng biệt.
+Trang62của66
+
+=== PDF PAGE 63 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+7.9. THÔNG SỐ KỸ THUẬT
+GPU Skywinder Power
+Công suất đầu ra định mức (kW) 90.0
+Công suất định mức biểu kiến   (kVA) 90.0
+ĐẦU VÀO
+Số pha 3 3 dây + E (Không cần dây trung tính)
+Điện áp đầu vào danh nghĩa 400-480VAC (Xuống đến 315VAC với tải 30kVA)
+Khả năng chịu điện áp ± 15%
+Tần số đầu vào danh nghĩa 50/60Hz (+/- 10%)
+Sửa chữa 12 xung (Tùy chọn 24 xung)
+Hiện tượng méo mó dòng điện <5% @ 100% TẢI
+Hệ số công suất > 0,98 @ 100% TẢI
+Dòng điện khởi động Không áp dụng
+Dòng điện lưới (Nguồn cấp 380VAC) 146A @ 100% TẢI
+Dòng điện lưới (Nguồn điện 480VAC) 116A @ 100% TẢI
+Cầu dao ngắt mạch đầu vào tối đa được khuyến nghị 160A
+ĐẦU RA
+Số pha 3 3 DÂY + N + E
+Điện áp đầu ra danh nghĩa Điện áp ba pha 200/115 VAC
+Điều chỉnh điện áp 112-119,5V (L – N)
+Yếu tố đỉnh 1,414% +/- 0,04
+Điều chỉnh điện áp tĩnh < 0,5%
+Điều chỉnh điện áp động MIL-STD-704F
+Tần số đầu ra danh nghĩa 400Hz (+/- 0,01%)
+Tổng méo hài <2% (thường là 1%)
+Đối xứng góc pha 120° (+/- 1%) đối với tải trọng cân bằng, 120° (+/- 2%) đối với tải trọng không cân bằng 30%.
+Hệ số công suất tải Độ trễ 0.7 – Độ dẫn trước 0.95
+Quá tải Tăng 125% trong 10 phút
+Tăng 150% trong 60 giây
+Tăng 200% trong 30 giây
+Tăng 300% trong 10 giây
+Tăng 400% trong 1 giây (Dòng khởi động cực đại 1100A)
+HIỆU QUẢ
+Tải trọng 100% > 95% (90kVA @ 0.8PF)
+TẢI TRỌNG 50% > 95% (45kVA @ 0.8PF)
+TỔN THẤT Ở CHẾ ĐỘ CHỜ < 80W
+KHÔNG MẤT TẢI ~ 2,2kW
+TỔNG QUAN
+Nhiệt độ hoạt động -40 đến +50°C
+Độ cao Độ sâu tối đa 2000m trước khi giảm công suất.
+Mức độ bảo vệ IP 55
+Màu sắc RAL 9016 / RAL 7042
+Mức độ tiếng ồn < 65dBA @ 1m
+Kích thước
+Chiều cao Chiều rộng Độ sâu Cân nặng
+Giá đỡ cầu
+1121mm / 44.1in 1095mm/43.1in 1888mm / 74.3in 604kg / 1337lbs
+Giá đỡ sàn
+1601mm / 63.0in 1095mm/43.1in 1886mm / 74.3in 634kg /1397lbs
+Giá đỡ rơ moóc
+1681mm / 66.2in 1554mm / 61.2in 2200mm/ 86.6in 3948mm/ 155.4in 1101kg / 2428lbs
+TIÊU CHUẨN
+An toàn (CE) EN 61558-1:2005/A1:2009
+An toàn (Tiêu chuẩn dành cho các thiết bị phát điện không thuộc loại 2) UL 1012 (Đang chờ phê duyệt)
+EMC – Phát xạ (CE) EN 61000-6-4:2019
+EMC – Khả năng miễn dịch (CE) EN 61000-6-2:2019
+Thông số kỹ thuật cho nguồn điện máy bay 400Hz DFS400
+Nguồn cung cấp điện hỗ trợ mặt đất cho máy bay ISO 6858:2017
+Các yêu cầu chung đối với thiết bị hỗ trợ mặt đất BS 2G 219
+Đặc tính điện năng của máy bay MIL-STD-704F
+Yêu cầu về hiệu suất nguồn điện mặt đất 400Hz cho thiết bị mặt đất SAE ARP 5015 & SAE AIR 5387
+Trang63của66
+
+=== PDF PAGE 64 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+8. HƯỚNG DẪN XỬ LÝ CHẤT THẢI
+8.1. Tháo dỡ
+Công tác tháo dỡ phải do nhân viên có chuyên môn thực hiện.
+Trước khi tháo dỡ hệ thống, hãy đảm bảo thực hiện đúng quy trình tắt máy.
+Cảnh báo: Hãy đảm bảo cách ly tất cả các nhà cung cấp sắp tới trước khi tháo bất kỳ cửa hoặc 
+tấm che nào.
+8.2. Xử lý
+Công ty Powervamp Ltd là thành viên của Chương trình Tuân thủ B2B, một chương trình tuân thủ dành cho nhà sản xuất 
+được phê duyệt theo Quy định về Thiết bị Điện và Điện tử Thải (WEEE) năm 2013.
+Công ty B2B Compliance đã đăng ký với Cơ quan Môi trường theo số đăng ký WEE/MP338PT/SCH.
+Công ty Powervamp Ltd được niêm yết trên Sổ đăng ký công khai và số đăng ký nhà sản xuất WEEE của chúng tôi là WEE/
+AK3801UR.
+Khi hết hạn sử dụng, thiết bị phải được thải bỏ và tái chế đúng cách theo luật và quy định môi trường 
+hiện hành của mỗi quốc gia.
+Bạn có thể vứt bỏ thiết bị tại địa phương, hoặc nếu bạn muốn chúng tôi xử lý rác thải điện tử (WEEE) thì chỉ cần liên hệ với 
+bộ phận bán hàng của chúng tôi để gửi thiết bị về Powervamp Ltd và chúng tôi sẽ sắp xếp việc xử lý.
+Trang64của66
+
+=== PDF PAGE 65 ===
+Sổ tay vận hành và bảo trì Skywinder Power
+Trang này được cố ý để trống.
+Trang65của66
+
+=== PDF PAGE 66 ===
