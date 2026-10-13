@@ -7,7 +7,7 @@ import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import type { Group } from 'three';
 import { BufferGeometry, DoubleSide, Float32BufferAttribute, Path, Shape } from 'three';
-import { aircraftHull, aircraftSurface } from './aircraftGeometry';
+import { aircraftDoorFrame, aircraftHull, aircraftSurface } from './aircraftGeometry';
 import { BridgeBrand, BridgeServices, CabinGPU, CabinServices, MobileCarriage } from './Infrastructure';
 export function Box({at=[0,0,0],size=[1,1,1],color='#cbd5df',...props}:{at?:[number,number,number];size?:[number,number,number];color?:string;rotation?:[number,number,number]}){return <mesh position={at} castShadow receiveShadow {...props}><boxGeometry args={size}/><meshStandardMaterial color={color} roughness={.65}/></mesh>;}
 function Label({at,children,visible=true}:{at:[number,number,number];children:React.ReactNode;visible?:boolean}){return <Html position={at} center zIndexRange={[20,0]} style={{pointerEvents:'none',display:visible?'block':'none'}}><span className="part-label">{children}</span></Html>;}
@@ -215,7 +215,9 @@ export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,he
  const doorSpec=technicalConfig.aircraftDoor,doorCenter=doorSpec.sill+doorSpec.height/2;
  const door=useRef<Group>(null), progress=useRef(0);
  const hull=useMemo(aircraftHull,[]);
+ const doorFrame=useMemo(aircraftDoorFrame,[]);
  useEffect(()=>()=>hull.dispose(),[hull]);
+ useEffect(()=>()=>doorFrame.dispose(),[doorFrame]);
  useFrame((_,dt)=>{if(!door.current||halted)return;const target=doorOpen?1:0;progress.current+=(target-progress.current)*Math.min(1,dt*3);if(Math.abs(target-progress.current)<.001)progress.current=target;door.current.position.x=doorSpec.closedX-doorSpec.outwardTravel*Math.min(1,progress.current*5);door.current.position.z=-8-doorSpec.slide*Math.max(0,(progress.current-.2)/.8);});
  return <group position={[7,heightShift,8]}>
   <mesh geometry={hull} castShadow receiveShadow><meshStandardMaterial vertexColors side={DoubleSide} roughness={.38}/></mesh>
@@ -239,7 +241,7 @@ export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,he
   <Box at={[-.9,3.38,-8]} size={[2.2,.06,1]} color="#697782"/>
   <Box at={[.3,4.3,-8]} size={[.06,1.8,1]} color="#e6eded"/>
   <Box at={[-.9,5.25,-8]} size={[2.2,.06,1]} color="#ece7d6"/>
-  {[-8-doorSpec.width/2-.03,-8+doorSpec.width/2+.03].map(z=><Box key={z} at={[-1.94,doorCenter,z]} size={[.08,doorSpec.height+.06,.06]} color="#d4b64b"/>)}
+  <mesh geometry={doorFrame}><meshStandardMaterial color="#f4c430" side={DoubleSide} roughness={.4}/></mesh>
   {doorOpen&&<pointLight position={[-1,4.8,-8]} color="#fff0ce" intensity={8} distance={3}/>}
   {[-1,1].map(side=><group key={side}>
    {[-2,8,19.5].map(z=><group key={z} position={[side*1.99,4.3,z]}><Box size={[.035,1.75,.8]} color="#ddbf51"/><Box at={[side*.025,0,0]} size={[.035,1.65,.7]} color="#00869c"/></group>)}
