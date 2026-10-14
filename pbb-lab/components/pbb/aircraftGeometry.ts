@@ -1,6 +1,33 @@
 import { BufferGeometry, Float32BufferAttribute, Shape } from 'three';
 import { technicalConfig } from '@/lib/technicalConfig';
 
+/** A continuous rounded nose, tangent to the cylindrical body at z = -10.5. */
+function noseProfile(z:number) {
+  const t=Math.max(-1,Math.min(0,(z+10.5)/4.5));
+  const root=Math.sqrt(Math.max(.00005625,1-t*t));
+  return {radius:2*root,slope:-2*t/(4.5*root)};
+}
+
+/** One windshield on each side of the cockpit centreline. */
+export function cockpitPane(side:number,glass=false) {
+  const corners=[[.035,-13.25],[.72,-13.05],[.78,-13.70],[.035,-13.90]];
+  const inset=glass?.055:0,vertices:number[]=[];
+  const point=(u:number,v:number)=>{
+    u=inset+u*(1-2*inset);v=inset+v*(1-2*inset);
+    const theta=(1-v)*((1-u)*corners[0][0]+u*corners[1][0])+v*((1-u)*corners[3][0]+u*corners[2][0]);
+    const z=(1-v)*((1-u)*corners[0][1]+u*corners[1][1])+v*((1-u)*corners[3][1]+u*corners[2][1]);
+    const radius=noseProfile(z).radius+(glass?.047:.03);
+    return [side*radius*Math.sin(theta),4.1+radius*Math.cos(theta),z];
+  };
+  for(let row=0;row<12;row++)for(let col=0;col<12;col++){
+    const a=point(col/12,row/12),b=point((col+1)/12,row/12),c=point((col+1)/12,(row+1)/12),d=point(col/12,(row+1)/12);
+    vertices.push(...a,...b,...c,...a,...c,...d);
+  }
+  const geometry=new BufferGeometry();
+  geometry.setAttribute('position',new Float32BufferAttribute(vertices,3));geometry.computeVertexNormals();
+  return geometry;
+}
+
 // Local z points aft. Preserve the existing L1 sill and docking plane.
 export function aircraftHull() {
   const geometry = new BufferGeometry(), vertices: number[] = [], colors: number[] = [], normals: number[] = [];
@@ -19,7 +46,7 @@ export function aircraftHull() {
     const a = angles[i], b = angles[i + 1];
     const points = [[a, front], [b, front], [b, back], [a, front], [b, back], [a, back]];
     for (const [angle, z] of points) {
-      const {radius,slope}=profile(z===front?slice/12:(slice+1)/12);
+      const {radius,slope}=z<=-10.5?noseProfile(z):profile(z===front?slice/12:(slice+1)/12);
       vertices.push(-radius * Math.cos(angle), 4.1 + radius * Math.sin(angle), z);
       const normalLength=Math.hypot(1,slope);
       normals.push(-Math.cos(angle)/normalLength,Math.sin(angle)/normalLength,-slope/normalLength);

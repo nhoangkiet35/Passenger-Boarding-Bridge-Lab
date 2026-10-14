@@ -7,7 +7,7 @@ import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import type { Group } from 'three';
 import { BufferGeometry, DoubleSide, Float32BufferAttribute, Path, Shape } from 'three';
-import { aircraftDoorFrame, aircraftHull, aircraftSurface } from './aircraftGeometry';
+import { aircraftDoorFrame, aircraftHull, aircraftSurface, cockpitPane } from './aircraftGeometry';
 import { BridgeBrand, BridgeServices, CabinGPU, CabinServices, MobileCarriage } from './Infrastructure';
 export function Box({at=[0,0,0],size=[1,1,1],color='#cbd5df',...props}:{at?:[number,number,number];size?:[number,number,number];color?:string;rotation?:[number,number,number]}){return <mesh position={at} castShadow receiveShadow {...props}><boxGeometry args={size}/><meshStandardMaterial color={color} roughness={.65}/></mesh>;}
 function Label({at,children,visible=true}:{at:[number,number,number];children:React.ReactNode;visible?:boolean}){return <Html position={at} center zIndexRange={[20,0]} style={{pointerEvents:'none',display:visible?'block':'none'}}><span className="part-label">{children}</span></Html>;}
@@ -211,16 +211,18 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
 const wingShape=aircraftSurface([[1.6,-1.2],[4.5,-.3],[17.9,9],[17.9,10.2],[6.5,6.4],[1.6,5.5]]);
 const tailplaneShape=aircraftSurface([[0,0],[2,.2],[6.4,3.6],[6.4,5],[1.2,3.8],[0,3.4]]);
 const finShape=aircraftSurface([[0,0],[4.2,6.7],[6.5,6.7],[5.8,0]]);
-export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,heightShift=0}:{labels:boolean;annotations?:boolean;doorOpen?:boolean;halted?:boolean;heightShift?:number}){
+export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,heightShift=0,wheelTravel=0,whiteLivery=false}:{labels:boolean;annotations?:boolean;doorOpen?:boolean;halted?:boolean;heightShift?:number;wheelTravel?:number;whiteLivery?:boolean}){
  const doorSpec=technicalConfig.aircraftDoor,doorCenter=doorSpec.sill+doorSpec.height/2;
  const door=useRef<Group>(null), progress=useRef(0);
  const hull=useMemo(aircraftHull,[]);
+ const cockpit=useMemo(()=>[-1,1].map(side=>({side,frame:cockpitPane(side),glass:cockpitPane(side,true)})),[]);
+ useEffect(()=>()=>cockpit.forEach(pane=>{pane.frame.dispose();pane.glass.dispose();}),[cockpit]);
  const doorFrame=useMemo(aircraftDoorFrame,[]);
  useEffect(()=>()=>hull.dispose(),[hull]);
  useEffect(()=>()=>doorFrame.dispose(),[doorFrame]);
  useFrame((_,dt)=>{if(!door.current||halted)return;const target=doorOpen?1:0;progress.current+=(target-progress.current)*Math.min(1,dt*3);if(Math.abs(target-progress.current)<.001)progress.current=target;door.current.position.x=doorSpec.closedX-doorSpec.outwardTravel*Math.min(1,progress.current*5);door.current.position.z=-8-doorSpec.slide*Math.max(0,(progress.current-.2)/.8);});
  return <group position={[7,heightShift,8]}>
-  <mesh geometry={hull} castShadow receiveShadow><meshStandardMaterial vertexColors side={DoubleSide} roughness={.38}/></mesh>
+  <mesh geometry={hull} castShadow receiveShadow><meshStandardMaterial vertexColors={!whiteLivery} color={whiteLivery?'#f0f5f8':'#ffffff'} side={DoubleSide} roughness={.38}/></mesh>
   {[-1,1].map(side=><group key={side}>
    {Array.from({length:38},(_,i)=><mesh key={i} position={[side*1.95,4.53,-6.7+i*.72]}><sphereGeometry args={[.13,12,10]}/><meshStandardMaterial color="#365d75"/></mesh>)}
    <mesh position={[0,3.15,1]} scale={[side,1,1]} rotation={[Math.PI/2,0,side*.045]} castShadow><extrudeGeometry args={[wingShape,{depth:.18,bevelEnabled:false}]}/><meshStandardMaterial color="#c8d9e4" side={DoubleSide}/></mesh>
@@ -254,18 +256,18 @@ export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,he
   </group>
   <Box at={[-2.1,3.43,-8]} size={[.08,.045,.95]} color="#d4a637"/>
   <Box at={[-2.1,4.13,-7.8]} size={[.09,.05,.2]} color="#476777"/>
-  {[-1,1].map(side=><group key={side}>
-   <Box at={[side*.68,4.89,-13.48]} size={[.69,.36,.04]} rotation={[0,side*.47,-side*.1]} color="#213f52"/>
-   <Box at={[side*1.2,4.82,-12.96]} size={[.48,.34,.04]} rotation={[0,side*.9,0]} color="#213f52"/>
+  {cockpit.map(pane=><group key={pane.side}>
+   <mesh geometry={pane.frame}><meshStandardMaterial color="#18252d" side={DoubleSide} roughness={.48}/></mesh>
+   <mesh geometry={pane.glass}><meshPhysicalMaterial color="#31596c" side={DoubleSide} metalness={.28} roughness={.12} clearcoat={1} clearcoatRoughness={.08}/></mesh>
   </group>)}
   <mesh position={[0,4.06,-14.92]} scale={[.09,.09,.14]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color="#3f6372"/></mesh>
   <group position={[0,-heightShift,0]}>
   <Box at={[0,1.54+heightShift/2,-11.2]} size={[.15,1.95+heightShift,.17]} color="#91a6b1"/>
-  {[-.22,.22].map(x=><mesh key={x} position={[x,.35,-11.2]} rotation={[0,0,Math.PI/2]} castShadow><cylinderGeometry args={[.35,.35,.22,24]}/><meshStandardMaterial color="#26343c"/></mesh>)}
+  {[-.22,.22].map(x=><group key={x} position={[x,.35,-11.2]} rotation={[-wheelTravel/.35,0,0]}><mesh rotation={[0,0,Math.PI/2]} castShadow><cylinderGeometry args={[.35,.35,.22,24]}/><meshStandardMaterial color="#26343c"/></mesh><Box at={[Math.sign(x)*.12,.18,0]} size={[.02,.12,.04]} color="#a7b9c2"/></group>)}
   {[-1,1].map(side=><group key={side} position={[side*2.4,0,7.1]}>
    <Box at={[0,1.45+heightShift/2,0]} size={[.22,1.75+heightShift,.24]} color="#91a6b1"/>
    <Box at={[side*-.4,2.18+heightShift,-.12]} size={[1.1,.17,.45]} rotation={[0,0,side*.18]} color="#91a6b1"/>
-   {[-.31,.31].map(x=><group key={x} position={[x,.52,0]}>
+   {[-.31,.31].map(x=><group key={x} position={[x,.52,0]} rotation={[-wheelTravel/.52,0,0]}>
     <mesh rotation={[0,0,Math.PI/2]} castShadow><cylinderGeometry args={[.52,.52,.32,28]}/><meshStandardMaterial color="#26343c"/></mesh>
     <mesh position={[Math.sign(x)*.17,0,0]} rotation={[0,0,Math.PI/2]}><cylinderGeometry args={[.24,.24,.025,24]}/><meshStandardMaterial color="#a7b9c2" metalness={.6}/></mesh>
    </group>)}
