@@ -1,8 +1,8 @@
 import './skeleton.css';
 
-export default function PageSkeleton({ page = 'simulation' }: { page?: 'about' | 'simulation' | 'explore' }) {
+export default function PageSkeleton({ page = 'simulation' }: { page?: 'about' | 'simulation' | 'explore' | 'vdgs' }) {
   const about = page !== 'simulation';
-  const label = page === 'explore' ? 'Đang tải thư viện kỹ thuật' : about ? 'Đang tải trang giới thiệu' : 'Đang tải không gian mô phỏng';
+  const label = page === 'vdgs' ? 'Đang tải mô phỏng VDGS' : page === 'explore' ? 'Đang tải thư viện kỹ thuật' : about ? 'Đang tải trang giới thiệu' : 'Đang tải không gian mô phỏng';
   return <div className={`page-skeleton ${about ? 'skeleton-about' : 'skeleton-simulation'}`} role="status" aria-busy="true" aria-label={label}>
     <span className="sr-only">{label}…</span>
     <div aria-hidden="true">
