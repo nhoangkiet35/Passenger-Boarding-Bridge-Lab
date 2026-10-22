@@ -28,6 +28,7 @@ residual=tick(residual,.016);assert.equal(residual.pose.canopy,0);console.log('P
 
 await import('./test-console.mjs');
 await import('./test-wheel-motion.mjs');
+await import('./test-preset-park.mjs');
 
 const access=initial();access.power=true;access.area=true;access.authorized=true;access.pose={...CONNECTION,canopy:.95};
 assert.equal(passengerAccess(access),false,'partial canopy cannot open aircraft door');
@@ -39,7 +40,8 @@ assert.ok(CONNECTION.angle>30&&CONNECTION.cabYaw< -30,'diagonal tunnel and count
 assert.ok(aligned(CONNECTION),'diagonal pose seals at L1');
 assert.ok(aligned({...CONNECTION,height:3.20}),'lower height boundary accepted');
 assert.ok(aligned({...CONNECTION,height:3.30}),'upper height boundary accepted');
-assert.ok(!aligned({...CONNECTION,height:3.31}),'excessive height error rejected');
+assert.ok(aligned({...CONNECTION,height:3.31}),'practice accepts formerly excessive height error');
+assert.ok(!aligned({...CONNECTION,height:3.04}),'height error beyond 20 cm rejected');
 const offMessages=bridgeMessages(initial());
 assert.ok(offMessages.some(m=>m.text.includes('chưa hoạt động')),'unpowered sensors do not claim live readings');
 assert.ok(!offMessages.some(m=>/PLC STOP|PARK IN|GUIDE MODE|BRIDGE READY/.test(m.text)),'message panel excludes mode lamp statuses');
@@ -47,7 +49,7 @@ const sensorState={...initial(),power:true,area:true,authorized:true,pose:{...CO
 assert.ok(bridgeMessages(sensorState).some(m=>m.text.includes('Đường mở cửa')&&!m.alarm),'clear door path reports sensor clearance');
 assert.ok(bridgeMessages({...sensorState,pose:{...CONNECTION,length:CONNECTION.length+.1}}).some(m=>m.alarm&&m.text.includes('CHẠM THÂN')),'unsafe aircraft clearance shows alarm');
 assert.ok(bridgeMessages({...sensorState,emergency:true})[0].text.includes('DỪNG KHẨN CẤP'),'emergency takes message priority');
-for(const [gap,accepted] of [[.025,true],[.05,true],[.024,false],[.051,false]]) {
+for(const [gap,accepted] of [[.025,true],[.05,true],[.2,true],[.5,true],[.024,false],[.501,false]]) {
   const x=5-1-technicalConfig.cabinOffset-gap-standLayout.rotundaX;
   const z=-DOCKING.cabinPassageOffset-standLayout.rotundaZ;
   const angle=Math.atan2(z,x)*180/Math.PI;
@@ -64,8 +66,8 @@ assert.ok(Math.abs(metrics(lateralPose).offset)>.05,'fixture exceeds former late
 assert.ok(aligned(lateralPose),'lateral offset does not block alignment');
 const lateralState={...initial(),power:true,area:true,authorized:true,pose:{...lateralPose},target:{...lateralPose}};
 assert.equal(command(lateralState,{type:'canopy',open:true}).target.canopy,1,'manual canopy accepts lateral offset');
-assert.equal(command({...lateralState,pose:{...lateralPose,height:3.32},target:{...lateralPose,height:3.32}},{type:'canopy',open:true}).target.canopy,0,'excessive height error still blocks canopy');
-assert.equal(command({...lateralState,pose:{...lateralPose,height:3.27},target:{...lateralPose,height:3.27}},{type:'canopy',open:true}).target.canopy,1,'moderate height error accepted with clear door path');
+assert.equal(command({...lateralState,pose:{...lateralPose,height:3.36},target:{...lateralPose,height:3.36}},{type:'canopy',open:true}).target.canopy,0,'excessive height error still blocks canopy');
+assert.equal(command({...lateralState,pose:{...lateralPose,height:3.32},target:{...lateralPose,height:3.32}},{type:'canopy',open:true}).target.canopy,1,'moderate height error accepted with clear door path');
 assert.ok(!aligned({...CONNECTION,cabYaw:0}),'unsafe cabin geometry still blocks canopy');
 const heading=.4*Math.PI/180;
 const safeX=5-Math.cos(heading)-.04;

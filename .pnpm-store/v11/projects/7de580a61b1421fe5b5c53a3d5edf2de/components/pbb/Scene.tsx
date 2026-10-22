@@ -1,5 +1,6 @@
-import { cabinFrame, DOCKING, metrics, passengerAccess, wheelMotion, type State } from '@/lib/simulation';
-import { standClearances, standLayout } from '@/lib/standLayout';
+import { cabinFrame, DOCKING, metrics, passengerAccess, wheelMotion, PARK, type State } from '@/lib/simulation';
+import { technicalConfig } from '@/lib/technicalConfig';
+import { standLayout } from '@/lib/standLayout';
 import { Grid, Html, Line, OrbitControls } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
@@ -24,12 +25,16 @@ export function World({s,labels=false,cctv=false}:{s:State;labels?:boolean;cctv?
   <ambientLight intensity={1.4}/><hemisphereLight args={['#eaf9ff','#738b97',1]}/><directionalLight position={[-10,28,-15]} intensity={2.6} castShadow shadow-mapSize={[2048,2048]} shadow-camera-left={-35} shadow-camera-right={35} shadow-camera-top={35} shadow-camera-bottom={-35} shadow-normalBias={.03}/>
   <Box at={[0,-.21,0]} size={[130,.4,130]} color="#adbec8"/>
   <Grid position={[0,.004,0]} args={[100,100]} cellSize={4} cellThickness={.45} cellColor="#a5b7c3" sectionSize={20} sectionColor="#9badb9" sectionThickness={.65} fadeDistance={85}/>
+  <group position={[standLayout.rotundaX + (PARK.length-technicalConfig.carriageOffset)*Math.cos(PARK.angle*Math.PI/180),.018,standLayout.rotundaZ + (PARK.length-technicalConfig.carriageOffset)*Math.sin(PARK.angle*Math.PI/180)]}>
+   <mesh rotation={[-Math.PI/2,0,0]}><circleGeometry args={[2.05,80]}/><meshBasicMaterial color="#16191b" toneMapped={false}/></mesh>
+   <mesh position={[0,.002,0]} rotation={[-Math.PI/2,0,0]}><circleGeometry args={[1.98,80]}/><meshBasicMaterial color="#ffd322" toneMapped={false}/></mesh>
+   {!cctv&&<Html position={[0,.08,2.45]} center zIndexRange={[10,0]}><span className="part-label" style={{background:'#ffd322',color:'#16191b',border:'2px solid #16191b',fontWeight:800}}>PARK</span></Html>}
+  </group>
   <Box at={[0,4,standLayout.terminalFaceZ-5.5]} size={[70,8,11]} color="#b4c9d7"/>
   <Box at={[0,4.9,standLayout.terminalFaceZ+.05]} size={[70,4,.08]} color="#416576"/>
   {Array.from({length:36},(_,i)=><Box key={i} at={[-34+i*1.94,4.9,standLayout.terminalFaceZ+.15]} size={[.08,4.3,.15]} color="#95b4c5"/>)}
   <Box at={[0,8.2,standLayout.terminalFaceZ-5.5]} size={[71,.3,11.6]} color="#e2edf2"/>
   <Box at={[-12,4.3,standLayout.terminalFaceZ+.22]} size={[2.7,2.4,.1]} color="#a6c7d2"/>
-  {!cctv&&<Html position={[-5,7.2,standLayout.terminalFaceZ+.5]} center zIndexRange={[10,0]}><span className="terminal-label">NHÀ GA · TẦNG 1 · A04</span></Html>}
   <Line points={[[7,.025,standLayout.roadCenterZ+standLayout.roadWidth/2+.8],[7,.025,40]]} color="#e8bc45" lineWidth={3}/>
   <Line points={[[3,.027,-9],[11,.027,-9]]} color="#e8bc45" lineWidth={3}/>
   <Line points={[[-11,.03,-8],[2.5,.03,-8],[2.5,.03,7],[-11,.03,7],[-11,.03,-8]]} color="#f2dfb2" lineWidth={2} dashed dashSize={.55} gapSize={.4}/>
@@ -38,9 +43,8 @@ export function World({s,labels=false,cctv=false}:{s:State;labels?:boolean;cctv?
   {!cctv&&labels&&<>
    <Line points={[[13,.05,standLayout.aircraftNoseZ],[13,.05,standLayout.roadCenterZ+standLayout.roadWidth/2]]} color="#59a1b7" lineWidth={2}/>
    {[standLayout.aircraftNoseZ,standLayout.roadCenterZ+standLayout.roadWidth/2].map(z=><Line key={z} points={[[12.6,.05,z],[13.4,.05,z]]} color="#59a1b7" lineWidth={2}/>)}
-   <Html position={[13,.6,(standLayout.aircraftNoseZ+standLayout.roadCenterZ+standLayout.roadWidth/2)/2]} center><span className="part-label">Khoảng cách: {standClearances.noseToRoad.toFixed(1)} m</span></Html>
   </>}
-  <ServiceRoad show={!cctv&&labels}/>
+  <ServiceRoad/>
   <FixedBridge show={!cctv&&labels}/><VDGS show={!cctv&&labels} connected={passengerAccess(s)}/>
   {s.obstacles.map(o=><group key={o.id} position={[o.x,o.height/2,o.z]}><Box size={[o.radius*2,o.height,o.radius*2]} color={o.kind==='person'?'#e58c52':'#c95454'}/>{!cctv&&<Html position={[0,o.height/2+.3,0]} center><span className="part-label">{o.kind==='person'?'Người':'Xe'} · vùng giả định</span></Html>}</group>)}
   <Aircraft labels={labels} annotations={!cctv} doorOpen={passengerAccess(s)} halted={s.emergency||!!s.fault||!s.power} heightShift={s.aircraftShift}/><PBB pose={s.pose} halted={s.emergency||!!s.fault||!s.power||s.paused} wheelTravel={s.wheelTravel} autoLevel={s.autoLevel} aircraftShift={s.aircraftShift} labels={labels} annotations={!cctv} highlight={!cctv} aux={s.power?s.aux:{interior:false,exterior:false,aircon:false,ventilation:false}} wheelRotation={wheelMotion(s).angle}/>
