@@ -8,7 +8,7 @@ export { bridgeMessages, type BridgeMessage } from './bridgeMessages.ts';
 export const initial = (): State => ({
     obstacles: [],
     autoLevel: false, passengerLoadDeflection: 0, aircraftShift: 0, scenarios: { obstacle: false, autolevelFault: false, powerLoss: false, wind: false, auxDeployed: false }, fault: null, elapsed: 0, log: [], actualSpeed: 0, wheelTravel: 0,
-    pose: { ...PARK }, target: { ...PARK }, jog: null, jogVelocity: {},
+    pose: { ...PARK }, target: { ...PARK }, jog: null, jogVelocity: {}, presetPark: false,
     power: false, emergency: false, area: false, authorized: false,
     serviceEnded: false, mode: 'manual', paused: false, step: -1, speed: 1,
     message: 'Kiểm tra khu vực và xác nhận tàu bay trước khi tiếp cận.',
@@ -63,6 +63,18 @@ export function wheelMotion(s: State): {
     return { angle: Math.max(-config.wheelSteeringLimit, Math.min(config.wheelSteeringLimit, Object.is(angle, -0) ? 0 : angle)), direction };
 }
 export const parked = (s: State) => Object.keys(PARK).every(k => Math.abs(s.pose[k as keyof Pose] - PARK[k as keyof Pose]) < .01) && s.pose.canopy === 0;
+/** Fixed clock-position lamps: actual drive direction and active steering commands. */
+export function wheelCommandLights(s: State) {
+    const off = { forward: false, reverse: false, left: false, right: false };
+    if (!s.power || s.emergency || s.fault || s.paused || !s.area || !s.authorized || s.pose.canopy > 0 || s.autoLevel) return off;
+    const wheel = wheelMotion(s);
+    return {
+        forward: s.actualSpeed > 1e-8 && wheel.direction > 0,
+        reverse: s.actualSpeed > 1e-8 && wheel.direction < 0,
+        left: (s.jog?.angle ?? 0) < 0 && s.wheelRotation > -config.wheelSteeringLimit,
+        right: (s.jog?.angle ?? 0) > 0 && s.wheelRotation < config.wheelSteeringLimit,
+    };
+}
 export function status(s: State) {
     return s.fault ? 'LỖI · ĐÃ KHÓA' : s.emergency ? 'DỪNG KHẨN CẤP' : s.step === 10 ? 'HOÀN TẤT · ĐÃ ĐỖ' : s.pose.canopy > .999 ? 'ĐÃ KẾT NỐI' :
         s.paused ? 'ĐÃ TẠM DỪNG' : moving(s) ? 'ĐANG CHUYỂN ĐỘNG' : parked(s) ? 'VỊ TRÍ ĐỖ' : aligned(s.pose) ? 'SẴN SÀNG KẾT NỐI' : 'CHƯA KẾT NỐI';
@@ -114,6 +126,9 @@ export type Command = {
     value: boolean;
 } | {
     type: 'park';
+    held?: boolean;
+} | {
+    type: 'haltPresetPark';
 } | {
     type: 'service';
 } | {
@@ -130,7 +145,7 @@ export type Command = {
     type: 'speed';
     value: number;
 };
-const stop = (s: State): State => ({ ...s, actualSpeed: 0, target: { ...s.pose }, jog: null, jogVelocity: {} });
+const stop = (s: State): State => ({ ...s, actualSpeed: 0, target: { ...s.pose }, jog: null, jogVelocity: {}, presetPark: false });
 export function command(s: State, c: Command): State {
     const n = applyCommand(s, c);
     if (n === s)
@@ -176,8 +191,8 @@ function applyCommand(s: State, c: Command): State {
     }
     if (s.fault && c.type !== 'emergency' && c.type !== 'resetEmergency' && c.type !== 'power')
         return block('sự cố đang khóa; loại bỏ nguyên nhân và xác nhận khôi phục.');
-    if (c.type === 'haltJog')
-        return s.jog ? { ...stop(s), action: 'Đã nhả điều khiển', message: 'Đã thả điều khiển; cầu dừng tại vị trí hiện tại.' } : s;
+    if (c.type === 'haltJog' || c.type === 'haltPresetPark')
+        return (c.type === 'haltJog' ? s.jog || s.presetPark : s.presetPark) ? { ...stop(s), action: 'Đã nhả điều khiển', message: 'Đã thả điều khiển; cầu dừng tại vị trí hiện tại.' } : s;
     if (c.type === 'emergency')
         return { ...stop(s), emergency: true, power: false, autoLevel: false, paused: true, action: 'Dừng khẩn cấp', message: 'Mọi chuyển động đã dừng. Đặt lại dừng khẩn cấp rồi phát lệnh mới.' };
     if (c.type === 'resetEmergency')
@@ -187,7 +202,7 @@ function applyCommand(s: State, c: Command): State {
     if (c.type === 'mode')
         return { ...stop(s), mode: c.mode, paused: false, step: -1, message: 'Đã đổi chế độ; chuyển động cũ được hủy.' };
     if (c.type === 'pause')
-        return { ...(s.jog ? stop(s) : s), paused: !s.paused };
+        return { ...(s.jog || s.presetPark ? stop(s) : s), paused: !s.paused };
     if (c.type === 'power') {
         if ((s.emergency || s.fault) && c.on !== false)
             return block('dừng khẩn cấp hoặc lỗi còn khóa nguồn.');
@@ -231,7 +246,7 @@ function applyCommand(s: State, c: Command): State {
         if (c.open && moving(s))
             return block('hãy thả điều khiển và chờ cabin dừng trước khi mở mái che.');
         if (c.open && !aligned(s.pose, s.aircraftShift))
-            return block('giữ khoảng hở 2,5–5 cm, chênh ngưỡng cửa 10–20 cm và độ nghiêng sàn không quá 2°.');
+            return block('hãy đưa cabin gần cửa tàu bay hơn (trong 50 cm) và chỉnh cao độ gần ngưỡng cửa để kết nối.');
         if (!c.open && s.connectedOnce && !s.serviceEnded)
             return block('hãy xác nhận kết thúc phục vụ trước.');
         return { ...s, jog: null, target: { ...s.pose, canopy: c.open ? 1 : 0 }, serviceEnded: c.open ? false : s.serviceEnded, action: c.open ? 'Triển khai canopy' : 'Thu canopy', message: c.open ? 'Đang mở mái che; cầu bị khóa chuyển động.' : 'Đang thu mái che.' };
@@ -243,7 +258,7 @@ function applyCommand(s: State, c: Command): State {
     if (!s.area || !s.authorized)
         return block('phải xác nhận khu vực an toàn và tàu bay đã đỗ, được phép tiếp cận.');
     if (c.type === 'park')
-        return { ...s, jog: null, target: { ...s.pose, length: PARK.length, canopy: 0 }, action: 'Về vị trí đỗ', message: 'Đang thu cầu và về vị trí ban đầu.' };
+        return parked(s) ? { ...stop(s), action: 'Đã về Park', message: 'Cầu đang ở vị trí Park cài sẵn.' } : { ...stop(s), presetPark: c.held === true, paused: false, step: -1, target: { ...s.pose, length: PARK.length, canopy: 0 }, action: 'Về vị trí đỗ', message: c.held ? 'PRESET START: giữ để về vòng tròn Park; thả nút để dừng ngay.' : 'Đang thu cầu và về vị trí ban đầu.' };
     if (c.type === 'jog') {
         if (s.mode !== 'manual')
             return block('xoay khóa về THỦ CÔNG để dùng joystick.');
@@ -255,13 +270,13 @@ function applyCommand(s: State, c: Command): State {
         }
         if (!Object.keys(axes).length)
             return command(s, { type: 'haltJog' });
-        return { ...s, target: { ...s.pose }, jog: axes, jogVelocity: s.jog ? s.jogVelocity : {}, action: 'Điều khiển giữ để chạy', message: 'Trái/phải: đánh lái bánh xe ±90°. Tiến/lùi: chạy theo hướng bánh xe. Thả tay để dừng.' };
+        return { ...s, presetPark: false, target: { ...s.pose }, jog: axes, jogVelocity: s.jog ? s.jogVelocity : {}, action: 'Điều khiển giữ để chạy', message: 'Trái/phải: đánh lái bánh xe ±90°. Tiến/lùi: chạy theo hướng bánh xe. Thả tay để dừng.' };
     }
     if (c.type === 'move') {
         if (!Number.isFinite(c.value))
             return block('mục tiêu không hợp lệ.');
         const [min, max] = limits[c.key], value = Math.max(min, Math.min(max, c.value));
-        return { ...s, jog: null, target: { ...s.target, [c.key]: value }, action: { angle: 'Xoay cầu', length: 'Kéo dài / thu cầu', height: 'Nâng / hạ cabin', cabYaw: 'Xoay cabin', floorTilt: 'Cân bằng sàn cabin' }[c.key], message: value !== c.value ? 'Đã chạm giới hạn hành trình.' : 'Đang điều chỉnh. Vùng đỏ báo cabin quá gần thân tàu bay.' };
+        return { ...s, presetPark: false, jog: null, target: { ...s.target, [c.key]: value }, action: { angle: 'Xoay cầu', length: 'Kéo dài / thu cầu', height: 'Nâng / hạ cabin', cabYaw: 'Xoay cabin', floorTilt: 'Cân bằng sàn cabin' }[c.key], message: value !== c.value ? 'Đã chạm giới hạn hành trình.' : 'Đang điều chỉnh. Vùng đỏ báo cabin quá gần thân tàu bay.' };
     }
     return s;
 }
@@ -363,6 +378,13 @@ function integrate(s: State, dt: number): State {
     if (s.power && moving(n) && !s.paused) {
         const p = { ...n.pose };
         const rates: Pose = { ...config.rates };
+        if (s.presetPark) {
+            rates.length = config.manualDrive.maximumSpeed;
+            rates.angle = config.manualDrive.maximumSpeed / Math.max(1,p.length-config.carriageOffset) * 180/Math.PI;
+            rates.height = config.jogRates.height;
+            rates.cabYaw = config.jogRates.cabYaw;
+            rates.floorTilt = config.jogRates.floorTilt;
+        }
         if (metrics(p).gap < config.warningDistance)
             rates.length = config.nearDoorSpeed;
         if (s.jog) {
@@ -400,8 +422,14 @@ function integrate(s: State, dt: number): State {
             return { ...stop(n), message: 'Giới hạn độ dốc / chồng lồng (giả định): giảm chênh cao hoặc tăng chiều dài.', action: 'Giới hạn hình học' };
         if (metrics(p).clearance < DOCKING.minimumClearance - GEOMETRY_EPSILON)
             return { ...stop(n), message: 'Giới hạn an toàn: mép cabin quá gần thân tàu bay. Hãy thu cầu.', action: 'Đã chặn tiếp cận', paused: s.mode === 'guide' };
-        if (s.jog && !s.jog.angle && Object.keys(p).every(k => p[k as keyof Pose] === s.pose[k as keyof Pose]))
-            return { ...stop(n), message: 'Đã chạm giới hạn hành trình. Nhả điều khiển rồi chọn hướng khác.', action: 'Giới hạn hành trình' };
+        if (s.jog && !s.jog.angle && Object.keys(p).every(k => p[k as keyof Pose] === s.pose[k as keyof Pose])) {
+            // Zero velocity during a reversal (or a tiny frame remainder) is not a travel stop.
+            const drive = s.jog.length ?? 0, heading = radians(n.wheelRotation);
+            const requested: Jog = { ...s.jog, length: drive*Math.cos(heading), angle: drive*Math.sin(heading) };
+            const active = (Object.keys(requested) as Axis[]).filter(key => Math.abs(requested[key] ?? 0) > 1e-8);
+            if (active.length && active.every(key => requested[key]! < 0 ? p[key] <= limits[key][0] : p[key] >= limits[key][1]))
+                return { ...stop(n), message: 'Đã chạm giới hạn hành trình. Nhả điều khiển rồi chọn hướng khác.', action: 'Giới hạn hành trình' };
+        }
         const travel = Math.hypot(p.length - s.pose.length, radians(p.angle - s.pose.angle) * (p.length - config.carriageOffset));
         const wheel = wheelMotion(n);
         n = { ...n, actualSpeed: travel / dt, wheelTravel: s.wheelTravel + travel * wheel.direction, pose: p, target: s.jog ? { ...p } : s.target, connectedOnce: s.connectedOnce || p.canopy >= .999, wheelRotation: wheel.angle };
@@ -409,8 +437,10 @@ function integrate(s: State, dt: number): State {
     if (s.pose.canopy < .999 && n.pose.canopy >= .999 && n.power && n.area && n.authorized && !n.serviceEnded && aligned(n.pose,n.aircraftShift)) {
         n = { ...n,autoLevel:true,message:'Mái che đã triển khai. AUTO LEVEL tự kích hoạt; cảm biến tì thân tàu và giữ cao độ khi hành khách di chuyển.' };
     }
-    if (n.action === 'Về vị trí đỗ' && !moving(n) && !parked(n))
+    if (n.action === 'Về vị trí đỗ' && n.area && n.authorized && n.pose.length === PARK.length && !moving(n) && !parked(n))
         n = { ...n, target: { ...PARK } };
+    if (n.presetPark && !moving(n) && parked(n))
+        n = { ...stop(n), wheelRotation: 0, action: 'Đã về Park', message: 'Cầu đã về đúng vị trí Park cài sẵn.' };
     if (n.mode === 'guide' && n.step >= 0 && n.step !== 5 && n.step < 10 && !moving(n)) {
         n = { ...n, dwell: n.dwell + dt };
         if (n.dwell >= 3)

@@ -22,6 +22,7 @@ export type State = {
     target: Pose;
     jog: Jog | null;
     jogVelocity: Jog;
+    presetPark: boolean;
     power: boolean;
     emergency: boolean;
     area: boolean;

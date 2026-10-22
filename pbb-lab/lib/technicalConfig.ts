@@ -8,7 +8,7 @@ export const technicalConfig = {
     rates: { angle: 8, length: 1.3, height: .35, canopy: .65, cabYaw: 5, floorTilt: 1.5 },
     jogRates: { angle: 2, length: .45, height: .15, cabYaw: 3, floorTilt: 1 },
     // Illustrative heavy-bridge drive, not manufacturer operating specifications.
-    manualDrive: { maximumSpeed: .12, acceleration: .04, braking: .08 },
+    manualDrive: { maximumSpeed: .35, acceleration: .18, braking: .36 },
     rotundaHeight: 3, cabinOffset: 1.785, carriageOffset: 1.9,
     aircraftDoor: {
         width: .9, height: 1.78, sill: 3.4, slide: 1.05,
@@ -20,12 +20,13 @@ export const technicalConfig = {
     tunnelSegment: 10, minimumOverlap: .8, maxSlope: 12,
     docking: { gap: .025, minimumClearance: .025, sillHeight: 3.4, floorDrop: .15, cabinPassageOffset: .505 },
     bumperProjection: .025, warningDistance: .65, nearDoorSpeed: .08,
-    alignment: { maximumGap: .05, heightTolerance: .05, floorTolerance: 2 },
+    // Forgiving practice tolerances; the aircraft door clearance check still applies.
+    alignment: { maximumGap: .5, heightTolerance: .2, floorTolerance: 3 },
     wheelRadius: .45,
     autoLevel: { rate: .08, deadband: .002, maxError: .18, maxAircraftShift: .3 },
     passengerLoad: { maximumDeflection:.012, cycleSeconds:6, responseRate:.004 },
     // 97 km/h is a manual caution about autolevel performance, NOT a site wind cut-off.
     windCautionKmh: 97,
     wheelSteeringLimit: 90,
-    wheelSteeringRate: 20, // Illustrative degrees per second.
+    wheelSteeringRate: 10, // Slow, uniform steering, in illustrative degrees per second.
 } as const;

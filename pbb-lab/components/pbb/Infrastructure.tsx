@@ -210,7 +210,7 @@ export function BridgeBrand({length}:{length:number}) {
   <Plate at={[0,-.24,.036]} text="PAXWAY" width={1.25} color="#516b82" background="#f4f7f8"/>
  </group>;
 }
-export function ServiceRoad({show}:{show:boolean}) {
+export function ServiceRoad() {
  return <group position={[0,0,standLayout.roadCenterZ]} rotation={[0,Math.PI/2,0]}>
   <Block at={[0,.014,0]} size={[3.8,.02,56]} color="#58626b"/>
   {[-1.8,1.8].map(x=><Block key={x} at={[x,.03,0]} size={[.06,.015,56]} color="#e5e8e5"/>)}
@@ -220,6 +220,5 @@ export function ServiceRoad({show}:{show:boolean}) {
    {[-1,1].map(side=><mesh key={side} position={[side*.12,0,.3]} rotation={[0,side*.65,0]}><boxGeometry args={[.07,.014,.4]}/><meshBasicMaterial color="#f0f1e9"/></mesh>)}
   </group>))}
 
-  <Annotation at={[0,.4,12]} show={show}>Đường công vụ</Annotation>
  </group>;
 }

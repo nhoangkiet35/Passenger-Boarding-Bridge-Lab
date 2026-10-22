@@ -8,14 +8,14 @@ let s=command(initial(),{type:'jog',axes:{length:1}});check(!s.jog,'joystick req
 s=command(initial(),{type:'power',on:true});s=command(s,{type:'jog',axes:{length:1}});check(!s.jog,'joystick requires both clearance checks');
 s=command(ready(),{type:'mode',mode:'guide'});s=command(s,{type:'jog',axes:{length:1}});check(!s.jog,'AUTO blocks manual joystick');
 s=command(ready(),{type:'move',key:'height',value:4});s=command(s,{type:'jog',axes:{length:1,angle:.5}});s=run(s);
-check(s.pose.length>PARK.length&&s.pose.angle>PARK.angle&&s.pose.height===3&&s.actualSpeed<=.120001,'slow proportional jog moves two axes and cancels previous targets');
+check(s.pose.length>PARK.length&&s.pose.angle>PARK.angle&&s.pose.height===3&&s.actualSpeed<=.350001,'slow proportional jog moves two axes and cancels previous targets');
 s=command(s,{type:'haltJog'});let held=structuredClone(s.pose);s=run(s);check(JSON.stringify(s.pose)===JSON.stringify(held)&&!moving(s),'release stops exactly without coasting');
 for(const action of [{type:'emergency'},{type:'power',on:false},{type:'area',value:false},{type:'authorize',value:false},{type:'pause'},{type:'mode',mode:'guide'}]){
   let n=run(command(ready(),{type:'jog',axes:{height:1}}),.2);n=command(n,action);const pose=structuredClone(n.pose);n=run(n);check(!n.jog&&JSON.stringify(n.pose)===JSON.stringify(pose),action.type+' clears held control');
 }
 s=ready();s.pose={...CONNECTION};s.target={...s.pose};s=command(s,{type:'canopy',open:true});s=run(s,2);s=command(s,{type:'jog',axes:{cabYaw:1}});check(!s.jog&&s.pose.cabYaw===CONNECTION.cabYaw,'deployed canopy locks cabin rotation');
 s=ready();s=command(s,{type:'jog',axes:{floorTilt:1}});s=run(s,10);check(s.pose.floorTilt===3&&!s.jog,'floor stops at mechanical range');
-let p={...CONNECTION};check(aligned(p),'standard connection pose remains valid');check(aligned({...p,floorTilt:1}),'moderate floor tilt accepted with clear door path');check(!aligned({...p,floorTilt:3}),'excessive floor tilt blocks canopy deployment');
+let p={...CONNECTION};check(aligned(p),'standard connection pose remains valid');check(aligned({...p,floorTilt:1}),'moderate floor tilt accepted with clear door path');check(aligned({...p,floorTilt:3}),'practice allows floor tilt up to 3 degrees with clear door path');check(!aligned({...p,floorTilt:3.1}),'floor tilt beyond practice tolerance blocks canopy deployment');
 const before=cabinView(p),rotated=cabinView({...p,cabYaw:CONNECTION.cabYaw+10}),raised=cabinView({...p,height:4});
 check(Math.abs(raised.position[1]-before.position[1]-(4-CONNECTION.height))<1e-9,'CCTV rises with cabin');
 const rotatedFrame=cabinFrame({...p,cabYaw:CONNECTION.cabYaw+10}),baseFrame=cabinFrame(p);
@@ -26,16 +26,16 @@ s=ready();s=command(s,{type:'aux',key:'aircon'});s=run(s,10);check(s.temperature
 console.log(`${count} console/camera checks passed.`);
 const startDrive=()=>command(ready(),{type:'jog',axes:{length:1}});
 const early=tick(startDrive(),.25),cruising=tick(startDrive(),4);
-check(early.actualSpeed>.009&&early.actualSpeed<.011,'heavy bridge ramps up at 0.04 m/s²');
-check(Math.abs(cruising.actualSpeed-.12)<1e-6,'manual travel settles at slow carriage speed');
+check(early.actualSpeed>.044&&early.actualSpeed<.046,'heavy bridge ramps up at 0.18 m/s²');
+check(Math.abs(cruising.actualSpeed-.35)<1e-6,'manual travel settles at faster 0.35 m/s');
 const changed=command(cruising,{type:'jog',axes:{length:.5}});
 check(changed.jogVelocity.length===cruising.jogVelocity.length,'pointer updates preserve drive inertia');
 const reversed=tick(command(cruising,{type:'jog',axes:{length:-1}}),.25);
 check(reversed.jogVelocity.length>0&&reversed.jogVelocity.length<cruising.jogVelocity.length,'reversing brakes before changing travel direction');
 let diagonal=command(ready(),{type:'jog',axes:{length:1,angle:1}});diagonal=tick(diagonal,4);
-check(diagonal.actualSpeed<=.12001,'diagonal command shares the carriage speed limit');
+check(diagonal.actualSpeed<=.35005,'diagonal command shares the carriage speed limit');
 const fine=tick(command(ready(),{type:'jog',axes:{length:.25}}),4);
-check(Math.abs(fine.actualSpeed-.03)<1e-6,'partial joystick deflection gives fine speed');
+check(Math.abs(fine.actualSpeed-.0875)<1e-6,'partial joystick deflection gives fine speed');
 const emergency=command(cruising,{type:'emergency'});
 check(emergency.actualSpeed===0&&Object.keys(emergency.jogVelocity).length===0,'emergency clears accumulated velocity immediately');
 const partitioned=run(startDrive(),1),single=tick(startDrive(),1);

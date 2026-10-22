@@ -1,6 +1,6 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Component, useEffect, useRef, useState, type ReactNode } from 'react';
-import { apronView, cabinView, cctvView, CONNECTION, PARK, limits, parked, wheelMotion, bridgeMessages, type Pose, type State } from '@/lib/simulation';
+import { apronView, cabinView, cctvView, CONNECTION, PARK, limits, parked, wheelMotion, wheelCommandLights, bridgeMessages, type Pose, type State } from '@/lib/simulation';
 import { World } from './Scene';
 import type { Send } from './Joystick';
 import './cabin-main.css';
@@ -82,6 +82,7 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
   const plcRun = s.power && !s.emergency;
   const slope = Math.atan2(s.pose.height - 3, s.pose.length) * 180 / Math.PI;
   const wheel = wheelMotion(s);
+  const directionLights = wheelCommandLights(s);
   const allMessages = bridgeMessages(s);
   const lastPage = Math.max(0, Math.ceil(allMessages.length / 5) - 1);
   const visiblePage = Math.min(page, lastPage);
@@ -95,7 +96,7 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
           onDoubleClick={() => { if (performance.now() - lastTouchToggle.current > 600) toggleExpanded(); }}
           onPointerUp={event => { if (event.pointerType !== 'touch') return; const now = performance.now(); if (lastTouch.current > 0 && now - lastTouch.current < 350) { toggleExpanded(); lastTouch.current = 0; lastTouchToggle.current = now; } else lastTouch.current = now; }}
           onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleExpanded(); } else if (event.key === 'Escape') setExpanded(false); }}>
-          <CameraBoundary><Canvas dpr={[1, 1.25]} camera={{ fov: apron ? 95 : 100, near: .03, far: 150 }} frameloop={s.power ? 'always' : 'demand'}
+          <CameraBoundary><Canvas style={{position:'absolute',inset:0}} resize={{offsetSize:true}} dpr={[1, 1.25]} camera={{ fov: apron ? 95 : 100, near: .03, far: 150 }} frameloop={s.power ? 'always' : 'demand'}
             onCreated={({ gl }) => { gl.domElement.addEventListener('webglcontextlost', () => setLost(true)); gl.domElement.addEventListener('webglcontextrestored', () => setLost(false)); }}>
             <World s={s} cctv /><CameraPosition pose={s.pose} apron={apron} />
           </Canvas></CameraBoundary>
@@ -119,7 +120,7 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
         <div className="cabin-message-controls"><button type="button" aria-expanded={help} onClick={() => setHelp(value => !value)}>HELP</button><button type="button" aria-label="Previous messages" disabled={visiblePage === 0} onClick={() => setPage(visiblePage-1)}>▲</button><button type="button" aria-label="Next messages" disabled={visiblePage === lastPage} onClick={() => setPage(visiblePage+1)}>▼</button><button type="button" className="cabin-camera-select" onClick={() => setSelectedCamera(apron ? 'cabin' : 'apron')}>CAMERA<br />{apron ? '2' : '1'}</button></div>
         {help ? <div className="cabin-help" role="status">Tiếp cận chậm, giữ khe 2,5–5 cm. Sàn thấp hơn cửa 10–20 cm, nghiêng tối đa ±2°. Thả joystick trước khi mở mái che. Cảnh báo đỏ cần xử lý trước.<br />Nhấn đúp camera để phóng lớn.</div> : null}
       </div>
-      <div className="cabin-wheel"><div>WHEEL ROT. <strong>{wheel.angle.toFixed(1)} deg</strong></div><svg viewBox="0 0 160 160" role="img" aria-label={`Wheel steering ${wheel.angle.toFixed(1)} degrees, ${wheel.direction === 0 ? 'stopped' : wheel.direction > 0 ? 'forward drive' : 'reverse drive'}`}><circle cx="80" cy="80" r="65" fill="none" stroke="#00aaff" /><text x="80" y="29" textAnchor="middle">F</text><text x="80" y="142" textAnchor="middle">R</text><g transform={`rotate(${wheel.angle} 80 80)`}><rect x="52" y="51" width="16" height="58" rx="8" fill="#000000" /><rect x="94" y="51" width="16" height="58" rx="8" fill="#000000" /><path d="M68 80 H94" stroke="#808080" strokeWidth="15" />{wheel.direction > 0 ? <path d="M80 34 L68 49 H92 Z" fill="#ff0000" /> : wheel.direction < 0 ? <path d="M80 126 L68 111 H92 Z" fill="#ff0000" /> : null}</g></svg></div>
+      <div className="cabin-wheel"><div>WHEEL ROT. <strong>{wheel.angle.toFixed(1)} deg</strong></div><svg viewBox="0 0 160 160" role="img" aria-label={`Wheel steering ${wheel.angle.toFixed(1)} degrees, ${wheel.direction === 0 ? 'stopped' : wheel.direction > 0 ? 'forward drive' : 'reverse drive'}`}><circle cx="80" cy="80" r="65" fill="none" stroke="#00aaff" />{([{key:'forward',x:80,y:10,label:'Tiến · 12 giờ'},{key:'reverse',x:80,y:150,label:'Lùi · 6 giờ'},{key:'left',x:10,y:80,label:'Đánh lái trái · 9 giờ'},{key:'right',x:150,y:80,label:'Đánh lái phải · 3 giờ'}] as const).map(light=>directionLights[light.key]?<circle key={light.key} data-direction={light.key} cx={light.x} cy={light.y} r="6" fill="#ff0000" stroke="#ff8a8a" strokeWidth="2"><title>{light.label}</title></circle>:null)}<text x="80" y="29" textAnchor="middle">F</text><text x="80" y="142" textAnchor="middle">R</text><g transform={`rotate(${wheel.angle} 80 80)`}><rect x="52" y="51" width="16" height="58" rx="8" fill="#000000" /><rect x="94" y="51" width="16" height="58" rx="8" fill="#000000" /><path d="M68 80 H94" stroke="#808080" strokeWidth="15" /><path d="M80 34 L68 49 H92 Z" fill="#ff0000" /></g></svg></div>
     </div>
     <div className="cabin-indicators" aria-label="Indicator lamps">
       <button type="button" className="cabin-mode-lamp" aria-label="MAINTENANCE: open service password window" aria-haspopup="dialog" onClick={() => setScreenWindow('maintenance')}><i aria-hidden="true" /><span>MAIN-<br />TENANCE</span></button>

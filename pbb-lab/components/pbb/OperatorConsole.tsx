@@ -13,8 +13,11 @@ export default function OperatorConsole({s,send}:{s:State;send:Send}) {
   const auxControls:[Aux,string,string,typeof Lightbulb][]=[['interior','Đèn trong','INT. LIGHT',Lightbulb],['exterior','Đèn ngoài','EXT. LIGHT',Sun],['aircon','Điều hòa','AIR-CON',Snowflake],['ventilation','Thông gió','VENTILATOR',Fan]];
   const m=metrics(s.pose,s.aircraftShift);
   return <section id="operator-console" className="operator-section" aria-labelledby="console-heading">
-    <div className="console-heading"><div><div className="eyebrow">CABIN OPERATOR STATION</div><h2 id="console-heading">Bàn điều khiển cabin <span>+ CCTV trực tiếp</span></h2></div><span className="console-reference">BỐ CỤC THAM KHẢO HÌNH CUNG CẤP</span></div>
-    <div className="operator-console">
+    <div className="console-heading"><div><div className="eyebrow">CABIN OPERATOR STATION</div><h2 id="console-heading">Bàn điều khiển cabin</h2></div></div>
+    <div className="operator-console" onContextMenu={event => {
+      // Long presses on touch controls must not open the browser's context menu.
+      if (event.target instanceof Element && event.target.closest('button, .joystick-surface')) event.preventDefault();
+    }}>
       <i className="panel-screw screw-tl"/><i className="panel-screw screw-tr"/><i className="panel-screw screw-bl"/><i className="panel-screw screw-br"/>
       <div className="console-left">
         <div className="estop-housing"><div className="hardware-label">EMERGENCY STOP</div><button className={'mushroom-stop '+(s.emergency?'latched':'')} aria-label="Dừng khẩn cấp trên bàn điều khiển" aria-pressed={s.emergency} onClick={()=>send({type:'emergency'})}><span>EMRG.<br/>STOP</span></button><span className="estop-caption">DỪNG KHẨN CẤP</span></div>
@@ -25,7 +28,7 @@ export default function OperatorConsole({s,send}:{s:State;send:Send}) {
           <Rocker s={s} send={send} axis="cabYaw" title="CAB ROTATION" caption={'XOAY CABIN · '+s.pose.cabYaw.toFixed(1)+'°'} left={<RotateCcw size={18}/>} right={<RotateCw size={18}/>}/>
           <Rocker s={s} send={send} axis="height" title="TUNNEL UP / DOWN" caption={'CAO ĐỘ · '+s.pose.height.toFixed(2)+' m'} left={<ArrowDown size={19}/>} right={<ArrowUp size={19}/>}/>
         </div>
-        <button className="hardware-button preset-button" disabled={s.mode!=='guide'||!s.power||s.emergency} onClick={()=>send({type:'guide',departure:s.pose.canopy===1})}><Play size={16}/><span>CHU TRÌNH VỀ PARK<small>{s.pose.canopy===1?'CHU TRÌNH TÁCH CẦU':'CHU TRÌNH TIẾP CẬN'}</small></span></button>
+        <HoldButton preset className="preset-button" send={send} running={s.presetPark} disabled={!s.power||s.emergency||!!s.fault} label="Giữ PRESET START để về Park, thả để dừng"><Play size={16}/><span>PRESET START<small>CHU TRÌNH VỀ PARK · GIỮ ĐỂ CHẠY</small></span></HoldButton>
       </div>
       <div className="console-center"><CabinMainScreen s={s} send={send}/><div className="console-confirmations"><label><Checkbox checked={s.area} disabled={s.mode!=='manual'} onCheckedChange={v=>send({type:'area',value:v===true})}/>Khu vực thông thoáng</label><label><Checkbox checked={s.authorized} disabled={s.mode!=='manual'} onCheckedChange={v=>send({type:'authorize',value:v===true})}/>Tàu bay đã đỗ · được phép tiếp cận</label></div>
         <div className="console-status-strip"><ShieldCheck size={16}/><span>{status(s)}</span><span className={m.clearance<.4?'amber':''}>CANOPY {Math.round(s.pose.canopy*100)}%</span></div>
