@@ -48,10 +48,10 @@
 .vdgs-process-stage{display:block}.vdgs-process-current{display:inline-block;margin-top:8px;padding:2px 8px;border-radius:4px;background:#0c7180;color:white;font-size:10px;font-weight:500;line-height:1.7}
 .vdgs-process-table .vdgs-process-screen{font-size:13px;line-height:1.8;font-weight:600}.vdgs-process-screen.is-stop{color:#bf252c}.vdgs-process-screen.is-parked{color:#7a6500}
 @media(max-width:760px){.vdgs-process-table{font-size:13px}.vdgs-process-table th,.vdgs-process-table td{padding:14px 16px}#vdgs-simulator>.vdgs-stage-guide{padding:18px 14px}}
-.vdgs-feature-image.vdgs-feature-image-only{display:block;padding:clamp(16px,3vw,40px);background:#fff}
-.vdgs-feature-image.vdgs-feature-image-only img{display:block;width:100%;max-width:1000px;height:auto;max-height:none;aspect-ratio:auto;object-fit:contain;margin:0 auto}
-.vdgs-feature-image.vdgs-feature-image-only .vdgs-compliance{max-width:1000px;margin:24px auto 0;padding:28px 0 0;border-top:1px solid var(--site-line)}
+.vdgs-feature-image.vdgs-feature-image-only{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:clamp(24px,4vw,56px);padding:clamp(16px,2vw,28px) 0;background:transparent;border:0;overflow:visible}
+.vdgs-feature-image.vdgs-feature-image-only img{display:block;width:100%;max-width:440px;height:auto;max-height:390px;aspect-ratio:auto;object-fit:contain;margin:0 auto}
+.vdgs-feature-image.vdgs-feature-image-only .vdgs-compliance{min-width:0;max-width:none;margin:0;padding:0;border:0}
 .vdgs-compliance h2{max-width:850px;color:var(--site-text)}
 .vdgs-compliance blockquote{margin:18px 0 12px;padding:0 0 0 20px;border-left:3px solid var(--site-accent)}
 .vdgs-feature-image .vdgs-compliance blockquote p{font-size:15px;line-height:1.9;color:#465e6d;margin:0}
-@media(max-width:760px){.vdgs-feature-image.vdgs-feature-image-only .vdgs-compliance{margin-top:18px;padding-top:22px}.vdgs-feature-image .vdgs-compliance blockquote p{font-size:14px}}
+@media(max-width:760px){.vdgs-feature-image.vdgs-feature-image-only{grid-template-columns:1fr;gap:20px}.vdgs-feature-image.vdgs-feature-image-only img{max-width:320px;max-height:280px}.vdgs-feature-image .vdgs-compliance blockquote p{font-size:14px}}
