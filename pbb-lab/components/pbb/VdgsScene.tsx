@@ -14,7 +14,7 @@ export default function VdgsScene({s,running}:{s:VdgsState;running:boolean}) {
  const hull=useMemo(aircraftHull,[]); useEffect(()=>()=>hull.dispose(),[hull]);
  const [lost,setLost]=useState(false),signal=vdgsSignal(s);
  const color=signal.tone==='red'?'#ff5757':signal.tone==='amber'?'#ffc95c':'#65edba';
- return <><Canvas shadows dpr={[1,1.5]} camera={{position:[0,10,-29],fov:55,far:220}} onCreated={({camera,gl})=>{camera.lookAt(0,3,24);gl.domElement.addEventListener('webglcontextlost',()=>setLost(true));gl.domElement.addEventListener('webglcontextrestored',()=>setLost(false));}}>
+ return <><Canvas shadows dpr={[1,1.5]} camera={{position:[0,10,-29],fov:48,far:220}} onCreated={({camera,gl})=>{camera.lookAt(0,3,24);gl.domElement.addEventListener('webglcontextlost',()=>setLost(true));gl.domElement.addEventListener('webglcontextrestored',()=>setLost(false));}}>
  <color attach="background" args={['#c9dce7']}/><fog attach="fog" args={['#c9dce7',105,200]}/><ambientLight intensity={1.7}/><hemisphereLight args={['#e9f8ff','#667f8d',1]}/><directionalLight position={[-25,40,-15]} intensity={2.5} castShadow shadow-mapSize={[1024,1024]} shadow-camera-left={-50} shadow-camera-right={50} shadow-camera-top={100} shadow-camera-bottom={-30}/>
  <Box at={[0,-.22,60]} size={[160,.4,200]} color="#99adb9"/><Line points={[[0,.025,-7],[0,.025,140]]} color="#ffce48" lineWidth={4}/><Line points={[[-5,.03,0],[5,.03,0]]} color="#ffce48" lineWidth={5}/>
  {[-1,1].map(side=><Line key={side} points={[[side*23,.02,-2],[side*23,.02,70]]} color="#e9eff1" lineWidth={2}/>)}

@@ -33,5 +33,5 @@ function Cloud({ s, running }: { s: VdgsState; running: boolean }) {
   </>;
 }
 export default function VdgsLidar({s,running}:{s:VdgsState;running:boolean}) {
-  return <div className="vdgs-lidar" aria-label="Đám mây điểm LiDAR mô phỏng"><span>LiDAR · QUÉT 3D {running?'●':'Ⅱ'}</span><Canvas dpr={[1,1.3]} camera={{position:[0,9,-23],fov:55,far:200}} onCreated={({camera})=>camera.lookAt(0,3,20)}><color attach="background" args={['#030606']}/><Cloud s={s} running={running}/></Canvas><small>Dữ liệu điểm tạo từ mô hình 3D</small></div>;
+  return <div className="vdgs-lidar" aria-label="Đám mây điểm LiDAR mô phỏng"><span>LiDAR · QUÉT 3D {running?'●':'Ⅱ'}</span><Canvas dpr={[1,1.3]} camera={{position:[0,9,-23],fov:48,far:200}} onCreated={({camera})=>camera.lookAt(0,3,20)}><color attach="background" args={['#030606']}/><Cloud s={s} running={running}/></Canvas><small>Dữ liệu điểm tạo từ mô hình 3D</small></div>;
 }

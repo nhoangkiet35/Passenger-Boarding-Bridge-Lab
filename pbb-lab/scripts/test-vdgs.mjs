@@ -1,11 +1,14 @@
 import assert from 'node:assert/strict';
-import { vdgsInitial, vdgsSignal, vdgsTick } from '../lib/vdgsSimulation.ts';
+import { vdgsInitial, vdgsSignal, vdgsTick, vdgsDistance, vdgsStage } from '../lib/vdgsSimulation.ts';
 let s=vdgsInitial('normal');
 assert.equal(vdgsSignal(s).code,'SCAN');
 for(let i=0;i<29;i++)s=vdgsTick(s,.1,'normal');
 assert.equal(s.distance,65);
 for(let i=0;i<2000;i++)s=vdgsTick(s,.1,'normal');
-assert.equal(s.distance,0);assert.equal(s.speed,0);assert.equal(vdgsSignal(s).code,'STOP');assert.equal(vdgsTick(s,.1,'normal'),s);
+assert.equal(s.distance,0);assert.equal(s.speed,0);assert.equal(vdgsSignal(s).code,'OK');assert.equal(vdgsTick(s,.1,'normal'),s);
+const stopped={...s,stoppedFor:0};assert.equal(vdgsSignal(stopped).code,'STOP');assert.equal(vdgsStage(stopped),'stop');assert.equal(vdgsStage(s),'parked');
+assert.equal(vdgsDistance(5),'5M');assert.equal(vdgsDistance(4.8),'4.8M');assert.equal(vdgsDistance(4.65),'4.8M');assert.equal(vdgsDistance(.01),'0.2M');assert.equal(vdgsDistance(0),'0.0M');
+assert.equal(vdgsSignal({...s,emergency:true}).code,'STOP');
 let offset=vdgsInitial('offset');
 for(let i=0;i<40;i++)offset=vdgsTick(offset,.1,'offset');
 assert.equal(vdgsSignal(offset).code,'→');assert.ok(offset.offset<3);
