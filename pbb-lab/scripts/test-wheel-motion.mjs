@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { initial, command, tick, wheelMotion, wheelCommandLights } from '../lib/simulation.ts';
+import { joystickAxes } from '../lib/joystick.ts';
 for (const sign of [-1,1]) {
  const start={...initial(),power:true,area:true,authorized:true};
  const steered=tick(command(start,{type:'jog',axes:{angle:sign}}),10);
@@ -57,3 +58,12 @@ for(const sign of [-1,1]) {
  assert.deepEqual(wheelCommandLights(command(drive,{type:'emergency'})),{forward:false,reverse:false,left:false,right:false});
 }
 console.log('PASS uniform slow steering and four direction lamps, release and emergency');
+for (const [hour, forward, left] of [[7.5,false,true],[4.5,false,false],[10.5,true,true],[1.5,true,false]]) {
+ const radians=hour*Math.PI/6;
+ let state={...initial(),power:true,area:true,authorized:true};
+ state.pose={...state.pose,length:13};state.target={...state.pose};
+ state=tick(command(state,{type:'jog',axes:joystickAxes(Math.sin(radians),-Math.cos(radians))}),.5);
+ assert.deepEqual(wheelCommandLights(state),{forward,reverse:!forward,left,right:!left},`${hour}h diagonal lamps`);
+ assert.deepEqual(wheelCommandLights(command(state,{type:'haltJog'})),{forward:false,reverse:false,left:false,right:false});
+}
+console.log('PASS reverse diagonal clock lamps and unchanged forward diagonal lamps');

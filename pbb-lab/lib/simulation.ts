@@ -68,11 +68,15 @@ export function wheelCommandLights(s: State) {
     const off = { forward: false, reverse: false, left: false, right: false };
     if (!s.power || s.emergency || s.fault || s.paused || !s.area || !s.authorized || s.pose.canopy > 0 || s.autoLevel) return off;
     const wheel = wheelMotion(s);
+    const steering = s.jog?.angle ?? 0;
+    const canSteer = steering < 0 ? s.wheelRotation > -config.wheelSteeringLimit : steering > 0 && s.wheelRotation < config.wheelSteeringLimit;
+    // Reverse diagonal lamps follow the joystick's clock sector, not wheel yaw.
+    const lampSide = (s.jog?.length ?? 0) < 0 ? -steering : steering;
     return {
         forward: s.actualSpeed > 1e-8 && wheel.direction > 0,
         reverse: s.actualSpeed > 1e-8 && wheel.direction < 0,
-        left: (s.jog?.angle ?? 0) < 0 && s.wheelRotation > -config.wheelSteeringLimit,
-        right: (s.jog?.angle ?? 0) > 0 && s.wheelRotation < config.wheelSteeringLimit,
+        left: canSteer && lampSide < 0,
+        right: canSteer && lampSide > 0,
     };
 }
 export function status(s: State) {
