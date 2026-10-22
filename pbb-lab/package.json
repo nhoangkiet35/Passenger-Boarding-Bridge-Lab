@@ -17,7 +17,7 @@
     "test": "node scripts/test-simulation.mjs && node scripts/test-training.mjs",
     "typecheck": "tsc --noEmit",
     "preview:protected": "node scripts/serve-protected.mjs",
-    "test:auth": "node scripts/test-explore-auth.mjs"
+    "test:auth": "node scripts/test-explore-auth.mjs && node scripts/test-employee-management.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -25,12 +25,14 @@
     "@react-three/drei": "^10.7.0",
     "@react-three/fiber": "^9.3.0",
     "@shadcn/react": "^0.3.0",
+    "@vercel/blob": "^2.8.2",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.4.0",
     "drizzle-orm": "0.45.2",
     "embla-carousel-react": "^8.6.0",
+    "exceljs": "^4.4.0",
     "hls.js": "^1.7.3",
     "input-otp": "^1.4.2",
     "lucide-react": "^1.31.0",

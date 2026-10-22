@@ -1,0 +1,72 @@
+import assert from 'node:assert/strict';
+import { mkdtemp,copyFile,readFile,rm,writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { randomBytes } from 'node:crypto';
+import ExcelJS from 'exceljs';
+import { handleAdmin } from '../server/admin-handler.mjs';
+import { readRoster,saveRoster,seedWorkbookPath } from '../server/employee-store.mjs';
+import { readEmployeeWorkbook,writeEmployeeWorkbook } from '../server/employee-workbook.mjs';
+const directory=await mkdtemp(join(tmpdir(),'pbb-employees-'));
+process.env.EMPLOYEE_WORKBOOK_PATH=join(directory,'employees.xlsx');
+process.env.EXPLORE_SESSION_SECRET=randomBytes(32).toString('hex');
+const base='https://pbb.test';
+const csrf=html=>html.match(/name="csrf" value="([^"]+)"/)[1];
+const version=html=>html.match(/name="version" value="([^"]+)"/)[1];
+const get=(path,cookie='')=>handleAdmin(new Request(base+path,{headers:{cookie}}));
+const post=(fields,cookie='',path='/api/admin?view=employees')=>handleAdmin(new Request(base+path,{method:'POST',headers:{origin:base,cookie,'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fields)}));
+const login=async id=>{
+ const html=await (await get('/admin')).text();const r=await post({csrf:csrf(html),password:id},'','/api/admin');
+ return {response:r,cookie:r.headers.get('set-cookie')?.split(';')[0]};
+};
+const upload=async(buffer,html,cookie)=>{
+ const form=new FormData();form.set('csrf',csrf(html));form.set('version',version(html));form.set('action','employee-import-preview');form.set('file',new File([buffer],'nhan-vien.xlsx',{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}));
+ return handleAdmin(new Request(base+'/api/admin?view=employees',{method:'POST',headers:{origin:base,cookie},body:form}));
+};
+try {
+ await copyFile(seedWorkbookPath,process.env.EMPLOYEE_WORKBOOK_PATH);
+ const seed=await readRoster();assert.equal(seed.employees.length,15);assert.equal(seed.employees[0].id,'020513');
+ const user=await login('020514');assert.equal(user.response.status,303);
+ let html=await (await get('/admin/employees',user.cookie)).text();
+ const before=version(html);
+ let r=await post({action:'employee-add',csrf:csrf(html),version:before,id:'020533',name:'Nhân viên kiểm tra'},user.cookie);
+ assert.equal(r.status,303);assert.equal((await readRoster()).employees.length,16);
+ const added=await login('020533');assert.equal(added.response.status,303,'new ID logs in immediately');
+ r=await get('/admin',user.cookie);assert((await r.text()).includes('Nguyễn Hữu Hoàng Kiệt'),'existing session survives additions');
+ r=await post({action:'employee-add',csrf:csrf(html),version:before,id:'020534',name:'Cũ'},user.cookie);assert.equal(r.status,409,'stale form cannot overwrite');
+ html=await (await get('/admin/employees',user.cookie)).text();
+ for(const [id,name] of [['020533','Trùng'],['20535','Thiếu số 0'],['020535','']]) {
+  r=await post({action:'employee-add',csrf:csrf(html),version:version(html),id,name},user.cookie);assert.equal(r.status,400);
+ }
+ r=await post({action:'employee-add',csrf:csrf(html),version:version(html),id:'020535',name:'Không được lưu'});assert.equal(r.status,401);
+ r=await post({action:'employee-add',csrf:'forged',version:version(html),id:'020535',name:'Không được lưu'},user.cookie);assert.equal(r.status,403);
+ assert.equal((await readRoster()).employees.length,16);
+ const rows=(await readRoster()).employees.filter(e=>e.id!=='020533').map(e=>e.id==='020514'?{...e,name:'Nguyễn Hữu Hoàng Kiệt cập nhật'}:e);
+ rows.push({id:'020536',name:'Nhân viên từ Excel'});
+ const buffer=await writeEmployeeWorkbook(rows);
+ r=await upload(buffer,html,user.cookie);assert.equal(r.status,200);const preview=await r.text();assert(preview.includes('Xem trước danh sách Excel'));
+ assert.equal((await readRoster()).employees.some(e=>e.id==='020536'),false,'preview does not save');
+ r=await post({action:'employee-import-save',csrf:csrf(preview),version:version(preview),rows:JSON.stringify(rows)},user.cookie);assert.equal(r.status,303);
+ assert.equal((await login('020536')).response.status,303);
+ assert.equal((await login('020533')).response.status,401,'removed ID cannot log in');
+ assert((await (await get('/admin',added.cookie)).text()).includes('name="password"'),'removed employee session denied');
+ assert((await (await get('/admin',user.cookie)).text()).includes('Nguyễn Hữu Hoàng Kiệt cập nhật'),'name resolves from current workbook');
+ const persisted=await readEmployeeWorkbook(await readFile(process.env.EMPLOYEE_WORKBOOK_PATH));assert(persisted.some(e=>e.id==='020536'));
+ r=await get('/api/admin?view=employees&download=xlsx',user.cookie);assert.equal(r.status,200);assert.match(r.headers.get('content-type'),/spreadsheetml/);
+ assert.deepEqual(await readEmployeeWorkbook(await r.arrayBuffer()),persisted);
+ r=await get('/api/admin?view=employees&download=xlsx');assert.match(r.headers.get('content-type'),/text\/html/);
+ html=await (await get('/admin/employees',user.cookie)).text();
+ r=await upload(await writeEmployeeWorkbook(rows.filter(e=>e.id!=='020514')),html,user.cookie);assert.equal(r.status,400,'cannot remove current operator during import');
+ const malformed=new ExcelJS.Workbook(),sheet=malformed.addWorksheet('Nhan vien');sheet.addRows([['ID','Name'],['020537',{formula:'1+1'}]]);
+ const formula=await malformed.xlsx.writeBuffer();await assert.rejects(()=>readEmployeeWorkbook(formula),/công thức/);
+ sheet.getCell('B2').value='Đúng tên';sheet.addRow(['020537','Trùng ID']);
+ const duplicate=await malformed.xlsx.writeBuffer();await assert.rejects(()=>readEmployeeWorkbook(duplicate),/trùng/);
+ await assert.rejects(()=>readEmployeeWorkbook(Buffer.alloc(1100000)),/1 MB/);
+ await assert.rejects(()=>readEmployeeWorkbook(Buffer.from('not excel')),/xlsx/);
+ const parallel=(await readRoster());const writes=await Promise.allSettled([saveRoster([...parallel.employees,{id:'020538',name:'Đồng thời A'}],parallel.version),saveRoster([...parallel.employees,{id:'020539',name:'Đồng thời B'}],parallel.version)]);
+ assert.equal(writes.filter(r=>r.status==='fulfilled').length,1,'concurrent writes cannot silently lose updates');
+ process.env.VERCEL='1';
+ await assert.rejects(()=>saveRoster(parallel.employees,parallel.version),/Chưa kết nối/);delete process.env.VERCEL;
+ await writeFile(process.env.EMPLOYEE_WORKBOOK_PATH,'corrupt');r=await get('/admin',user.cookie);assert.equal(r.status,503,'unreadable roster fails closed');
+ console.log('PASS: Excel IDs, persistent add/import/export, import preview, dynamic login/removal, duplicate/invalid/formula checks, auth/CSRF, conflicts and missing cloud storage.');
+} finally {delete process.env.EMPLOYEE_WORKBOOK_PATH;await rm(directory,{recursive:true,force:true});}

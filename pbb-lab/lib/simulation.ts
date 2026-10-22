@@ -8,7 +8,7 @@ export { bridgeMessages, type BridgeMessage } from './bridgeMessages.ts';
 export const initial = (): State => ({
     obstacles: [],
     autoLevel: false, passengerLoadDeflection: 0, aircraftShift: 0, scenarios: { obstacle: false, autolevelFault: false, powerLoss: false, wind: false, auxDeployed: false }, fault: null, elapsed: 0, log: [], actualSpeed: 0, wheelTravel: 0,
-    pose: { ...PARK }, target: { ...PARK }, jog: null,
+    pose: { ...PARK }, target: { ...PARK }, jog: null, jogVelocity: {},
     power: false, emergency: false, area: false, authorized: false,
     serviceEnded: false, mode: 'manual', paused: false, step: -1, speed: 1,
     message: 'Kiểm tra khu vực và xác nhận tàu bay trước khi tiếp cận.',
@@ -38,9 +38,10 @@ export function wheelMotion(s: State): {
 } {
     if (!s.power || s.emergency || s.fault || s.paused || s.pose.canopy > 0)
         return { angle: s.wheelRotation, direction: 0 };
+    if (s.jog) return { angle: s.wheelRotation, direction: Math.sign(s.jogVelocity.length ?? 0) as -1 | 0 | 1 };
     const near = metrics(s.pose).gap < config.warningDistance;
-    let forward = s.jog ? (s.jog.length ?? 0) * (near ? config.nearDoorSpeed : config.jogRates.length) : Math.sign(s.target.length - s.pose.length) * (near ? config.nearDoorSpeed : config.rates.length);
-    let lateral = s.jog ? (s.jog.angle ?? 0) * config.jogRates.angle : Math.sign(s.target.angle - s.pose.angle) * config.rates.angle;
+    let forward = Math.sign(s.target.length - s.pose.length) * (near ? config.nearDoorSpeed : config.rates.length);
+    let lateral = Math.sign(s.target.angle - s.pose.angle) * config.rates.angle;
     // Ignore commands pushing into a mechanical stop; use actual travel direction.
     if ((forward < 0 && s.pose.length <= limits.length[0]) || (forward > 0 && s.pose.length >= limits.length[1]))
         forward = 0;
@@ -129,7 +130,7 @@ export type Command = {
     type: 'speed';
     value: number;
 };
-const stop = (s: State): State => ({ ...s, actualSpeed: 0, target: { ...s.pose }, jog: null });
+const stop = (s: State): State => ({ ...s, actualSpeed: 0, target: { ...s.pose }, jog: null, jogVelocity: {} });
 export function command(s: State, c: Command): State {
     const n = applyCommand(s, c);
     if (n === s)
@@ -254,8 +255,7 @@ function applyCommand(s: State, c: Command): State {
         }
         if (!Object.keys(axes).length)
             return command(s, { type: 'haltJog' });
-        const next = { ...stop(s), jog: axes, action: 'Điều khiển giữ để chạy', message: 'Giữ để chạy • Thả tay để dừng. Joystick: lên/xuống tiến/lùi, trái/phải xoay cầu.' };
-        return { ...next, wheelRotation: wheelMotion(next).angle };
+        return { ...s, target: { ...s.pose }, jog: axes, jogVelocity: s.jog ? s.jogVelocity : {}, action: 'Điều khiển giữ để chạy', message: 'Trái/phải: đánh lái bánh xe ±90°. Tiến/lùi: chạy theo hướng bánh xe. Thả tay để dừng.' };
     }
     if (c.type === 'move') {
         if (!Number.isFinite(c.value))
@@ -366,12 +366,26 @@ function integrate(s: State, dt: number): State {
         if (metrics(p).gap < config.warningDistance)
             rates.length = config.nearDoorSpeed;
         if (s.jog) {
-            // Slower proportional movement for cabin-console precision.
+            // Illustrative heavy drive: cap combined carriage speed at any bridge length.
             const jogRates: Record<Axis, number> = { ...config.jogRates };
-            if (metrics(p).gap < config.warningDistance)
-                jogRates.length = config.nearDoorSpeed;
-            for (const key of Object.keys(s.jog) as Axis[])
-                p[key] = Math.max(limits[key][0], Math.min(limits[key][1], p[key] + jogRates[key] * s.jog[key]! * dt));
+            const drive = config.manualDrive;
+            const radius = Math.max(1, p.length - config.carriageOffset);
+            const cap = metrics(p).gap < config.warningDistance ? Math.min(drive.maximumSpeed, config.nearDoorSpeed) : drive.maximumSpeed;
+            // Horizontal input steers in place; only vertical input drives the carriage.
+            n.wheelRotation = Math.max(-config.wheelSteeringLimit, Math.min(config.wheelSteeringLimit,
+                s.wheelRotation + (s.jog.angle ?? 0) * config.wheelSteeringRate * dt));
+            const desired = (s.jog.length ?? 0) * cap;
+            const previous = s.jogVelocity.length ?? 0;
+            const braking = previous * desired < 0 || Math.abs(desired) < Math.abs(previous);
+            const change = (braking ? drive.braking : drive.acceleration) * dt;
+            const driveVelocity = desired === 0 ? 0 : previous + Math.sign(desired - previous) * Math.min(Math.abs(desired - previous), change);
+            const forward = driveVelocity * Math.cos(radians(n.wheelRotation));
+            const lateral = driveVelocity * Math.sin(radians(n.wheelRotation));
+            n.jogVelocity = { length: driveVelocity, angle: lateral / radius * 180 / Math.PI };
+            for (const key of Object.keys(limits) as Axis[]) {
+                const velocity = key === 'length' ? forward : key === 'angle' ? n.jogVelocity.angle ?? 0 : jogRates[key] * (s.jog[key] ?? 0);
+                p[key] = Math.max(limits[key][0], Math.min(limits[key][1], p[key] + velocity * dt));
+            }
         }
         else {
             for (const key of Object.keys(p) as (keyof Pose)[]) {
@@ -386,10 +400,11 @@ function integrate(s: State, dt: number): State {
             return { ...stop(n), message: 'Giới hạn độ dốc / chồng lồng (giả định): giảm chênh cao hoặc tăng chiều dài.', action: 'Giới hạn hình học' };
         if (metrics(p).clearance < DOCKING.minimumClearance - GEOMETRY_EPSILON)
             return { ...stop(n), message: 'Giới hạn an toàn: mép cabin quá gần thân tàu bay. Hãy thu cầu.', action: 'Đã chặn tiếp cận', paused: s.mode === 'guide' };
-        if (s.jog && Object.keys(p).every(k => p[k as keyof Pose] === s.pose[k as keyof Pose]))
+        if (s.jog && !s.jog.angle && Object.keys(p).every(k => p[k as keyof Pose] === s.pose[k as keyof Pose]))
             return { ...stop(n), message: 'Đã chạm giới hạn hành trình. Nhả điều khiển rồi chọn hướng khác.', action: 'Giới hạn hành trình' };
         const travel = Math.hypot(p.length - s.pose.length, radians(p.angle - s.pose.angle) * (p.length - config.carriageOffset));
-        n = { ...n, actualSpeed: travel / dt, wheelTravel: s.wheelTravel + travel * wheelMotion(s).direction, pose: p, target: s.jog ? { ...p } : s.target, connectedOnce: s.connectedOnce || p.canopy >= .999, wheelRotation: wheelMotion(s).angle };
+        const wheel = wheelMotion(n);
+        n = { ...n, actualSpeed: travel / dt, wheelTravel: s.wheelTravel + travel * wheel.direction, pose: p, target: s.jog ? { ...p } : s.target, connectedOnce: s.connectedOnce || p.canopy >= .999, wheelRotation: wheel.angle };
     }
     if (s.pose.canopy < .999 && n.pose.canopy >= .999 && n.power && n.area && n.authorized && !n.serviceEnded && aligned(n.pose,n.aircraftShift)) {
         n = { ...n,autoLevel:true,message:'Mái che đã triển khai. AUTO LEVEL tự kích hoạt; cảm biến tì thân tàu và giữ cao độ khi hành khách di chuyển.' };

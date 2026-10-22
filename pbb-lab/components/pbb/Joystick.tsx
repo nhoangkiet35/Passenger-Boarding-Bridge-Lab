@@ -58,11 +58,11 @@ export default function Joystick({ s, send }: { s: State; send: Send }) {
     </div>
     <div className="joystick-label bottom">LÙI / R</div>
     <div className="joystick-nudges">
-      <HoldButton send={send} running={!!s.jog} disabled={!enabled} axes={{angle:-1}} label="Giữ xoay cầu trái">←</HoldButton>
+      <HoldButton send={send} running={!!s.jog} disabled={!enabled} axes={{angle:-1}} label="Giữ đánh lái bánh xe trái">←</HoldButton>
       <HoldButton send={send} running={!!s.jog} disabled={!enabled} axes={{length:1}} label="Giữ tiến cầu">↑</HoldButton>
       <HoldButton send={send} running={!!s.jog} disabled={!enabled} axes={{length:-1}} label="Giữ lùi cầu">↓</HoldButton>
-      <HoldButton send={send} running={!!s.jog} disabled={!enabled} axes={{angle:1}} label="Giữ xoay cầu phải">→</HoldButton>
+      <HoldButton send={send} running={!!s.jog} disabled={!enabled} axes={{angle:1}} label="Giữ đánh lái bánh xe phải">→</HoldButton>
     </div>
-    <p className="hardware-help">Kéo cần hoặc giữ phím mũi tên.<br/>Thả tay / rời cửa sổ = dừng.</p>
+    <p className="hardware-help">Trái/phải: đánh lái bánh xe ±90°.<br/>Tiến/lùi: chạy theo hướng bánh xe.<br/>Thả tay: dừng, giữ góc lái.</p>
   </div>;
 }

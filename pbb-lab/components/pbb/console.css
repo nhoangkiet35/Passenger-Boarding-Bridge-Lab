@@ -12,3 +12,41 @@
 
 .monitor-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
 .cctv-source-controls{display:flex;gap:6px;flex-wrap:wrap;padding:8px 0}.cctv-source-controls button{flex:1;min-height:40px;font-size:12px;padding:8px;color:#bdd5df;background:#18313e;border-color:#365562}.cctv-source-controls button[aria-pressed=true]{background:#235765;color:#ecffff;border-color:#73bcc7}.cctv-source-controls button:disabled{opacity:.5}
+
+/* Photo reference: ivory enclosure, blue control groups, yellow switches. */
+.operator-console{--panel-blue:#006ca8;background:linear-gradient(125deg,#f5f5ec,#e7e9e0 70%,#f3f3eb);border-color:#b6b9b3;color:#263640;box-shadow:inset 0 2px 0 #fff,inset 0 -7px 0 #c3c7bd,0 13px 30px #1c363515}
+.operator-console .key-switch,.operator-console .console-rockers,.operator-console .aux-switches,.operator-console .joystick-block{background:linear-gradient(120deg,#087fb9,var(--panel-blue));border-color:#1591c7;box-shadow:inset 0 1px 0 #70c4e566}
+.operator-console .hardware-label,.operator-console .hardware-label span,.operator-console .rocker-row b,.operator-console .rocker-row span,.operator-console .joystick-label,.operator-console .key-options button{color:#f1f8fc}
+.operator-console .hardware-help{color:#e7f5ff!important}.operator-console .rocker-row{border-bottom-color:#67b4d577}
+.operator-console .estop-housing{background:#f5d718;border-color:#d3b619;box-shadow:inset 0 1px 0 #fff29c}
+.operator-console .estop-housing .hardware-label,.operator-console .estop-caption{color:#302d16}
+.operator-console .mushroom-stop{border-color:#b4b9b9;background:linear-gradient(145deg,#e6434b,#a91426 70%);box-shadow:0 3px 0 #747b7d,inset 0 2px 2px #ff999e,inset 0 -5px 2px #77121d}
+.operator-console .mushroom-stop:hover{background:linear-gradient(145deg,#f95760,#bd1e2e)}
+.operator-console .mushroom-stop.latched{background:#a91426;box-shadow:0 1px 0 #747b7d,inset 0 4px 7px #690e19}
+.operator-console .hardware-button,.operator-console .aux-button{background:linear-gradient(#ffde3c,#efbd0c);border-color:#333b3e;color:#332b0d;box-shadow:0 3px 0 #34383a,inset 0 1px 1px #fff2a0}
+.operator-console .hardware-button:hover,.operator-console .aux-button:hover{background:linear-gradient(#ffe966,#f7ce29);border-color:#202b32}
+.operator-console .hardware-button:active,.operator-console .hardware-button[aria-pressed=true],.operator-console .aux-button.lit{background:linear-gradient(#ffe55a,#eab910);box-shadow:0 1px 0 #34383a,inset 0 2px 4px #72561366}
+.operator-console .aux-button small{color:#51420b}.operator-console .aux-lamp{background:#7c6b21;border-color:#65561b}
+.operator-console .aux-button.lit .aux-lamp{background:#62ef7e;border-color:#23773a;box-shadow:0 0 5px #62ef7e}
+.operator-console .key-options button[aria-pressed=true]{background:#143b5e;color:#fff;box-shadow:inset 0 1px 3px #09283d}
+.operator-console .key-dial{border-color:#929a9e;background:linear-gradient(135deg,#f6f7f5,#a6adb0);box-shadow:inset 0 0 0 2px #d5d9d9}
+.operator-console .key-dial span{background:#252b2f;border-color:#101619}
+.operator-console .power-on,.operator-console .power-on.lit,.operator-console .preset-button{background:linear-gradient(#3bad73,#137344);border-color:#293e35;color:#fff;box-shadow:0 3px 0 #243b30,inset 0 1px 1px #90dbb2}
+.operator-console .power-on:hover,.operator-console .preset-button:hover{background:linear-gradient(#53c68c,#208851)}
+.operator-console .preset-button small{color:#e0f5e7}
+.operator-console .power-off,.operator-console .power-off[aria-pressed=true]{background:linear-gradient(#e75b65,#b81d32);color:#fff;border-color:#463236;box-shadow:0 3px 0 #4f2a30,inset 0 1px 1px #ffb3ba}
+.operator-console .power-off:hover{background:linear-gradient(#f5757e,#cd3044)}
+.operator-console .reset-housing{background:linear-gradient(120deg,#119448,#087c37);border-color:#319b55;box-shadow:inset 0 1px 0 #81c987}
+.operator-console .reset-housing>span{color:#f0fff3}
+.operator-console .joystick-surface{border-color:#24292b;background:repeating-radial-gradient(circle at 50% 50%,#191d20 0 8px,#424749 9px 11px,#24292b 12px 18px);box-shadow:0 3px 5px #003b6399,inset 0 2px 5px #101719}
+.operator-console .joystick-surface:before,.operator-console .joystick-surface:after{background:#89939933}
+.operator-console .joystick-stick{background:radial-gradient(circle at 32% 25%,#646c70,#1b2024 52%,#080c10);border-color:#11181d;box-shadow:3px 7px 8px #002e5380,inset 1px 2px 2px #939a9d}
+.operator-console .joystick-stick>span{background:#181e22;border-color:#6b7378}
+.operator-console .console-confirmations{background:#f5f6f1;border-color:#c0c8ca}
+.operator-console .console-confirmations label,.operator-console .console-message,.operator-console .climate-readout{color:#344b5b}
+.operator-console .console-confirmations button[data-slot=checkbox]{background:#fff;border-color:#788b98}
+.operator-console .console-confirmations button[data-state=checked]{background:var(--panel-blue);color:#fff}
+.operator-console .console-status-strip{color:#154f7a}
+.operator-console .console-service button{background:#edf3f7;border-color:#9aafbf;color:#174d77}.operator-console .console-service button:hover{background:#dcebf5}
+.operator-console .console-nameplate{border-top-color:#c2c9cd}.operator-console .console-nameplate b{color:#123d83}.operator-console .console-nameplate>span{color:#566b7b}
+.operator-console button:focus-visible,.operator-console .joystick-surface:focus-visible{outline-color:#102e73;box-shadow:0 0 0 2px #fff}

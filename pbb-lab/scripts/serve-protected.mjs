@@ -10,7 +10,7 @@ createServer(async(req,res)=>{
  try {
   const url = new URL(req.url,'http://127.0.0.1:5174');
   if (url.pathname === '/admin' || url.pathname.startsWith('/admin/') || url.pathname === '/api/admin' || ['/explore','/explore/','/api/explore'].includes(url.pathname)) {
-   const chunks=[];for await(const chunk of req){chunks.push(chunk);if(Buffer.concat(chunks).length>4096){res.writeHead(413);res.end();return;}}
+   const chunks=[];for await(const chunk of req){chunks.push(chunk);if(Buffer.concat(chunks).length>((url.pathname==='/admin/employees'||url.searchParams.get('view')==='employees')?1100000:4096)){res.writeHead(413);res.end();return;}}
    const handler = url.pathname === '/explore' || url.pathname === '/explore/' || url.pathname === '/api/explore' ? handleExplore : handleAdmin;
    const result=await handler(new Request(url,{method:req.method,headers:req.headers,body:req.method==='POST'?Buffer.concat(chunks):undefined}));
    res.writeHead(result.status,Object.fromEntries(result.headers));res.end(Buffer.from(await result.arrayBuffer()));return;

@@ -27,6 +27,7 @@ let residual=initial();residual.power=true;residual.pose.canopy=.0002;residual.t
 residual=tick(residual,.016);assert.equal(residual.pose.canopy,0);console.log('PASS canopy sub-millimetre remainder finishes exactly');
 
 await import('./test-console.mjs');
+await import('./test-wheel-motion.mjs');
 
 const access=initial();access.power=true;access.area=true;access.authorized=true;access.pose={...CONNECTION,canopy:.95};
 assert.equal(passengerAccess(access),false,'partial canopy cannot open aircraft door');

@@ -1,0 +1,2618 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "Câu 1: Trong trường hợp tốc độ gió bao nhiêu knots (hoặc km/h) thì cầu ống dẫn khách sau khi cập vào tàu bay phải được chèn bánh ?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Từ 25 đến 39 kts (46 đến 72 km/h)",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "Từ 40 đến 59 kts (73 đến 110 km/h)",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Từ 60 kts trở lên (từ 111 km/h)",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả a và b",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Câu 2: Khi tốc độ gió dự báo bao nhiêu knots (hoặc km/h), thì cầu ống dẫn khách phải quay cầu hành khách để tránh hướng gió, hạn chế bề mặt tiếp xúc với gió. Cầu hành khách phải được xếp rút, hạ thấp hoàn toàn và phải được chèn bánh. Không được quay đầu với một góc lớn hơn 87,5° so với đường tâm trừ trường hợp thông số kỹ thuật của nhà sản xuất cầu hành khách cho phép?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Từ 25 đến 39 kts (46 đến 72 km/h)",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Từ 40 đến 59 kts (73 đến 110 km/h)",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Từ 60 kts trở lên (từ 111 km/h)",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả a và b",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Câu 3: Trong trường hợp tốc độ gió vượt quá bao nhiêu knots (hoặc km/h) thì phải thu các nhánh cầu hành khách về vị trí không khai thác; đỗ cầu hành khách sao cho tâm của cầu được định vị trên các điểm chằng néo trên bề mặt sân đỗ. Cầu hành khách được định vị để các đai dây chằng vuông góc với đường tâm của cầu khi được thu lại hoàn toàn; Các gờ mấu dây chằng được đặt sát với đầu cuối của cabin cầu hành khách, được hàn vào thanh dầm chữ I để nâng chống cho buồng điều khiển ?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Từ 25 đến 39 kts (46 đến 72 km/h)",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Từ 40 đến 59 kts (73 đến 110 km/h)",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Từ 60 kts trở lên (từ 111 km/h)",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cả a và b",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Câu 4: Cụm 3 bến đậu (103; 103A và 103B) có cấu hình phục vụ khai thác đồng thời như thế nào?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Phục vụ đồng thời 2 tàu bay nhóm C (từ A321 trở xuống) tại 103A và 103B.",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Chỉ phục vụ được 1 tàu bay nhóm E (từ A330 trở lên) tại vị trí bến 103 (vô hiệu hóa 103A và 103B).",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Phục vụ đồng thời 1 tàu bay nhóm E bến 103 và 1 tàu bay nhóm C bến 103A.",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả a và b đúng.",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Câu 5: Thế nào là vị trí PARK TẠM (TP) của cầu ống dẫn khách FMC?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Vị trí đỗ của nhánh L1, L2 cầu ống dẫn khách 19, 20, 21, 22",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Vị trí đỗ của cầu ống dẫn khách số 20, 21, 22 nhánh L1 khi phục vụ các chuyến bay đi/ đến Quốc tế",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Vị trí đỗ của cầu ống dẫn khách số 20, 21, 22 nhánh L2 khi phục vụ các chuyến bay đi/ đến Quốc tế",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Vị trí đỗ cho cầu ống dẫn khách số 19 nhánh L2 khi phục vụ các chuyến bay đi/ đến Quốc tế",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Câu 6: Áp lực nước phải từ bao nhiêu PSI (Pounds per square inch) thì mới đạt để cấp cho tàu bay?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "≥ 35PSI",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "≥ 38PSI",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "≥ 45PSI",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "≥ 50PSI",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Câu 7: Góc quay của buồng lái cabin là bao nhiêu độ?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "185 độ",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "92,5 độ",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "125 độ",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "75 độ",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Câu 8: Khi đã cập cầu ống dẫn khách vào tàu bay mà hệ thống cầu ống dẫn khách bị cúp điện trong khoảng thời gian bao nhiêu thì nhân viên vận hành cầu ống dẫn khách phải thông báo ngay cho Tổ bay/Thợ máy/Đại diện Hãng đóng cửa tàu bay lại hoàn toàn, thông báo cho nhân viên giám sát chuyến bay để dừng công tác chất xếp hàng hóa?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Trên 2 phút",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Trên 3 phút",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Trên 4 phút",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Trên 5 phút",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Câu 9: Khả năng xoay của bánh lái tối đa là bao nhiêu độ?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "90 độ",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "180 độ",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "175 độ",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "125 độ",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "question": "Câu 10: Trong trường hợp tàu bay lăn vào vị trí đỗ nhanh hơn so với tốc độ quy định hệ thống VDGS hiển thị chữ gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Active",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Slow down",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Too Far",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đều đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "question": "Câu 11: Hệ thống VDGS cung cấp các thông tin gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Hướng dẫn tàu bay đi đúng tim đường lăn",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Khoảng cách của tàu bay đến vị trí vạch dừng",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Khuyến cáo giảm tốc độ khi tàu bay lăn quá nhanh",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "question": "Câu 12: Trong trường hợp nhập sai loại tàu bay lăn vào vị trí đỗ hệ thống VDGS hiển thị chữ gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Active",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "ID Fail",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Too Far",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đều đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "question": "Câu 13: Nhiệt độ chuẩn để cấp lạnh cho tàu bay là bao nhiêu?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "0 - 10 độ",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "5 - 12 độ",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "6 - 11 độ",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đều sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "question": "Câu 14: Nước sạch cấp cho tàu bay có cần phải xét nghiệm mẫu nước không?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cần xét nghiệm",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Không cần vì nước sạch",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Phải được xét nghiệm định kỳ mỗi quý và có biên bản",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Không Câu nào đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "question": "Câu 15: Cầu ống dẫn khách ShinMayWa nhánh L1 thu vào tối thiểu bao nhiêu mét?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "20,4 m",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "20,8 m",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "20,9 m",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "20,1 m",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "question": "Câu 16: Nút “CAB ROTATE” trên bàn điều khiển của cầu ống dẫn khách FMC điều khiển chức năng gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Thu cầu ống dẫn khách về",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Nâng hạ cầu ống dẫn khách",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Xoay cabin sang trái, phải",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Vươn cầu ống dẫn khách ra",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "question": "Câu 17: Quy định để đảm bảo cầu ống dẫn khách được vận hành hiệu quả nhân viên vận hành cầu ống dẫn khách phải kiểm tra tình trạng chung bằng trực quan bao gồm các bộ phận bàn điều khiển, các cửa, hệ thống công tắc an toàn khí, các dây cáp điện, hệ thống bánh, mái che, cầu thang bộ, trang bị cứu hỏa, hệ thống đèn, sàn sạch sẽ khô ráo, bật VDGS trước khi tàu bay vào vị trí đỗ bao nhiêu phút?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "05 phút",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "10 phút",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "15 phút",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Tùy theo từng loại tàu bay",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "question": "Câu 18: Thông số thiết bị cấp điện cho tàu bay nào dưới đây là đúng?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "220VAC - 50Hz",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "400VAC - 50Hz",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "200VAC - 400Hz",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "115VAC - 400Hz",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "question": "Câu 19: Trong quá trình cấp lạnh cho tàu bay có cần ghi lại thông số nhiệt độ lạnh vào phiếu theo dõi thông số lạnh không?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Không cần",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Không cần ghi vì nhiệt độ đạt",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Ghi nhận thời điểm phục vụ và thông số phục vụ 30 phút/lần",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Không cần ghi vì hệ thống vừa bảo trì xong",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "question": "Câu 20: Tốc độ cài đặt giới hạn cho phép tàu bay lăn vào vị trí đỗ có trang bị hệ thống VDGS tại Cảng HKQT Tân Sơn Nhất là bao nhiêu m/s?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Tốc độ tàu bay không vượt quá 4m/s trong khoảng cách tính từ thời điểm VDGS nhận diện tàu bay cho đến 20m so với vạch dừng bánh mũi",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Tốc độ tàu bay không vượt quá 3m/s trong khoảng cách từ 20m đến 10m so với vạch dừng bánh mũi",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Tốc độ tàu bay không vượt quá 2m/s trong khoảng cách từ 10m đến 3m so với vạch dừng bánh mũi (trong khoảng cách còn lại, giảm dần tốc độ và dừng tại vạch dừng bánh mũi)",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "question": "Câu 21: Cơ chế hoạt động của cần “JOYSTICK”?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Có thể di chuyển cầu ống dẫn khách tiến lên, lùi lại",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Có thể di chuyển cầu ống dẫn khách sang trái, sang phải",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Có thể điều chỉnh tốc độ di chuyển",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "question": "Câu 22: Khi đang dẫn tàu bay vào vị trí đỗ bằng hệ thống VDGS trường hợp nào phải sử dụng nút Emergency stop?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Tàu bay chạy nhanh",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Khi tàu bay đang lăn vào vị trí đỗ nhân viên vận hành cầu ống dẫn khách phát hiện có chướng ngại vật hoặc tín hiệu ngừng khẩn cấp của nhân viên đi cảnh giới cánh tàu bay hoặc thợ máy",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Tàu bay chạy nhanh chậm",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "question": "Câu 23: Cầu ống dẫn khách ShinMayWa nhánh L2 thu vào tối đa bao nhiêu mét?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "20,4 m",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "20,6 m",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "20,8 m",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "20,9 m",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "question": "Câu 24: Độ cao hạ/nâng của cầu ống dẫn khách ShinMayWa tối đa bao nhiêu mét?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "1,2 - 5,9 m",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "1,8 - 5,4 m",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "1,9 - 5,6 m",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "1,8 - 5,5 m",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "question": "Câu 25: Tàu bay vào vị trí đỗ đúng vạch dừng khi nào nhân viên vận hành cầu ống dẫn khách được phép cập cầu ống dẫn khách vào tàu bay?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Động cơ tàu bay đã tắt, đèn chống va chạm đã tắt",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Tàu bay đã được chèn bánh xong",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Nhân viên kỹ thuật hãng hàng không ra tín hiệu cho phép cập cầu ống dẫn khách vào tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "question": "Câu 26: Các nút nhấn trên bàn điều khiển của hệ thống cầu ống dẫn khách ShinMayWa là những nút điều khiển chức năng gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Nâng hạ, xoay cabin, vươn thu mái che canopy, điều chỉnh cân bằng sàn cabin",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Bật hệ thống chiếu sáng trong cầu ống dẫn khách và ngoài cầu ống dẫn khách",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Bật hệ thống lạnh, quạt hút",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "question": "Câu 27: Thế nào là vị trí PARK TẠM 1 (TP1) của cầu ống dẫn khách FMC?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Vị trí đỗ của nhánh L1, L2 cầu ống dẫn khách 19, 20, 21, 22",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Vị trí đỗ của cầu ống dẫn khách số 20, 21, 22 nhánh L1 khi phục vụ các chuyến bay đi/ đến Quốc tế",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Vị trí đỗ của cầu ống dẫn khách số 20, 21, 22 nhánh L2 khi phục vụ các chuyến bay đi/ đến Quốc tế",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Vị trí đỗ cho cầu ống dẫn khách số 19 nhánh L2 khi phục vụ các chuyến bay đi/ đến quốc tế",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "question": "Câu 28: Trên màn hình chính của cầu ống dẫn khách ShinMayWa có thể quan sát các thông số thể hiện chức năng gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Độ cao, độ dài của cầu ống dẫn khách",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Góc quay của bánh lái",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Nhiệt độ của cầu ống dẫn khách",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả a, b đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "question": "Câu 29: Khi nào cần phải sử dụng chìa khóa khởi động để hạ hệ thống Autolevel của cầu ống dẫn khách ShinMayWa?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Chuẩn bị cập vào tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Rút cầu ống dẫn khách ra khỏi tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Đã cập vào đúng vị trí cửa tàu bay",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "question": "Câu 30: Khoảng cách tối đa cho phép tàu bay dừng tại vị trí đỗ có trang bị hệ thống VDGS giữa tâm bánh mũi của tàu bay so với tâm vạch dừng bánh mũi tại nhà ga Quốc nội từ vị trí số 19 - 22 Cảng HKQT Tân Sơn Nhất là bao nhiêu mét?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Khoảng cách tối đa giữa tâm bánh mũi của tàu bay so với tâm vạch dừng bánh mũi là + 1m (sau vạch dừng bánh mũi); -1m (trước vạch dừng bánh mũi)",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Khoảng cách tối đa giữa tâm bánh mũi của tàu bay so với tâm vạch dừng bánh mũi là + 1m (sau vạch dừng bánh mũi); -0.5m (trước vạch dừng bánh mũi)",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Khoảng cách tối đa giữa tâm bánh mũi của tàu bay so với tâm vạch dừng bánh mũi là + 0.6m (sau vạch dừng bánh mũi); -0.5m (trước vạch dừng bánh mũi).",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Khoảng cách tối đa giữa tâm bánh mũi của tàu bay so với tâm vạch dừng bánh mũi là + 0.5m (sau vạch dừng bánh mũi); -0.5m (trước vạch dừng bánh mũi)",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "question": "Câu 31: Hãy liệt kê thứ tự các bước rút điện ra khỏi tàu bay tại cầu ống dẫn khách ShinMayWa?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Theo tín hiệu của thợ máy ra tín hiệu ngắt điện, nhân viên vận hành cầu ống dẫn khách ngắt điện, thu cáp điện",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Theo tín hiệu của thợ máy ra tín hiệu ngắt điện, nhân viên vận hành cầu ống dẫn khách ngắt điện, tháo dây cáp điện ra khỏi ổ cắm điện của tàu bay, thu cáp điện về đúng vị trí quy định",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Nhân viên cầu ống dẫn khách ngắt điện, tháo dây điện ra khỏi ổ cắm điện của tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Nhân viên cầu ống dẫn khách ngắt điện, thu cáp điện về vị trí quy định",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "question": "Câu 32: Cầu ống dẫn khách ShinMayWa cho phép xoay bao nhiêu độ tính theo đường trục tim của hành lang cố định?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "87,5 độ theo chiều kim đồng hồ, 87,5 độ ngược chiều kim đồng hồ",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "65 độ theo chiều kim đồng hồ, 65 độ ngược chiều kim đồng hồ",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "75 độ theo chiều kim đồng hồ, 65 độ ngược chiều kim đồng hồ",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "65 độ theo chiều kim đồng hồ, 75 độ ngược chiều kim đồng hồ",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "question": "Câu 33: Khi tất cả hành khách đã lên tàu bay, tổ bay đóng cửa tàu bay và cầu ống dẫn khách đã được rút về đúng vị trí quy định. Sau đó nhân viên vận hành cầu ống dẫn khách kiểm tra lại những nội dung gì cho đúng quy định?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Tất cả các cửa đảm bảo đã đóng",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Đèn, máy lạnh, quạt hút đã tắt",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Công tắc nguồn của cầu ống dẫn khách đã tắt",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "question": "Câu 34: Khi đang vận hành cập cầu ống dẫn khách ShinMayWa vào tàu bay trường hợp nào sử dụng nút Emergency Stop?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Khi có sự cố kỹ thuật lệch cột, gặp chướng ngại vật hoặc mất kiểm soát hệ thống lái",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "Khi cầu ống dẫn khách báo lỗi đã được kiểm tra",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Khi tàu bay bị sự cố kỹ thuật và gặp chướng ngại vật",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Khi cầu ống dẫn khách báo lỗi màu vàng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "question": "Câu 35: Nút “CAB FLOOR” trên bàn điều khiển của cầu ống dẫn khách ShinMayWa điều khiển chức năng gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Khởi động hệ thống",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Nâng hạ Cabin",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Khởi động hệ thống chiếu sáng",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cân bằng sàn cabin cầu ống dẫn khách tiếp xúc với tàu bay",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "question": "Câu 36: Nút “TUNNEL” trên bàn điều khiển của cầu ống dẫn khách ShinMayWa điều khiển chức năng gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Thu cầu ống dẫn khách về",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Nâng hạ cầu ống dẫn khách",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Vươn cầu ống dẫn khách ra",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Xoay cabin sang trái, phải",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "question": "Câu 37: Nút “CAB” trên bàn điều khiển của cầu ống dẫn khách ShinMayWa điều khiển chức năng gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Thu cầu ống dẫn khách về",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Nâng hạ cầu ống dẫn khách",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cân bằng sàn cabin",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Xoay cabin sang trái, phải",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "question": "Câu 38: Nhân viên vận hành cầu ống dẫn khách có cần kiểm tra bên trong ống lạnh trước khi cấp lên cho tàu bay không?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Khi có yêu cầu",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Không cần thiết",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Nhân viên vận hành phải nhấn nút AIR ON/START cho hệ thống cấp lạnh chạy làm sạch và thẳng ống khoảng 01 phút",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Không cần tốn thời gian vì đã kiểm tra hôm qua tốt",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "question": "Câu 39: Khi đã hoàn tất cập cầu ống dẫn khách vào tàu bay nhân viên vận hành lưu ý kéo thanh chắn an toàn (barrier) áp sát vào thân tàu bay và cài chốt đối với loại tàu bay nào?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Loại tàu bay mở cửa ra ngoài",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Các loại tàu bay mở cửa vào trong",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Loại tàu bay mở cửa ra ngoài: có khoảng hở giữa cạnh trái của mái che và mép cửa bên trái trên 15cm",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Câu b và c đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "question": "Câu 40: Khi đã hoàn tất cập cầu ống dẫn khách vào tàu bay có cần đặt “SAFETY SHOE” dưới cửa tàu bay không (áp dụng cho loại tàu bay mở cửa ra ngoài)?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Không cần thiết",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Không cần vì có hệ thống Autolevel",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Không cần vì không ảnh hưởng cửa tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Bắt buộc để đảm bảo an toàn cho cửa tàu bay",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "question": "Câu 41: Khi hệ thống cầu ống dẫn khách gặp sự cố, hư hỏng nhân viên vận hành cầu ống dẫn khách cần thông báo cho ai?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Thợ sửa chữa, Ca trưởng",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Thợ sửa chữa, Trực Ban trưởng",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Ca trưởng, Thợ sửa chữa, Cán bộ Đội",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Ca trưởng, Cán bộ Đội, Trực Ban trưởng, Thợ sửa chữa",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "question": "Câu 42: Trong quá trình phục vụ khi cầu ống dẫn khách đã cập vào tàu bay nhân viên vận hành cầu ống dẫn khách có được phép rời khỏi vị trí trực không?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Được phép",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Không được phép",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Được phép vì có việc riêng",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đều sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "question": "Câu 43: Khi tàu bay đã vào đúng vị trí đỗ, nhân viên vận hành cầu ống dẫn khách chuẩn bị cập cầu ống dẫn khách vào tàu bay để phục vụ thì phát hiện trên thân tàu bay (khu vực cầu ống dẫn khách cập vào) bị móp, tróc sơn, vết lõm,... nhân viên vận hành cầu ống dẫn khách cần thực hiện công việc gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Vẫn cập vào tàu bay để phục vụ đúng giờ.",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Thông báo cho thợ máy hoặc đại diện hãng ký xác nhận trên thân tàu bay (khu vực cầu ống dẫn khách cập vào) bị móp, tróc sơn, vết lõm,... trước mới thực hiện việc cập cầu ống dẫn khách vào tàu bay để phục vụ",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Không được phép cập vào tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu đều sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "question": "Câu 44: Hình vẽ bên được hiểu như thế nào?",
+      "diagram": "elevation_down",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cầu ống dẫn khách tiến ra",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Cầu ống dẫn khách thu vào",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cầu ống dẫn khách nâng lên",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cầu ống dẫn khách hạ xuống",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "question": "Câu 45: Hình vẽ bên được hiểu như thế nào?",
+      "diagram": "swing_left",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cầu ống dẫn khách tiến ra",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Cầu ống dẫn khách thu vào",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cầu ống dẫn khách dịch trái",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cầu ống dẫn khách dịch phải",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "question": "Câu 46: Hình vẽ bên được hiểu như thế nào?",
+      "diagram": "swing_right",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cầu ống dẫn khách tiến ra",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Cầu ống dẫn khách thu vào",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cầu ống dẫn khách dịch trái",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cầu ống dẫn khách dịch phải",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "question": "Câu 47: Đối với tàu bay B787 của Hãng Japan Airlines (JL), cầu ống dẫn khách ShinMayWa phục vụ như thế nào là đúng?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cập nhánh L1 của cầu ống dẫn khách vào cửa L1 tàu bay để phục vụ",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Cập nhánh L2 của cầu ống dẫn khách vào cửa L2 tàu bay để phục vụ",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Cập nhánh L1, L2 của cầu ống dẫn khách vào tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Tất cả các Câu trên đều sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "question": "Câu 48: Đối với tàu bay B787-900 của Hãng Viet Nam Airlines (VN), cầu ống dẫn khách 103,104 ga T3 phục vụ như thế nào là đúng?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cập 2 nhánh L1, L2 của cầu ống dẫn khách vào cửa L1, L2 của tàu bay để phục vụ",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "Cập nhánh L1 của cầu ống dẫn khách vào cửa L1 tàu bay để phục vụ",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cập nhánh L2 của cầu ống dẫn khách vào cửa L2 tàu bay để phục vụ",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Tất cả các Câu trên đều sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "question": "Câu 49: Khi cấp điện cho tàu bay có cần theo dõi thông số của hệ thống không?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Không cần thiết",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Ghi nhận thời điểm phục vụ và thông số phục vụ 30 phút/lần",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Không cần vì hệ thống cấp điện vẫn đang hoạt động",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Không cần vì hệ thống cấp điện mới được bảo trì",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "question": "Câu 50: Tiến hành vươn cầu ống dẫn khách bằng cần Joystick lời nhắn về giới hạn nào có thể gặp?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Giới hạn góc nghiêng",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Giới hạn góc quay bánh lái",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Giới hạn độ cao",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Giới hạn vươn ra extend limit",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "question": "Câu 51: Liệt kê các thành phần chính của cầu ống dẫn khách?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Rotunda và Ống vươn - thu",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Cột nâng hạ và Bộ phận truyền động",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cabin và Cầu thang bộ",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "question": "Câu 52: Nút “VERTICAL DRIVE” trên bàn điều khiển của cầu ống dẫn khách FMC điều khiển chức năng gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Chuyển động ngang",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Xoay cabin",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Chuyển động dọc",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Nâng hạ cầu ống dẫn khách",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "question": "Câu 53: Sau khi nhân viên VHCODK phục vụ xong và rút cầu ống dẫn khách ra khỏi tàu bay về vị trí đỗ quy định thì công tác kiểm tra, giám sát của Ca trưởng/ nhân viên cơ động thực hiện như thế nào là đúng?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Không cần kiểm tra, giám sát",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Gọi điện thoại xác nhận",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Ký xác nhận đã kiểm tra, giám sát nhân viên VHCODK đã đưa cầu ống dẫn khách về đúng vị trí đỗ quy định vào sổ: B02.HD01/SGN-TĐH-PBB",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Ký xác nhận đã kiểm tra, giám sát nhân viên VHCODK đã đưa cầu ống dẫn khách về đúng vị trí đỗ quy định vào sổ: B01.HD01/SGN-TĐH-PBB",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "question": "Câu 54: Khi tàu bay đã vào đúng vị trí đỗ nhân viên vận hành cầu ống dẫn khách chuẩn bị cập cầu ống dẫn khách vào tàu bay để phục vụ thì phát hiện các đèn chiếu sáng trên thân tàu bay (khu vực cầu ống dẫn khách cập vào) chưa tắt nhân viên vận hành cầu ống dẫn khách cần thực hiện công việc gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Vẫn cập vào tàu bay để phục vụ đúng giờ.",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Không được phép cập vào tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Nhân viên vận hành cầu ống dẫn khách phải yêu cầu thợ máy tắt các đèn chiếu sáng đó mới thực hiện việc cập cầu ống dẫn khách vào tàu bay",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu đều sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "question": "Câu 55: Nhân viên VHCODK đảm bảo cập CODK vào tàu bay bao nhiêu phút kể từ lúc nhận được tín hiệu “OK” cho phép cập CODK vào tàu bay của Thợ máy?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Nhân viên VHCODK đảm bảo cập CODK vào tàu bay không quá 03 phút kể từ lúc nhận được tín hiệu “OK” cho phép cập CODK vào tàu bay của Thợ máy",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Nhân viên VHCODK đảm bảo cập CODK vào tàu bay không quá 04 phút kể từ lúc nhận được tín hiệu “OK” cho phép cập CODK vào tàu bay của Thợ máy",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Nhân viên VHCODK đảm bảo cập CODK vào tàu bay không quá 05 phút kể từ lúc nhận được tín hiệu “OK” cho phép cập CODK vào tàu bay của Thợ máy",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Nhân viên VHCODK đảm bảo cập CODK vào tàu bay không quá 06 phút kể từ lúc nhận được tín hiệu “OK” cho phép cập CODK vào tàu bay của Thợ máy",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "question": "Câu 56: Màn hình cảm ứng “TOUCH SCREEN” của cầu ống dẫn khách FMC có thể điều khiển chức năng hoạt động gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Hạ/thu Autolevel, đèn chiếu sáng gầm, cân bằng sàn cabin, quạt hút, chuông cảnh báo",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "Nâng hạ, reset",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Vươn thu, xoay cabin",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "question": "Câu 57: Cầu ống dẫn khách ShinMayWa nhánh L1 vươn ra tối đa bao nhiêu mét?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "29,1 m",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "29,8 m",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "28,9 m",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "30,8 m",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "question": "Câu 58: Cầu ống dẫn khách ShinMayWa nhánh L2 vươn ra tối đa bao nhiêu mét?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "29,1 m",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "29,8 m",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "28,9 m",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "38,1 m",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "question": "Câu 59: Khi cầu ống dẫn khách đang di chuyển có được phép đi lên/xuống cầu thang bộ của cầu ống dẫn khách không?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Được phép",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Được phép khi nhân viên vận hành cầu ống dẫn khách cho phép",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Không được phép",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đều sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "question": "Câu 60: Bến đậu 104 cùng với các vị trí đỗ 104A và 104B có cấu hình phục vụ đồng thời như thế nào?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Phục vụ đồng thời 2 tàu bay nhóm C (từ A321 tương đương trở xuống) tại 104A và 104B.",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Chỉ phục vụ được 1 tàu bay nhóm E (từ A330 trở lên) tại vị trí bến 104, (vô hiệu hóa bến 104A và 104B).",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Phục vụ đồng thời 1 tàu bay nhóm C và 1 tàu bay nhóm E.",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả a và b đều đúng.",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "question": "Câu 61: Hướng của Cabin cầu ống dẫn khách phải luôn trong tình trạng như thế nào?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cabin cầu ống dẫn khách để ở hướng nào cũng được",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Cabin cầu ống dẫn khách để ở hướng 14 giờ",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cabin cầu ống dẫn khách phải luôn song song với tim bến đậu.",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Câu a và b đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "question": "Câu 62: Khi cầu ống cặp vào tàu bay, hướng bánh lái ở vị trí nào (hướng nhìn từ nhà ga ra sân đậu) so với thân tàu thì đảm bảo an toàn (khi thu cầu ống về Park)?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Hướng song song với thân tàu bay.",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Hướng 45 độ về phía nhà ga .",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Hướng 45 độ về phía động cơ.",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Hướng vuông góc với thân tàu bay.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "question": "Câu 63: Hệ thống cảm biến Laser trên cầu ống dẫn khách Shinmaywa nhà ga T3 được trang bị nhằm thực hiện những chức năng nào?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Đo độ dài và cảnh báo kẹt tay tại khe của ống vươn - thu.",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "Định vị tâm bánh xe và điều khiển góc quay của cabin.",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cảnh báo giới hạn hành trình tối đa và tối thiểu của ống vươn.",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Đo chiều cao tự động của cửa máy bay khi tiếp cận.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "question": "Câu 64: Ý nghĩa của hệ thống “AUTOLEVEL”?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Giữ cân bằng cầu ống dẫn khách khỏi nghiêng",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Giữ cân bằng sàn cabin",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Giữ cân bằng cầu ống dẫn khách với tàu bay.",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu đều sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "question": "Câu 65: Bộ “ANTI COLLISION” là gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Chống va chạm cầu ống dẫn khách với tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Chống va chạm hai nhánh cầu ống dẫn khách với nhau.",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Chống va chạm vào chướng ngại vật",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đều đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "question": "Câu 66: Nhân viên vận hành hệ thống VDGS phải lưu ý các yêu cầu nào sau đây?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Đối với cầu ống dẫn khách 19, 20, 21, 22 và hệ thống VDGS không có interlock (khóa liên động) vì vậy khi mở hệ thống VDGS thì vẫn có thể di chuyển cầu ống dẫn khách. Cầu ống dẫn khách 19, 20, 21, 22 nhánh L1 phải về đúng vị trí đỗ Park (P) mới mở được hệ thống VDGS để đảm bảo an toàn.",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Đối với cầu ống dẫn khách 11 đến 18 nhánh L1, L2 phải về đúng vị trí đỗ (Parking Position) mới mở được hệ thống VDGS",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Đối với cầu ống dẫn khách số 9, 10 nhánh L1, L2 phải về đúng vị trí đỗ (Park In) mới mở được hệ thống VDGS",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng.",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "question": "Câu 67: Tiến hành thu cầu ống dẫn khách bằng cần Joystick lời nhắn về giới hạn nào có thể gặp?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Giới hạn góc nghiêng",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Giới hạn góc quay bánh lái",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Giới hạn độ cao",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Giới hạn thu về retract limit",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "question": "Câu 68: Thang kỹ thuật dùng để cấp điện, lạnh, nước sau khi phục vụ xong nhân viên vận hành cầu ống phải thực hiện công việc gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Để ở bất cứ vị trí nào cũng trên sân đỗ",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Để tại khu vực tập kết trang thiết bị",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Để tại vị trí đã được kẻ vẽ dành riêng cho thang kỹ thuật của đơn vị và phải được cài chốt an toàn",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "question": "Câu 69: Thế nào là vị trí PARK TẠM 2 (TP2) của cầu ống dẫn khách FMC?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Vị trí đỗ của nhánh L1, L2 cầu ống dẫn khách 19, 20, 21, 22",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Vị trí đỗ của cầu ống dẫn khách số 20, 21, 22 nhánh L1 khi phục vụ các chuyến bay đi/ đến Quốc tế",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Vị trí đỗ của cầu ống dẫn khách số 20, 21, 22 nhánh L2 khi phục vụ các chuyến bay đi/ đến Quốc tế",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Vị trí đỗ cho cầu ống dẫn khách số 19 nhánh L2 khi phục vụ các chuyến bay đi/ đến quốc tế",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "question": "Câu 70: Khi xuất hiện các cảnh báo trên màn hình điều khiển nhân viên vận hành cầu ống dẫn khách phải làm gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Tiếp tục vận hành",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Dừng lại, nhấn Emergency stop",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Dừng lại, làm theo chỉ dẫn",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Tất cả các Câu trên sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "question": "Câu 71: Bộ lưu điện UPS của cầu ống Shinmaywa nhà ga T3 có chức năng gì khi hệ thống bị mất điện?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cấp nguồn cho hệ thống Autolevel, safetyshoe hoạt động.",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Cấp nguồn cho hệ thống mô tơ bánh lái thu về Park.",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cấp nguồn cho hệ thống PLC chỉ hạ cầu ống.",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả Câu a và c đúng.",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "question": "Câu 72: Theo quy định an toàn cầu ống dẫn khách khi tiếp cận tàu bay phải đảm bảo yêu cầu như thế nào sau đây?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Tùy theo người vận hành",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Theo yêu cầu của cán bộ",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Phải đảm bảo tấm cao su đệm đầu trên ở khoảng cách an toàn với thân tàu bay mà khi tàu bay thay đổi tải trọng không bị ảnh hưởng",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "question": "Câu 73: Theo quy định an toàn cầu ống dẫn khách khi di chuyển phục vụ tàu bay phải đảm bảo các yêu cầu gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Phải bật chuông báo động",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Bật đèn cảnh báo",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Đảm bảo bề mặt sân đường nơi bánh xe của cầu ống dẫn khách sẽ lăn qua không có FOD và chướng ngại vật",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "question": "Câu 74: Trường hợp tàu bay lăn vào vị trí đỗ và lố vạch dừng hệ thống VDGS hiện thị chữ gì?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Active",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "ID Fail",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Too Far",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đều đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "question": "Câu 75: Nhân viên vận hành cầu ống dẫn khách phải bật hệ thống VDGS bao nhiêu phút trước khi tàu bay vào vị trí đỗ?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "15 phút",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "10 phút",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "5 phút",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đều sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "question": "Câu 76: Khoảng cách tối đa cho phép tàu bay dừng tại vị trí đỗ có trang bị hệ thống VDGS giữa tâm bánh mũi của tàu bay so với tâm vạch dừng bánh mũi tại nhà ga Quốc tế từ vị trí số 09 - 18 Cảng HKQT Tân Sơn Nhất là bao nhiêu mét?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Khoảng cách tối đa giữa tâm bánh mũi của tàu bay so với tâm vạch dừng bánh mũi là + 1.5m (sau vạch dừng bánh mũi); -1.5m (trước vạch dừng bánh mũi)",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Khoảng cách tối đa giữa tâm bánh mũi của tàu bay so với tâm vạch dừng bánh mũi là + 1m (sau vạch dừng bánh mũi); -1m (trước vạch dừng bánh mũi)",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Khoảng cách tối đa giữa tâm bánh mũi của tàu bay so với tâm vạch dừng bánh mũi là + 0.5m (sau vạch dừng bánh mũi); -0.5m (trước vạch dừng bánh mũi)",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Khoảng cách tối đa giữa tâm bánh mũi của tàu bay so với tâm vạch dừng bánh mũi là + 1m (sau vạch dừng bánh mũi); -0.5m (trước vạch dừng bánh mũi)",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "question": "Câu 77: Cầu ống dẫn khách FMC số 19 hiện nay khai thác phục vụ được loại tàu bay nào?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cầu ống dẫn khách số 19 khai thác phục vụ tàu bay nhóm C (tàu bay A321 và tương đương trở xuống)",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "Cầu ống dẫn khách số 19 khai thác phục vụ tàu bay tất cả các loại tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cầu ống dẫn khách số 19 khai thác phục vụ tàu bay nhóm E trở lên",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Tất cả các Câu trên đều đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "question": "Câu 78: Để phục vụ loại tàu bay 2 cửa trong 2 nhánh cầu ống dẫn khách, nhánh nào sẽ rút khỏi tàu bay trước?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cả 2 nhánh",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Nhánh L1",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Nhánh L2",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Bất kỳ 1 trong 2 nhánh",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "question": "Câu 79: Để phục vụ loại tàu bay 2 cửa trong 2 nhánh cầu ống dẫn khách, nhánh nào sẽ cập vào tàu bay trước?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cả 2 nhánh",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Nhánh L1",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Nhánh L2",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Bất kỳ 1 trong 2 nhánh",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "question": "Câu 80: Khi cấp nước sạch cho tàu bay nhân viên vận hành cầu ống dẫn khách cần thực hiện yêu cầu nào sau đây?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Quan sát đồng hồ đo áp lực nước phải đạt ≥ 38PSI",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Xả nước đầu vòi để làm sạch cặn trước khi gắn vào tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Luôn kiểm tra đảm bảo ống nước không bị xì khi cung cấp nước cho tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "question": "Câu 81: Nêu chức trách, nhiệm vụ của nhân viên vận hành cầu ống dẫn khách?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Kiểm tra trang thiết bị, phương tiện, công cụ dụng cụ hàng ngày. Vận hành khai thác, cung cấp dịch vụ hệ thống cầu ống dẫn khách, hệ thống dẫn đỗ tàu bay, hệ thống cấp điện, hệ thống cấp lạnh và hệ thống cấp nước sạch cho các Hãng Hàng không thực hiện các chuyến bay đi và đến Cảng hàng không Quốc tế Tân Sơn Nhất",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Thực hiện công việc đúng theo quy trình, quy định và hướng dẫn công việc nhằm đảm bảo tuyệt đối an ninh, an toàn và chất lượng trong công tác phục vụ",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Phối hợp tốt với các bộ phận liên quan để thực hiện nhiệm vụ được giao luôn đạt hiệu quả cao.",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "question": "Câu 82: Công suất cấp điện cho tàu bay B777-200, A330 là bao nhiêu?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "180KVA",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "160KVA",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "140KVA",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "90KVA",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "question": "Câu 83: Công suất cấp điện cho tàu bay B737, A321 là bao nhiêu?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "180KVA",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "160KVA",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "140KVA",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "90KVA",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "question": "Câu 84: Công suất cấp điện cho tàu bay B787, A350 là bao nhiêu?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "180KVA",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "160KVA",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "140KVA",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "90KVA",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "question": "Câu 85: Loại tàu bay nào cập cầu ống dẫn khách vào cửa thứ 2 nhân viên vận hành cầu ống dẫn khách phải đặc biệt cẩn thận đến phần góc cánh (wingroot)?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "B747",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "A340",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "MD11",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "B737",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "question": "Câu 86: Công suất cấp lạnh cho tàu bay B777-200, A330 là bao nhiêu?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "130TON",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "120TON",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "110TON",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "65TON",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "question": "Câu 87: Công suất cấp lạnh cho tàu bay B737, A321 là bao nhiêu?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "130TON",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "120TON",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "110TON",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "65TON",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "question": "Câu 88: Khi cầu ống Shinmaywa nhà ga T3 đang cặp phục vụ, nhà ga bị mất điện, hãy nêu cách xử lý hệ thống với bộ lưu điện UPS?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Tắt chuông cảnh báo, để chìa khóa ở chế độ tự động, đứng trực tại vị trí.",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Khi mất điện quá 3 phút thì báo đại diện ngưng chất xếp, đóng cửa tàu bay.",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Chỉ có thể hạ độ cao cầu ống, không nâng độ cao được.",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả a, b, c đều đúng",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "question": "Câu 89: Trường hợp tàu bay lăn vào vị trí đỗ lố vạch dừng hoặc chưa tới vạch dừng quy định nhân viên vận hành cầu ống dẫn khách phải xử lý như thế nào?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Giữ nguyên vị trí tàu bay và tiếp tục khai thác bình thường.",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Thông báo cho Trực Ban trưởng sân bay và tàu bay phải được đẩy lùi/ kéo lên về đúng vị trí vạch dừng quy định trước khi cập cầu ống dẫn khách vào phục vụ.",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Thông báo cho Trực Ban trưởng sân bay và tiến hành ghi nhận sự việc gửi TBT lập biên bản sự việc.",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Câu b và c đúng.",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "question": "Câu 90: Những điều gì lưu ý khi cập cầu ống dẫn khách vào tàu bay B737, B787?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cẩn thận Anten tàu bay",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "Cẩn thận báo Anti-collision",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cửa mở ra",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "question": "Câu 91: Hình vẽ bên được hiểu như thế nào?",
+      "diagram": "expand",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cầu ống dẫn khách tiến ra",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Cầu ống dẫn khách thu vào",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Vòm tiếp xúc dãn ra",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Vòm tiếp xúc co vào",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "question": "Câu 92: Hình vẽ bên được hiểu như thế nào?",
+      "diagram": "retract",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cầu ống dẫn khách tiến ra",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Cầu ống dẫn khách thu vào",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Vòm tiếp xúc dãn ra",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Vòm tiếp xúc co vào",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "question": "Câu 93: Hình vẽ bên được hiểu như thế nào?",
+      "diagram": "elevation_up",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cầu ống dẫn khách tiến ra",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Cầu ống dẫn khách thu vào",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cầu ống dẫn khách nâng lên",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cầu ống dẫn khách hạ xuống",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "question": "Câu 94: Theo quy định an toàn cầu ống dẫn khách khi không phục vụ tàu bay phải đảm bảo yêu cầu như thế nào?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Đỗ ở vị trí bất kỳ",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Theo yêu cầu của cán bộ",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Cầu ống dẫn khách khi không phục vụ tàu bay phải đỗ đúng vị trí quy định",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "question": "Câu 95: Quy định đối với khoảng cách giữa hệ thống VDGS và tàu bay đang lăn vào vị trí đỗ, nhân viên điều khiển phương tiện chuyên ngành hàng không tuyệt đối không được điều khiển phương tiện như thế nào?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Chạy song song",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Dừng lại",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Dừng lại quan sát",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Chạy cắt ngang qua",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "question": "Câu 96: Theo quy định an toàn cầu ống dẫn khách phải đảm bảo yêu cầu gì trước khi tàu bay vào vị trí đỗ?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Cầu ống dẫn khách đỗ đúng vị trí quy định.",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Đảm bảo không có chướng ngại vật bên trong vị trí đỗ trước khi tàu bay vào vị trí đỗ.",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Câu a và b đúng.",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Câu a và b sai.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "question": "Câu 97: Trước khi cấp điện cho tàu bay nhân viên vận hành cầu ống dẫn khách phải kiểm tra các thiết bị nào sau đây là đầy đủ đảm bảo an toàn?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Các cáp cấp điện đảm bảo không bị mòn, rách vỏ bọc",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Các đầu cắm điện của phương tiện cấp điện phải được lau sạch, khô, không hỏng bảo đảm tiếp xúc tốt với ổ cắm điện trên tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Các cáp cấp điện đảm bảo độ cách điện, không bị mòn, rách vỏ bọc, Các đầu cắm điện của phương tiện cấp điện phải sạch, khô, không hư hỏng bảo đảm tiếp xúc tốt với ổ cắm điện trên tàu bay",
+          "isCorrect": true
+        },
+        {
+          "key": "d",
+          "text": "Câu a và b đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "question": "Câu 98: Trong quá trình cấp lạnh cho tàu bay nhân viên vận hành cầu ống dẫn khách có được phép rời khỏi vị trí trực không?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Được phép",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Không được phép",
+          "isCorrect": true
+        },
+        {
+          "key": "c",
+          "text": "Được phép vì có việc riêng",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đều sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "question": "Câu 99: Quy định về việc vận hành hệ thống cầu ống dẫn khách, hệ thống cấp điện, cấp lạnh, cấp nước cho tàu bay phải do nhân viên nào thực hiện?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Nhân viên có chứng chỉ chuyên môn do Cảng HKQT TSN cấp.",
+          "isCorrect": true
+        },
+        {
+          "key": "b",
+          "text": "Nhân viên có giấy phép vận hành hệ thống cầu ống dẫn khách, hệ thống cấp điện, cấp lạnh, cấp nước do Cục Hàng không Việt Nam cấp và còn hiệu lực",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Nhân viên có chứng chỉ do nhà sản xuất cấp",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "question": "Câu 100: Khi cầu ống dẫn khách đang phục vụ tàu bay mà hệ thống Autolevel bị hỏng, màn hình điều khiển bị mất nguồn điện,... cầu ống dẫn khách không thể rút ra khỏi tàu bay được, nhân viên vận hành cầu ống dẫn khách thực hiện công việc nào sau đây?",
+      "answers": [
+        {
+          "key": "a",
+          "text": "Nhân viên vận hành cầu ống dẫn khách xác định tình trạng hoạt động của hệ thống, ra quyết định kéo lùi cầu ống dẫn khách ra khỏi tàu bay",
+          "isCorrect": false
+        },
+        {
+          "key": "b",
+          "text": "Thông báo Trực Ban trưởng, phối hợp với SAGS chuẩn bị xe đầu kéo; Chèn bánh cầu ống dẫn khách; Tắt nguồn điện chính; Nối cần kéo chuyên dùng của cầu ống dẫn khách vào khung hệ thống bánh lái của cầu ống dẫn khách. Nối cần kéo chuyên dùng của cầu ống dẫn khách vào xe đầu kéo. Xả thắng 2 môtơ truyền động cầu ống dẫn khách bằng cách vặn ốc vít ở môtơ theo chiều “RELEASE BRAKE” đối với PBB FMC; Vặn ốc vít ở môtơ lấy con lông đền đệm ra, sau đó vặn ốc vít ở môtơ lại đối với PBB Shinmaywa.",
+          "isCorrect": false
+        },
+        {
+          "key": "c",
+          "text": "Ra tín hiệu kéo lùi cầu ống dẫn khách; Hướng dẫn, giám sát nhân viên lái xe kéo cầu ống dẫn khách về vị trí đỗ quy định. (vị trí PARK); Theo dõi quá trình kéo; Cầu ống dẫn khách đã được kéo về đúng vị trí đỗ quy định Vặn ốc vít của môtơ về vị trí ban đầu và tháo cần kéo khỏi xe đầu kéo và cầu ống dẫn khách.",
+          "isCorrect": false
+        },
+        {
+          "key": "d",
+          "text": "Cả 3 Câu trên đúng",
+          "isCorrect": true
+        }
+      ]
+    }
+  ],
+  "diagrams": {
+    "elevation_down": "data:image/jpeg;base64,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",
+    "swing_left": "data:image/jpeg;base64,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",
+    "swing_right": "data:image/jpeg;base64,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",
+    "expand": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQECAgMCAgICAgQDAwIDBQQFBQUEBAQFBgcGBQUHBgQEBgkGBwgICAgIBQYJCgkICgcICAj/2wBDAQEBAQICAgQCAgQIBQQFCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAj/wAARCAD/AUoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+/iiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBu35t1OoooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopu9fWnUAFFFFABRTNwzs3DfT6ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoqNt3y7Wx81PLAHBPNCAWim7VPajYvpQK6HU1/umnU3YvpQDY6iiigYUU3YvpRsX0oFdDqKbsX0o2L6UBdD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",
+    "retract": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQECAgMCAgICAgQDAwIDBQQFBQUEBAQFBgcGBQUHBgQEBgkGBwgICAgIBQYJCgkICgcICAj/2wBDAQEBAQICAgQCAgQIBQQFCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAj/wAARCAD1AUoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+/iiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoozikyDnr+VAroWikz9fypc5oC6CiiigYUUUUAFFFFABRRRQAUUUUAFFGcUhZR1IFAri0UUUDCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoooJxQAUZrmdd8YeGvDYc67rNlpQERlzO4QEZxwTwT7da+Fv2jv+Cj37O3wK+HGo+OJ/H2g3RjzEu6faInB5DgjIPB4IFZyqxRapSlofoNcXVvbRtNcTRQxqMlnbaoHqSa+H/ib/wUE+AHws8S3XhnxD4itpJwj+TNDMjRzSqOUJz8vbk8V/Hv/wAFLv8Ag5y0O48M2GhfA64Fxrd1ayh0tJm228o+RXY4wVIbOM84r+STxX+3z8fP2ifidZz+J/F+p2Z1K4ijvBbztGJl6YUdFOOR9TmsZSm3odNGlBO0j/Xx/Z5/bU8CftB6teWXhVhdW8TrFIY+TBIc4Bx1B4+Yce9fbKsGGe/ev5n/APghr4S074afCbwr4m8S+K49TuL21tkjmlfiKN4CSkjd5AVA9eeK/ozg8deEpo55Idd06RY2CygSDMRIB5HUD5hz0960jVWzephVjHm906+iuUg8b+F7mRoINZsnn271XdzIOOU/vdR0z1pq+OvCDMkf/CR6OZWO0KJ15bn5f97g8da0513I5X2OtorjofHvhC4knSLXtMby22SkTD92f9r+7+NV7j4j+C7WRoZfEGnJKF3hS/LL/eUdx7jijmQrM7miuMHxC8Ft5Bj8TaLIkqhkYXC4b2B6bv8AZ6+1Oi+IHguaGSdPEukCNH8t90wXy29Gz938aOZCSOxorhn+I/guORYn1/ThIRkDfklf7wHdffpWinjXwnIiSJ4g0t42XcrLKCGHsR1Pt1p8yKcWdR0pCQMVzcPjHwvcxrPBr+kvAWKljOoCt6HPQ+xqhe+NvDdnJIj6pZq6Ha2JAdpPTPoODz0pc67iir7F3xd4s0TwVol14g1+4Fvp8IyxAyT9BXjXw8/ao+CfxQvZ9P8ACHjCzv7uK4NrMpKr5U2cbG988fhXxn/wU/8AjNZ+Hv2dvENvoOsCO6a1kvBPby/MVVGI246nIB/4D7iv4tf+CLf7SvxW8SftWazpniLVb3WFGvSzW8M0p+zzL5pJMh6b85PPrUKep00MOpwc+x/pPRsrjcpyP0/CpK4/wPfnU/C+jakyujywh3VjnY3Qge1dhWpzS0YUUUUCCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACqt4XFrcNG2yURtsb+6cdatUxwSpUDk5H0pMD+Ef/gvp+3n+2R8OLzxFp/wnsNXubGyeW01YQhjJotu8ceLhFjPzFlPbO3JJxhsfw5/GH9sD9oP4yxNZ+OPHfiK90uaRrloXnfZckk/OwJIP1HFf7PHxe/YV+A/xq1jV9a8aeGLW7uryGRJF8lSC7jazNn7wIwNp44r+bv8AbK/4Nq/hB8QPAfjnSfBfhzTdG/fnUbG6sYts9pPg/wCqAA/ckBQU9ecVlSgk7yVzpdW9opn+ZDK8srKZXd228Fjk4zVvS72bT7+0voJJIZ4pUkDKcEYPY9q/ZT9sn/gjL+0Z+zRa65qtl4b1bxDaaYhmvEt7ZirR5wHjJ6tjqg5GOlfk94N8O3UHjPw/B4h0WeOzF8iTR3UTKhIPKPkcdOQa3TXQy5Hc/bX4Af8ABSb9tTwd8PtJ8J/DfRfEOqRRRxGGKJGKTssYxMARyQCTx1xXqnhz/gr7/wAFDLONNPuND8T3KyfuXuXjx9qbAXynJAxjGMdePev7I/8Agj5+xz+yJ8bP2b/DmvW3hjTW1e2jiF1EiqJYJTGG+TjJTLsAenFfpaP+CQ37K327UL1PC2nq00m5l+yIFByfnA/v8nmuP2OtzphWjHdH+dPJ/wAFiP8Agono8+q30egeLLKKBmDgxOH06MsvH3eF7Z6cdazbX/gtD+3xqWrx6dBpPiGW58sTRWKwuy7gX23K7QCzZ5z04r/R31f/AIJJfsr6jaXEUfgzS0uWh8rzGgRjOMg4lBB3A4HFeR6X/wAESf2WbbVrHUbjwloEfkT+cpSzjLx8htsb4BCEggr06U/ZGzxcOx/AIP8Agsn+3tbyWl7c6Z4ouzdP5bs3XU2AA2MTwWGQAvXk9azNS/4LSft4uk1ydN8VWF3aMLWR5Y2DWKHP7pxgbQccZr/RDvf+CN37KN/HNFL4O0ZIW2ERi0iMaOox5irt+V++4GmXX/BGT9kiWZ5k8KafI7RtG5ls4SJwQP8AWLtwx46nmtFT0J+s0+x/niWv/BbL9uGzjS3fQvE1vbWyJMsZDL5Z5/f+4756da0R/wAFt/24prdHi03xXdR3pMj4BddQ7de+MnIHNf6BMX/BFX9lkOpm8LaK0iLtimFlEX2c/umJX7nbHpms5/8AgiF+yY/2kSeEdCWOULtAtI82rAn5oiFGCc8+pFJUhfWKfRH+fxN/wXN/bcUrqFzpviFJhKLVbgpjyEPW35BwTkADgnB64rpH/wCC/wB+1zp1ummTaV4ssJrNfMtoiGDWcmGHmMCT8vOe2cCv7wdc/wCCGf7Kl3K81h4O8POrxiK5jktEVbwf3nAH3uSc9fcVw/8Aw4L/AGYrltKlm8LeHVu7IbI5mt1d5Ick+SzHkp7HP1qvYvqDxEbXaP4W9P8A+C8f7Z5uJDHpXiOaO+zNLDhtt/LhQZEA78ZwvrWzD/wX1/bQjuka+0rxM180ogVyGCunTyTn+LnvyPxr+4A/8EEP2cbYvb2nhPwqsDXX2mFltVX7Ef8ApmM/L+HXv0rov+HDH7LD31/eSeD/AAxIlzEFniaDh5R0mx2cZPT15qlRigji4KL0P4uL7/gsV8efin8ONW8O+NfD3iPTIYo5Vt4prcuLNmGN0uefLPOe3Fb/APwQ/kk8U/tKX2p3URt47nVfNuoIDhp5GYEtD6IWPb0r+l39ur/gkj+z58GPhHeeLLTw/prFbaS1lFvGsb3qbCQrnOWx69vxr+fH/giJbaZaftU69pvh0Iul2uuNFFdMv/IPQSY8vJ649vSs5KzsiaEvcly7H+kT8PLV7bwdoKvcC4b7Mh3Doc9M++CM/Su8rnPC0TxeHdKjYIG8hM7cYY45IxXR1rHY89bIKKKKooKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAGsM44z+NNdA4AKhl6EEZqSigDwb4o/s5fCn4s6Pf6R4r8Kabcx3GSziMAhsY3fUZr8LP2hP8Ag3U/Zc+KfiLVvFWk+G9GW9u0d7lZIwr3LbcYLDABPXIHFf0mUhGSBz+dBpGq1sfgt/wTI/Yz+IH7KPiG+8B3872vh3TEDWszSHalsrFVgP8AeOGHPNfvGs0W5k3gMOoPX1/rX56/8FKfj5L+zb+zp4l+IenWX2m9RJCUViplVELHDAghgu4j3r+FfTv+Dhv9onxt48u9G+Hp8T6hp9l/oqXJuZkmuZN/zQupyChycHggD8sPaPmsjaFHn1P9LB7y1iAaS4hjU5wWYAHFLHdW0yh4p4pE4wQ2Qc9K/wA4/WP+CvP7b0mjS3M/hjxTBA0rG9Imdm0MncUZefmVl3Ag+3oaxNN/4LF/txifULKLwT4xlufJLPaRyy7LyPCbbqM9iFPbircmafUmf6SAkjY7Q6lumM0pZQQCQCenvX+b+/8AwWe/bW0ldNki8PeMLi189zaXP2qVDqhwAbZiehzx61LpP/BbT9tl5d114f8AHWn2BlDTTrPKzaC/zHymyMFTg9eeKh1Gg+oyP9Hh5oolLyOET1PApkV3bTjdDMkq+q81/no2v/Bcz9rl/tsGpeB/Hq3YhEdxarLKRJCVDLeICOBhs+nPtXkvj7/g4M/aC+En2OTUIPFMUoQPBdSXMmzVk3DMWBgBlweffnFCqu9mhPBtbs/0jfMTnmgyLnHP5V/my+Ev+Dlr47+Nbe5sdNXxXNJITJbypM5GnsTkxuedw+UfTj1r0nWv+DiD9pnQLe/vj4J8eQSPCEktVkeSS1cgAXSg/wDLM9fbFac77BHBtu1z/RSDoc4YGmsehBwRX+cl4N/4OHv2rdSvLeSfwl43uYGtyCUDgauhOMpgdR7cjNenj/g4U/aMtdPtbe00TxxHIzgw3NxKwSP/AKdnJHLcjAPNL2hMsHO9kf2f/t/fB/VPjN8Atd8PaTc3cE6Zkdrdcy7CpB29u4r+bX/glP8A8ErfHPwI+PereKdRtyJo9WbU4pHUmG8tfMDfvVPG/nr9a/PZf+Dmf4laWus2HjTR/F2m2zZieG5Y7tOmHPmMMZ8s56d8V+wH/BJv/grdaftTfEG3FnBND9okSxvoTJv+2sxGJoV6gdMgeo9DWaqe9sXFVIQcXsf1V2Vstnbx2yH92ihR7cY6enFW6iicSKHUMAQCMjB/EVLXQcCCiiigYUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABSN0I6ClpD0NJgfh1/wAF9jbxfsLePbjUBePpAsrz7ULU4uUHknDQ5/i61/Dn/wAEBvhd4C+JH7U/jTRvHdppHiHzru5iMjRjyXQgYeMdBKM5Xv1r+2n/AIOGdRms/wBgzx8LS7jsbttPvSkrqSqfuxjP1OBX8Tn/AAbwWwv/ANpnxIxcWdul9IyQQsC0LZBEo9dvIOPUVjS+OR3UPgdj/Qdt/wDgmX+zjqWno8/hHTi72yhWe3G6QFeBOp4bhiKh0v8A4JZfs4aQym08PWsZQkxMIwGiUjHlg/3B1xX6PaEZG0jTHll+0Stbxl5P+ejbRk/jWsQD1rZo5p15bXPzL1P/AIJY/s1albS2x8IaVbrI4dQsQ22sg/5bRDHDnGfeo1/4JV/s1LMZz4Zspg6bLqJ4UKah05mBBy3BwR0ya/TfYvpSgAdBScETGtJPc/KW3/4JP/s/2duhXRbV79B5STeWu42+OICcD932wewFfyUf8F7/ANgrwF8N/CGral4c8KWv9m2rXM1xbWy7W06Hkia3HU4K/MBkkdq/0MWGcDn/AAr+Qj/g5DRr/wCGerQ3kZ0+Q2tyttdxAEW77WwZ1yMowOMnpWNbT3kb060pOzZ+Iv8Awb8fsN/Cb486vop8YeHrHUFup5YA1xGrJqduYskNwQsqlQR0OCM9q/savf8AgjJ+zffRadHJp9hJLFCLd52tUEkkOMeUxAG5MHBzzwK/mH/4No7i503xhocE6CKI6sXuY1ZtzN5TYmh7BOMED0Ff6AViWa2hkEhnVl3ByMbgea0i7rUMS5Rloz8cYf8AgjL+zZZWEljZ+G9HgYSedaSLCP8AQX43bAQcKdvQf3uelUrz/gjb+zqr3q/8IvpF1YXcnmXEMlumDKFOJhgDacAc9eK/afLZzt/Wua8X67b+G/Dusa7dxl4ba3eVgO4A7n0pNWVznnXqW3P887/gvJ/wTy+DnwV8Lv4z8KyWeieJYM20t1BGNt+CNqwSqeODxuP96uM/4NhPhbPL46TxCdFeeOHVYZDcI53WR38hR/d+XtxxXhf/AAcCfth+IvjD8bpvg5BdvbRvfRnUo7c5hkQjKPH/ALQwQQOea/p6/wCDff8AZb074ffCDT/FMcA85bW3WGaGPatyrruIk/2wMdfWpWp2SjKNL3nuf1BRqVUDJOBjJ7n1p9NXAH/1qdWsdjhCiiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApD2paKTA/DX/AIL9aNa6x+wr45hnjWeRbC+dYSwUSlYSQMnjOdoH1r+JP/g3H08W/wC1x4nh0+R7Szjvpok85cvIx4KHPReOT24zX9rP/BwpJeW37BHjy6gS8mtls7xZ0t1zIwMQIK9xgru/D6V/Db/wb9eNrrwr+2Dr15ADrMtxLcl2I+SaHaxZBnpK/GD7VjSfvyO2j8DP9WLTgRZWYaKOFhEgKL0U46D6VdrG8O3g1DQtGvlWRFmtYZdrjDLuQHDD155rZrc4UFFFFAxD7Dmv5Lv+DkiL7F8K9UvIruK3uZdNnV45wPK1WMISbcZ6ScAqeM81/WgTngHBFfyUf8HMeuafa/BbX7WTT5NUsxpzm8iDYmtSQfLmt/8AbVhnA7ZrKs/dNKT95H5m/wDBtrqtvrnjDwslzLHceVq5j+0BRu09ijExOOpRic55HbPBr/QDtY1ihjRViXCgfIuB+A9K/wA8T/g2SikvfiPpYMqwyNqJjjOT5d7DsfO/jhwfX39RX+h5bghMEkkcE+v/ANbt+FUnsa4r42T181ftY+LNP8J/BTxpeXuqWemu1lKI/ObAlO0/L+PH+Qa+lDjIya/GP/gsp8VNL8E/s++ILCWxh1a8bTriSS3aXyyUCcshOPnA3Yx60qvwnPGHM7M/zpf2kbHVPjR/wUhiTQtPvr2yfVIHltZ4zI+myk/M/HBiICkemK/08/8Agmx4Fl8Efs1eFba50+2sbyaGMzNCAEnKrgMAOBxX+dr/AMEjtA1X4t/tnXetP9vjsBdLFBNeQmV58FQIpXI6DO3Psa/1IPAmiWnh7wjoGk2NlBp9vFaxDyohhVbaM4HpminTW51YyeqidaPfrS0UVocgUUUUAFFFFABRRRQAUUUUAISBjNLSEAkGloAKKKKACijOaKACiiigAooooAKKKKACiiigAooooAKOlFIfzFAH4z/8F0LU3H7C3xCdbyDTmS0uitxKMpExhIBcd1zgGv4RP+CCulWtz+1x4it72yNu0OoXLG3tcEWxyo38f3flIA5wTX9z/wDwXs1DWtO/YN+IcukWsWpyta3I+yOcLN+5Pyn6gkD3K1/Cj/wbxX15dftkeI7ZBeac0+oSNA9ycuJWdVRZM/w/NtPb7tctP+JI7qH8Nn+qbobb9I0whzKv2ePD8fP8o5/Hr+Na1ZOhRvFo+lxSxiKdLaJHUDADBRnH41rV1HAgooooGRMTuIxnP+Ffxvf8HPkqD4XzXdxDNbmOOUQ3luoJsXwwBnB6xvnbnscV/ZE3BZjwuM59OK/ke/4OXzPD8J9R+yQJbXMtjJGBJGGj1EHJMLg+uMg9iK56wRXvxPyT/wCDY/UDaeMbGOyKIU1L95bJEvOVO2aIjnbyw/Div9EDSWnfT7R7lt85jUu3cmv87/8A4NlbdrfxtprzJA1susAM/Iexk2HMYPdD8vHYhvWv9Ei1lWSJSNv4dKqmjpxj98nYZA4B5HWv4tP+DmL9qqDw74Q1LwRp5trglhDsiuDHdRsDuLAfxJkKD6ZFf2U+K/Etl4T0S/1y+SWa3gjMjIn3mA61/lzf8F/vjxD8Z/2q/CXhGxktjC11dIXV8tHvmVPKkA552qAenWnU1tYnDxvI/X3/AINlvgd4d8cXDeObyeIa1PbyXV0hhGx1+6ChP8Y3ZzX93FrEsEEUCbvLRVRcnkADHPvX8yP/AAbxfA65+HPwO8Lal9ha1sjbuhge3KSWzbc53YyVYgY+hr+nGNSASRjPNXHYmtK7JaKKKoyCiiigAooooAKKKKAGtu4206iigAoopCcdelAmwJAzXNX/AIy8KaZc31lf6/pVre2tv9ruIXmUPFBz+8Kk52cH5ugrwD9rn4/T/s7/AAW8a/EbSNJt9d1/S7U3tvYyPt+0ohDSAH+8E3kDvg1/n5/8FCP+CyX7T3xV+JGvX37KsEviXR4bwaHJqtorSSQQ3aBktLhV5AVhJhiP5iuedWzsdVLDuR/pCaH4o0jWGspLDW9J1S2vYftVlJbyhhcRf3lI6gf411YdSSM4+vFf5Y/wO/4LD/8ABSP9ki7svD/xa8E+ItD8PeE9Si3XeoQOTpL3GS3ch4JAfvDI47YNf3Af8Ej/APgs38Fv+Cl/h/xH4asrzTfD3xm0LaNS01JF23SleZoR1I3ZOB/eHvW0Hcyq0XF6s/brIPSiqct7Z25gM9zFCJWCR7mwGbBOB+ANSC7tiXXz48rjcM9M9Koz8yxRVOTULKIzK9zEHjALrnJUEEjI+gJ/A+lWBNEQrCRNrdDnrxnj8OadhXRJRUfnRYB3rg96Rp4UDs0ihVxuOeB06n8RRYZLRUYmiJ2iRN2N2M849fpSmRB1YDjP4UgH0UmRzzTQ6nvz6UAPpDnjBxSb0zjcM4z9R6/qKjM0ZAZXBXOM0pMV0fi1/wAF3tQ8PQfsL/EK01+a9gt5LO6Znt1G9VEJJIJ6EdR7gV/D3/wby20T/tmeMhazWGtXSXs0PnOu1bqEqjBVPQSNgYP95a/tW/4OBojcfsJ+OYY547OVrG9VZ3XKRnySfm9jgL/wKv4pf+DePRrg/tSeIPtkDWlwdRLBYf8Al1O5SJBj7wVsMMZ4De9csfjbO+h/DZ/qSaYwews32MhMSZDHJHGcH355q/VDTARp9lmXzz5KZf8AvnaOav10w2OBBRRSEgdTVDEYZGODX8mX/ByRBfah8J/EEE1mNVtY9Oklltzw6xKG/ewHqXXcOBzz7V/WaWUYJOK/lQ/4OVUik+C07Xd3bQsLCbyJ4/v6ZKR8skikjMTDcpPbIrCu9CoP3kfjX/wbcabcR+P9AuIi8/mamkUDhhsugIzkS9lcYxk4zn6V/ob6e0Zs4HjV0QrkBgcr6iv8+X/g2f0iWT4mut3vlguL/wAyRY1P+mbQ214j0wCM4H901/oQx/LGmSWGOSR29a0XQ0xfxnzD+2Nr1p4c+APjvUru7ksQINqSoSGRiDyp6Z+vFf5T2pWcf7Tv/BSI6TNZr4iWLX2VFZtqyxrclgzE4w2ASc4A49a/v8/4LxftLXPwQ+Amp/ZtUvtMkWGORJ4oy8UTsQuJhjBU7h+P1r+Jn/gi/wDAnxV+0L+1rr3xM0zRbXVNMl1ia8niUP50kjykiSDHIUEMCp49alfELCztGUkf6T37BPwy0v4Zfs4+CNM05ZwZ7dZSZFAdV2gBT3wOetfaI9M9K474faXeaL4M8OaXqAjF9BaRxzFY9gZwuCcdjXYgHLGtTFO4tFFFAwooooAKKKKACiiigAooooAKikyCCPp/Kpaac5XAyO9JsD+UL/g57+IX7U/w9/Zw8R6v8BdLvNU8HJpOzxLJbbvtGm27ZU3Ue3nam5Q/+y/oDj8U/wDg048J/s4fEfVPjBa/Fq5sm+IczWwa2v3RodTi35hfDdJVkDrkdRt6V/bn/wAFE/2avEf7TH7Nnj3wD4IubPT/ABleWb2sEsyBkkjdSrxuCcMpViCp4P4Cv85r9oj/AIJO/t5/sA6j46+Pf7NfhrxTp3huybOp6bbSyfa7MxyCX7Tbrx5kSlAxUEnrgEVzRapzbnrc66abVoux/Yb/AMFw/wBnT9laX9kfxhqEOi/D3TvHCzQ6ZbrKU8ua5C/uoLkjJXdwgYkAFxkgV/nE/sG/tCftJ/su/tE6pN+zvNq/hfxgdQFti2ga4FnKk7LGkoXOYzkoT0wQecV92H44f8FPv239XPg34g+D/FvjnwP8QtOgkazjRli1IWbI3n2rkgR3CkRk85O3HpX9dP8AwRW/4IM6J+zve618bfjNYW3iPXdZhWa3k1CENOYHUfu2BzhgV5JGanCwlGpJ3umVKmkrydz8y/H3/BSr/gqLqnh34pa34i8DeLtLh0q3jHibR1glkPh+ZceVqGnnAMkBZlbAzgFhXmHh3/gqt/wVw8T+KvA/hzUfB2sX3i5PCk96bRbSQf8ACaaOFbbdxucAXCbcAewHcV/oMr8EfhVnVFfwH4YulvbSOxulmso3E8KD5VbcCTjJ59+lZdn+zp8F7DVvCGuWfw48JW2q6Hbta6ZMtjHutoWOSgOOmea2jGSdyVXgtLH+ed4J/wCCxX/BVKW08EeJhpGu+IIptXlstF1OWwkK6wowW0q9UgeU4wUDHBJB7HNIf+Cxv/BVCXSfFXiHRtA8R6N4FTX4bS0a4gme48D6mXYfZJFOGNu/zcnOOB0xX+gxH+yt+z7Hp2paOPhL4KTTbnUTqzwizQKt0W3GRcfdOSTxjqPSqS/skfs/rb+NbKT4XeFLuw1+VZtRhmt0ZZnXBVuV4wVGO/WqbkHt6f8AKfw1at/wWn/4KcR+KvG2nat8O/FFle2GiQ3Hi7SraB2n0k7d8er2RwPMiYICwCgjZ1615i//AAXw/wCCoXhbx34Nttb8A6n4gurrSpp5IoreQQ+MNKGR9ojAGFuER/m75AyTxX99o/ZQ+AK+LY/Gq/DDwyviAaU2iGcWyAvZ7SojcAfOMM4G7ON3SsJf2LP2bNvhFZfhV4XmOhPM+mFrZcwCUgyLnHRiASOBwOKi0he1p9j+Am8/4OC/+Ch994d8Nax4U8Pazd6Ff6tJY+HdaCyF0ZiN2m3gGACAhC7sHhsV+n//AATo/wCC1P7XPxb+MPjfwD8ZNC8Q+GvC7eVDf/abd3uvC2qhlYYVs5t334PYjB6DNf1CQf8ABPD9ki00PWPDsHwf8ODSL7URqksQjCCO5D7xIm0AKwboeuC3rXoNj+yB+z3p3i3W/Gtl8NdAtte1KyWxv5FiBFygUqGbPJcL8u484A9KqMZJ6smdSDVkj3Pwnq0+ueFfDet3DQS3N3Y29zI0JzGXeNSdntknGa/ma/4LPf8ABUf9pn9ijx/ZeHPhdod3p/iiILcaRbqvmWPiexJw6MSDidc7gMdjjqM/066RpNpoGl6Vo2mxC3020t47aGPuqIoUD8Aq14H+0J+yp8F/2nNN0aw+K/hDTPEcmmzrcWU8sQMkDD0bqM5Iq53toZ0pJSuz+EzSP+Dln9tf+xta1IeDvEK6F9tC2s9xakzabd5X9xOTz5RZuhPTHSvTLb/g5Z/a4n1DXrLUfhbqc7pYj+2IYbYhrVyMLNbqFPyEhuR6V/Xq3/BMr9ki5s/EtpffDLR7qPVYkjucwpkFfusPl5IwnPX5ferEH/BOb9kHSdQ0bV5PhTon9o2ll9i80Qri4iH8MuFy3Jzz0rlXMpXZ1OtS7H+fb+2j/wAF+fjn+0j+z/4k+FXxD8IX8E1xBJHam7t/3d3aspBIO0ZfawNfPX/BvL401n/hrZJ9P1BdJ3XTmKSYHaz/AClVk/2Bkg/7LGv6zv8AguH/AME6f2U/BP7HHiS90D4X2lpDZCW/We0hVbm0YJ8rROACFUZ+Xocc9q/k/wD+DfWzfTv2z7/TdIsrTxdZG4YoJMf6ZGFztU9BIwG0++KKc9XG2pMNU2tj/Vy0OSeXSNMluUiiuGt42dU+6rbRnHtnP4YrVrI0IINI00RBli+zx7QwwQNoxn8McVr11R2OJBTWXdjnFOoqhsik/hyOK/k9/wCDlF9Pufg3qwtdQj0/VTps8QjlOV1Bgjf6PJgEKDgkE4GVHNf1it2x1r+Pj/g5Xtlf4b6zcwQW2sWpt3kvIcMGaMB2zGQR84IHTOa5cRswiveTPhX/AINkPE+j3/jTTre/8tJoNUAQPKA2mymDAVAOsbDI/wB4sa/vtBztxwuPwxX+fH/wbbeH4PEfi7RJLJJbGeO/jS2coZE2BSWSUn+POef/AK1f6AN7ex+H/D899dFNlpatKxJCg7UPGScDpWsXaKNsW7Tdz+Lj/g6Q/adtdH8G3nwqtftYurwR2sVuIQ0eo4YeZGzY4ZTscZI5H0ry7/g2A/ZhuNBtIfH99Z3E5a6S6SaJzm0fb90gHIySTjoTur8iP+Dgv9pKX4w/tkaP4KGo3zJbX5uNQtVbBYOxAa3AH3tqqPwFf2of8EJvBujeHv2a9JuE0A6Zqj6bZhZgf9dEFbBkA/5aHJzn0FZU5+9Yp2jSSS3P3biUqD09+OSfWpaYucnOafXUc4UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAyRSwwAp+prk/EXgbwr4rhvIPEGgafqsE8bwyrLGD5iMpUg+oIJHNdfRUyimrMabWqPkbwF+xH+zt8N08Hp4T+H2maUfD+oSahoxiUILF3OXRAOkZz92vrOGJIVWOKNYolGFUcAD2FSkkdBmgEnqMURglsJ3buxrLuZWHBH60o3Z5HFOoqgIzEhcOQdwqSiigAooooAKKKKACkbofpS0h6GgAXoPpUbxq4KsqlSMEHvT+QAB14qM+Z5w4Hl7f1pMGz8T/8AgvXpUU/7BPxGvrbW38MapBZXX2e+KsYof3Jz5u3nbgehr+CX/gg1Ld2f7WHiK7Nu6XsNxcPJHZuSbJwqsJVIJJA4I7DBzX98X/BeXUbmw/YT+IKRWtjfRy2V6pgunVYrg/Z2GwliACQeMnqB2zX8N/8Awb1nSk/bL8TS2NpeeHbQXii0kkXc1s42YSfKkMikkHsyt3OcckP4rO6gv3bZ/qMeD7/+0/DWi3puvtpktYX83A/egoDu4456j2IrpqytFi8nTbOPZbRHyUysIURg4/hwAMdh2wBWlI+xGbaWA7V2HAh9FRQyrMgdQQPQ1Ic9RzxQMRs9AccZr+UX/g4/i0Jfg9qV/eaffWs8FkZzdW0Y227AMA5Bx8vOT64r+rAysFXzo2T5sdePx9q/lL/4OD7nTb34Va5Yvqf2OZrSaNYbwllusq2YztzhWwAM9OelcuL+EuC1R+Z//BtJeaTe+MtOi0++aO4W+WSeNMD7VmM/vECk4xyDX9iv7d/xA1L4Xfs2+OfEmmTojR2UqMZG+aRSpJUdiduefav4t/8Ag3YluNL8bWD6YiwXaagC7+YG+wMQ42gYB2H0Geo9DX9Jv/BZX47+B/Cv7IviHSvFGrWMGtmzmea2juRHJs8tlIUdzyMenNE3aCLxavV5Op/nn+EYvDf7bv8AwUrvbrUn1gPNqK+ShG77Cy8/NnnAYjj2r/Uv/YU+CCfBL4H+GdFjd2jurC3mZXGHDbfTsMYr/O8/4N5fgTN8Sf2vdR8eXWk3esaDJqWwXbQArfL5wLKSfmDYIIOMYBr/AFCtLtbaxsbSxs0aOzgiSGJT1VQoAH5YqqS6muNjyz5F0L/c0tFFdByBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAB39qi3SCQDZ+7I6+lS0UAICPXmkJUDcTge9RtFukVwxGO1SFQ4wy5HvQB+Kv/AAXs0iLW/wDgn58VLaWK7uYo7G7lZLQZucC3b5ox14zk4Hav4Rv+De3xpdW37ZmuHQLu31TVp7j7swX7Pq0ZwAoQnAfJALjjOMkcV/eX/wAF1I5bX9g/4g6xZahqOgXlpDPLFqdsN32BvJbDuuR8vqecDPHNf55//BD7Tb65/byvr+6hj1pI7h5L2HTpfLmgQn5p4GyN3QNgYY7T9Dy0/wCKzto/Az/Ww8Ozi50PR5xbNZl7SFzCww0OUB2EdiM4xW1/OsDwtMtx4f0WZJ57uJrSFlmlXDygoPmYDHJ69B16A1v11HChFGBim71JIBGafTPLUtuIBNJoZBPELlWhlRhH7Hk1/Ld/wcVaAG+AevTS6dZ62q2LligAmVACTtI53D9c1/UvIMjHOPbr/wDqr+SP/g5VvvEek/BnWpDaT/YzaSSR3dqdpsWCkrIy4J28MD68V5+Nm+hvQV2kj8qv+Dc/RryX4g215mHTwbuPyHMoZQpUExy8/fIwMnpk+9dd/wAHQHxNm0HT7LwrqfhifTrO6vntluLd1MiSbSSSxO5UcMTxgHp2rxb/AIN1dauoZ9Z1yK4MGo2tyxljkVfLucKDuVhz1BHvn2r4S/4LXfG/xZ+0H+2T4c+GWpCG80ldQCyNAu7zGMuwxlCflKnjPcHPTmqnO9imnLG37H9CX/BsP+z8nhLwDovxAs9f/tyFY2uJ7fAA2PGURkBAbcpfByTyvav7RogMcHI6Z9ccc+9fjB/wRj+AegfCb9mjwvdaTZGwlkiMElswwbVsBm64OHOG9PyNftCgwAB0ropIzrVHKo2PooorcyCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoprLuI5IxTqACiiigAooooAKKa7bVZuwpAQUG7kEZoA/Iz/gtpf3lh+wr8SJNIutPTX2t5ls7a9UG1vm8pswzhuNh45Nf51X/BDLXrPwz+2rqeq6tYXvgaxi1BxFc24MkulTFwNsw5/c8qCTwN3pmv8AQ6/4Lgwy3f7C3xLtpPDsnjLSzbTNc6XAD9puE8pv9QR828DcRjqcV/nyf8EJrTT9U/bj1yy8OazbX13LIsVq2uxZh1WE9bWctgrL1UnHdScAVy0/4sjto/Az/WI8H3Md54Z0O7iubW8jktInEsH+rlygyy+xOa6SuV8EWUem+E/D2nxaf/ZKQ2cMf2Xfv+znaMpu746fgK6quo4UFFFMkYqjFRuPpQDRFM8YZAwySccjPccf59K/lq/4OQWtZ/2fteh0bUfsWrvYXQa1nhDQXblRgF85G7gYPAx71/UVeQie3WVy8cqjKkH+dfyw/wDBwtZ65qH7PuvtpP8AZviyyNjMb20kCJNEijnyyxB3ck8ddvFclZJ6M6KSs7o/lP8A+CS3x41T4PeHfGJvYHt7VWMjyKCWtlKEYVTjC8H16185/BnRdX/bT/4KQv4g0WKKK6g1SQzxw7mhuVjcKZhno7pxz0NfEnhH4q+ItA02+stLupdGvikht5klRYpBtYGOTLcnOFOfT3r+hP8A4Npvhl4t8X/GLWNf1f4X2C6eb4GXUyn75pN4Oc9BHgv9a1dBK1zaE1GcpH+hB+yv8Odb+F/wc8L+FfEMtrdajBbxqJ0UBpk2jbvx3GSK+lAAOgxVaGMrFFGFC7VAwBgDjHHtxVrvWsY2OBBRRRTKCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAQEHpSLu53UoULS0AFFMbfldm3HfNP+vWgBDn0zWddQXnmpcWk6KQpDRuPlf6454/rWlSHtigTdj8Xf+C3eoRWX7EvjbUptU1TQYIIp3N9bIXlsGELHzFUcsBj/AV/nuf8ETbNdf8A2/dVn1a2sPGcrz+fdwaWTEs0OPmuLVuP3gB3bevHTrX+jJ/wWY/tW3/Yn8f3Ph/VdP0XW9rpby3202buYZAEuAwI2E45OOnvX+ed/wAEPvD+oXf7bfiW417QpPAK21+jSSaVzL4fv8jMykZ3QMSfl6EHArjwy/eSPRpq9Ns/1bfBrQN4W8PfZrq8vbf7FB5ctwMSypsGGcf3iBXTVy/g6eebwzokt7eQX12baNZJ4xtSZguNyjoM4zt7Zrpi6gZLAD1NdjPOQ6msCQdvDY4NLketIXRSFLAMeg7miwxhUMuyQbjjBr+UD/g5QtJ9J/Z+1m6gs5jZiymJ1DS5QJtNYY/eSpgkou7njuffH9XxPz5BBx+f/wBav5NP+DljxbB4b+Duo2UdxJ4Mv7qzlEF5MzvZam7RkCGYDgKwEi892WuTEw1TNaHU/wAyYeNdTtrlrPT7yU+bIA/murxy+hIA4IP86/0sf+DX/wCAHjbw78Hbb4qeIr3Qby3u7Z3M9nIrFg+MRMoUdNowxyOvNf5yf7O/gS3+J/x38H+GLqygGnXN+qyxMjMgy33cDJwcnH0r/Xi/4JB/svaR+z/8AtFl0fw6fDUF5ptuiRRP/o94nJEqjceRlvQjNdVbVJIOjP2AQEZBYFu/+NPpACM5JPPelpmQUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABSE4IHrRRSYH5O/wDBajxRH4Q/YG+LmsXmiaX4o0b7NJDfaXeL+6v4WicFCw5Q9DuHIr/Ph/4IgeKLjwJ+238UNe8NxzK2k2wvYobyb7StzbbS32SbcPnT5V+Y+nINFFce0pWO2D/dM/1FPBnxJOseBPh74lj0OGwGr6bHP9nSbK2vyqQqnaMgbsdB04xXpkGqSTWct4YwhQY2g9TRRWc27GNOKabJNP1OW7uZbZo1UrEsm7Oc57Yq/NcGARkLuDjgZ6fjRRVxehNtTmD4okWIv9kXibyseYeuevT9K/lI/wCDm7Xz4N+DFz9v0+z8Y6BqtusM2naiN8cO8N80TdUZSFII6Yoornbdy4RSkfw8f8ElfCmnz/tZ+G7p0guIoL3yoobiISoAFdgT0yQcHPtX+wf+z+LFPhB4Aj0zT4tLsRpduY7eNiViygYgZ7ZJoor0o/EwrHslFFFaHOFFFFABRRRQAUUUUAFFFFAH/9k=",
+    "elevation_up": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQECAgMCAgICAgQDAwIDBQQFBQUEBAQFBgcGBQUHBgQEBgkGBwgICAgIBQYJCgkICgcICAj/2wBDAQEBAQICAgQCAgQIBQQFCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAj/wAARCAFoAWgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+/iiiigAooooAQnAJpQcgGkIyCKUDAAoAKiMQJc7m59+n0/KpaQnGPrQFhCpxgEim+WQMbiB0qSilYCMqAGPP4dqUAlRg4p9FMCIxA55IJAGRweKUx5Oc4NSUUICJYUUKAo44HHQU7Zz149BT6KAGhQOn/wCqkEYU8YA9AKfRQ0A0qTzkA/SmGJWwTgkHjjpUtFAIhWEKcjGe/HU+tSBcYweBTqKAbIlhQBQyqxGOcd/WmrbQo7yBB5jdW7mpgcgGlp3Hch8le5Ld/p9PT8KRreNnWRlQuM/NjBH0NT0VLQhhQ/3j0xSCMDI4x9KkooSFYjWMAc8n19PpSCFVII6+pGT+dS0U2gsN298nPr6UiRpGCqKFGSafRQMKKKKAG7fm3ZpGQPkNtZD2IzT6KAKEem2cCssFtbQAnPyRgAnBAyB1xmriIqAKoAUAAD0FPopcq3G2Nwckg4/CnUUUxEbIS25W2nH/AOr+tY03hrQbiaa4uNI02eaQYZ3gRifxIrdoqXFMFoZ1jpVjp0H2aytoLaHn5UQAH6ir6oFAAA4GBx0p1FNJbA2IVB60UtFMAooooAKKKKAEycnjilopBwOTmgBaQjOPrS0UAFFFFABRRRQAUUUUAFFFFABRRRQAUevpRR6+lACAgjI6UtIAAMDpS0ARKjK7EvlT2x0qWiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiio/m8zpxQBJRRRQBFJvwCn40VLjrRQAUUUUAFMD5OMU7OCB60AAdKAFooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAQjJBzjFKKKKAGO4QAkM30FOByASMUD34paACiiigBAckj0paQDBJ9aWgAooooAKKKKACiiigAopu75tuKdQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRSA8kYoAWkwcnnilprMVViFyR29aAHUUxnKoWKn6UBfvnOQ36cUAPoopAcgGgBaKKKACiiigBCcY+tLSEZx9aWgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAEAwMZzS85HNFISc8Ln8aAF/LFFAz3GKKACkAwAKWigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApCcDOM0tFACKdwB6UtFFABRSZPPFLQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAN3HJG09cU4c9sU0qTn5iOMfSkQFRtJLEdz3oAfRQSB1IFFABRRzntiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACopZVhVpJCEjUElj0AAz/jUmRXxz+2l+2J8Mv2OvhF4h+I3j+9jkeG2ka3s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"
+  }
+}

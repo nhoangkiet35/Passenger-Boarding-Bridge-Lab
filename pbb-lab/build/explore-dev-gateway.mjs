@@ -35,7 +35,7 @@ export function exploreDevGateway() {
      let body = Buffer.alloc(0);
      for await (const chunk of req) {
       body = Buffer.concat([body,chunk]);
-      if(body.length>4096){res.writeHead(413);res.end();return;}
+      if(body.length>((url.pathname==='/admin/employees'||url.searchParams.get('view')==='employees')?1100000:4096)){res.writeHead(413);res.end();return;}
      }
      const handler = path === '/explore' || path === '/explore/' || path.startsWith('/api/explore') ? handleExplore : handleAdmin;
      const result = await handler(new Request(url, {

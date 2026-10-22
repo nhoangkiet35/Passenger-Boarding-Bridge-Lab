@@ -7,6 +7,8 @@ export const technicalConfig = {
     limits: { angle: [-87.5, 87.5], length: [12, 28], height: [2, 5.4], cabYaw: [-65, 65], floorTilt: [-3, 3] },
     rates: { angle: 8, length: 1.3, height: .35, canopy: .65, cabYaw: 5, floorTilt: 1.5 },
     jogRates: { angle: 2, length: .45, height: .15, cabYaw: 3, floorTilt: 1 },
+    // Illustrative heavy-bridge drive, not manufacturer operating specifications.
+    manualDrive: { maximumSpeed: .12, acceleration: .04, braking: .08 },
     rotundaHeight: 3, cabinOffset: 1.785, carriageOffset: 1.9,
     aircraftDoor: {
         width: .9, height: 1.78, sill: 3.4, slide: 1.05,
@@ -24,5 +26,6 @@ export const technicalConfig = {
     passengerLoad: { maximumDeflection:.012, cycleSeconds:6, responseRate:.004 },
     // 97 km/h is a manual caution about autolevel performance, NOT a site wind cut-off.
     windCautionKmh: 97,
-    wheelSteeringLimit: 87.5, // Model steering limit.
+    wheelSteeringLimit: 90,
+    wheelSteeringRate: 20, // Illustrative degrees per second.
 } as const;

@@ -1,8 +1,13 @@
-import { createHmac, randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
+import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { adminLayout, adminDashboard } from './admin-layout.mjs';
+import { quizPage } from './quiz-page.mjs';
+import { findEmployee, employeeSessionVersion, employeePage, employeeStyles, employeeEditStyles } from './employees.mjs';
+import { readRoster,canWriteRoster } from './employee-store.mjs';
+import { writeEmployeeWorkbook,RosterError } from './employee-workbook.mjs';
+import { employeeAction } from './employee-actions.mjs';
 const COOKIE = 'pbb_explore_session';
 const TTL = 2 * 60 * 60;
 // This cache adds per-instance throttling; production perimeter limits belong in the WAF.
@@ -13,10 +18,9 @@ function equal(a, b) {
  return x.length === y.length && timingSafeEqual(x, y);
 }
 function configuration() {
- const passwordHash = process.env.EXPLORE_PASSWORD_HASH;
  const secret = process.env.EXPLORE_SESSION_SECRET;
- if (!passwordHash || !/^[a-f0-9]{32}:[a-f0-9]{128}$/.test(passwordHash) || !secret || secret.length < 32) return null;
- return { passwordHash, secret };
+ if (!secret || secret.length < 32) return null;
+ return { secret };
 }
 function cookie(request, name) {
  return (request.headers.get('cookie') || '').split(';').map(x => x.trim()).find(x => x.startsWith(name + '='))?.slice(name.length + 1) || '';
@@ -28,11 +32,12 @@ function verify(value, secret) {
  const body = value.slice(0, dot);
  return equal(digest(body, secret), value.slice(dot + 1)) ? body : null;
 }
-function authenticated(request, secret, hash) {
+function authenticated(request, secret, employees) {
  const payload = verify(cookie(request, COOKIE), secret);
  if (!payload) return false;
- const [expiry, nonce, version] = payload.split(':');
- return /^\d+$/.test(expiry) && Number(expiry) > Date.now() && Number(expiry) <= Date.now() + TTL * 1000 && !!nonce && version === digest(hash, secret).slice(0, 16);
+ const [expiry, nonce, version, employeeId, extra] = payload.split(':');
+ if (extra !== undefined || !/^\d+$/.test(expiry) || Number(expiry) <= Date.now() || Number(expiry) > Date.now() + TTL * 1000 || !nonce || version !== digest(employeeSessionVersion, secret).slice(0, 16)) return null;
+ return findEmployee(employeeId,employees);
 }
 function response(body, status = 200, extra = {}) {
  return new Response(body, { status, headers: {
@@ -51,37 +56,54 @@ function requestedView(request) {
  const url = new URL(request.url);
  const path = url.pathname.replace(/\/$/, '');
  if (path === '/admin/explore' || path === '/explore' || path === '/api/explore') return 'explore';
+ if (path === '/admin/quiz') return 'quiz';
+ if (path === '/admin/employees') return 'employees';
  if (path === '/admin/login') return 'login';
  if (path.startsWith('/admin/') && path !== '/admin/explore') return null;
  const view = (url.searchParams.get('view') || 'home').replace(/\/$/,'');
- return ['home','explore','login'].includes(view) ? view : null;
+ return ['home','explore','quiz','employees','login'].includes(view) ? view : null;
 }
-function safeDestination(value) { return ['/admin','/admin/explore'].includes(value) ? value : '/admin'; }
-function login(request, secret, message = '', status = 200, destination = requestedView(request) === 'explore' ? '/admin/explore' : '/admin') {
+function safeDestination(value) { return ['/admin','/admin/explore','/admin/quiz','/admin/employees'].includes(value) ? value : '/admin'; }
+function login(request, secret, message = '', status = 200, destination = ['explore','quiz','employees'].includes(requestedView(request)) ? '/admin/' + requestedView(request) : '/admin') {
  const csrf = signed(`${Date.now() + 15*60*1000}:${randomBytes(24).toString('hex')}`, secret);
- return response(page(`<a href="/">← PBB Lab</a><h1>Đăng nhập quản trị</h1><p>Khu vực admin dành cho người được cấp quyền truy cập.</p>${message ? `<p class="error" role="alert">${message}</p>` : ''}<form method="post" action="/api/admin"><input type="hidden" name="csrf" value="${csrf}"><input type="hidden" name="returnTo" value="${destination}"><label for="password">Mật khẩu</label><input id="password" type="password" name="password" autocomplete="current-password" maxlength="128" required autofocus><button type="submit">Đăng nhập</button></form>`), status);
+ return response(page(`<a href="/">← PBB Lab</a><h1>Đăng nhập quản trị</h1><p>Nhập ID nhân viên của bạn vào ô mật khẩu để đăng nhập.</p>${message ? `<p class="error" role="alert">${message}</p>` : ''}<form method="post" action="/api/admin"><input type="hidden" name="csrf" value="${csrf}"><input type="hidden" name="returnTo" value="${destination}"><label for="password">Mật khẩu (ID nhân viên)</label><input id="password" type="password" name="password" autocomplete="current-password" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" required autofocus><button type="submit">Đăng nhập</button></form>`), status);
 }
 export async function handleAdmin(request) {
  const view = requestedView(request);
  if (!view) return response(page('<h1>Không tìm thấy chức năng</h1><a href="/admin">Về quản trị</a>'),404);
  const config = configuration();
  if (!config) return response(page('<h1>Nội dung đang được bảo vệ</h1><p>Máy chủ chưa hoàn tất cấu hình truy cập. Vui lòng liên hệ người quản lý.</p><a href="/">Về trang chủ</a>'), 503);
- const { passwordHash, secret } = config;
+ const { secret } = config;
  if (!['GET','POST'].includes(request.method)) return response('', 405, { Allow: 'GET, POST' });
+ let roster;
+ try {roster=await readRoster();}catch(error){console.error('Employee roster unavailable:',error.name);return response(page('<h1>Danh sách nhân viên chưa sẵn sàng</h1><p>Không đọc được danh sách. Vui lòng liên hệ người quản lý.</p>'),503);}
+ const employee=authenticated(request,secret,roster.employees);
+ let employeeResult=null;
  if (request.method === 'POST') {
   const origin = request.headers.get('origin');
   if (!origin || origin !== new URL(request.url).origin) return response(page('<h1>Yêu cầu không hợp lệ</h1>'), 403);
   const length = Number(request.headers.get('content-length') || 0);
-  if (length > 4096 || !request.headers.get('content-type')?.startsWith('application/x-www-form-urlencoded')) return response('', 400);
-  const body = await request.text();
-  if (body.length > 4096) return response('', 413);
-  const form = new URLSearchParams(body);
-  const destination = safeDestination(form.get('returnTo') || (view === 'explore' ? '/admin/explore' : '/admin'));
-  const token = verify(form.get('csrf') || '', secret);
+  const maximum=view==='employees'?1100000:4096;
+  if(length>maximum)return response(page('<h1>File quá lớn</h1><a href="/admin/employees">Về danh sách nhân viên</a>'),413);
+  const contentType=request.headers.get('content-type')||'';
+  if(!contentType.startsWith('application/x-www-form-urlencoded')&&!(view==='employees'&&contentType.startsWith('multipart/form-data')))return response('',400);
+  let bytes=0;const chunks=[];
+  for await(const chunk of request.body||[]){bytes+=chunk.length;if(bytes>maximum)return response('',413);chunks.push(chunk);}
+  const body=Buffer.concat(chunks);
+  let form;
+  try {form=contentType.startsWith('multipart/form-data')?await new Request(request.url,{method:'POST',headers:request.headers,body}).formData():new URLSearchParams(body.toString('utf8'));}catch{return response('',400);}
+  const destination = safeDestination(form.get('returnTo') || (['explore','quiz','employees'].includes(view) ? '/admin/' + view : '/admin'));
+  const token = verify(typeof form.get('csrf')==='string'?form.get('csrf'):'', secret);
   const expiry = Number(token?.split(':')[0]);
-  const tokenLifetime = form.get('action') === 'logout' ? TTL*1000 : 15*60*1000;
+  const tokenLifetime = form.get('action') === 'logout' || String(form.get('action')||'').startsWith('employee-') ? TTL*1000 : 15*60*1000;
   if (!token || !Number.isFinite(expiry) || expiry < Date.now() || expiry > Date.now() + tokenLifetime) return login(request, secret, 'Phiên biểu mẫu đã hết hạn. Vui lòng thử lại.', 403, destination);
   if (form.get('action') === 'logout') return response('', 303, { Location: '/admin/login', 'Set-Cookie': sessionCookie(request, '', 0) });
+  if(view==='employees') {
+   if(!employee)return login(request,secret,'Vui lòng đăng nhập trước khi chỉnh sửa danh sách.',401,'/admin/employees');
+   try {employeeResult=await employeeAction(form,roster,employee);}
+   catch(error){employeeResult={error:error instanceof RosterError?error.message:'Không lưu được danh sách. Chưa xác nhận lưu thành công; hãy tải lại và kiểm tra.',status:error.status||503};}
+   if(employeeResult.saved)return response('',303,{Location:'/admin/employees?saved=1'});
+  } else {
   const ip = request.headers.get('x-vercel-forwarded-for') || request.headers.get('x-forwarded-for') || 'local';
   const key = digest(ip, secret);
   const now = Date.now();
@@ -90,15 +112,17 @@ export async function handleAdmin(request) {
   if (state.count >= 5 || attempts.size >= 10000) return login(request, secret, 'Quá nhiều lần thử. Vui lòng thử lại sau 15 phút.', 429, destination);
   state.count++; attempts.set(key, state);
   const value = form.get('password') || '';
-  const [salt, expected] = passwordHash.split(':');
-  const actual = scryptSync(value, salt, 64).toString('hex');
-  if (value.length > 128 || !equal(actual, expected)) return login(request, secret, 'Mật khẩu không đúng.', 401, destination);
-  const version = digest(passwordHash, secret).slice(0,16);
-  const session = signed(`${Date.now()+TTL*1000}:${randomBytes(24).toString('hex')}:${version}`, secret);
+  const loginEmployee = /^\d{6}$/.test(value) ? findEmployee(value,roster.employees) : null;
+  if (!loginEmployee) return login(request, secret, 'ID nhân viên không hợp lệ.', 401, destination);
+  attempts.delete(key);
+  const version = digest(employeeSessionVersion, secret).slice(0,16);
+  const session = signed(`${Date.now()+TTL*1000}:${randomBytes(24).toString('hex')}:${version}:${loginEmployee.id}`, secret);
   return response('', 303, { Location: destination, 'Set-Cookie': sessionCookie(request, session, TTL) });
+  }
  }
- if (!authenticated(request, secret, passwordHash)) return login(request, secret);
+ if (!employee) return login(request, secret);
  if (view === 'login') return response('',303,{Location:'/admin'});
+ if(view==='employees'&&new URL(request.url).searchParams.get('download')==='xlsx')return response(await writeEmployeeWorkbook(roster.employees),200,{'Content-Type':'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','Content-Disposition':'attachment; filename="nhan-vien-pbb.xlsx"'});
  try {
   const directories = [join(process.cwd(), '.private-explore'), join(process.cwd(), 'pbb-lab', '.private-explore'), fileURLToPath(new URL('../.private-explore/', import.meta.url))];
   let payload;
@@ -109,9 +133,10 @@ export async function handleAdmin(request) {
   if (!payload) throw new Error('PRIVATE_PAYLOAD_MISSING');
   const [script, css] = payload;
   const csrf = signed(`${Date.now()+TTL*1000}:${randomBytes(24).toString('hex')}`, secret);
-  const content = view === 'explore' ? '<div id="root"></div>' : adminDashboard();
-  const html = adminLayout({active:view,csrf,content});
-  const javascript = view === 'explore' ? `<script>${script.replaceAll('</script', '<\\/script')}</script>` : '';
-  return response(`<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${view==='explore'?'Khám phá PBB':'Tổng quan quản trị'} · PBB Lab Admin</title><style>${css}</style></head><body>${html}${javascript}</body></html>`);
+  const quiz = view === 'quiz' ? quizPage() : null;
+  const content = quiz ? quiz.content : view === 'employees' ? employeePage({list:roster.employees,version:roster.version,csrf,writable:canWriteRoster(),message:new URL(request.url).searchParams.get('saved')==='1'?'Đã lưu danh sách nhân viên. ID mới có thể đăng nhập ngay.':'',...employeeResult}) : view === 'explore' ? '<div id="root"></div>' : adminDashboard();
+  const html = adminLayout({active:view,csrf,content,employee});
+  const javascript = quiz ? '<script>' + quiz.script + '</script>' : view === 'explore' ? `<script>${script.replaceAll('</script', '<\\/script')}</script>` : '';
+  return response(`<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${view==='employees'?'Danh sách nhân viên':view==='quiz'?'Quiz vận hành PBB':view==='explore'?'Khám phá PBB':'Tổng quan quản trị'} · PBB Lab Admin</title><style>${css}${employeeStyles}${employeeEditStyles}${quiz?.css || ''}</style></head><body>${html}${javascript}</body></html>`,employeeResult?.status||200);
  } catch (error) { console.error('Explore private payload unavailable:', error.code || error.message); return response(page('<h1>Nội dung chưa sẵn sàng</h1><p>Vui lòng liên hệ người quản lý.</p>'),503); }
 }

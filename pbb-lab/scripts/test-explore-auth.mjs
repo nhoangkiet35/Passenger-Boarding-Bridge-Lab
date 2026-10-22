@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
-import { randomBytes, scryptSync, createHmac } from 'node:crypto';
+import { randomBytes, createHmac } from 'node:crypto';
 import { handleAdmin } from '../server/admin-handler.mjs';
 import { handleExplore } from '../server/explore-handler.mjs';
-const password=randomBytes(16).toString('hex'),salt=randomBytes(16).toString('hex');
-process.env.EXPLORE_PASSWORD_HASH=salt+':'+scryptSync(password,salt,64).toString('hex');
+import { employees, employeeSessionVersion } from '../server/employees.mjs';
+const password='020514';
 process.env.EXPLORE_SESSION_SECRET=randomBytes(32).toString('hex');
 const url='https://pbb.test/admin/explore';
 const get=(cookie='')=>handleAdmin(new Request(url,{headers:{cookie}}));
@@ -17,6 +17,19 @@ r=await handleAdmin(new Request('https://pbb.test/api/admin',{method:'POST',head
 r=await get('pbb_explore_session=forged');assert(!(await r.text()).includes('Nguyên lý hoạt động'));
 r=await post({password,csrf:token},'valid-user');assert.equal(r.status,303);const c=r.headers.get('set-cookie');assert.match(c,/HttpOnly/);assert.match(c,/Secure/);assert.match(c,/SameSite=Strict/);assert.equal(r.headers.get('location'),'/admin/explore');
 const session=c.split(';')[0];r=await get(session);assert.equal(r.status,200);const content=await r.text();assert(content.includes('Nguyên lý hoạt động'));assert(content.includes('MCB & TMan'));assert(content.includes('Đăng xuất'));
+for (const path of ['/admin/quiz','/admin/quiz/','/api/admin?view=quiz']) {
+ const endpoint='https://pbb.test'+path;
+ const locked=await handleAdmin(new Request(endpoint));const lockedHtml=await locked.text();
+ assert.equal(locked.status,200);assert(lockedHtml.includes('name="password"'));
+ assert(lockedHtml.includes('value="/admin/quiz"'));assert(!lockedHtml.includes('isCorrect'));
+ const quiz=await handleAdmin(new Request(endpoint,{headers:{cookie:session}}));const quizHtml=await quiz.text();
+ assert.equal(quiz.status,200);assert.match(quiz.headers.get('cache-control'),/no-store/);
+ assert(quizHtml.includes('id="pbb-quiz"'));assert(quizHtml.includes('Câu 100:'));
+ assert(quizHtml.includes('data:image/jpeg;base64,'));assert(!quizHtml.includes('cdn.tailwindcss.com'));
+ assert(quizHtml.includes('href="/admin/quiz" aria-current="page"'));
+ assert(!quizHtml.includes('href="/admin/explore" aria-current="page"'));
+}
+r=await post({password,csrf:token,returnTo:'/admin/quiz'},'quiz-user');assert.equal(r.status,303);assert.equal(r.headers.get('location'),'/admin/quiz');
 const originalDirectory=process.cwd();process.chdir('..');r=await get(session);assert.equal(r.status,200);assert((await r.text()).includes('Nguyên lý hoạt động'));process.chdir(originalDirectory);
 r=await handleAdmin(new Request('https://pbb.test/admin',{headers:{cookie:session}}));assert.equal(r.status,200);const dashboard=await r.text();assert(dashboard.includes('Tổng quan quản trị'));assert(dashboard.includes('href="/admin/explore"'));assert(!dashboard.includes('Nguyên lý hoạt động'));
 for (const path of ['/admin','/admin/login','/api/admin?view=home','/api/admin?view=explore']) {r=await handleAdmin(new Request('https://pbb.test'+path));assert.equal(r.status,200);assert((await r.text()).includes('name="password"'));}
@@ -24,8 +37,38 @@ r=await handleAdmin(new Request('https://pbb.test/admin/unknown',{headers:{cooki
 r=await handleExplore(new Request('https://pbb.test/explore'));assert.equal(r.status,303);assert.equal(r.headers.get('location'),'/admin/explore');
 r=await post({password,csrf:token,returnTo:'https://attacker.test'},'redirect-user');assert.equal(r.status,303);assert.equal(r.headers.get('location'),'/admin');
 const logoutToken=csrf(content);r=await post({action:'logout',csrf:logoutToken});assert.equal(r.status,303);assert.match(r.headers.get('set-cookie'),/Max-Age=0/);
-const expired=Date.now()-10000;const body=expired+':nonce:'+createHmac('sha256',process.env.EXPLORE_SESSION_SECRET).update(process.env.EXPLORE_PASSWORD_HASH).digest('base64url').slice(0,16);const signature=createHmac('sha256',process.env.EXPLORE_SESSION_SECRET).update(body).digest('base64url');r=await get('pbb_explore_session='+body+'.'+signature);assert(!(await r.text()).includes('Nguyên lý hoạt động'));
+const expired=Date.now()-10000;const body=expired+':nonce:'+createHmac('sha256',process.env.EXPLORE_SESSION_SECRET).update(employeeSessionVersion).digest('base64url').slice(0,16);const signature=createHmac('sha256',process.env.EXPLORE_SESSION_SECRET).update(body).digest('base64url');r=await get('pbb_explore_session='+body+'.'+signature);assert(!(await r.text()).includes('Nguyên lý hoạt động'));
 for(let i=0;i<5;i++) {r=await post({password:'wrong',csrf:token},'limited-user');assert.equal(r.status,401);}
 r=await post({password,csrf:token},'limited-user');assert.equal(r.status,429);
-const hash=process.env.EXPLORE_PASSWORD_HASH;delete process.env.EXPLORE_PASSWORD_HASH;r=await get(session);assert.equal(r.status,503);assert(!(await r.text()).includes('Nguyên lý hoạt động'));process.env.EXPLORE_PASSWORD_HASH=hash;
+const secret=process.env.EXPLORE_SESSION_SECRET;delete process.env.EXPLORE_SESSION_SECRET;r=await get(session);assert.equal(r.status,503);assert(!(await r.text()).includes('Nguyên lý hoạt động'));process.env.EXPLORE_SESSION_SECRET=secret;
+
+assert.equal(employees.length,15);assert.equal(new Set(employees.map(e=>e.id)).size,15);
+for(const employee of employees) {
+ const loggedIn=await post({password:employee.id,csrf:token},'employee-'+employee.id);
+ assert.equal(loggedIn.status,303);
+ const employeeCookie=loggedIn.headers.get('set-cookie').split(';')[0];
+ const home=await handleAdmin(new Request('https://pbb.test/admin',{headers:{cookie:employeeCookie}}));
+ const html=await home.text();assert(html.includes(employee.name));assert(html.includes('ID '+employee.id));
+ const directory=await handleAdmin(new Request('https://pbb.test/admin/employees',{headers:{cookie:employeeCookie}}));
+ assert.equal(directory.status,200);const list=await directory.text();for(const e of employees){assert(list.includes(e.id));assert(list.includes(e.name));}
+ assert(list.includes('href="/admin/employees" aria-current="page"'));
+ if(employee.id==='020514') {
+  const tampered=employeeCookie.replace('020514','020513');
+  const invalid=await handleAdmin(new Request('https://pbb.test/admin',{headers:{cookie:tampered}}));
+  assert((await invalid.text()).includes('name="password"'));
+ }
+}
+for(const bad of ['20514','020516','020514 ',' 020514','0205140','abcdef','']) {
+ const invalid=await post({password:bad,csrf:token},'invalid-'+bad);
+ assert.equal(invalid.status,401);assert(!invalid.headers.has('set-cookie'));
+}
+for(const path of ['/admin/employees','/api/admin?view=employees']) {
+ const unauth=await handleAdmin(new Request('https://pbb.test'+path));const html=await unauth.text();
+ assert(html.includes('value="/admin/employees"'));assert(!html.includes('Lê Sỹ Vương'));assert(!html.includes('020513'));
+}
+const oldPayload=Date.now()+3600000+':oldnonce:'+createHmac('sha256',process.env.EXPLORE_SESSION_SECRET).update(employeeSessionVersion).digest('base64url').slice(0,16);
+const oldCookie='pbb_explore_session='+oldPayload+'.'+createHmac('sha256',process.env.EXPLORE_SESSION_SECRET).update(oldPayload).digest('base64url');
+assert((await (await get(oldCookie)).text()).includes('name="password"'));
+console.log('PASS: all 15 employee IDs, names, private directory, leading zero, invalid IDs, signed identity and legacy session rejection.');
+
 console.log('PASS: admin dashboard, protected module, canonical/legacy routes, safe redirect, unauthorized, incorrect password, CSRF/origin, forged/expired cookie, valid login, logout, throttling and fail-closed configuration.');

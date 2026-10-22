@@ -35,7 +35,7 @@
       "includeFiles": ".private-explore/**"
     },
     "api/admin.mjs": {
-      "includeFiles": ".private-explore/**"
+      "includeFiles": "{.private-explore/**,server/data/*.xlsx}"
     }
   },
   "redirects": [
