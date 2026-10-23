@@ -17,6 +17,28 @@ r=await handleAdmin(new Request('https://pbb.test/api/admin',{method:'POST',head
 r=await get('pbb_explore_session=forged');assert(!(await r.text()).includes('Nguyên lý hoạt động'));
 r=await post({password,csrf:token},'valid-user');assert.equal(r.status,303);const c=r.headers.get('set-cookie');assert.match(c,/HttpOnly/);assert.match(c,/Secure/);assert.match(c,/SameSite=Strict/);assert.equal(r.headers.get('location'),'/admin/explore');
 const session=c.split(';')[0];r=await get(session);assert.equal(r.status,200);const content=await r.text();assert(content.includes('Nguyên lý hoạt động'));assert(content.includes('MCB & TMan'));assert(content.includes('Đăng xuất'));
+assert(loginHtml.includes('type="checkbox" name="remember" value="1"'));
+assert.match(c,/Max-Age=7200/);
+assert(content.includes('id="admin-menu"'));
+assert(content.includes('aria-haspopup="dialog"'));
+const rememberedLogin=await post({password,csrf:token,remember:'1'},'remember-user');
+assert.equal(rememberedLogin.status,303);
+const rememberedCookie=rememberedLogin.headers.get('set-cookie');
+assert.match(rememberedCookie,/Max-Age=604800/);assert.match(rememberedCookie,/HttpOnly/);assert.match(rememberedCookie,/Secure/);assert.match(rememberedCookie,/SameSite=Strict/);
+const rememberedSession=rememberedCookie.split(';')[0];
+const realNow=Date.now;
+try {
+ const initial=realNow();
+ Date.now=()=>initial+3*60*60*1000;
+ assert((await (await get(session)).text()).includes('name="password"'),'Ordinary session must expire after 2 hours');
+ assert((await (await get(rememberedSession)).text()).includes('Nguyên lý hoạt động'),'Remembered session must survive beyond 2 hours');
+ Date.now=()=>initial+8*24*60*60*1000;
+ assert((await (await get(rememberedSession)).text()).includes('name="password"'),'Remembered session must expire after 7 days');
+} finally {Date.now=realNow;}
+const rememberedPage=await get(rememberedSession);
+const rememberedLogout=await post({action:'logout',csrf:csrf(await rememberedPage.text())});
+assert.match(rememberedLogout.headers.get('set-cookie'),/Max-Age=0/);
+console.log('PASS: optional 7-day remembered session, 2-hour ordinary session, expiry and logout cookie clearing.');
 for (const path of ['/admin/quiz','/admin/quiz/','/api/admin?view=quiz']) {
  const endpoint='https://pbb.test'+path;
  const locked=await handleAdmin(new Request(endpoint));const lockedHtml=await locked.text();

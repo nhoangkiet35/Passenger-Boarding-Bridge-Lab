@@ -1,0 +1,13 @@
+from pathlib import Path
+p=Path('pbb-lab/server/admin-handler.mjs');s=p.read_text(encoding='utf-8')
+s=s.replace('<button type="submit">Đăng nhập</button></form>', '<label class="login-remember"><input type="checkbox" name="remember" value="1"><span>Ghi nhớ mật khẩu<small>Duy trì đăng nhập trên thiết bị này trong 7 ngày.</small></span></label><button type="submit">Đăng nhập</button></form>')
+s=s.replace('.error{color:#9c3423}', '.error{color:#9c3423}.login-remember{display:flex;align-items:flex-start;gap:10px;font-size:14px;font-weight:400;cursor:pointer;min-height:44px}.login-remember input{width:18px;height:18px;padding:0;flex-shrink:0;margin:1px 0;accent-color:#137e8b}.login-remember small{display:block;color:#526c7b;font-size:12px;line-height:1.6;margin-top:4px}')
+s=s.replace("(document.querySelector('.admin-header'));</script>", "(document.querySelector('.admin-header'));(${installAdminMenu.toString()})();</script>")
+s=s.replace('${css}${employeeStyles}', '${css}${adminMenuStyles}${employeeStyles}')
+p.write_text(s,encoding='utf-8')
+p=Path('pbb-lab/server/admin-layout.mjs');s=p.read_text(encoding='utf-8')
+s=s.replace('<header class="admin-header"><a', '<header class="admin-header"><div class="admin-header-start"><button type="button" id="admin-menu-toggle" class="admin-menu-toggle" aria-controls="admin-menu" aria-expanded="false" aria-haspopup="dialog" aria-label="Mở menu quản trị"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>Menu</span></button><a')
+s=s.replace('</small></a><div class="admin-header-actions">', '</small></a></div><div class="admin-header-actions">')
+s=s.replace('<aside class="admin-sidebar"><p>', '<dialog id="admin-menu" class="admin-sidebar admin-menu" aria-labelledby="admin-menu-title"><div class="admin-menu-heading"><h2 id="admin-menu-title">Menu quản trị</h2><button type="button" id="admin-menu-close" class="admin-menu-close" aria-label="Đóng menu quản trị">×</button></div><p>')
+s=s.replace('</small></aside><div class="admin-content">', '</small></dialog><div class="admin-content">')
+p.write_text(s,encoding='utf-8')

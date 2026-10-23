@@ -9,8 +9,10 @@ import { readRoster,canWriteRoster } from './employee-store.mjs';
 import { writeEmployeeWorkbook,RosterError } from './employee-workbook.mjs';
 import { employeeAction } from './employee-actions.mjs';
 import { installHeaderScroll } from '../lib/headerScroll.ts';
+import { installAdminMenu, adminMenuStyles } from './admin-menu.mjs';
 const COOKIE = 'pbb_explore_session';
 const TTL = 2 * 60 * 60;
+const REMEMBER_TTL = 7 * 24 * 60 * 60;
 // This cache adds per-instance throttling; production perimeter limits belong in the WAF.
 const attempts = new Map();
 const digest = (value, secret) => createHmac('sha256', secret).update(value).digest('base64url');
@@ -36,8 +38,9 @@ function verify(value, secret) {
 function authenticated(request, secret, employees) {
  const payload = verify(cookie(request, COOKIE), secret);
  if (!payload) return false;
- const [expiry, nonce, version, employeeId, extra] = payload.split(':');
- if (extra !== undefined || !/^\d+$/.test(expiry) || Number(expiry) <= Date.now() || Number(expiry) > Date.now() + TTL * 1000 || !nonce || version !== digest(employeeSessionVersion, secret).slice(0, 16)) return null;
+ const [expiry, nonce, version, employeeId, persistence, extra] = payload.split(':');
+ const lifetime = persistence === 'remember' ? REMEMBER_TTL : TTL;
+ if (extra !== undefined || (persistence !== undefined && persistence !== 'remember') || !/^\d+$/.test(expiry) || Number(expiry) <= Date.now() || Number(expiry) > Date.now() + lifetime * 1000 || !nonce || version !== digest(employeeSessionVersion, secret).slice(0, 16)) return null;
  return findEmployee(employeeId,employees);
 }
 function response(body, status = 200, extra = {}) {
@@ -51,7 +54,7 @@ function sessionCookie(request, value, age) {
  return `${COOKIE}=${value}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${age}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`;
 }
 function page(content) {
- return `<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Đăng nhập quản trị · PBB Lab</title><style>body{margin:0;background:#eef4f6;color:#173647;font:16px Arial,sans-serif;min-height:100vh;display:grid;place-items:center}main{width:min(420px,calc(100% - 72px));background:white;padding:32px;border:1px solid #d1dfe4;border-radius:16px}h1{font-size:28px}p{line-height:1.7;color:#526c7b}label{display:block;margin:20px 0 8px;font-weight:bold}input{box-sizing:border-box;width:100%;padding:14px;border:1px solid #9cb9c4;border-radius:7px;font:inherit}button{margin-top:18px;width:100%;padding:14px;background:#137e8b;color:white;border:0;border-radius:7px;font:inherit;cursor:pointer}a{color:#137e8b}input:focus,button:focus,a:focus{outline:3px solid #26a6b8;outline-offset:3px}.error{color:#9c3423}</style></head><body><main>${content}</main></body></html>`;
+ return `<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Đăng nhập quản trị · PBB Lab</title><style>body{margin:0;background:#eef4f6;color:#173647;font:16px Arial,sans-serif;min-height:100vh;display:grid;place-items:center}main{width:min(420px,calc(100% - 72px));background:white;padding:32px;border:1px solid #d1dfe4;border-radius:16px}h1{font-size:28px}p{line-height:1.7;color:#526c7b}label{display:block;margin:20px 0 8px;font-weight:bold}input{box-sizing:border-box;width:100%;padding:14px;border:1px solid #9cb9c4;border-radius:7px;font:inherit}button{margin-top:18px;width:100%;padding:14px;background:#137e8b;color:white;border:0;border-radius:7px;font:inherit;cursor:pointer}a{color:#137e8b}input:focus,button:focus,a:focus{outline:3px solid #26a6b8;outline-offset:3px}.error{color:#9c3423}.login-remember{display:flex;align-items:flex-start;gap:10px;font-size:14px;font-weight:400;cursor:pointer;min-height:44px}.login-remember input{width:18px;height:18px;padding:0;flex-shrink:0;margin:1px 0;accent-color:#137e8b}.login-remember small{display:block;color:#526c7b;font-size:12px;line-height:1.6;margin-top:4px}</style></head><body><main>${content}</main></body></html>`;
 }
 function requestedView(request) {
  const url = new URL(request.url);
@@ -67,7 +70,7 @@ function requestedView(request) {
 function safeDestination(value) { return ['/admin','/admin/explore','/admin/quiz','/admin/employees'].includes(value) ? value : '/admin'; }
 function login(request, secret, message = '', status = 200, destination = ['explore','quiz','employees'].includes(requestedView(request)) ? '/admin/' + requestedView(request) : '/admin') {
  const csrf = signed(`${Date.now() + 15*60*1000}:${randomBytes(24).toString('hex')}`, secret);
- return response(page(`<a href="/">← PBB Lab</a><h1>Đăng nhập quản trị</h1><p>Nhập ID nhân viên của bạn vào ô mật khẩu để đăng nhập.</p>${message ? `<p class="error" role="alert">${message}</p>` : ''}<form method="post" action="/api/admin"><input type="hidden" name="csrf" value="${csrf}"><input type="hidden" name="returnTo" value="${destination}"><label for="password">Mật khẩu (ID nhân viên)</label><input id="password" type="password" name="password" autocomplete="current-password" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" required autofocus><button type="submit">Đăng nhập</button></form>`), status);
+ return response(page(`<a href="/">← PBB Lab</a><h1>Đăng nhập quản trị</h1><p>Nhập ID nhân viên của bạn vào ô mật khẩu để đăng nhập.</p>${message ? `<p class="error" role="alert">${message}</p>` : ''}<form method="post" action="/api/admin"><input type="hidden" name="csrf" value="${csrf}"><input type="hidden" name="returnTo" value="${destination}"><label for="password">Mật khẩu (ID nhân viên)</label><input id="password" type="password" name="password" autocomplete="current-password" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" required autofocus><label class="login-remember"><input type="checkbox" name="remember" value="1"><span>Ghi nhớ mật khẩu<small>Duy trì đăng nhập trên thiết bị này trong 7 ngày.</small></span></label><button type="submit">Đăng nhập</button></form>`), status);
 }
 export async function handleAdmin(request) {
  const view = requestedView(request);
@@ -117,8 +120,10 @@ export async function handleAdmin(request) {
   if (!loginEmployee) return login(request, secret, 'ID nhân viên không hợp lệ.', 401, destination);
   attempts.delete(key);
   const version = digest(employeeSessionVersion, secret).slice(0,16);
-  const session = signed(`${Date.now()+TTL*1000}:${randomBytes(24).toString('hex')}:${version}:${loginEmployee.id}`, secret);
-  return response('', 303, { Location: destination, 'Set-Cookie': sessionCookie(request, session, TTL) });
+  const remember = form.get('remember') === '1';
+  const lifetime = remember ? REMEMBER_TTL : TTL;
+  const session = signed(`${Date.now()+lifetime*1000}:${randomBytes(24).toString('hex')}:${version}:${loginEmployee.id}${remember ? ':remember' : ''}`, secret);
+  return response('', 303, { Location: destination, 'Set-Cookie': sessionCookie(request, session, lifetime) });
   }
  }
  if (!employee) return login(request, secret);
@@ -137,8 +142,8 @@ export async function handleAdmin(request) {
   const quiz = view === 'quiz' ? quizPage() : null;
   const content = quiz ? quiz.content : view === 'employees' ? employeePage({list:roster.employees,version:roster.version,csrf,writable:canWriteRoster(),message:new URL(request.url).searchParams.get('saved')==='1'?'Đã lưu danh sách nhân viên. ID mới có thể đăng nhập ngay.':'',...employeeResult}) : view === 'explore' ? '<div id="root"></div>' : adminDashboard();
   const html = adminLayout({active:view,csrf,content,employee});
-  const headerScript = `<script>(${installHeaderScroll.toString()})(document.querySelector('.admin-header'));</script>`;
+  const headerScript = `<script>(${installHeaderScroll.toString()})(document.querySelector('.admin-header'));(${installAdminMenu.toString()})();</script>`;
   const javascript = headerScript + (quiz ? '<script>' + quiz.script + '</script>' : view === 'explore' ? `<script>${script.replaceAll('</script', '<\\/script')}</script>` : '');
-  return response(`<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${view==='employees'?'Danh sách nhân viên':view==='quiz'?'Quiz vận hành PBB':view==='explore'?'Khám phá PBB':'Tổng quan quản trị'} · PBB Lab Admin</title><style>${css}${employeeStyles}${employeeEditStyles}${quiz?.css || ''}</style></head><body>${html}${javascript}</body></html>`,employeeResult?.status||200);
+  return response(`<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${view==='employees'?'Danh sách nhân viên':view==='quiz'?'Quiz vận hành PBB':view==='explore'?'Khám phá PBB':'Tổng quan quản trị'} · PBB Lab Admin</title><style>${css}${adminMenuStyles}${employeeStyles}${employeeEditStyles}${quiz?.css || ''}</style></head><body>${html}${javascript}</body></html>`,employeeResult?.status||200);
  } catch (error) { console.error('Explore private payload unavailable:', error.code || error.message); return response(page('<h1>Nội dung chưa sẵn sàng</h1><p>Vui lòng liên hệ người quản lý.</p>'),503); }
 }
