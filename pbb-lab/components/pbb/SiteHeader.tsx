@@ -4,10 +4,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { Menu, Plane, X } from 'lucide-react';
 import { headerNavigation, type SitePage } from './siteNavigation';
+import { installHeaderScroll } from '@/lib/headerScroll';
 
 export default function SiteHeader({ page }: { page: SitePage }) {
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  useEffect(() => installHeaderScroll(headerRef.current), []);
   useEffect(() => {
     if (!open) return;
     const escape = (event: KeyboardEvent) => {
@@ -19,7 +22,7 @@ export default function SiteHeader({ page }: { page: SitePage }) {
     desktop.addEventListener('change', resize);
     return () => { document.removeEventListener('keydown', escape); desktop.removeEventListener('change', resize); };
   }, [open]);
-  return <header className="site-header">
+  return <header ref={headerRef} className="site-header">
     <div className="site-header-inner">
       <a className="site-brand" href="/" aria-label="PBB Lab — trang mô phỏng"><span className="site-brand-icon"><Plane size={23} aria-hidden="true"/></span><span className="site-brand-copy"><strong>PBB <span>LAB</span></strong><small>KHÁM PHÁ · HỌC TẬP · MÔ PHỎNG</small></span></a>
       <button ref={toggleRef} type="button" className="site-menu-toggle" aria-expanded={open} aria-controls="site-navigation" aria-label={open ? 'Đóng menu điều hướng' : 'Mở menu điều hướng'} onClick={() => setOpen(value => !value)}>{open ? <X size={21} aria-hidden="true"/> : <Menu size={21} aria-hidden="true"/>}<span>Menu</span></button>

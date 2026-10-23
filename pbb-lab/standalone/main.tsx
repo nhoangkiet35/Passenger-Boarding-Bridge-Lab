@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { lazy, Suspense } from 'react';
 import '../app/globals.css';
-import PageSkeleton from '../components/pbb/PageSkeleton';
+import PageLoader from '../components/pbb/PageLoader';
 
 const Lab = lazy(() => import('../components/pbb/Lab'));
 const About = lazy(() => import('../components/pbb/About'));
@@ -23,7 +23,7 @@ if (isAbout) {
   document.querySelector('meta[name="description"]')?.setAttribute('content', 'Khám phá Cảng HKQT Long Thành, cấu tạo cầu hành khách ShinMaywa PAXWAY và trải nghiệm học tập trong nền tảng mô phỏng độc lập PBB Lab.');
 }
 createRoot(document.getElementById('root')!).render(
-  <Suspense fallback={<PageSkeleton page={isExplore ? 'explore' : isAbout ? 'about' : isVdgs ? 'vdgs' : 'simulation'}/>}>
+  <Suspense fallback={<PageLoader page={isExplore ? 'explore' : isAbout ? 'about' : isVdgs ? 'vdgs' : 'simulation'}/>}>
     {isExplore ? <Explore/> : isAbout ? <About/> : isVdgs ? <Vdgs/> : <Lab/>}
   </Suspense>,
 );

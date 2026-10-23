@@ -13,7 +13,7 @@ Trên Vercel, file hệ thống của Function không lưu bền vững. Cần k
 
 Khi chưa kết nối kho trên Vercel, trang thông báo rõ và khóa nút ghi. Tải Excel và đăng nhập bằng danh sách gốc vẫn hoạt động. Không ghi tạm vào /tmp hoặc báo thành công khi dữ liệu chưa được lưu bền vững.
 
-Kho Blob chưa được tạo: hệ thống duyệt tự động từ chối bước tạo/kết nối tài nguyên; cần chủ dự án phê duyệt trước khi tạo kho và liên kết môi trường production.
+Ngày 23/10/2026, sau khi chủ dự án phê duyệt, kho Blob **private** `pbb-employees` đã được tạo và kết nối với môi trường **production** của `passenger-boarding-bridge`. Production đã được triển khai lại để nhận cấu hình. Đã lưu danh sách 15 nhân viên hiện có và đọc lại khớp hoàn toàn; không thay đổi thành viên. Preview và development chưa được kết nối kho này.
 
 ## Kiểm tra
 

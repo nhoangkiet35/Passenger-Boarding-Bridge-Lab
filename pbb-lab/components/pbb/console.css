@@ -1,6 +1,8 @@
 /* Cabin console: functional hardware controls and a live second camera. */
 /* Keep desktop hardware at 80% scale; preserve full-size touch controls on small screens. */
-@media(min-width:961px){.operator-console{zoom:.8;width:80%;margin-inline:auto}}
+/* Add 10% to the center screen while keeping the side control columns unchanged. */
+@media(min-width:961px){.operator-console{zoom:.8;width:calc(88% - 55px);margin-inline:auto}}
+@media(min-width:961px) and (max-width:1150px){.operator-console{width:calc(88% - 47px)}}
 .title-actions{display:flex;gap:12px;align-items:center}.console-jump{font-size:14px;font-weight:600;color:#147f8d;padding:9px 12px;border:1px solid #bdd7db;border-radius:7px;background:#e8f3f5}
 .operator-section{margin:32px 0 24px;scroll-margin-top:18px}.console-heading{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:16px}.console-heading h2{font-size:23px}.console-heading h2>span{font-size:16px;font-weight:400;color:#718791;margin-left:8px}.console-reference{font-size:12px;color:#7b9099;letter-spacing:.8px}
 .operator-console{position:relative;display:grid;grid-template-columns:224px minmax(0,1fr) 220px;gap:22px;padding:30px 28px 20px;border:2px solid #8e9f9d;border-radius:14px;background:linear-gradient(120deg,#c6cfcd,#b2bfbb 70%,#c5ceca);box-shadow:inset 0 2px 0 #f6f9f4,inset 0 -7px 0 #8fa19b,0 13px 30px #1c363515;color:#243d3d}.operator-console button{font-family:inherit}.panel-screw{position:absolute;width:11px;height:11px;border-radius:50%;border:1px solid #6c807d;background:linear-gradient(140deg,#f1f4ee,#7c8f89);box-shadow:0 1px 2px #3a504b66}.panel-screw:after{content:'';position:absolute;left:2px;right:2px;height:1px;background:#5c716a;top:4px;transform:rotate(-35deg)}.screw-tl{left:10px;top:10px}.screw-tr{right:10px;top:10px}.screw-bl{left:10px;bottom:16px}.screw-br{right:10px;bottom:16px}

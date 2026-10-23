@@ -1,3 +1,3 @@
-import PageSkeleton from '@/components/pbb/PageSkeleton';
+import PageLoader from '@/components/pbb/PageLoader';
 
-export default function Loading() { return <PageSkeleton page="vdgs"/>; }
+export default function Loading() { return <PageLoader page="vdgs"/>; }

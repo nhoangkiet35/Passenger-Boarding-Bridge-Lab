@@ -117,3 +117,7 @@
  .site-header .site-navigation .site-nav-cta { margin: 6px 0 0; }
  .site-shell [id], .about-page .site-shell [id] { scroll-margin-top: 84px; }
 }
+.site-shell .site-header{transition:transform .28s cubic-bezier(.22,1,.36,1);will-change:transform}
+.site-shell .site-header.header-hidden{transform:translateY(calc(-100% - 2px));pointer-events:none}
+.site-shell .site-header:focus-within{transform:translateY(0);pointer-events:auto}
+@media(prefers-reduced-motion:reduce){.site-shell .site-header{transition:none}}

@@ -8,6 +8,7 @@ import { findEmployee, employeeSessionVersion, employeePage, employeeStyles, emp
 import { readRoster,canWriteRoster } from './employee-store.mjs';
 import { writeEmployeeWorkbook,RosterError } from './employee-workbook.mjs';
 import { employeeAction } from './employee-actions.mjs';
+import { installHeaderScroll } from '../lib/headerScroll.ts';
 const COOKIE = 'pbb_explore_session';
 const TTL = 2 * 60 * 60;
 // This cache adds per-instance throttling; production perimeter limits belong in the WAF.
@@ -136,7 +137,8 @@ export async function handleAdmin(request) {
   const quiz = view === 'quiz' ? quizPage() : null;
   const content = quiz ? quiz.content : view === 'employees' ? employeePage({list:roster.employees,version:roster.version,csrf,writable:canWriteRoster(),message:new URL(request.url).searchParams.get('saved')==='1'?'Đã lưu danh sách nhân viên. ID mới có thể đăng nhập ngay.':'',...employeeResult}) : view === 'explore' ? '<div id="root"></div>' : adminDashboard();
   const html = adminLayout({active:view,csrf,content,employee});
-  const javascript = quiz ? '<script>' + quiz.script + '</script>' : view === 'explore' ? `<script>${script.replaceAll('</script', '<\\/script')}</script>` : '';
+  const headerScript = `<script>(${installHeaderScroll.toString()})(document.querySelector('.admin-header'));</script>`;
+  const javascript = headerScript + (quiz ? '<script>' + quiz.script + '</script>' : view === 'explore' ? `<script>${script.replaceAll('</script', '<\\/script')}</script>` : '');
   return response(`<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${view==='employees'?'Danh sách nhân viên':view==='quiz'?'Quiz vận hành PBB':view==='explore'?'Khám phá PBB':'Tổng quan quản trị'} · PBB Lab Admin</title><style>${css}${employeeStyles}${employeeEditStyles}${quiz?.css || ''}</style></head><body>${html}${javascript}</body></html>`,employeeResult?.status||200);
  } catch (error) { console.error('Explore private payload unavailable:', error.code || error.message); return response(page('<h1>Nội dung chưa sẵn sàng</h1><p>Vui lòng liên hệ người quản lý.</p>'),503); }
 }
