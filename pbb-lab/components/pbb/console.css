@@ -62,3 +62,47 @@
 }
 .operator-console button{touch-action:manipulation}
 .operator-console .hold-button,.operator-console .joystick-surface{touch-action:none}
+
+/* Phone layout: readable instruments and full-size touch controls. */
+@media(max-width:600px){
+  .operator-console{padding:18px 10px 16px;gap:16px;border-radius:18px;zoom:1;width:100%}
+  .console-center{display:flex;flex-direction:column;gap:12px}
+  .operator-console .console-confirmations{margin:0;padding:8px 12px;border-radius:10px;display:grid;gap:0}
+  .console-confirmations label{min-height:48px;font-size:13px;cursor:pointer}
+  .console-confirmations label+label{border-top:1px solid #dce3e5}
+  .console-confirmations button[data-slot=checkbox]{width:24px;height:24px;min-height:24px}
+  .console-status-strip{margin:0;flex-wrap:wrap;line-height:1.6;font-size:12px}
+  .console-status-strip>svg{flex-shrink:0}
+  .console-status-strip>span:last-child{font-size:11px}
+  .operator-console .console-message{padding:12px;margin:0;background:#fff;border:1px solid #d3dce0;border-radius:10px;font-size:13px}
+  .console-service{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .console-service button{min-height:48px;font-size:12px;padding:10px 6px;justify-content:center;border-radius:8px}
+  .console-service button:last-child{grid-column:1/-1}
+  .console-left{gap:12px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .estop-housing,.key-switch{border-radius:12px;padding:12px 6px}
+  .hardware-label,.estop-caption{font-size:10px;letter-spacing:.3px}
+  .key-dial{display:none}
+  .key-options{margin-top:8px;gap:5px}
+  .operator-console .key-options button{min-height:44px;font-size:11px;border:1px solid #ffffff40;border-radius:6px}
+  .power-buttons{padding:0;gap:12px}
+  .operator-console .power-buttons button{min-height:56px;border-radius:8px}
+  .operator-console .console-rockers{padding:0 12px;border-radius:12px}
+  .rocker-row{padding:14px 0;gap:10px}
+  .rocker-row b{font-size:12px}.rocker-row span{font-size:11px}
+  .rocker-buttons{gap:10px}
+  .operator-console .rocker-buttons button{width:48px;height:48px;min-height:48px;border-radius:8px}
+  .operator-console .preset-button{min-height:56px;padding:12px;border-radius:8px;font-size:13px!important}
+  .preset-button small{font-size:9px;line-height:1.6}
+  .console-right{gap:12px}
+  .console-right .joystick-block{grid-row:1;padding:20px 16px;border-radius:12px}
+  .joystick-surface{width:180px;height:180px}
+  .operator-console .joystick-nudges .hardware-button{min-height:48px;border-radius:8px;font-size:22px}
+  .operator-console .aux-switches{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px;gap:12px;border-radius:12px}
+  .aux-button{min-height:88px;border-radius:8px;align-items:center}
+  .aux-button b{font-size:13px}.aux-button small{font-size:10px}
+  .operator-console .reset-switch{min-height:48px;padding:10px!important}
+  .reset-housing{border-radius:10px}
+  .climate-readout{padding:8px 4px}.climate-readout small{font-size:10px}
+  .console-nameplate{padding:12px 2px 0;gap:8px}
+  .console-nameplate b{font-size:14px}.console-disclaimer{font-size:12px}
+}

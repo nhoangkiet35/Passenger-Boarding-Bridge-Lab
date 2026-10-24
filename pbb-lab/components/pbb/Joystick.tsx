@@ -22,7 +22,7 @@ export function HoldButton({ axes = {}, preset = false, className = '', send, ru
   >{children}</button>;
 }
 
-export default function Joystick({ s, send }: { s: State; send: Send }) {
+export default function Joystick({ s, send, compact = false }: { s: State; send: Send; compact?: boolean }) {
   const [point, setPoint] = useState({ x: 0, y: 0 });
   const pointer = useRef<number | null>(null);
   const keys = useRef(new Set<string>());
@@ -47,7 +47,7 @@ export default function Joystick({ s, send }: { s: State; send: Send }) {
   const keyboard = () => apply(Number(keys.current.has('ArrowRight')) - Number(keys.current.has('ArrowLeft')), Number(keys.current.has('ArrowDown')) - Number(keys.current.has('ArrowUp')));
   useEffect(() => { if (!s.jog) { setPoint({ x: 0, y: 0 }); keys.current.clear(); } }, [s.jog]);
   useEffect(() => () => { latestSend.current({ type: 'haltJog' }); }, []);
-  return <div className="joystick-block">
+  return <div className={'joystick-block' + (compact ? ' joystick-overlay' : '')}>
     <div className="hardware-label">JOYSTICK</div>
     <div className="joystick-label top">TIẾN / F</div>
     <div className="joystick-line"><span className="joystick-label">L</span>
@@ -66,13 +66,13 @@ export default function Joystick({ s, send }: { s: State; send: Send }) {
       <span className="joystick-label">R</span>
     </div>
     <div className="joystick-label bottom">LÙI / R</div>
-    <div className="joystick-nudges">
+    {!compact && <div className="joystick-nudges">
       <HoldButton send={send} running={!!s.jog} disabled={!enabled} axes={{angle:-1}} label="Giữ đánh lái bánh xe trái">←</HoldButton>
       <HoldButton send={send} running={!!s.jog} disabled={!enabled} axes={{length:1}} label="Giữ tiến cầu">↑</HoldButton>
       <HoldButton send={send} running={!!s.jog} disabled={!enabled} axes={{length:-1}} label="Giữ lùi cầu">↓</HoldButton>
       <HoldButton send={send} running={!!s.jog} disabled={!enabled} axes={{angle:1}} label="Giữ đánh lái bánh xe phải">→</HoldButton>
-    </div>
-    <p className="hardware-help">11–1h: tiến lên · 5–7h: lùi xuống.<br/>2–4h: bánh lái sang phải · 8–10h: bánh lái sang trái.</p>
-    {unavailable && unavailable !== 'Bật nguồn để dùng joystick.' && <p className="hardware-help">{unavailable}</p>}
+    </div>}
+    {!compact && <p className="hardware-help">11–1h: tiến lên · 5–7h: lùi xuống.<br/>2–4h: bánh lái sang phải · 8–10h: bánh lái sang trái.</p>}
+    {compact ? <p className="joystick-overlay-hint">{unavailable || 'Kéo để chạy · Thả để dừng'}</p> : unavailable && unavailable !== 'Bật nguồn để dùng joystick.' && <p className="hardware-help">{unavailable}</p>}
   </div>;
 }

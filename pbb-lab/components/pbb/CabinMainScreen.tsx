@@ -1,8 +1,8 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Component, useEffect, useRef, useState, type ReactNode } from 'react';
-import { apronView, cabinView, cctvView, CONNECTION, PARK, limits, parked, wheelMotion, wheelCommandLights, bridgeMessages, type Pose, type State } from '@/lib/simulation';
+import { apronView, cabinView, cctvView, limits, parked, wheelMotion, wheelCommandLights, bridgeMessages, type Pose, type State } from '@/lib/simulation';
 import { World } from './Scene';
-import type { Send } from './Joystick';
+import { HoldButton, type Send } from './Joystick';
 import './cabin-main.css';
 
 function CameraPosition({ pose, apron }: { pose: Pose; apron: boolean }) {
@@ -36,6 +36,33 @@ function Indicator({ label, value, red = false }: { label: string; value: string
   return <div className={`cabin-indicator${red ? ' is-red' : ''}${value === 'OFF' ? ' is-off' : ''}${value === 'AUTO' ? ' is-auto' : ''}`} role="status" aria-label={`${label} ${value}`}><span>{label}</span><strong>{value}</strong></div>;
 }
 
+function WheelDirection({ s }: { s: State }) {
+  const wheel = wheelMotion(s);
+  const directionLights = wheelCommandLights(s);
+  return <div className="cabin-wheel"><div>WHEEL ROT. <strong>{wheel.angle.toFixed(1)} deg</strong></div><svg viewBox="0 0 160 160" role="img" aria-label={`Wheel steering ${wheel.angle.toFixed(1)} degrees, ${wheel.direction === 0 ? 'stopped' : wheel.direction > 0 ? 'forward drive' : 'reverse drive'}`}><circle cx="80" cy="80" r="65" fill="none" stroke="#00aaff" />{([{key:'forward',x:80,y:10,label:'Tiến · 12 giờ'},{key:'reverse',x:80,y:150,label:'Lùi · 6 giờ'},{key:'left',x:10,y:80,label:'Đánh lái trái · 9 giờ'},{key:'right',x:150,y:80,label:'Đánh lái phải · 3 giờ'}] as const).map(light=>directionLights[light.key]?<circle key={light.key} data-direction={light.key} cx={light.x} cy={light.y} r="6" fill="#ff0000" stroke="#ff8a8a" strokeWidth="2"><title>{light.label}</title></circle>:null)}<text x="80" y="29" textAnchor="middle">F</text><text x="80" y="142" textAnchor="middle">R</text><g transform={`rotate(${wheel.angle} 80 80)`}><rect x="52" y="51" width="16" height="58" rx="8" fill="#000000" /><rect x="94" y="51" width="16" height="58" rx="8" fill="#000000" /><path d="M68 80 H94" stroke="#808080" strokeWidth="15" /><path d="M80 34 L68 49 H92 Z" fill="#ff0000" /></g></svg></div>;
+}
+
+function CameraAuxControls({ s, send }: { s: State; send: Send }) {
+  const [selected, setSelected] = useState<'canopy' | 'cabYaw' | 'height' | null>(null);
+  const disabled = !s.power || s.mode !== 'manual' || s.emergency || !!s.fault || s.paused;
+  return <div className="camera-aux-controls" aria-label="Điều khiển cabin trên camera">
+    {([['canopy', 'CANOPY'], ['cabYaw', 'CAB ROT'], ['height', 'TUNNEL']] as const).map(([key, label]) => <div className="camera-aux-group" key={key}>
+      <button type="button" className="camera-aux-tab" aria-expanded={selected === key} aria-controls={`camera-aux-${key}`} onClick={() => setSelected(value => value === key ? null : key)}>{label}</button>
+      {selected === key && <div className="camera-aux-actions" id={`camera-aux-${key}`}>
+        {key === 'canopy' ? <>
+          <button type="button" disabled={disabled} onClick={() => send({type:'canopy', open:false})} aria-label="Thu canopy trên camera">↑ Thu</button>
+          <button type="button" disabled={disabled} onClick={() => send({type:'canopy', open:true})} aria-label="Mở canopy trên camera">↓ Mở</button>
+          <span>{Math.round(s.pose.canopy * 100)}%</span>
+        </> : <>
+          <HoldButton send={send} running={!!s.jog} disabled={disabled} axes={{[key]:-1}} label={key === 'cabYaw' ? 'Giữ xoay cabin trái trên camera' : 'Giữ hạ cầu trên camera'}>{key === 'cabYaw' ? '← Trái' : '↓ Hạ'}</HoldButton>
+          <HoldButton send={send} running={!!s.jog} disabled={disabled} axes={{[key]:1}} label={key === 'cabYaw' ? 'Giữ xoay cabin phải trên camera' : 'Giữ nâng cầu trên camera'}>{key === 'cabYaw' ? 'Phải →' : '↑ Nâng'}</HoldButton>
+          <span>{key === 'cabYaw' ? `${s.pose.cabYaw.toFixed(1)}°` : `${s.pose.height.toFixed(2)} m`}</span>
+        </>}
+      </div>}
+    </div>)}
+  </div>;
+}
+
 function Clock() {
   const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
@@ -48,46 +75,24 @@ function Clock() {
   return <div className="cabin-clock"><span>GATE No. XX</span><time>{clock}</time></div>;
 }
 
-function ScreenWindow({ kind, s, send, close }: { kind: 'maintenance' | 'preset'; s: State; send: Send; close: () => void }) {
-  const dialog = useRef<HTMLDialogElement>(null);
-  const [error, setError] = useState('');
-  const [departure, setDeparture] = useState(false);
-  useEffect(() => { const node = dialog.current; node?.showModal(); return () => { node?.close(); }; }, []);
-  const target = departure ? PARK : CONNECTION;
-  return <dialog className="cabin-window" ref={dialog} aria-labelledby="cabin-window-title" onCancel={close}>
-    <header><strong id="cabin-window-title">{kind === 'maintenance' ? 'MAINTENANCE' : 'PRESET'}</strong><button type="button" aria-label="Close window" onClick={close}>×</button></header>
-    {kind === 'maintenance' ? <form onSubmit={event => { event.preventDefault(); event.currentTarget.reset(); setError('SERVICE AUTHENTICATION NOT CONFIGURED. ACCESS DENIED.'); }}>
-      <p>SERVICE PERSONNEL ONLY</p><label htmlFor="cabin-service-password">PASSWORD</label><input id="cabin-service-password" type="password" required autoComplete="off" />
-      {error ? <p className="cabin-window-error" role="alert">{error}</p> : null}<div className="cabin-window-actions"><button type="button" onClick={close}>CANCEL</button><button type="submit">LOGIN</button></div>
-    </form> : <div>
-      <label htmlFor="cabin-preset-position">PRESET POSITION</label><select id="cabin-preset-position" value={departure ? 'departure' : 'approach'} onChange={event => setDeparture(event.target.value === 'departure')}><option value="approach">AIRCRAFT / APPROACH</option><option value="departure">PARK / DEPARTURE</option></select>
-      <dl><dt>HEIGHT</dt><dd>{target.height.toFixed(3)} m</dd><dt>LENGTH</dt><dd>{target.length.toFixed(3)} m</dd><dt>CAB ROT.</dt><dd>{target.cabYaw.toFixed(1)} deg</dd><dt>ROTUNDA ROT.</dt><dd>{target.angle.toFixed(1)} deg</dd></dl>
-      {error ? <p className="cabin-window-error" role="alert">{error}</p> : null}
-      <div className="cabin-window-actions"><button type="button" onClick={close}>CLOSE</button><button type="button" disabled={!s.power || s.emergency} onClick={() => { const result = send({ type: 'guide', departure }); if (result.message.startsWith('Thao tác bị chặn:')) { setError(departure ? 'COMPLETE CONNECTION BEFORE DEPARTURE.' : 'RETURN TO PARK BEFORE APPROACH.'); } else close(); }}>START</button></div>
-    </div>}
-  </dialog>;
-}
-
-export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
+export default function CabinMainScreen({ s, send, mobileControls }: { s: State; send: Send; mobileControls?: ReactNode }) {
   const [selectedCamera, setSelectedCamera] = useState<'apron' | 'cabin' | null>(null);
   const apron = cctvView(s, selectedCamera) === 'apron';
   const [expanded, setExpanded] = useState(false);
   const [page, setPage] = useState(0);
   const [help, setHelp] = useState(false);
   const [lost, setLost] = useState(false);
-  const [screenWindow, setScreenWindow] = useState<'maintenance' | 'preset' | null>(null);
   const lastTouch = useRef(0);
   const lastTouchToggle = useRef(-1000);
   const isParked = parked(s);
   const plcRun = s.power && !s.emergency;
   const slope = Math.atan2(s.pose.height - 3, s.pose.length) * 180 / Math.PI;
-  const wheel = wheelMotion(s);
-  const directionLights = wheelCommandLights(s);
   const allMessages = bridgeMessages(s);
-  const lastPage = Math.max(0, Math.ceil(allMessages.length / 5) - 1);
+  const messagesPerPage = mobileControls ? 2 : 5;
+  const lastPage = Math.max(0, Math.ceil(allMessages.length / messagesPerPage) - 1);
   const visiblePage = Math.min(page, lastPage);
-  const messages = Array.from({ length: 5 }, (_, index) => allMessages[visiblePage * 5 + index] ?? { text: '', alarm: false });
-  useEffect(() => { setPage(0); }, [s.fault, s.emergency, s.message]);
+  const messages = Array.from({ length: messagesPerPage }, (_, index) => allMessages[visiblePage * messagesPerPage + index] ?? { text: '', alarm: false });
+  useEffect(() => { setPage(0); }, [s.fault, s.emergency, s.message, messagesPerPage]);
   const toggleExpanded = () => setExpanded(value => !value);
   return <div className={`cabin-main${expanded ? ' camera-expanded' : ''}`} aria-label="Cabin main screen">
     <div className="cabin-main-grid">
@@ -102,6 +107,15 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
           </Canvas></CameraBoundary>
           {!s.power ? <div className="cabin-video-off" /> : lost ? <span className="cabin-video-error">NO SIGNAL</span> : null}
         </div>
+        {mobileControls && <>
+          <div className="camera-touch-toolbar">
+            <span>{s.power ? '● CAMERA 3D' : 'CAMERA · TẮT NGUỒN'}</span>
+            <button type="button" onClick={() => setSelectedCamera(apron ? 'cabin' : 'apron')} aria-label="Đổi camera theo dõi cầu">{apron ? 'Sân đỗ' : 'Cabin'} ↔</button>
+            <button type="button" onClick={toggleExpanded} aria-pressed={expanded} aria-label={expanded ? 'Thu nhỏ camera' : 'Phóng lớn camera'}>{expanded ? 'Thu nhỏ' : 'Phóng lớn'}</button>
+          </div>
+          <CameraAuxControls s={s} send={send}/>
+          <div className="camera-drive-controls"><WheelDirection s={s}/>{mobileControls}</div>
+        </>}
       </div>
       <div className="cabin-instruments">
         <div className="cabin-top"><Clock /><span className={`cabin-plc ${plcRun ? 'is-run' : ''}`}>PLC {plcRun ? 'RUN' : 'STOP'}</span></div>
@@ -116,15 +130,16 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
           <div className="cabin-drive"><span>DRIVE COLUMN</span><div><strong>{s.pose.height.toFixed(3)} m</strong><strong>{s.pose.height.toFixed(3)} m</strong></div></div>
         </div>
       </div>
-      <div className="cabin-message-panel"><table aria-label="Cảm biến và cảnh báo vận hành cầu"><thead><tr><th scope="col">NO.</th><th scope="col">MESSAGE</th></tr></thead><tbody>{messages.map((message, index) => <tr key={index}><td>{visiblePage * 5 + index + 1}</td><td className={message.alarm ? 'is-alarm' : ''}>{message.text}</td></tr>)}</tbody></table>
+      <div className="cabin-message-panel"><table aria-label="Cảm biến và cảnh báo vận hành cầu"><thead><tr><th scope="col">NO.</th><th scope="col">MESSAGE</th></tr></thead><tbody>{messages.map((message, index) => <tr key={index}><td>{visiblePage * messagesPerPage + index + 1}</td><td className={message.alarm ? 'is-alarm' : ''}>{message.text}</td></tr>)}</tbody></table>
         <div className="cabin-message-controls"><button type="button" aria-expanded={help} onClick={() => setHelp(value => !value)}>HELP</button><button type="button" aria-label="Previous messages" disabled={visiblePage === 0} onClick={() => setPage(visiblePage-1)}>▲</button><button type="button" aria-label="Next messages" disabled={visiblePage === lastPage} onClick={() => setPage(visiblePage+1)}>▼</button><button type="button" className="cabin-camera-select" onClick={() => setSelectedCamera(apron ? 'cabin' : 'apron')}>CAMERA<br />{apron ? '2' : '1'}</button></div>
         {help ? <div className="cabin-help" role="status">Tiếp cận chậm, giữ khe 2,5–5 cm. Sàn thấp hơn cửa 10–20 cm, nghiêng tối đa ±2°. Thả joystick trước khi mở mái che. Cảnh báo đỏ cần xử lý trước.<br />Nhấn đúp camera để phóng lớn.</div> : null}
       </div>
-      <div className="cabin-wheel"><div>WHEEL ROT. <strong>{wheel.angle.toFixed(1)} deg</strong></div><svg viewBox="0 0 160 160" role="img" aria-label={`Wheel steering ${wheel.angle.toFixed(1)} degrees, ${wheel.direction === 0 ? 'stopped' : wheel.direction > 0 ? 'forward drive' : 'reverse drive'}`}><circle cx="80" cy="80" r="65" fill="none" stroke="#00aaff" />{([{key:'forward',x:80,y:10,label:'Tiến · 12 giờ'},{key:'reverse',x:80,y:150,label:'Lùi · 6 giờ'},{key:'left',x:10,y:80,label:'Đánh lái trái · 9 giờ'},{key:'right',x:150,y:80,label:'Đánh lái phải · 3 giờ'}] as const).map(light=>directionLights[light.key]?<circle key={light.key} data-direction={light.key} cx={light.x} cy={light.y} r="6" fill="#ff0000" stroke="#ff8a8a" strokeWidth="2"><title>{light.label}</title></circle>:null)}<text x="80" y="29" textAnchor="middle">F</text><text x="80" y="142" textAnchor="middle">R</text><g transform={`rotate(${wheel.angle} 80 80)`}><rect x="52" y="51" width="16" height="58" rx="8" fill="#000000" /><rect x="94" y="51" width="16" height="58" rx="8" fill="#000000" /><path d="M68 80 H94" stroke="#808080" strokeWidth="15" /><path d="M80 34 L68 49 H92 Z" fill="#ff0000" /></g></svg></div>
+      <div className="cabin-wheel-desktop"><WheelDirection s={s}/></div>
     </div>
     <div className="cabin-indicators" aria-label="Indicator lamps">
-      <button type="button" className="cabin-mode-lamp" aria-label="MAINTENANCE: open service password window" aria-haspopup="dialog" onClick={() => setScreenWindow('maintenance')}><i aria-hidden="true" /><span>MAIN-<br />TENANCE</span></button>
-      <button type="button" className="cabin-mode-lamp" aria-label="PRESET: open preset window" aria-haspopup="dialog" onClick={() => setScreenWindow('preset')}><i className={s.mode === 'guide' ? 'active' : ''} aria-hidden="true" /><span>PRESET</span></button>
+      {/* Maintenance stays off until a maintenance mode exists in the simulator. */}
+      <Indicator label="MAINTENANCE" value="OFF" />
+      <Indicator label="PRESET" value={s.power && !s.emergency && (s.mode === 'guide' || s.presetPark) ? 'ON' : 'OFF'} />
       <Indicator label="PARK" value={isParked ? 'IN' : 'OUT'} red={!isParked} />
       <Indicator label="OPERATION" value={s.autoLevel ? 'AUTO' : !s.power || s.emergency || s.paused ? 'OFF' : 'ON'} />
       <Indicator label="VENTILATOR" value={s.power && s.aux.ventilation ? 'ON' : 'OFF'} />
@@ -133,6 +148,5 @@ export default function CabinMainScreen({ s, send }: { s: State; send: Send }) {
       <Indicator label="INT. LIGHT" value={s.power && s.aux.interior ? 'ON' : 'OFF'} />
       <Indicator label="EXT. LIGHT" value={s.power && s.aux.exterior ? 'ON' : 'OFF'} />
     </div>
-    {screenWindow ? <ScreenWindow kind={screenWindow} s={s} send={send} close={() => setScreenWindow(null)} /> : null}
   </div>;
 }
