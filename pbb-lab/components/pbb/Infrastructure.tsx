@@ -82,7 +82,7 @@ export function BridgeServices({length,show}:{length:number;show:boolean}) {
   {Array.from({length:12},(_,i)=><Block key={i} at={[-3.9+i*.2,.56,-1.25]} size={[.035,.14,.24]} color="#192f3b"/>)}
  </group>;
 }
-export function CabinGPU({show}:{show:boolean}) {
+export function CabinGPU({show,lead=true}:{show:boolean;lead?:boolean}) {
  return <group position={[.25,-.65,.7]} rotation={[0,Math.PI,0]}>
   {[-.5,.5].map(x=><Block key={x} at={[x,.56,0]} size={[.1,.25,.85]} color="#98aab0"/>)}
   <Block size={[1.35,.95,.83]} color="#edf0ec"/>
@@ -92,10 +92,10 @@ export function CabinGPU({show}:{show:boolean}) {
   <Plate at={[0,-.34,.45]} text="GPU" width={.4} color="#363c3e" background="#f5f5ef"/>
   <Block at={[-.65,-.24,0]} size={[.025,.38,.69]} color="#2b3740"/>
   {[-.35,-.23,-.11].map(y=><Block key={y} at={[-.669,y,0]} size={[.018,.026,.62]} color="#899a9f"/>)}
-  <mesh position={[-.58,-.61,0]}><cylinderGeometry args={[.04,.04,.29,12]}/><meshStandardMaterial color="#ef841d"/></mesh>
+  <group visible={lead}><mesh position={[-.58,-.61,0]}><cylinderGeometry args={[.04,.04,.29,12]}/><meshStandardMaterial color="#ef841d"/></mesh>
   <mesh position={[-.58,-.85,0]}><cylinderGeometry args={[.045,.045,.2,12]}/><meshStandardMaterial color="#27343c"/></mesh>
   <Block at={[-.58,-1.04,0]} size={[.1,.23,.09]} color="#34414a"/>
-  <Block at={[-.58,-1.16,0]} size={[.085,.035,.08]} color="#596a9b"/>
+  <Block at={[-.58,-1.16,0]} size={[.085,.035,.08]} color="#596a9b"/></group>
   <Annotation at={[0,-1.4,.7]} show={show}>GPU</Annotation>
  </group>;
 }
@@ -156,13 +156,13 @@ export function MobileCarriage({pose,show,wheelRotation=0,wheelTravel=0}:{pose:P
  </group>;
 }
 
-export function CabinServices({pose,show}:{pose:Pose;show:boolean}) {
+export function CabinServices({pose,show,stairs=true}:{pose:Pose;show:boolean;stairs?:boolean}) {
  const stairRun=4.5, rise=pose.height-.3, count=12;
  return <>
   <HoseReels show={show}/>
   <AirSupplyHose pose={pose}/>
   {/* Service stair is outside the passenger corridor, beside the lifting column. */}
-  <group position={[0,0,2.15]}>
+  {stairs&&<group position={[0,0,2.15]}>
    <Block at={[-.35,.01,0]} size={[1.3,.12,1]} color="#6b7f88"/>
    {Array.from({length:count},(_,i)=>{const u=(i+1)/count;return <group key={i} position={[-.8-stairRun*u,-rise*u,0]}>
     <Block size={[stairRun/count,.07,.9]} color="#91a1a9"/>
@@ -171,7 +171,7 @@ export function CabinServices({pose,show}:{pose:Pose;show:boolean}) {
    {[-.48,.48].map(z=><group key={z} position={[-.8-stairRun/2,.85-rise/2,z]} rotation={[0,0,Math.atan2(rise,stairRun)]}>
     <Block size={[Math.hypot(stairRun,rise),.05,.05]} color="#d4dde1"/>
    </group>)}
-  </group>
+  </group>}
  </>;
 }
 export function FixedBridge({show}:{show:boolean}) {

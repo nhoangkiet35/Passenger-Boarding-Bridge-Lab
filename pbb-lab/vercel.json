@@ -5,6 +5,8 @@
   "buildCommand": "pnpm build:vercel",
   "outputDirectory": "dist-vercel",
   "rewrites": [
+    { "source": "/ground-ops", "destination": "/index.html" },
+    { "source": "/ground-ops/", "destination": "/index.html" },
     {
       "source": "/vdgs",
       "destination": "/index.html"

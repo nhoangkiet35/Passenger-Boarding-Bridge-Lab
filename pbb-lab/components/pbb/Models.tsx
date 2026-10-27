@@ -8,6 +8,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import type { Group } from 'three';
 import { BufferGeometry, DoubleSide, Float32BufferAttribute, Path, Shape } from 'three';
 import { aircraftDoorFrame, aircraftHull, aircraftSurface, cockpitPane } from './aircraftGeometry';
+import { stairConfig } from '@/lib/groundOps';
 import { BridgeBrand, BridgeServices, CabinGPU, CabinServices, MobileCarriage } from './Infrastructure';
 export function Box({at=[0,0,0],size=[1,1,1],color='#cbd5df',...props}:{at?:[number,number,number];size?:[number,number,number];color?:string;rotation?:[number,number,number]}){return <mesh position={at} castShadow receiveShadow {...props}><boxGeometry args={size}/><meshStandardMaterial color={color} roughness={.65}/></mesh>;}
 function Label({at,children,visible=true}:{at:[number,number,number];children:React.ReactNode;visible?:boolean}){return <Html position={at} center zIndexRange={[20,0]} style={{pointerEvents:'none',display:visible?'block':'none'}}><span className="part-label">{children}</span></Html>;}
@@ -94,7 +95,7 @@ function CabinFront({open,floorTilt,halted=false}:{open:boolean;floorTilt:number
   <Box at={[.84,-.16,0]} size={[.26,.13,.16]} color="#58727f"/>
  </>;
 }
-export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior:false,aircon:false,ventilation:false},highlight=true,wheelRotation=0,autoLevel=false,aircraftShift=0,wheelTravel=0,halted=false}:{pose:Pose;halted?:boolean;wheelTravel?:number;autoLevel?:boolean;aircraftShift?:number;labels:boolean;annotations?:boolean;aux?:Record<Aux,boolean>;highlight?:boolean;wheelRotation?:number}){
+export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior:false,aircon:false,ventilation:false},highlight=true,wheelRotation=0,autoLevel=false,aircraftShift=0,wheelTravel=0,halted=false,serviceAccess=false}:{pose:Pose;halted?:boolean;wheelTravel?:number;autoLevel?:boolean;aircraftShift?:number;labels:boolean;annotations?:boolean;aux?:Record<Aux,boolean>;highlight?:boolean;wheelRotation?:number;serviceAccess?:boolean}){
  const slope=Math.atan2(p.height-3,p.length),len=Math.hypot(p.length,p.height-3);
  const sensor=autoLevelSensorGeometry(p,autoLevel,aircraftShift);
  const sensorReach=sensor.reach,sensorRadius=sensor.radius;
@@ -137,12 +138,16 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
     {[-4.5,0,4.5].map(x=><Box key={x} at={[x,-.22,0]} size={[.08,.18,width]} color="#dce4e3"/>)}
     <Box at={[0,-.11,0]} size={[10,.22,width]} color="#687d89"/>
     <Box at={[0,2.35,0]} size={[10,.18,width]} color={i===2?'#dae7eb':'#f4f8f9'}/>
-    {[-1,1].map(side=><group key={side}>
-     <Box at={[0,.42,side*width/2]} size={[10,.65,.09]} color="#d9e4e9"/>
-     <mesh position={[0,1.5,side*width/2]}><boxGeometry args={[9.9,1.5,.045]}/><meshStandardMaterial color="#80baca" transparent opacity={.47} metalness={.15} roughness={.2}/></mesh>
-     {[-5,-2.5,0,2.5,5].map(v=><Box key={v} at={[v,1.25,side*width/2]} size={[.07,2.25,.12]} color="#f0f5f6"/>)}
-     <Box at={[0,.8,side*width/2]} size={[10,.09,.14]} color="#2795a4"/>
-    </group>)}
+    {[-1,1].map(side=>{
+     const door=(p.length-stairConfig.setback)/Math.cos(slope)-x;
+     const opening=serviceAccess&&side===1;
+     const spans=opening?[[-5,Math.min(5,door-stairConfig.halfDoor)],[Math.max(-5,door+stairConfig.halfDoor),5]]:[[-5,5]];
+     return <group key={side}>{spans.filter(([lo,hi])=>hi>lo).map(([lo,hi])=><group key={lo} position={[(lo+hi)/2,0,0]}>
+      <Box at={[0,.42,side*width/2]} size={[hi-lo,.65,.09]} color="#d9e4e9"/>
+      <mesh position={[0,1.5,side*width/2]}><boxGeometry args={[hi-lo,1.5,.045]}/><meshStandardMaterial color="#80baca" transparent opacity={.47} metalness={.15} roughness={.2}/></mesh>
+      <Box at={[0,.8,side*width/2]} size={[hi-lo,.09,.14]} color="#2795a4"/>
+     </group>)}{[-5,-2.5,0,2.5,5].filter(v=>!opening||Math.abs(v-door)>stairConfig.halfDoor+.05).map(v=><Box key={v} at={[v,1.25,side*width/2]} size={[.07,2.25,.12]} color="#f0f5f6"/>)}</group>;
+    })}
    </group>;})}
    <BridgeBrand length={len}/>
    {annotations&&<group position={[...APRON_CAMERA_MOUNT]} rotation={[0,0,-.35]}><Box at={[0,.16,0]} size={[.08,.25,.08]} color="#647b89"/><Box size={[.32,.16,.18]} color="#dce4e8"/><Box at={[.17,0,0]} size={[.015,.1,.12]} color="#172e40"/></group>}
@@ -150,7 +155,7 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
    {annotations&&<Label visible={labels} at={[len/2,3.45,0]}>02 · Ống lồng</Label>}
   </group>
   <group position={[p.length,p.height,0]}>
-   <CabinServices pose={p} show={annotations&&labels}/>
+   <CabinServices pose={p} show={annotations&&labels} stairs={!serviceAccess}/>
    <mesh position={[0,-.2,0]}><cylinderGeometry args={[1.38,1.38,.3,64]}/><meshStandardMaterial color="#c6d3d9" metalness={.35}/></mesh>
    {/* Tunnel-side interfaces stay in the bridge frame, independently of cabin yaw. */}
    <group name="cabin-fixed-tunnel-interfaces">
@@ -192,7 +197,7 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
       <mesh position={[sensorReach,0,0]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[sensorRadius,sensorRadius,.06,16]}/><meshStandardMaterial color={autoLevel?'#4dbb83':'#5a6570'}/></mesh>
       {annotations&&<Label visible={labels} at={[.1,-.15,-.6]}>Autolevel · {autoLevel?'tì thân tàu':'thu'}</Label>}
     </group>
-    <CabinGPU show={annotations&&labels}/>
+    <CabinGPU show={annotations&&labels} lead={!serviceAccess}/>
     <group position={[1,0,0]}>
      <ConformingCanopy pose={p} aircraftShift={aircraftShift}/>
 

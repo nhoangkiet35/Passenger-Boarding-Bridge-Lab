@@ -57,6 +57,8 @@ export function aircraftHull() {
   geometry.setAttribute('position', new Float32BufferAttribute(vertices, 3));
   geometry.setAttribute('color', new Float32BufferAttribute(colors, 3));
   geometry.setAttribute('normal',new Float32BufferAttribute(normals,3));
+  // Reject ground-level cable/stair sweeps before traversing the detailed hull triangles.
+  geometry.computeBoundingBox();
   return geometry;
 }
 
