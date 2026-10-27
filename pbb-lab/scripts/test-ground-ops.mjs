@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import {groundGuide} from '../lib/groundGuide.ts';
+import {groundInteraction} from '../lib/groundInteraction.ts';
 import { newMission, stage, groundConfig, serviceAction, serviceMount, advanceMission, secureBridge, finishMission, handover, walkFloor, consolePosition, stairConfig, stairFrame, stairWorld, stairDoorPosition, stairPassable, toggleStairDoor, atStairBottom, wheelCompass, mobileStepsAction } from '../lib/groundOps.ts';
 import {mobileHandle,mobileBrake,mobileWorld,mobileReady,mobileStepsConfig,moveMobile,onMobilePlatform} from '../lib/mobileSteps.ts';
 import { command, tick, CONNECTION, aligned } from '../lib/simulation.ts';
@@ -85,3 +87,26 @@ m=finishMission(m,handover,true);assert.equal(m.complete,true);assert.equal(stag
 assert.equal(advanceMission(m,100).elapsed,m.elapsed);
 assert.equal(newMission().waterPanel,false);
 console.log('PASS Ground Operations: bridge approach, canopy/autolevel, continuous bridge/stairs, all service interlocks, PWS panel/fill/stop, handover, reset.');
+
+// Every service action shown by the HUD is reachable through the interaction resolver.
+let flow=newMission();flow.started=true;flow.checks.fill(true);flow.docked=true;flow.descended=true;flow.bridge={...flow.bridge,pose:{...CONNECTION,canopy:1},target:{...CONNECTION,canopy:1},autoLevel:true};
+for(const id of ['GPU','PCA','PWS']){
+ const at=serviceMount(flow,id).control,unit=[at[0]-2.2,0,at[2]];
+ if(id==='PWS'){flow.mobileSteps={...flow.mobileSteps,x:mobileStepsConfig.target[0],z:mobileStepsConfig.target[2],phase:'locked',climbed:true};}
+ assert.match(groundGuide(flow).title,new RegExp(id));
+ const target=groundInteraction({mission:flow,player:unit,operating:false});
+ assert.equal(target?.kind,'unit');assert.equal(target?.id,id);
+ flow=serviceAction(flow,id,'unit',unit);assert.equal(flow.services[id],'inspected','visible pickup hint agrees with action range');
+ flow=serviceAction(flow,id,'unit',unit);
+ const socket=id==='PWS'?mobileWorld(flow.mobileSteps,0,1.5,0):[groundConfig.services[id].socket[0]-.7,0,groundConfig.services[id].socket[2]];
+ assert.equal(groundInteraction({mission:flow,player:socket,operating:false})?.kind,'socket');
+ if(id==='PWS')flow=serviceAction(flow,id,'socket',socket);
+ flow=serviceAction(flow,id,'socket',socket);assert.equal(flow.services[id],'connected');
+ assert.match(groundGuide(flow).title,/khóa đầu nối/);
+ flow=serviceAction(flow,id,'socket',socket);
+ assert.match(groundGuide(flow).title,/trở lại thiết bị/);
+ flow=serviceAction(flow,id,'unit',unit);assert.equal(flow.services[id],'active');
+ if(id==='PWS'){flow=advanceMission(flow,12);assert.match(groundGuide(flow).detail,/120 L/);flow=serviceAction(flow,id,'unit',unit);}
+}
+assert.deepEqual(groundGuide(flow).at,handover);
+console.log('PASS HUD mission guidance and interaction ranges across all service transitions.');

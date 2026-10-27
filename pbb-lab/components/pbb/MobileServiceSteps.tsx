@@ -4,11 +4,11 @@ import KeyHints from './KeyHints';
 import { Html } from '@react-three/drei';
 import { mobileStepsConfig as c, mobileReady, mobileTreads, type MobileSteps } from '@/lib/mobileSteps';
 
-export default function MobileServiceSteps({steps:l}:{steps:MobileSteps}) {
+export default function MobileServiceSteps({steps:l,showGuide=true}:{steps:MobileSteps;showGuide?:boolean}) {
  const ready=mobileReady(l),locked=l.phase==='locked';
  return <>
   <Line points={[[c.target[0]-.75,.025,c.target[2]-1],[c.target[0]+.75,.025,c.target[2]-1],[c.target[0]+.75,.025,c.target[2]+1],[c.target[0]-.75,.025,c.target[2]+1],[c.target[0]-.75,.025,c.target[2]-1]]} color={ready?'#71e5b6':'#86c6ff'} lineWidth={3} dashed dashSize={.25} gapSize={.12}/>
-  <Html position={[c.target[0],.12,c.target[2]+1.5]} center style={{pointerEvents:'none'}}><span className="ops-marker">PWS · ĐỖ SÀN THANG TẠI ĐÂY →</span></Html>
+  <Html position={[c.target[0],.12,c.target[2]+1.5]} center style={{pointerEvents:'none',display:showGuide?'block':'none'}}><span className="ops-marker">PWS · ĐỖ SÀN THANG TẠI ĐÂY →</span></Html>
   <group name="mobile-pws-service-stairs" position={[l.x,0,l.z]} rotation={[0,-l.angle,0]}>
    {[-1,1].map(s=><group key={s}>
     <Box at={[-1.5,.35,s*.78]} size={[4.2,.12,.1]} color="#527384"/>

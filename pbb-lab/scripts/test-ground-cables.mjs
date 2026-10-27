@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { registerHooks } from 'node:module';
-import { Mesh, MeshBasicMaterial, DoubleSide, Raycaster, Group, CylinderGeometry, BoxGeometry } from 'three';
+import { Mesh, MeshBasicMaterial, DoubleSide, Raycaster, Vector3, Group, CylinderGeometry, BoxGeometry } from 'three';
 import { newMission, serviceMount, serviceIds, groundConfig, heldConnector, cableControlPoints, cableLength, serviceAction } from '../lib/groundOps.ts';
 import { CONNECTION, cabinFrame } from '../lib/simulation.ts';
 import { planCable, pullCableRoute, cableCurve, clearCableSegment } from '../lib/groundCable.ts';
@@ -57,6 +57,12 @@ for(const tread of mobileTreads()){const mesh=new Mesh(new BoxGeometry(...tread.
 apron.add(ladderMesh);apron.updateMatrixWorld(true);
 for(let x=-3.8;x<=0;x+=.12){const floor=Math.max(0,Math.min(1.5,1.5*Math.ceil((x+3.6)/.3)/10)),p=mobileWorld(walking.mobileSteps,x,floor,0),hand=heldConnector(p,-Math.PI/2);const climbed=planCable(walking,'PWS',hand,waterClear);assert.ok(climbed,`hose clears mobile treads at x=${x}`);walking.cableRoutes.PWS=climbed.route;}
 assert.ok(planCable(walking,'PWS',groundConfig.services.PWS.socket,waterClear),'hose reaches tail port from locked platform without cutting through treads');
+// Match the live player sweep at the bottom of the mobile stair, not only floor sampling.
+for(let x=-3.8;x< -3;x+=.035){
+ const floor=Math.max(0,1.5*Math.ceil((x+3.6)/.3)/10);
+ if(floor>=.3)continue;
+ for(const h of [.35,1.2]){ray.set(new Vector3(walking.mobileSteps.x+x,floor+h,walking.mobileSteps.z),new Vector3(1,0,0));ray.far=.035+groundConfig.radius;assert.equal(ray.intersectObjects(ladderMesh.children,false).length,0,'player sweep must permit climbing first mobile steps');}
+}
 apron.remove(ladderMesh);ladderMesh.children.forEach(mesh=>{mesh.geometry.dispose();mesh.material.dispose();});
 apron.children.filter(child=>child!==hull).forEach(wheel=>{wheel.geometry.dispose();wheel.material.dispose();});
 hull.geometry.dispose();hull.material.dispose();

@@ -16,7 +16,7 @@ import { cableCurve, clearCableSegment, planCable } from '@/lib/groundCable';
 export type Runtime = { mission: Mission; player: Point; yaw:number; pitch:number; third:boolean; operating:boolean; running:boolean; inputMode?:'pointer'|'drag'; keys:Set<string>; recovery:number; handPoint?:Point; linesClear?:boolean; cableLengths?:Partial<Record<ServiceId,number>>; connectCable?:(id:ServiceId)=>boolean; exitConsole?:()=>void; sound?: (kind:'step'|'motor'|'beep')=>void; interact:(key?:'E'|'F')=>void };
 export type RuntimeRef = MutableRefObject<Runtime>;
 const StaticAircraft=memo(Aircraft);
-function Marker({at,children,color='#ffd167'}:{at:Point;children:React.ReactNode;color?:string}) { return <Html position={at} center zIndexRange={[15,0]} style={{pointerEvents:'none'}}><span className="ops-marker" style={{borderColor:color}}>{Children.map(children,child=>typeof child==='string'?<KeyHints text={child}/>:child)}</span></Html>; }
+function Marker({at,children,color='#ffd167',visible=true}:{at:Point;children:React.ReactNode;color?:string;visible?:boolean}) { return <Html position={at} center zIndexRange={[15,0]} style={{pointerEvents:'none',display:visible?'block':'none'}}><span className="ops-marker" style={{borderColor:color}}>{Children.map(children,child=>typeof child==='string'?<KeyHints text={child}/>:child)}</span></Html>; }
 const Apron = memo(function Apron(){ return <>
   <Box at={[0,-.22,5]} size={[100,.4,110]} color="#8b9ca4"/>
   <Box at={[0,4,-26]} size={[75,8,10]} color="#b9cbd1"/>
@@ -28,7 +28,7 @@ const Apron = memo(function Apron(){ return <>
   <Line points={[[-5,.02,-7],[-5,.02,27],[-9,.02,27]]} color="#e6eee8" lineWidth={2} dashed dashSize={.6} gapSize={.4}/>
   {[-.6,.6].map(z=><Box key={z} at={[7,.12,-3.2+z]} size={[1,.24,.25]} color="#f6be41"/>)}
   <Box at={handover.map((v,i)=>i===1?v+.7:v) as Point} size={[.8,1.4,.5]} color="#254f64"/>
-  <Marker at={[-8,2.4,24]}>✓ BILAN · BÀN GIAO</Marker>
+
 </>; });
 function ServiceStairs({m}:{m:Mission}) {
  const f=stairFrame(m),c=stairConfig,door=useRef<Group>(null);
@@ -58,20 +58,20 @@ function ServiceStairs({m}:{m:Mission}) {
    <Line points={[[-c.landingBack,f.height+1.05,c.side+s*c.halfWidth],[-c.landingBack-c.run,1.05,c.side+s*c.halfWidth]]} color="#ffd167" lineWidth={4}/>
    <Line points={[[-c.landingBack,f.height-.14,c.side+s*.54],[-c.landingBack-c.run,-.14,c.side+s*.54]]} color="#4d6778" lineWidth={8}/>
   </group>)}
-  <Marker at={[0,f.height+2.6,c.doorSide]} color={stairDoorBlockReason(m)?'#f3a576':'#ffd167'}>{stairDoorBlockReason(m)?'CỬA KHÓA · CHỜ CẦU DỪNG':`E · ${m.stairDoorOpen?'ĐÓNG':'MỞ'} CỬA · ỐNG A / SAU CABIN`}</Marker>
+  <Marker visible={stage(m)===3} at={[0,f.height+2.6,c.doorSide]} color={stairDoorBlockReason(m)?'#f3a576':'#ffd167'}>{stairDoorBlockReason(m)?'CỬA KHÓA · CHỜ CẦU DỪNG':`E · ${m.stairDoorOpen?'ĐÓNG':'MỞ'} CỬA · ỐNG A / SAU CABIN`}</Marker>
  </group>;
 }
 function ServiceVisuals({r}:{r:RuntimeRef}) {
   const m=r.current.mission;
   return <>{serviceIds.map(id=>{const cfg=groundConfig.services[id],phase=m.services[id],mount=serviceMount(m,id);return <group key={id}>
-    <Marker at={[mount.pickup[0],mount.pickup[1]+.7,mount.pickup[2]]} color={cfg.color}>{id} · {phase==='active'?'● ON':phase==='complete'?'✓':phase==='carrying'?'ĐANG KÉO':phase==='locked'?'E · KHỞI ĐỘNG':phase==='connected'?'CHỜ KHÓA ĐẦU NỐI':'LẤY ĐẦU NỐI TRÊN CẦU'}</Marker>
+    <Marker visible={stage(m)===4+serviceIds.indexOf(id)} at={[mount.pickup[0],mount.pickup[1]+.7,mount.pickup[2]]} color={cfg.color}>{id} · {phase==='active'?'● ON':phase==='complete'?'✓':phase==='carrying'?'ĐANG KÉO':phase==='locked'?'E · KHỞI ĐỘNG':phase==='connected'?'CHỜ KHÓA ĐẦU NỐI':'LẤY ĐẦU NỐI TRÊN CẦU'}</Marker>
     <group position={mount.pickup}><mesh position={[0,-.24,0]}><torusGeometry args={[.16,.025,8,16]}/><meshStandardMaterial color="#9db6c3"/></mesh><Box at={[0,-.43,0]} size={[.26,.07,.15]} color="#344e5c"/></group>
     <group position={cfg.socket} rotation={[0,-Math.PI/2,0]}><group rotation={[Math.PI/3,0,0]}>
      <mesh position={[0,0,-.14]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[id==='PCA'?.18:.075,id==='PCA'?.18:.075,.28,20]}/><meshStandardMaterial color="#b6c9cf" metalness={.4}/></mesh>
      {id==='GPU'?<><Box size={[.25,.3,.09]} color="#233844"/><Box at={[0,0,-.055]} size={[.17,.22,.025]} color={cfg.color}/></>:<mesh rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[id==='PCA'?.19:.065,id==='PCA'?.19:.065,.1,24,1,true]}/><meshStandardMaterial color={cfg.color} side={2}/></mesh>}
     </group></group>
     {id==='PWS'&&<Box at={[cfg.socket[0]-.12,cfg.socket[1]+(m.waterPanel?.5:0),cfg.socket[2]+(m.waterPanel?.4:0)]} size={[.06,.5,.55]} color={m.waterPanel?'#d6e9f1':'#4a697c'}/>}
-    <Marker at={[cfg.socket[0],cfg.socket[1]+.7,cfg.socket[2]]} color={cfg.color}>{id} · {id==='GPU'?'ĐẦU TÀU BAY':id==='PCA'?'BỤNG GIỮA HAI CÁNH':'DƯỚI ĐUÔI · CẦN THANG'} · MINH HỌA</Marker>
+    <Marker visible={stage(m)===4+serviceIds.indexOf(id)} at={[cfg.socket[0],cfg.socket[1]+.7,cfg.socket[2]]} color={cfg.color}>{id} · {id==='GPU'?'ĐẦU TÀU BAY':id==='PCA'?'BỤNG GIỮA HAI CÁNH':'DƯỚI ĐUÔI · CẦN THANG'}</Marker>
     <Hose id={id} r={r}/><ServiceConnector id={id} r={r}/>
     {phase==='active'&&<mesh position={[cfg.socket[0]-.2,cfg.socket[1],cfg.socket[2]]}><sphereGeometry args={[.1,8,8]}/><meshBasicMaterial color={cfg.color}/></mesh>}
   </group>;})}</>;
@@ -201,11 +201,12 @@ function World({r,onUpdate}:{r:RuntimeRef;onUpdate:()=>void}) {
  const solids=useRef<Group>(null),fixedSolids=useRef<Group>(null),m=r.current.mission;
  return <><color attach="background" args={['#bed4dd']}/><fog attach="fog" args={['#bed4dd',60,140]}/><hemisphereLight args={['#ffffff','#627580',2]}/><directionalLight position={[-20,35,-15]} intensity={2.5}/>
   <Apron/>
-  <group ref={solids}><group ref={fixedSolids}><ServiceStairs m={m}/><StaticAircraft labels={false} annotations={false} doorOpen={false} halted/><PBB serviceAccess pose={m.bridge.pose} labels={false} annotations={false} highlight={false} halted={!r.current.operating} autoLevel={m.bridge.autoLevel} wheelRotation={m.bridge.wheelRotation} wheelTravel={m.bridge.wheelTravel} aux={{interior:true,exterior:true,aircon:false,ventilation:false}}/></group><MobileServiceSteps steps={m.mobileSteps}/>
+  <group ref={solids}><group ref={fixedSolids}><ServiceStairs m={m}/><StaticAircraft labels={false} annotations={false} doorOpen={false} halted/><PBB serviceAccess pose={m.bridge.pose} labels={false} annotations={false} highlight={false} halted={!r.current.operating} autoLevel={m.bridge.autoLevel} wheelRotation={m.bridge.wheelRotation} wheelTravel={m.bridge.wheelTravel} aux={{interior:true,exterior:true,aircon:false,ventilation:false}}/></group><MobileServiceSteps steps={m.mobileSteps} showGuide={stage(m)===6}/>
   </group>
   <ServiceVisuals r={r}/>
-  {m.started&&stage(m)===1&&groundConfig.checks.map((c,i)=><Marker key={c.label} at={[c.at[0],c.at[1]+2,c.at[2]]} color={m.checks[i]?'#68e2ae':'#ffd167'}>{m.checks[i]?'✓':'E'} · {c.label}</Marker>)}
-  <Marker at={consolePosition(m).map((v,i)=>i===1?v+2:v) as Point}>PBB · BÀN ĐIỀU KHIỂN</Marker>
+  {groundConfig.checks.map((c,i)=><Marker visible={m.started&&stage(m)===1&&i===m.checks.findIndex(v=>!v)} key={c.label} at={[c.at[0],c.at[1]+2,c.at[2]]} color={m.checks[i]?'#68e2ae':'#ffd167'}>{m.checks[i]?'✓':'E'} · {c.label}</Marker>)}
+  <Marker visible={stage(m)===2} at={consolePosition(m).map((v,i)=>i===1?v+2:v) as Point}>PBB · BÀN ĐIỀU KHIỂN</Marker>
+  <Marker visible={stage(m)===7} at={[-8,2.4,24]}>E · BÀN GIAO</Marker>
   <Player r={r} solids={solids} fixedSolids={fixedSolids} onUpdate={onUpdate}/>
   <SupportCamera r={r}/>
  </>;
