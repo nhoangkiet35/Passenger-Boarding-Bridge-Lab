@@ -14,7 +14,8 @@
     "start": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
-    "test": "node scripts/test-simulation.mjs && node scripts/test-training.mjs",
+    "test": "node scripts/test-simulation.mjs && node scripts/test-training.mjs && node scripts/test-ground-ops.mjs && node scripts/test-ground-cables.mjs && node scripts/test-mobile-service-steps.mjs && node scripts/test-ground-door.mjs",
+    "test:ground": "node scripts/test-ground-ops.mjs && node scripts/test-ground-cables.mjs && node scripts/test-mobile-service-steps.mjs && node scripts/test-ground-door.mjs",
     "typecheck": "tsc --noEmit",
     "preview:protected": "node scripts/serve-protected.mjs",
     "test:auth": "node scripts/test-explore-auth.mjs && node scripts/test-employee-management.mjs"
