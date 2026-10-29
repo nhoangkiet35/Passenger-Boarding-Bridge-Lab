@@ -110,3 +110,31 @@
   .cabin-main.camera-expanded .camera-aux-controls{bottom:auto;top:92px;flex-direction:row;width:calc(100% - 16px);max-width:none;align-items:flex-start}
   .cabin-main.camera-expanded .camera-aux-group{flex:1;min-width:0}
 }
+
+/* Smaller phone buttons and lamps, including the camera overlay controls. */
+@media(max-width:600px){
+ .operator-console .cabin-main .cabin-message-controls{gap:5px}
+ .operator-console .cabin-main .cabin-message-controls button{min-height:34px;padding:4px;font-size:10px}
+ .operator-console .cabin-indicators{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;padding-top:4px}
+ .operator-console .cabin-indicator{min-height:23px;padding:3px 2px;gap:3px;font-size:8px;border-radius:3px}
+ .operator-console .cabin-indicator strong{font-size:9px}.operator-console .cabin-indicator>span{font-size:7px}
+ .operator-console .camera-touch-toolbar{padding:6px;gap:4px}
+ .operator-console .camera-touch-toolbar button{min-height:34px;padding:5px 3px;font-size:10px;border-radius:5px}
+ .operator-console .camera-aux-controls{width:calc(100% - 158px);max-width:98px;gap:5px;bottom:12px}
+ .operator-console .camera-aux-controls button{min-height:34px;font-size:9px;padding:5px 2px}
+ .operator-console .camera-aux-actions{gap:3px;padding:3px}
+ .operator-console .camera-drive-controls{width:130px;gap:6px;bottom:8px}
+ .operator-console .camera-drive-controls .cabin-wheel{padding:5px;border-radius:8px}
+ .operator-console .camera-drive-controls .cabin-wheel svg{width:70px;height:70px}
+ .operator-console .joystick-block.joystick-overlay{padding:7px 5px 6px;border-radius:11px}
+ .operator-console .joystick-overlay .joystick-surface{width:92px;height:92px}
+ .operator-console .joystick-overlay .joystick-stick{width:38px;height:38px;left:calc(50% - 19px);top:calc(50% - 19px)}
+ .operator-console .joystick-overlay .hardware-label,.operator-console .joystick-overlay .joystick-label{font-size:9px}
+ .operator-console .joystick-overlay-hint{font-size:9px;margin-top:5px}
+}
+@media(max-width:600px) and (max-height:500px){
+ .operator-console .cabin-main.camera-expanded .camera-drive-controls{width:232px}
+ .operator-console .cabin-main.camera-expanded .camera-drive-controls .cabin-wheel{width:94px}
+ .operator-console .cabin-main.camera-expanded .joystick-overlay{width:130px}
+ .operator-console .cabin-main.camera-expanded .camera-aux-controls{width:calc(100% - 16px);max-width:none}
+}

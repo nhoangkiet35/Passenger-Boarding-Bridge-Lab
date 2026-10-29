@@ -1,3 +1,4 @@
+import { applyBridgeVisualPose, type BridgeVisualNodes } from '@/lib/bridgeVisualMotion';
 import { cabinCurtainPanels, CABIN_SWIVEL_RADIUS } from '@/lib/cabinCurtainGeometry';
 import { technicalConfig } from '@/lib/technicalConfig';
 import { APRON_CAMERA_MOUNT, CABIN_OFFSET, cabinFrame, geometry, metrics, autoLevelSensorGeometry, type Aux, type Pose } from '@/lib/simulation';
@@ -95,12 +96,14 @@ function CabinFront({open,floorTilt,halted=false}:{open:boolean;floorTilt:number
   <Box at={[.84,-.16,0]} size={[.26,.13,.16]} color="#58727f"/>
  </>;
 }
-export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior:false,aircon:false,ventilation:false},highlight=true,wheelRotation=0,autoLevel=false,aircraftShift=0,wheelTravel=0,halted=false,serviceAccess=false}:{pose:Pose;halted?:boolean;wheelTravel?:number;autoLevel?:boolean;aircraftShift?:number;labels:boolean;annotations?:boolean;aux?:Record<Aux,boolean>;highlight?:boolean;wheelRotation?:number;serviceAccess?:boolean}){
+export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior:false,aircon:false,ventilation:false},highlight=true,wheelRotation=0,autoLevel=false,aircraftShift=0,wheelTravel=0,halted=false,serviceAccess=false,livePose}:{livePose?:()=>Pose;pose:Pose;halted?:boolean;wheelTravel?:number;autoLevel?:boolean;aircraftShift?:number;labels:boolean;annotations?:boolean;aux?:Record<Aux,boolean>;highlight?:boolean;wheelRotation?:number;serviceAccess?:boolean}){
+ const visual=useRef<BridgeVisualNodes>({root:null,rotunda:null,slope:null,tunnels:[],cabin:null,yaw:null,carriage:null});
+ useFrame(()=>{if(livePose)applyBridgeVisualPose(visual.current,livePose(),p);},-1);
  const slope=Math.atan2(p.height-3,p.length),len=Math.hypot(p.length,p.height-3);
  const sensor=autoLevelSensorGeometry(p,autoLevel,aircraftShift);
  const sensorReach=sensor.reach,sensorRadius=sensor.radius;
- return <group position={[standLayout.rotundaX,0,standLayout.rotundaZ]} rotation={[0,-p.angle*Math.PI/180,0]}>
-  <group rotation={[0,p.angle*Math.PI/180,0]}>
+ return <group ref={node=>{visual.current.root=node;}} position={[standLayout.rotundaX,0,standLayout.rotundaZ]} rotation={[0,-p.angle*Math.PI/180,0]}>
+  <group ref={node=>{visual.current.rotunda=node;}} rotation={[0,p.angle*Math.PI/180,0]}>
   <mesh position={[0,2.9,0]}><cylinderGeometry args={[1.6,1.6,.2,32]}/><meshStandardMaterial color="#687d89"/></mesh>
   {/* Fixed entry and rotating tunnel edge bound two independently expanding curtains. */}
   {[0,1].map(side=>{const tunnel=Math.PI/2-p.angle*Math.PI/180;
@@ -126,9 +129,9 @@ export function PBB({pose:p,labels,annotations=true,aux={interior:false,exterior
     </group>)}
    </group>
   </group>
-  <group position={[0,3,0]} rotation={[0,0,slope]}>
+  <group ref={node=>{visual.current.slope=node;}} position={[0,3,0]} rotation={[0,0,slope]}>
    {[0,1,2].map(i=>{const x=geometry(p).centres[i]; // Move tunnel A forward, retaining overlap with rotunda and tunnel B.
-const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
+const width=2.65-i*.18;return <group ref={node=>{visual.current.tunnels[i]=node;}} key={i} position={[x,0,0]}>
     {[-1,1].map(side=><group key={side}>
      <Box at={[0,-.32,side*(width/2-.12)]} size={[10,.08,.08]} color="#e5e9e7"/>
      {[-3.75,-1.25,1.25,3.75].map((x,j)=><Box key={x} at={[x,-.2,side*(width/2-.12)]} size={[2.55,.055,.055]} rotation={[0,0,j%2?.17:-.17]} color="#e5e9e7"/>)}
@@ -154,7 +157,7 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
    <BridgeServices length={len} show={annotations&&labels}/>
    {annotations&&<Label visible={labels} at={[len/2,3.45,0]}>02 · Ống lồng</Label>}
   </group>
-  <group position={[p.length,p.height,0]}>
+  <group ref={node=>{visual.current.cabin=node;}} position={[p.length,p.height,0]}>
    <CabinServices pose={p} show={annotations&&labels} stairs={!serviceAccess}/>
    <mesh position={[0,-.2,0]}><cylinderGeometry args={[1.38,1.38,.3,64]}/><meshStandardMaterial color="#c6d3d9" metalness={.35}/></mesh>
    {/* Tunnel-side interfaces stay in the bridge frame, independently of cabin yaw. */}
@@ -168,7 +171,7 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
      <Box at={[to[0],1.18,to[1]]} size={[.06,2.28,.06]} color="#819691"/>
     </group>;})}
    </group>
-   <group rotation={[0,-p.cabYaw*Math.PI/180,0]}>
+   <group ref={node=>{visual.current.yaw=node;}} rotation={[0,-p.cabYaw*Math.PI/180,0]}>
     {/* Vertical cylindrical swivel at the existing cabin yaw axis; rear opening leads into the tunnel. */}
     <group>
      {[-.02,2.37].map(y=><mesh key={y} position={[0,y,0]} castShadow><cylinderGeometry args={[CABIN_SWIVEL_RADIUS+.035,CABIN_SWIVEL_RADIUS+.035,.12,64]}/><meshStandardMaterial color="#dce4e2" metalness={.3} roughness={.4}/></mesh>)}
@@ -208,7 +211,7 @@ const width=2.65-i*.18;return <group key={i} position={[x,0,0]}>
     {annotations&&<><Label visible={labels} at={[0,3.6,-2]}>03 · Cabin</Label><Label visible={labels} at={[1.4,2.9,2.7]}>04 · Canopy</Label></>}
     </group>
    </group>
-   <group position={[0,geometry(p).columnDeckHeight-p.height,0]}><MobileCarriage pose={{...p,height:geometry(p).columnDeckHeight}} show={annotations&&labels} wheelRotation={wheelRotation} wheelTravel={wheelTravel}/></group>
+   <group ref={node=>{visual.current.carriage=node;}} position={[0,geometry(p).columnDeckHeight-p.height,0]}><MobileCarriage pose={{...p,height:geometry(p).columnDeckHeight}} show={annotations&&labels} wheelRotation={wheelRotation} wheelTravel={wheelTravel}/></group>
   </group>
   {highlight&&<mesh position={[p.length-1.9,.04,0]} rotation={[-Math.PI/2,0,0]}><ringGeometry args={[1.7,2.05,48]}/><meshBasicMaterial color={metrics(p).clearance<.65?'#ee7655':'#26bdc9'} transparent opacity={.7}/></mesh>}
  </group>;

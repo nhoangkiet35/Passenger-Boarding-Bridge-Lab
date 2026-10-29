@@ -106,3 +106,42 @@
   .console-nameplate{padding:12px 2px 0;gap:8px}
   .console-nameplate b{font-size:14px}.console-disclaimer{font-size:12px}
 }
+
+/* Compact phone hardware; desktop dimensions remain unchanged. */
+@media(max-width:600px){
+ .operator-console{padding:16px 8px 12px;gap:12px}
+ .operator-console .console-left,.operator-console .console-right{gap:8px}
+ .operator-console .estop-housing,.operator-console .key-switch{padding:8px 5px;gap:6px;border-radius:8px}
+ .operator-console .mushroom-stop{width:64px;height:64px;border-width:7px;font-size:11px}
+ .operator-console .hardware-label,.operator-console .estop-caption{font-size:9px}
+ .operator-console .key-options{margin-top:5px;gap:4px}
+ .operator-console .key-options button{min-height:34px;padding:4px;font-size:10px}
+ .operator-console .power-buttons{gap:8px}
+ .operator-console .power-buttons button{min-height:42px;font-size:16px;padding:5px 3px;border-radius:6px}
+ .operator-console .power-buttons span{font-size:9px}
+ .operator-console .console-rockers{padding:0 9px;border-radius:8px}
+ .operator-console .rocker-row{padding:9px 0;gap:8px}
+ .operator-console .rocker-row b{font-size:10px}.operator-console .rocker-row span{font-size:9px}
+ .operator-console .rocker-buttons{gap:7px}
+ .operator-console .rocker-buttons button{width:36px;height:36px;min-height:36px;padding:4px;border-radius:6px}
+ .operator-console .rocker-buttons svg{width:16px;height:16px}
+ .operator-console .preset-button{min-height:42px;padding:8px;border-radius:6px;font-size:11px!important}
+ .operator-console .preset-button small{font-size:8px;margin-top:2px}
+ .operator-console .aux-switches{grid-template-columns:repeat(4,minmax(0,1fr));padding:8px;gap:6px;border-radius:8px}
+ .operator-console .aux-button{min-height:62px;padding:9px 2px 5px;gap:4px;border-radius:6px}
+ .operator-console .aux-button svg{width:16px;height:16px}
+ .operator-console .aux-button b{font-size:10px}.operator-console .aux-button small{font-size:7px;letter-spacing:0}
+ .operator-console .aux-lamp{width:4px;height:4px;top:3px;right:3px}
+ .operator-console .reset-housing{padding:8px;gap:8px;border-radius:8px}
+ .operator-console .reset-switch{min-height:36px;padding:7px!important;font-size:10px!important}
+ .operator-console .reset-housing>span{font-size:10px}
+ .operator-console .console-confirmations{padding:5px 9px}
+ .operator-console .console-confirmations label{min-height:38px;font-size:11px;gap:7px}
+ .operator-console .console-confirmations button[data-slot=checkbox]{width:18px;height:18px;min-height:18px}
+ .operator-console .console-service{gap:6px}
+ .operator-console .console-service button{min-height:36px;padding:6px 5px;font-size:10px;border-radius:6px}
+ .operator-console .console-service svg{width:14px;height:14px}
+ .operator-console .console-center{gap:9px}
+ .operator-console .console-status-strip{font-size:10px}.operator-console .console-status-strip>span:last-child{font-size:9px}
+ .operator-console .console-message{font-size:12px;padding:9px}
+}

@@ -1,3 +1,7 @@
+import {Group,Vector3} from 'three';
+import {applyBridgeVisualPose} from '../lib/bridgeVisualMotion.ts';
+import {CABIN_OFFSET} from '../lib/simulation.ts';
+import {groundDeviceBlocked} from '../lib/groundDevice.ts';
 import assert from 'node:assert/strict';
 import {groundGuide} from '../lib/groundGuide.ts';
 import {groundInteraction} from '../lib/groundInteraction.ts';
@@ -110,3 +114,32 @@ for(const id of ['GPU','PCA','PWS']){
 }
 assert.deepEqual(groundGuide(flow).at,handover);
 console.log('PASS HUD mission guidance and interaction ranges across all service transitions.');
+
+assert.equal(groundDeviceBlocked('Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) Mobile',5),true);
+assert.equal(groundDeviceBlocked('Mozilla/5.0 (Linux; Android 15; Tablet)',5),true);
+assert.equal(groundDeviceBlocked('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)',5),true,'iPad desktop mode');
+assert.equal(groundDeviceBlocked('Mozilla/5.0 (Windows NT 10.0; Win64; x64)',10),false,'touchscreen laptop remains supported');
+assert.equal(groundDeviceBlocked('Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0)',0),false);
+assert.equal(groundDeviceBlocked('Mozilla/5.0 (X11; Linux x86_64)',0),false);
+console.log('PASS desktop-only gate: phone, Android tablet, desktop-mode iPad blocked; Windows touch laptop, Mac and Linux allowed.');
+
+// The cabin and operator must agree on every display frame, even between HUD commits.
+for(const fps of [30,60,144]){
+ const root=new Group(),rotunda=new Group(),slopeNode=new Group(),cabin=new Group(),yaw=new Group(),carriage=new Group(),tunnels=[new Group(),new Group(),new Group()];
+ root.position.set(standLayout.rotundaX,0,standLayout.rotundaZ);root.add(rotunda,slopeNode,cabin);slopeNode.add(...tunnels);cabin.add(yaw,carriage);
+ const consoleNode=new Group();consoleNode.position.set(CABIN_OFFSET-.5,0,0);yaw.add(consoleNode);
+ let drive=newMission();drive.started=true;drive.checks.fill(true);
+ for(const c of [{type:'area',value:true},{type:'authorize',value:true},{type:'power',on:true}])drive.bridge=command(drive.bridge,c);
+ drive.bridge=command(drive.bridge,{type:'jog',axes:{length:.6,angle:.4,height:.2,cabYaw:.1}});
+ let rendered={...drive.bridge.pose};
+ for(let frame=0;frame<fps*2;frame++){
+  drive.bridge=tick(drive.bridge,1/fps);assert.equal(drive.bridge.fault,null);
+  if(frame%Math.max(1,Math.round(fps/20))===0)rendered={...drive.bridge.pose};
+  applyBridgeVisualPose({root,rotunda,slope:slopeNode,tunnels,cabin,yaw,carriage},drive.bridge.pose,rendered);root.updateMatrixWorld(true);
+  const actual=consoleNode.getWorldPosition(new Vector3()),expected=consolePosition(drive);
+  assert.ok(actual.distanceTo(new Vector3(...expected))<1e-9,'no camera/cabin mismatch between HUD updates at '+fps+' FPS');
+  assert.ok(Math.abs(root.rotation.y+rotunda.rotation.y)<1e-12,'rotunda remains stationary');
+ }
+ const snapshot=JSON.stringify(drive.bridge.pose);applyBridgeVisualPose({root,rotunda,slope:slopeNode,tunnels,cabin,yaw,carriage},drive.bridge.pose,rendered);assert.equal(JSON.stringify(drive.bridge.pose),snapshot,'visual update cannot alter safety pose');
+}
+console.log('PASS frame-synchronized bridge: cabin/camera agreement at 30/60/144 FPS with 20 Hz HUD, fixed rotunda and unchanged physics.');

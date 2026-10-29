@@ -6,7 +6,7 @@ export function Keycap({children}:{children:string}) {
 
 /** Format only known key instructions; equipment names and “ống A” remain normal text. */
 export default function KeyHints({text}:{text:string}) {
- const tokens=text.split(/(?<![\p{L}\p{N}_])(WASD|W\s*\/\s*S|A\s*\/\s*D|R\s*\/\s*F|Q\s*\/\s*Z|Esc|Tab|E|F|V)(?![\p{L}\p{N}_])/gu);
+ const tokens=text.split(/(?<![\p{L}\p{N}_])(WASD|W\s*\/\s*S|A\s*\/\s*D|R\s*\/\s*F|Q\s*\/\s*Z|Esc|Tab|E|F|V|C)(?![\p{L}\p{N}_])/gu);
  return <>{tokens.map((token,i)=>{
   if(i%2===0)return token;
   const keys=token==='WASD'?token.split(''):token.includes('/')?token.split(/\s*\/\s*/):[token];

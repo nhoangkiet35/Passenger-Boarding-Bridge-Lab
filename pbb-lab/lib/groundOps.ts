@@ -107,6 +107,20 @@ export function secureBridge(m: Mission): Mission {
   return {...m,docked:true,accuracy:Math.max(0,100-100*(Math.abs(g.heightError)/t.height+Math.abs(g.offset)/t.offset+Math.abs(p.angle+p.cabYaw)/t.yaw)/3),message:'Cầu ổn định. Rời bàn, đến cửa ống A ngay sau cabin, nhấn E mở cửa và xuống cầu thang.'};
 }
 export const handover: Point = [-8,0,24];
+/** Re-entering the console does not detach the bridge; C explicitly starts a new approach. */
+export function restartGroundDocking(m:Mission,player:Point):Mission {
+ if(distance(player,consolePosition(m))>=1.7)return fail(m,'Hãy vào bàn điều khiển trước khi cập cầu lại.');
+ if(m.complete)return fail(m,'Ca phục vụ đã bàn giao. Chọn Chơi lại để bắt đầu ca mới.');
+ if(m.stairDoorOpen)return fail(m,'Đóng cửa cầu thang trước khi cập cầu lại.');
+ if(serviceIds.some(id=>!['idle','inspected'].includes(m.services[id])))return fail(m,'Dây/ống dịch vụ đang được sử dụng. Cầu bị khóa chuyển động để bảo vệ các kết nối.');
+ if(m.bridge.fault||m.bridge.emergency||!m.bridge.power)return fail(m,'Khôi phục lỗi / dừng khẩn cấp và bật nguồn trước khi cập cầu lại.');
+ let bridge=command(m.bridge,{type:'haltJog'});
+ if(bridge.connectedOnce)bridge=command(bridge,{type:'service'});
+ if(bridge.autoLevel)bridge=command(bridge,{type:'autolevel',on:false});
+ bridge=command(bridge,{type:'canopy',open:false});
+ if(bridge.target.canopy!==0||bridge.autoLevel)return {...m,message:bridge.message};
+ return {...m,bridge,docked:false,descended:false,accuracy:0,message:'Đang thu canopy để cập cầu lại. Chờ thu hoàn toàn, dùng WASD / R/F / Q/Z căn chỉnh; E triển khai canopy, Tab rời bàn.'};
+}
 export function finishMission(m: Mission, player: Point, linesClear: boolean): Mission {
   if(stage(m)!==7 || distance(player,handover)>2.3 || !linesClear || !aligned(m.bridge.pose) || !m.bridge.autoLevel || m.bridge.fault || m.mobileSteps.phase!=='locked' || !mobileReady(m.mobileSteps)) return fail(m,'Chưa đủ điều kiện bàn giao: kiểm tra cầu, dịch vụ, chốt thang và tuyến cáp/ống.');
   return {...m,complete:true,message:'Đã hoàn thành ca phục vụ VN 268.'};

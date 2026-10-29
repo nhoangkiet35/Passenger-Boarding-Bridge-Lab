@@ -1,5 +1,5 @@
 'use client';
-import { Children, memo, Suspense, useEffect, useMemo, useRef, type MutableRefObject } from 'react';
+import { Children, memo, Suspense, useCallback, useEffect, useMemo, useRef, type MutableRefObject } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Html, Line } from '@react-three/drei';
 import { Group, Mesh, PerspectiveCamera, Raycaster, TubeGeometry, Vector3 } from 'three';
@@ -13,7 +13,7 @@ import { command, tick, cabinFrame } from '@/lib/simulation';
 import { advanceMission, atStairBottom, cableControlPoints, carrying, consolePosition, groundConfig, handover, heldConnector, serviceIds, serviceMount, stage, stairConfig, stairDoorBlockReason, stairFrame, stairPassable, walkFloor, type Mission, type Point, type ServiceId } from '@/lib/groundOps';
 import { cableCurve, clearCableSegment, planCable } from '@/lib/groundCable';
 
-export type Runtime = { mission: Mission; player: Point; yaw:number; pitch:number; third:boolean; operating:boolean; running:boolean; inputMode?:'pointer'|'drag'; keys:Set<string>; recovery:number; handPoint?:Point; linesClear?:boolean; cableLengths?:Partial<Record<ServiceId,number>>; connectCable?:(id:ServiceId)=>boolean; exitConsole?:()=>void; sound?: (kind:'step'|'motor'|'beep')=>void; interact:(key?:'E'|'F')=>void };
+export type Runtime = { mission: Mission; player: Point; yaw:number; pitch:number; third:boolean; operating:boolean; running:boolean; inputMode?:'pointer'|'drag'; keys:Set<string>; recovery:number; handPoint?:Point; linesClear?:boolean; cableLengths?:Partial<Record<ServiceId,number>>; connectCable?:(id:ServiceId)=>boolean; exitConsole?:()=>void; redock?:()=>void; sound?: (kind:'step'|'motor'|'beep')=>void; interact:(key?:'E'|'F')=>void };
 export type RuntimeRef = MutableRefObject<Runtime>;
 const StaticAircraft=memo(Aircraft);
 function Marker({at,children,color='#ffd167',visible=true}:{at:Point;children:React.ReactNode;color?:string;visible?:boolean}) { return <Html position={at} center zIndexRange={[15,0]} style={{pointerEvents:'none',display:visible?'block':'none'}}><span className="ops-marker" style={{borderColor:color}}>{Children.map(children,child=>typeof child==='string'?<KeyHints text={child}/>:child)}</span></Html>; }
@@ -117,7 +117,7 @@ function ServiceConnector({id,r}:{id:ServiceId;r:RuntimeRef}) {
  </group>;
 }
 function Player({r,solids,fixedSolids,onUpdate}:{r:RuntimeRef;solids:MutableRefObject<Group|null>;fixedSolids:MutableRefObject<Group|null>;onUpdate:()=>void}) {
- const {camera,gl}=useThree(); const avatar=useRef<Group>(null),ray=useMemo(()=>new Raycaster(),[]),last=useRef(0),lastHand=useRef(''),lastLines=useRef(0),foot=useRef(0),lastRecovery=useRef(-1);
+ const {camera,gl}=useThree(); const avatar=useRef<Group>(null),ray=useMemo(()=>new Raycaster(),[]),last=useRef(0),lastHand=useRef(''),lastLines=useRef(0),foot=useRef(0),lastRecovery=useRef(-1),lastCabinHeading=useRef<number|null>(null);
  useEffect(()=>{
   const canvas=gl.domElement;
   const mouse=(e:MouseEvent)=>{if(document.pointerLockElement!==canvas&&!(r.current.running&&r.current.inputMode==='drag'&&(e.buttons&3)&&e.target===canvas))return;r.current.yaw-=e.movementX*.002;r.current.pitch=Math.max(-1.35,Math.min(1.35,r.current.pitch-e.movementY*.002));};
@@ -126,7 +126,7 @@ function Player({r,solids,fixedSolids,onUpdate}:{r:RuntimeRef;solids:MutableRefO
    if(document.pointerLockElement!==canvas&&!(r.current.running&&r.current.inputMode==='drag')){if(e.code==='KeyE'&&r.current.mission.started){r.current.mission.message='Game đang tạm dừng. Bấm Tiếp tục hoặc Chơi bằng kéo chuột, rồi đến gần cửa và nhấn E.';onUpdate();}return;}
    if(e.code==='Escape'&&r.current.inputMode==='drag'){r.current.running=false;r.current.keys.clear();r.current.mission.bridge=command(r.current.mission.bridge,{type:'haltJog'});if(r.current.mission.mobileSteps.phase==='pushing')r.current.mission.mobileSteps.phase='parked';onUpdate();return;}
    if(['Space','ArrowUp','ArrowDown','Tab'].includes(e.code))e.preventDefault();
-   if(!e.repeat){if(e.code==='Tab'&&r.current.operating){r.current.exitConsole?.();return;}if(e.code==='KeyE')r.current.interact('E');if(e.code==='KeyF'&&!r.current.operating)r.current.interact('F');if(e.code==='KeyV')r.current.third=!r.current.third;}
+   if(!e.repeat){if(e.code==='Tab'&&r.current.operating){r.current.exitConsole?.();return;}if(e.code==='KeyC'&&r.current.operating){r.current.redock?.();return;}if(e.code==='KeyE')r.current.interact('E');if(e.code==='KeyF'&&!r.current.operating)r.current.interact('F');if(e.code==='KeyV')r.current.third=!r.current.third;}
    r.current.keys.add(e.code);
   };
   const up=(e:KeyboardEvent)=>r.current.keys.delete(e.code);
@@ -140,7 +140,8 @@ function Player({r,solids,fixedSolids,onUpdate}:{r:RuntimeRef;solids:MutableRefO
   const rt=r.current,dt=Math.min(raw,.05),m=rt.mission,k=rt.keys;
   const colliders:Mesh[]=[],fixed:Mesh[]=[];
   const collect=(root:Group|null,list:Mesh[])=>root?.traverse(object=>{if(object instanceof Mesh&&!(object as Mesh&{isLineSegments2?:boolean}).isLineSegments2){if(!object.geometry.boundingBox)object.geometry.computeBoundingBox();list.push(object);}});
-  collect(solids.current,colliders);collect(fixedSolids.current,fixed);
+  // Driving uses the analytic safety integrator; no walking/cable rays are needed yet.
+  if(!rt.operating||serviceIds.some(id=>!['idle','inspected'].includes(m.services[id]))){collect(solids.current,colliders);collect(fixedSolids.current,fixed);}
   const routeFor=(id:ServiceId,end:Point)=>planCable(m,id,end,(from,to)=>clearCableSegment(from,to,colliders,ray,groundConfig.services[id].radius));
   rt.connectCable=(id)=>{const current=r.current.mission,plan=planCable(current,id,groundConfig.services[id].socket,(from,to)=>clearCableSegment(from,to,colliders,ray,groundConfig.services[id].radius));if(!plan){current.message='Tuyến dây/ống bị vướng hoặc vượt chiều dài. Hãy đi vòng vật cản trước khi cắm.';current.errors++;return false;}current.cableRoutes[id]=plan.route;return true;};
   if(lastRecovery.current!==rt.recovery){lastRecovery.current=rt.recovery;camera.position.set(rt.player[0],rt.player[1]+1.65,rt.player[2]);}
@@ -148,7 +149,7 @@ function Player({r,solids,fixedSolids,onUpdate}:{r:RuntimeRef;solids:MutableRefO
    if(rt.operating&&m.stairDoorOpen){m.bridge=command(m.bridge,{type:'haltJog'});rt.operating=false;m.message='Cửa cầu thang đang mở; cầu đã dừng và khóa điều khiển chuyển động.';}
    if(rt.operating){
     const axes={length:Number(k.has('KeyW'))-Number(k.has('KeyS')),angle:Number(k.has('KeyD'))-Number(k.has('KeyA')),height:Number(k.has('KeyR'))-Number(k.has('KeyF')),cabYaw:Number(k.has('KeyQ'))-Number(k.has('KeyZ'))};
-    if(Object.values(axes).some(Boolean))m.bridge=command(m.bridge,{type:'jog',axes});
+    if(Object.values(axes).some(Boolean)){if(!m.bridge.jog||Object.entries(axes).some(([axis,value])=>m.bridge.jog?.[axis as keyof typeof axes]!==value))m.bridge=command(m.bridge,{type:'jog',axes});}
     else if(m.bridge.jog)m.bridge=command(m.bridge,{type:'haltJog'});
     m.bridge=tick(m.bridge,dt);rt.player=consolePosition(m);
     if(Object.values(axes).some(Boolean))rt.sound?.('motor');
@@ -181,6 +182,7 @@ function Player({r,solids,fixedSolids,onUpdate}:{r:RuntimeRef;solids:MutableRefO
    }
    rt.mission=advanceMission(m,dt);
   }
+  if(rt.operating){const heading=cabinFrame(m.bridge.pose).heading;if(lastCabinHeading.current!==null)rt.yaw-=heading-lastCabinHeading.current;lastCabinHeading.current=heading;}else lastCabinHeading.current=null;
   const p=rt.player;camera.rotation.set(rt.pitch,rt.yaw,0,'YXZ');camera.position.set(p[0],p[1]+1.65,p[2]);
   const held=carrying(m);
   if(held){
@@ -194,14 +196,15 @@ function Player({r,solids,fixedSolids,onUpdate}:{r:RuntimeRef;solids:MutableRefO
   if(rt.third&&!rt.operating){const back=new Vector3(0,0,3.5).applyAxisAngle(new Vector3(0,1,0),rt.yaw);ray.set(camera.position,back.clone().normalize());ray.far=3.5;const hit=ray.intersectObjects(colliders,false)[0];camera.position.add(back.multiplyScalar(hit?Math.max(.05,(hit.distance-.3)/3.5):1));camera.position.y+=.5;}
   if(avatar.current){avatar.current.visible=rt.third&&!rt.operating;avatar.current.position.set(...p);avatar.current.rotation.y=rt.yaw;}
   if(state.clock.elapsedTime-last.current>.05){onUpdate();last.current=state.clock.elapsedTime;}
- });
+ },-2);
  return <group ref={avatar}><Box at={[0,.95,0]} size={[.48,.65,.28]} color="#e5f252"/><Box at={[0,1,0]} size={[.5,.1,.3]} color="#e9ece9"/><mesh position={[0,1.52,0]}><sphereGeometry args={[.19,12,12]}/><meshStandardMaterial color="#dbb08e"/></mesh>{[-.13,.13].map(x=><Box key={x} at={[x,.32,0]} size={[.17,.65,.2]} color="#243e50"/>)}</group>;
 }
 function World({r,onUpdate}:{r:RuntimeRef;onUpdate:()=>void}) {
  const solids=useRef<Group>(null),fixedSolids=useRef<Group>(null),m=r.current.mission;
+ const livePose=useCallback(()=>r.current.mission.bridge.pose,[r]);
  return <><color attach="background" args={['#bed4dd']}/><fog attach="fog" args={['#bed4dd',60,140]}/><hemisphereLight args={['#ffffff','#627580',2]}/><directionalLight position={[-20,35,-15]} intensity={2.5}/>
   <Apron/>
-  <group ref={solids}><group ref={fixedSolids}><ServiceStairs m={m}/><StaticAircraft labels={false} annotations={false} doorOpen={false} halted/><PBB serviceAccess pose={m.bridge.pose} labels={false} annotations={false} highlight={false} halted={!r.current.operating} autoLevel={m.bridge.autoLevel} wheelRotation={m.bridge.wheelRotation} wheelTravel={m.bridge.wheelTravel} aux={{interior:true,exterior:true,aircon:false,ventilation:false}}/></group><MobileServiceSteps steps={m.mobileSteps} showGuide={stage(m)===6}/>
+  <group ref={solids}><group ref={fixedSolids}><ServiceStairs m={m}/><StaticAircraft labels={false} annotations={false} doorOpen={false} halted/><PBB livePose={livePose} serviceAccess pose={m.bridge.pose} labels={false} annotations={false} highlight={false} halted={!r.current.operating} autoLevel={m.bridge.autoLevel} wheelRotation={m.bridge.wheelRotation} wheelTravel={m.bridge.wheelTravel} aux={{interior:true,exterior:true,aircon:false,ventilation:false}}/></group><MobileServiceSteps steps={m.mobileSteps} showGuide={stage(m)===6}/>
   </group>
   <ServiceVisuals r={r}/>
   {groundConfig.checks.map((c,i)=><Marker visible={m.started&&stage(m)===1&&i===m.checks.findIndex(v=>!v)} key={c.label} at={[c.at[0],c.at[1]+2,c.at[2]]} color={m.checks[i]?'#68e2ae':'#ffd167'}>{m.checks[i]?'✓':'E'} · {c.label}</Marker>)}
