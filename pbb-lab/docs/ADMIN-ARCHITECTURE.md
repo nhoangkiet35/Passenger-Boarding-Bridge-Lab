@@ -2,7 +2,7 @@
 
 ## Client
 
-Menu public: `/` (Mô phỏng 3D), `/#operator-console` (Bàn điều khiển), `/about` (Giới thiệu), `/about#shinmaywa` (Khám phá cấu tạo). Khám phá cấu tạo tiếp tục dùng chuyên mục công khai hiện có. Header/footer client không đưa Khám phá PBB vào menu công khai; footer có lối vào Quản trị.
+Menu public: `/` (Mô phỏng PBB), `/vdgs` (Mô phỏng VDGS), `/ground-ops` (Ground Operations), `/#operator-console` (Bàn điều khiển). Trang Giới thiệu đã được gỡ; footer có lối vào Quản trị.
 
 ## Admin
 

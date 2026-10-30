@@ -15,7 +15,7 @@ createServer(async(req,res)=>{
    const result=await handler(new Request(url,{method:req.method,headers:req.headers,body:req.method==='POST'?Buffer.concat(chunks):undefined}));
    res.writeHead(result.status,Object.fromEntries(result.headers));res.end(Buffer.from(await result.arrayBuffer()));return;
   }
-  const path = resolve(root,'.'+decodeURIComponent(url.pathname==='/'||url.pathname==='/about'||url.pathname==='/about/'?'/index.html':url.pathname));
+  const path = resolve(root,'.'+decodeURIComponent(url.pathname==='/'?'/index.html':url.pathname));
   if (!path.startsWith(root+sep)) {res.writeHead(404);res.end();return;}
   const body=await readFile(path);res.writeHead(200,{'Content-Type':mime[extname(path)]||'application/octet-stream'});res.end(body);
  }catch{res.writeHead(404);res.end();}

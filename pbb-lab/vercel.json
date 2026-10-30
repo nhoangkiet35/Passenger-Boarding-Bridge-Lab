@@ -5,22 +5,20 @@
   "buildCommand": "pnpm build:vercel",
   "outputDirectory": "dist-vercel",
   "rewrites": [
-    { "source": "/ground-ops", "destination": "/index.html" },
-    { "source": "/ground-ops/", "destination": "/index.html" },
+    {
+      "source": "/ground-ops",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ground-ops/",
+      "destination": "/index.html"
+    },
     {
       "source": "/vdgs",
       "destination": "/index.html"
     },
     {
       "source": "/vdgs/",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/about",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/about/",
       "destination": "/index.html"
     },
     {
@@ -41,6 +39,11 @@
     }
   },
   "redirects": [
+    {
+      "source": "/about/:path*",
+      "destination": "/",
+      "permanent": true
+    },
     {
       "source": "/explore",
       "destination": "/admin/explore",
