@@ -7,7 +7,7 @@ export function groundGuide(m:Mission):{title:string;detail:string;at:Point|null
  if(step===0)return {title:'Nhận ca phục vụ',detail:'Bắt đầu để kiểm tra an toàn trên cầu.',at:null};
  if(step===1){const check=groundConfig.checks[m.checks.findIndex(v=>!v)];return {title:check.label,detail:'Đi dọc lối đi, đến biển kiểm tra và nhấn E.',at:check.at};}
  if(step===2)return {title:'Căn chỉnh cầu với cửa L1',detail:'Tại bàn điều khiển: căn cầu, E triển khai canopy, E bật auto level. Tab rời bàn.',at:consolePosition(m)};
- if(step===3)return {title:'Xuống sân đỗ',detail:'E mở cửa ống A sau cabin. Qua chiếu nghỉ và đi hết cầu thang.',at:stairDoorPosition(m)};
+ if(step===3)return {title:'Xuống sân đỗ',detail:'E mở cửa ở ống đầu sát cabin. Qua chiếu nghỉ và đi hết cầu thang.',at:stairDoorPosition(m)};
  if(step===7)return {title:'Bàn giao ca phục vụ',detail:'Đến bảng bàn giao trên sân đỗ, nhấn E để kiểm tra toàn bộ.',at:handover};
  if(step===8)return {title:'Đã hoàn tất ca phục vụ',detail:'Tất cả bảy nhiệm vụ đã hoàn thành.',at:null};
  const id=serviceIds[step-4],phase=m.services[id],unit=serviceMount(m,id).control,socket=groundConfig.services[id].socket;

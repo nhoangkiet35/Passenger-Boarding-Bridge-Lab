@@ -1,3 +1,9 @@
+import {apronAlignment,apronPlateLefts} from '../lib/apronAlignment.ts';
+import {insideBridgeParking,bridgeParkingZone} from '../lib/bridgeParkingZone.ts';
+import {bridgeVolumes} from '../lib/collision.ts';
+import {PARK,geometry} from '../lib/simulation.ts';
+import {cabinBumperGeometry as bumper} from '../lib/cabinBumperGeometry.ts';
+import {technicalConfig} from '../lib/technicalConfig.ts';
 import {Group,Vector3} from 'three';
 import {applyBridgeVisualPose} from '../lib/bridgeVisualMotion.ts';
 import {CABIN_OFFSET} from '../lib/simulation.ts';
@@ -8,7 +14,7 @@ import {groundInteraction} from '../lib/groundInteraction.ts';
 import { newMission, stage, groundConfig, serviceAction, serviceMount, advanceMission, secureBridge, finishMission, handover, walkFloor, consolePosition, stairConfig, stairFrame, stairWorld, stairDoorPosition, stairPassable, toggleStairDoor, atStairBottom, wheelCompass, mobileStepsAction } from '../lib/groundOps.ts';
 import {mobileHandle,mobileBrake,mobileWorld,mobileReady,mobileStepsConfig,moveMobile,onMobilePlatform} from '../lib/mobileSteps.ts';
 import { command, tick, CONNECTION, aligned } from '../lib/simulation.ts';
-import { standLayout } from '../lib/standLayout.ts';
+import { standLayout, terminalLayout, standClearances } from '../lib/standLayout.ts';
 let m=newMission();
 assert.equal(stage(m),0);
 assert.equal(serviceAction(m,'GPU','unit',[-3.5,0,-4]).services.GPU,'idle');
@@ -143,3 +149,43 @@ for(const fps of [30,60,144]){
  const snapshot=JSON.stringify(drive.bridge.pose);applyBridgeVisualPose({root,rotunda,slope:slopeNode,tunnels,cabin,yaw,carriage},drive.bridge.pose,rendered);assert.equal(JSON.stringify(drive.bridge.pose),snapshot,'visual update cannot alter safety pose');
 }
 console.log('PASS frame-synchronized bridge: cabin/camera agreement at 30/60/144 FPS with 20 Hz HUD, fixed rotunda and unchanged physics.');
+
+assert.ok(bumper.top>.005,'bumper top must not share the deck plane y=0');
+assert.ok(Math.abs(bumper.at[0]+bumper.size[0]/2-(1+technicalConfig.bumperProjection))<1e-12,'visible nose matches the collision bumper projection');
+assert.ok(Math.abs(bumper.at[1]+bumper.size[1]/2-bumper.top)<1e-12);
+assert.ok(bumper.size[2]<2.75,'bumper remains inside the cabin floor width');
+console.log('PASS fixed cabin bumper: top clears deck plane and nose matches physics projection.');
+
+assert.equal(standLayout.roadWidth,7.6,'service road doubles from 3.8 m to 7.6 m');
+assert.ok(Math.abs(standClearances.noseToRoad-7.5)<1e-9,'preserve nose clearance');
+assert.ok(Math.abs(standLayout.rotundaZ+11.7)<1e-9,'preserve game bridge position');
+assert.ok(Math.abs(standLayout.bridgeCenterZ-standLayout.bridgeLength/2-standLayout.terminalFaceZ)<1e-9,'fixed bridge meets terminal');
+assert.ok(Math.abs(standLayout.bridgeCenterZ+standLayout.bridgeLength/2-(standLayout.rotundaZ-1.7))<1e-9,'fixed bridge meets rotunda interface');
+for(const z of [standLayout.bridgeCenterZ-standLayout.bridgeLength/2+standLayout.bridgeSupportInset,standLayout.bridgeCenterZ+standLayout.bridgeLength/2-standLayout.bridgeSupportInset])assert.ok(Math.abs(z-standLayout.roadCenterZ)>standLayout.roadWidth/2+.19,'support columns stay outside widened roadway');
+assert.deepEqual(terminalLayout.levels,[0,3,6]);assert.equal(terminalLayout.height,9);
+console.log('PASS widened service road and three-storey terminal: clearance, fixed bridge continuity and columns outside lanes.');
+
+assert.equal(standLayout.roadLength,84,'road extends beyond both terminal sides');
+for(const z of [standLayout.bridgeCenterZ-standLayout.bridgeLength/2+standLayout.bridgeSupportInset,standLayout.bridgeCenterZ+standLayout.bridgeLength/2-standLayout.bridgeSupportInset])assert.ok(Math.abs(z-standLayout.roadCenterZ)-standLayout.roadWidth/2-.19>=.6,'bridge feet clear road edge by at least 0.6 m');
+
+for(const volume of bridgeVolumes(PARK))for(const x of [-1,1])for(const z of [-1,1]){
+ const px=volume.centre[0]+x*volume.half[0]*Math.cos(volume.yaw)-z*volume.half[2]*Math.sin(volume.yaw);
+ const pz=volume.centre[2]+x*volume.half[0]*Math.sin(volume.yaw)+z*volume.half[2]*Math.cos(volume.yaw);
+ assert.ok(insideBridgeParking(px,pz),volume.part+' PARK footprint stays in hatched zone');
+}
+assert.ok(insideBridgeParking(standLayout.rotundaX-1.75,standLayout.rotundaZ),'rotunda canopy fits');
+assert.ok(insideBridgeParking(standLayout.rotundaX+PARK.length-2.8,standLayout.rotundaZ+3.06),'service stair landing fits');
+assert.equal(insideBridgeParking(7,-7),false,'parking hatch stays away from aircraft nose');
+console.log('PASS tapered parking zone: PARK cabin, carriage, tunnel and stair landing.');
+
+const park=geometry(PARK).wheel;
+for(let i=0;i<360;i++){const a=i*Math.PI/180;assert.ok(insideBridgeParking(park.x+2.05*Math.cos(a),park.z+2.05*Math.sin(a)),'whole PARK circle stays inside hatched bay');}
+const edge=standLayout.roadCenterZ+standLayout.roadWidth/2;
+assert.ok(bridgeParkingZone.every(([,z])=>z>edge),'hatch must not cross service road');
+assert.equal(bridgeParkingZone.length,4,'restored trapezoid, no L-shaped strip');
+assert.equal(apronAlignment.center,standLayout.aircraftCenterX);
+assert.ok(Math.abs((apronPlateLefts[0]+apronPlateLefts[1]+apronAlignment.plateWidth)/2-apronAlignment.center)<1e-10,'type plates centred around aircraft axis');
+assert.ok(apronPlateLefts[0]+apronAlignment.plateWidth<apronAlignment.center&&apronPlateLefts[1]>apronAlignment.center,'yellow centreline remains visible in plate gap');
+console.log('PASS revised apron: PARK circle contained, road clear, symmetric type plates and aircraft centreline.');
+
+assert.ok(Math.max(...bridgeParkingZone.map(([x])=>x))<apronAlignment.center-apronAlignment.noseHalfWidth,'parking bay stays outside the symmetric nose frame');

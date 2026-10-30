@@ -1,3 +1,4 @@
+import {pcaReelLayout,reelOutletCurve,reelFabricGeometry} from '../lib/pcaHoseGeometry.ts';
 import assert from 'node:assert/strict';
 import { registerHooks } from 'node:module';
 import { Mesh, MeshBasicMaterial, DoubleSide, Raycaster, Vector3, Group, CylinderGeometry, BoxGeometry } from 'three';
@@ -67,3 +68,15 @@ apron.remove(ladderMesh);ladderMesh.children.forEach(mesh=>{mesh.geometry.dispos
 apron.children.filter(child=>child!==hull).forEach(wheel=>{wheel.geometry.dispose();wheel.material.dispose();});
 hull.geometry.dispose();hull.material.dispose();
 console.log('PASS bridge-mounted leads: exact GPU/PCA/PWS transforms, apron pickups, reach/length limits, rounded tubes, hand position, obstacle bends, wrong connector and reset.');
+
+const outlet=reelOutletCurve();assert.ok(outlet.getTangent(1).distanceTo(new Vector3(0,-1,0))<.001,'PCA connector points straight down');
+assert.deepEqual(outlet.getPoint(1).toArray(),[...pcaReelLayout.outlet]);
+for(let i=0;i<=100;i++){
+ const p=outlet.getPoint(i/100);
+ if(Math.abs(p.z+.3)<.14)assert.ok(Math.hypot(p.x,p.y)>.51+.1,'outlet bends below front metal disc instead of passing through it');
+}
+const fabric=reelFabricGeometry();assert.ok(Array.from(fabric.attributes.position.array).every(Number.isFinite));assert.ok(fabric.boundingBox.max.x<.51&&fabric.boundingBox.min.x>-.51);fabric.dispose();
+const anchor=serviceMount(m,'PCA').anchor;
+assert.ok(Math.abs(anchor[1]-(m.bridge.pose.height+pcaReelLayout.mount[1]+pcaReelLayout.outlet[1]-pcaReelLayout.lipDrop))<1e-9,'game hose starts at downward connector lip');
+assert.ok(2+pcaReelLayout.mount[1]+pcaReelLayout.outlet[1]-pcaReelLayout.lipDrop>groundConfig.services.PCA.radius,'connector clears ground at minimum bridge height');
+console.log('PASS PCA reel: downward outlet, metal-disc clearance, finite folded fabric and matching game lead anchor.');

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
-import {newMission,toggleStairDoor,stairWorld,stairFrame,stairDoorPosition,stairDoorBlockReason,nearStairDoor,leaveGroundConsole,stage,consolePosition,restartGroundDocking} from '../lib/groundOps.ts';
+import {newMission,toggleStairDoor,stairWorld,stairFrame,stairDoorPosition,stairDoorBlockReason,nearStairDoor,leaveGroundConsole,stage,consolePosition,restartGroundDocking,stairConfig} from '../lib/groundOps.ts';
 import {groundInteraction} from '../lib/groundInteraction.ts';
-import {command,tick,CONNECTION} from '../lib/simulation.ts';
+import {command,tick,CONNECTION,geometry} from '../lib/simulation.ts';
 let m=newMission();m.started=true;
 const inside=()=>stairWorld(0,stairFrame(m).height,.5,m);
 assert.equal(m.docked,false);
@@ -53,3 +53,14 @@ for(const id of ['GPU','PCA','PWS'])for(const phase of ['carrying','connected','
 const open={...repeat,stairDoorOpen:true};assert.equal(restartGroundDocking(open,consolePosition(open)).docked,true);
 assert.equal(restartGroundDocking(repeat,[-30,0,30]).docked,true);
 console.log('PASS re-entry/redocking: repeat approaches, full canopy retraction, restored controls and safety checks, door/service interlocks.');
+
+for(const length of [12,18,28])for(const height of [2,3.25,5.4]){
+ const mission=newMission();mission.bridge.pose={...mission.bridge.pose,length,height};
+ const frame=stairFrame(mission),slope=Math.atan2(height-3,length),shape=geometry(mission.bridge.pose);
+ const local=frame.along/Math.cos(slope)-shape.centres[2];
+ assert.ok(Math.abs(local)+stairConfig.halfDoor<5,'door fully inside the first tunnel behind cabin');
+ assert.ok(frame.along+stairConfig.halfDoor<length-1.7,'opening stays clear of cabin interface');
+ assert.equal(frame.along,length-2.9,'door and stair landing share cabin-side mount');
+ assert.ok(frame.along+stairConfig.halfDoor<length-1.9-.19-.15,'door leaves clearance behind the lift column');
+}
+console.log('PASS service door located in cabin-side first tunnel across length/height travel.');

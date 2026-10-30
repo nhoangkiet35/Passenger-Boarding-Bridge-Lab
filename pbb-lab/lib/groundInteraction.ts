@@ -8,7 +8,7 @@ export function groundInteraction(rt:GroundInteractionContext) {
   if(distance(p,mobileBrake(m.mobileSteps))<1.8)return {kind:'mobile',action:'brake',key:'F',label:m.mobileSteps.phase==='locked'?'Nhả chốt bánh thang':'Chốt bánh thang'} as const;
   if(distance(p,mobileHandle(m.mobileSteps))<1.8)return {kind:'mobile',action:'handle',key:'E',label:'Nắm tay đẩy · lấy thang có bánh xe'} as const;
  }
- if(!rt.operating&&nearStairDoor(m,p)){const blocked=stairDoorBlockReason(m);return {kind:'stairDoor',key:'E',label:blocked??`${m.stairDoorOpen?'Đóng':'Mở'} cửa cầu thang · ống A sau cabin`} as const;}
+ if(!rt.operating&&nearStairDoor(m,p)){const blocked=stairDoorBlockReason(m);return {kind:'stairDoor',key:'E',label:blocked??`${m.stairDoorOpen?'Đóng':'Mở'} cửa cầu thang · ống đầu sát cabin`} as const;}
  if(step===1){const i=groundConfig.checks.findIndex(c=>distance(p,c.at)<1.4&&!m.checks[groundConfig.checks.indexOf(c)]);if(i>=0)return {kind:'check',i,label:groundConfig.checks[i].label} as const;}
 
  if(distance(p,consolePosition(m))<1.7)return {kind:'console',key:rt.operating&&m.docked?'C':'E',label:rt.operating?(m.docked?'Cập cầu lại / thu canopy · Tab rời bàn':m.bridge.pose.canopy<.999?'Triển khai canopy (cần căn chỉnh)':!m.bridge.autoLevel?'Bật theo dõi cao độ':'Cố định cầu và rời bàn'):'Vào bàn điều khiển PBB'} as const;

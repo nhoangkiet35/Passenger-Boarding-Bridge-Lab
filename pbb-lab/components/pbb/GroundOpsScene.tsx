@@ -1,16 +1,18 @@
+import BridgeServiceStairs from './BridgeServiceStairs';
+import ApronMarkings from './ApronMarkings';
 'use client';
 import { Children, memo, Suspense, useCallback, useEffect, useMemo, useRef, type MutableRefObject } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Html, Line } from '@react-three/drei';
+import { Html } from '@react-three/drei';
 import { Group, Mesh, PerspectiveCamera, Raycaster, TubeGeometry, Vector3 } from 'three';
 import { Aircraft, Box, PBB } from './Models';
-import { FixedBridge } from './Infrastructure';
+import { FixedBridge, ServiceRoad, TerminalBuilding } from './Infrastructure';
 import KeyHints from './KeyHints';
 import MobileServiceSteps from './MobileServiceSteps';
 import { mobileHandle, mobileMoveAllowed, mobilePassable, moveMobile, onMobilePlatform } from '@/lib/mobileSteps';
 import { standLayout } from '@/lib/standLayout';
 import { command, tick, cabinFrame } from '@/lib/simulation';
-import { advanceMission, atStairBottom, cableControlPoints, carrying, consolePosition, groundConfig, handover, heldConnector, serviceIds, serviceMount, stage, stairConfig, stairDoorBlockReason, stairFrame, stairPassable, walkFloor, type Mission, type Point, type ServiceId } from '@/lib/groundOps';
+import { advanceMission, atStairBottom, cableControlPoints, carrying, consolePosition, groundConfig, handover, heldConnector, serviceIds, serviceMount, stage, stairDoorBlockReason, stairPassable, walkFloor, type Mission, type Point, type ServiceId } from '@/lib/groundOps';
 import { cableCurve, clearCableSegment, planCable } from '@/lib/groundCable';
 
 export type Runtime = { mission: Mission; player: Point; yaw:number; pitch:number; third:boolean; operating:boolean; running:boolean; inputMode?:'pointer'|'drag'; keys:Set<string>; recovery:number; handPoint?:Point; linesClear?:boolean; cableLengths?:Partial<Record<ServiceId,number>>; connectCable?:(id:ServiceId)=>boolean; exitConsole?:()=>void; redock?:()=>void; sound?: (kind:'step'|'motor'|'beep')=>void; interact:(key?:'E'|'F')=>void };
@@ -18,49 +20,15 @@ export type RuntimeRef = MutableRefObject<Runtime>;
 const StaticAircraft=memo(Aircraft);
 function Marker({at,children,color='#ffd167',visible=true}:{at:Point;children:React.ReactNode;color?:string;visible?:boolean}) { return <Html position={at} center zIndexRange={[15,0]} style={{pointerEvents:'none',display:visible?'block':'none'}}><span className="ops-marker" style={{borderColor:color}}>{Children.map(children,child=>typeof child==='string'?<KeyHints text={child}/>:child)}</span></Html>; }
 const Apron = memo(function Apron(){ return <>
-  <Box at={[0,-.22,5]} size={[100,.4,110]} color="#8b9ca4"/>
-  <Box at={[0,4,-26]} size={[75,8,10]} color="#b9cbd1"/>
-  <Box at={[0,4.8,-20.9]} size={[75,4,.12]} color="#375c70"/>
-  {Array.from({length:35},(_,i)=><Box key={i} at={[-34+i*2,4.8,-20.8]} size={[.06,4,.1]} color="#d0e4e8"/>)}
+  <Box at={[0,-.22,5]} size={[100,.4,110]} color="#b9bcb5"/>
+  <TerminalBuilding/>
+  <ServiceRoad/>
   <FixedBridge show={false}/>
-  <Line points={[[7,.012,-10],[7,.012,38]]} color="#ffe09b" lineWidth={4}/>
-  {[-8,0,8,16,24,32].map(z=><Line key={z} points={[[-24,.014,z],[25,.014,z]]} color="#9eafb4" lineWidth={1}/>)}
-  <Line points={[[-5,.02,-7],[-5,.02,27],[-9,.02,27]]} color="#e6eee8" lineWidth={2} dashed dashSize={.6} gapSize={.4}/>
+  <ApronMarkings/>
   {[-.6,.6].map(z=><Box key={z} at={[7,.12,-3.2+z]} size={[1,.24,.25]} color="#f6be41"/>)}
   <Box at={handover.map((v,i)=>i===1?v+.7:v) as Point} size={[.8,1.4,.5]} color="#254f64"/>
 
 </>; });
-function ServiceStairs({m}:{m:Mission}) {
- const f=stairFrame(m),c=stairConfig,door=useRef<Group>(null);
- useFrame((_,dt)=>{if(door.current)door.current.rotation.y+=( (m.stairDoorOpen?-Math.PI/2:0)-door.current.rotation.y)*Math.min(1,dt*9);});
- return <group name="service-stair-tunnel-A" position={[f.x,0,f.z]} rotation={[0,-f.a,0]}>
-  <Box at={[0,f.height-.09,(.7+c.side+c.halfWidth)/2]} size={[2,.18,c.side+c.halfWidth-.7]} color="#617b8a"/>
-  {[-1,1].map(side=><group key={side}>
-   <Box at={[side,f.height+1.05,side===-1?1.25:2.1]} size={[.05,.06,side===-1?.65:1.9]} color="#ffd167"/>
-   <Box at={[side,f.height+.5,3.03]} size={[.05,1,.05]} color="#ffd167"/>
-  </group>)}
-  <Box at={[0,f.height+1.05,3.06]} size={[2,.06,.05]} color="#ffd167"/>
-  <Box at={[0,f.height+.52,3.06]} size={[2,.05,.05]} color="#d7e3e8"/>
-  {[-1,1].map(s=><Box key={s} at={[s*c.halfDoor,f.height+1.12,c.doorSide]} size={[.07,2.24,.12]} color="#dbe8ea"/>)}
-  <Box at={[0,f.height+2.26,c.doorSide]} size={[1.18,.08,.12]} color="#ffd167"/>
-  <group ref={door} position={[-c.halfDoor,f.height,c.doorSide]}>
-   <Box at={[c.halfDoor,1.1,0]} size={[1.1,2.2,.065]} color="#dbe8e7"/>
-   <Box at={[c.halfDoor,1.43,-.04]} size={[.67,.77,.025]} color="#3f7787"/>
-   <Box at={[.91,.93,-.075]} size={[.16,.055,.08]} color="#efc44c"/>
-   <Box at={[.91,.93,.075]} size={[.16,.055,.08]} color="#efc44c"/>
-  </group>
-  {Array.from({length:c.steps},(_,i)=>{const tread=c.run/c.steps,x=-c.landingBack-(i+.5)*tread,y=f.height*(1-i/c.steps);return <group key={i}>
-   <Box at={[x,y-.055,c.side]} size={[tread,.11,c.halfWidth*2]} color="#bdced6"/>
-   <Box at={[x-tread/2+.025,y+.006,c.side]} size={[.045,.016,c.halfWidth*2]} color="#f5cb61"/>
-   {i%4===0&&[-1,1].map(s=><Box key={s} at={[x,y+.5,c.side+s*c.halfWidth]} size={[.04,1.05,.04]} color="#dbe8ea"/>)}
-  </group>;})}
-  {[-1,1].map(s=><group key={s}>
-   <Line points={[[-c.landingBack,f.height+1.05,c.side+s*c.halfWidth],[-c.landingBack-c.run,1.05,c.side+s*c.halfWidth]]} color="#ffd167" lineWidth={4}/>
-   <Line points={[[-c.landingBack,f.height-.14,c.side+s*.54],[-c.landingBack-c.run,-.14,c.side+s*.54]]} color="#4d6778" lineWidth={8}/>
-  </group>)}
-  <Marker visible={stage(m)===3} at={[0,f.height+2.6,c.doorSide]} color={stairDoorBlockReason(m)?'#f3a576':'#ffd167'}>{stairDoorBlockReason(m)?'CỬA KHÓA · CHỜ CẦU DỪNG':`E · ${m.stairDoorOpen?'ĐÓNG':'MỞ'} CỬA · ỐNG A / SAU CABIN`}</Marker>
- </group>;
-}
 function ServiceVisuals({r}:{r:RuntimeRef}) {
   const m=r.current.mission;
   return <>{serviceIds.map(id=>{const cfg=groundConfig.services[id],phase=m.services[id],mount=serviceMount(m,id);return <group key={id}>
@@ -204,7 +172,7 @@ function World({r,onUpdate}:{r:RuntimeRef;onUpdate:()=>void}) {
  const livePose=useCallback(()=>r.current.mission.bridge.pose,[r]);
  return <><color attach="background" args={['#bed4dd']}/><fog attach="fog" args={['#bed4dd',60,140]}/><hemisphereLight args={['#ffffff','#627580',2]}/><directionalLight position={[-20,35,-15]} intensity={2.5}/>
   <Apron/>
-  <group ref={solids}><group ref={fixedSolids}><ServiceStairs m={m}/><StaticAircraft labels={false} annotations={false} doorOpen={false} halted/><PBB livePose={livePose} serviceAccess pose={m.bridge.pose} labels={false} annotations={false} highlight={false} halted={!r.current.operating} autoLevel={m.bridge.autoLevel} wheelRotation={m.bridge.wheelRotation} wheelTravel={m.bridge.wheelTravel} aux={{interior:true,exterior:true,aircon:false,ventilation:false}}/></group><MobileServiceSteps steps={m.mobileSteps} showGuide={stage(m)===6}/>
+  <group ref={solids}><group ref={fixedSolids}><BridgeServiceStairs pose={m.bridge.pose} open={m.stairDoorOpen} blocked={!!stairDoorBlockReason(m)} label={stage(m)===3?(stairDoorBlockReason(m)?'CỬA KHÓA · CHỜ CẦU DỪNG':`E · ${m.stairDoorOpen?'ĐÓNG':'MỞ'} CỬA · ỐNG ĐẦU SÁT CABIN`):undefined}/><StaticAircraft labels={false} annotations={false} doorOpen={false} halted/><PBB livePose={livePose} serviceAccess pose={m.bridge.pose} labels={false} annotations={false} highlight={false} halted={!r.current.operating} autoLevel={m.bridge.autoLevel} wheelRotation={m.bridge.wheelRotation} wheelTravel={m.bridge.wheelTravel} aux={{interior:true,exterior:true,aircon:false,ventilation:false}}/></group><MobileServiceSteps steps={m.mobileSteps} showGuide={stage(m)===6}/>
   </group>
   <ServiceVisuals r={r}/>
   {groundConfig.checks.map((c,i)=><Marker visible={m.started&&stage(m)===1&&i===m.checks.findIndex(v=>!v)} key={c.label} at={[c.at[0],c.at[1]+2,c.at[2]]} color={m.checks[i]?'#68e2ae':'#ffd167'}>{m.checks[i]?'✓':'E'} · {c.label}</Marker>)}

@@ -1,3 +1,4 @@
+import { cabinBumperGeometry as bumper } from '@/lib/cabinBumperGeometry';
 import { applyBridgeVisualPose, type BridgeVisualNodes } from '@/lib/bridgeVisualMotion';
 import { cabinCurtainPanels, CABIN_SWIVEL_RADIUS } from '@/lib/cabinCurtainGeometry';
 import { technicalConfig } from '@/lib/technicalConfig';
@@ -92,7 +93,6 @@ function CabinFront({open,floorTilt,halted=false}:{open:boolean;floorTilt:number
   {/* Continuous jambs, header and sill seal the partition against the cabin shell. */}
   {[-1,1].map(side=><Box key={side} at={[.1,1.14,side*1.325]} size={[.09,2.28,.09]} color="#c5cecb"/>)}
   {[.025,2.275].map(y=><Box key={y} at={[.1,y,0]} size={[.09,.05,2.75]} color="#b6c6cd"/>)}
-  <Box at={[1,-.085,0]} size={[.1,.03,.55]} color="#ebb94d"/>
   <Box at={[.84,-.16,0]} size={[.26,.13,.16]} color="#58727f"/>
  </>;
 }
@@ -180,7 +180,7 @@ const width=2.65-i*.18;return <group ref={node=>{visual.current.tunnels[i]=node;
     <group position={[CABIN_OFFSET,0,0]}>
     <group rotation={[0,0,p.floorTilt*Math.PI/180]}>
       <Box at={[0,-.1,0]} size={[2,.2,2.75]} color="#556975"/>
-      <Box at={[.95,-.04,0]} size={[.1,.08,2.55]} color="#e7bb48"/>
+      <mesh name="cabin-front-bumper" position={bumper.at}><boxGeometry args={bumper.size}/><meshStandardMaterial color="#e7bb48" roughness={.85}/></mesh>
     </group>
     <Box at={[0,2.4,0]} size={[2.15,.22,2.85]} color="#ecefeb"/>
     {[-1,1].map(side=><group key={side}>
@@ -205,9 +205,6 @@ const width=2.65-i*.18;return <group ref={node=>{visual.current.tunnels[i]=node;
      <ConformingCanopy pose={p} aircraftShift={aircraftShift}/>
 
     </group>
-    <group rotation={[0,0,p.floorTilt*Math.PI/180]}>
-     <Box at={[1+.005+p.canopy*Math.max(0,metrics(p).gap-.005),-.06,0]} size={[.05,.12,2.55]} color="#e3b934"/>
-    </group>
     {annotations&&<><Label visible={labels} at={[0,3.6,-2]}>03 · Cabin</Label><Label visible={labels} at={[1.4,2.9,2.7]}>04 · Canopy</Label></>}
     </group>
    </group>
@@ -229,7 +226,7 @@ export function Aircraft({labels,annotations=true,doorOpen=false,halted=false,he
  useEffect(()=>()=>hull.dispose(),[hull]);
  useEffect(()=>()=>doorFrame.dispose(),[doorFrame]);
  useFrame((_,dt)=>{if(!door.current||halted)return;const target=doorOpen?1:0;progress.current+=(target-progress.current)*Math.min(1,dt*3);if(Math.abs(target-progress.current)<.001)progress.current=target;door.current.position.x=doorSpec.closedX-doorSpec.outwardTravel*Math.min(1,progress.current*5);door.current.position.z=-8-doorSpec.slide*Math.max(0,(progress.current-.2)/.8);});
- return <group position={[7,heightShift,8]}>
+ return <group position={[standLayout.aircraftCenterX,heightShift,8]}>
   <mesh geometry={hull} castShadow receiveShadow><meshStandardMaterial vertexColors={!whiteLivery} color={whiteLivery?'#f0f5f8':'#ffffff'} side={DoubleSide} roughness={.38}/></mesh>
   {[-1,1].map(side=><group key={side}>
    {Array.from({length:38},(_,i)=><mesh key={i} position={[side*1.95,4.53,-6.7+i*.72]}><sphereGeometry args={[.13,12,10]}/><meshStandardMaterial color="#365d75"/></mesh>)}

@@ -3,7 +3,7 @@
  * length is horizontal rotunda-to-cabin-pivot reach, not tunnel slant length.
  */
 export const technicalConfig = {
-    stand: { aircraftNoseZ: -7, roadWidth: 3.8, noseToRoad: 7.5, bridgeLength: 8, rotundaX: -12 },
+    stand: { aircraftNoseZ: -7, roadWidth: 7.6, noseToRoad: 7.5, terminalRoadSetback: 3.1, rotundaZ: -11.7, rotundaX: -12 },
     limits: { angle: [-87.5, 87.5], length: [12, 28], height: [2, 5.4], cabYaw: [-65, 65], floorTilt: [-3, 3] },
     rates: { angle: 8, length: 1.3, height: .35, canopy: .65, cabYaw: 5, floorTilt: 1.5 },
     jogRates: { angle: 2, length: .45, height: .15, cabYaw: 3, floorTilt: 1 },

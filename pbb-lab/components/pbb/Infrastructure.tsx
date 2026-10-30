@@ -1,5 +1,6 @@
+import PCAHoseReels from './PCAHoseReels';
 import type { Pose } from '@/lib/simulation';
-import { standLayout } from '@/lib/standLayout';
+import { standLayout, terminalLayout } from '@/lib/standLayout';
 import { Html } from '@react-three/drei';
 import { useEffect, useMemo, useState } from 'react';
 import { CanvasTexture, CatmullRomCurve3, Quaternion, SRGBColorSpace, TubeGeometry, Vector3 } from 'three';
@@ -25,7 +26,7 @@ function AirSupplyHose({pose}:{pose:Pose}) {
   // Match the two sockets on PCA's aircraft-facing (+x) end, including tunnel slope.
   const x=-.48*pose.length+1.54*c+.93*sn,y=1.44-.48*pose.height-.93*c+1.54*sn;
   return [-1,1].map(side=>{
-   const z=side*.48,end=new Vector3(-1.82,-.68,side*.65-.565);
+   const z=side*.48,end=new Vector3(-1.82,-.72,side*.65+.42);
    const curve=new CatmullRomCurve3([new Vector3(x,y,z),new Vector3(x+.2,y-.15,z),new Vector3((x-1.82)/2,Math.min(y,-.78)-.55,side*1.18),new Vector3(-2.15,-1.15,end.z),end]);
    return {geometry:new TubeGeometry(curve,48,.12,12,false),ribs:Array.from({length:28},(_,i)=>{const t=i/27;return {point:curve.getPointAt(t),rotation:new Quaternion().setFromUnitVectors(new Vector3(0,0,1),curve.getTangentAt(t))};})};
   });
@@ -37,23 +38,7 @@ function AirSupplyHose({pose}:{pose:Pose}) {
  </group>)}</group>;
 }
 function HoseReels({show}:{show:boolean}) {
- return <group position={[-1.7,-.78,0]}>
-  {/* Side-by-side across the bridge; both horizontal reel axes point across the bridge, with the outlet faces toward the left side. */}
-  {[-.65,.65].map(z=><group key={z} position={[0,0,z]} rotation={[0,Math.PI,0]}>
-   <Block at={[0,.58,0]} size={[.12,.3,.7]} color="#ced6d8"/>
-   <mesh rotation={[Math.PI/2,0,0]} castShadow><cylinderGeometry args={[.4,.4,.55,40]}/><meshStandardMaterial color="#ec6c21" roughness={.8}/></mesh>
-   {[-.32,.32].map(z=><group key={z}>
-    <mesh position={[0,0,z]}><ringGeometry args={[.2,.5,40]}/><meshStandardMaterial color="#c6cfd0" metalness={.65} roughness={.4} side={2}/></mesh>
-    <mesh position={[0,0,z]}><torusGeometry args={[.49,.025,8,40]}/><meshStandardMaterial color="#d4dddf" metalness={.6}/></mesh>
-   </group>)}
-   {Array.from({length:9},(_,i)=><mesh key={i} position={[0,0,-.25+i*.062]}><torusGeometry args={[.38,.038,8,32]}/><meshStandardMaterial color={i%2?'#ef8d31':'#c85a19'} roughness={.8}/></mesh>)}
-   <Block at={[.12,.06,.36]} size={[.4,.43,.055]} color="#e2e7e6"/>
-   <mesh position={[.12,.1,.47]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[.16,.16,.19,24,1,true]}/><meshStandardMaterial color="#e0e3df" side={2} metalness={.5}/></mesh>
-   <mesh position={[-.2,-.26,.38]} rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[.13,.13,.18,24]}/><meshStandardMaterial color="#e1a52d"/></mesh>
-   <mesh position={[-.2,-.26,.48]}><torusGeometry args={[.11,.022,8,24]}/><meshStandardMaterial color="#222c32"/></mesh>
-  </group>)}
-  <Annotation at={[0,-.1,-1.55]} show={show}>Ống khí</Annotation>
- </group>;
+ return <><PCAHoseReels/><Annotation at={[-1.7,-.88,-1.55]} show={show}>Ống khí</Annotation></>;
 }
 export function BridgeServices({length,show}:{length:number;show:boolean}) {
  return <group position={[length*.52,-.78,0]}>
@@ -184,7 +169,7 @@ export function FixedBridge({show}:{show:boolean}) {
    {[-.5,-.25,0,.25,.5].map(t=>{const x=t*standLayout.bridgeLength;return <Block key={x} at={[x,1.3,side*1.32]} size={[.07,2.3,.12]} color="#f0f4f5"/>;})}
    <Block at={[0,.8,side*1.32]} size={[standLayout.bridgeLength,.08,.12]} color="#2795a4"/>
   </group>)}
-  {[-3,3].map(x=>[-1,1].map(z=><Block key={`${x}:${z}`} at={[x,-1.55,z]} size={[.38,2.9,.38]} color="#738994"/>))}
+  {[-standLayout.bridgeLength/2+standLayout.bridgeSupportInset,standLayout.bridgeLength/2-standLayout.bridgeSupportInset].map(x=>[-1,1].map(z=><Block key={`${x}:${z}`} at={[x,-1.55,z]} size={[.38,2.9,.38]} color="#738994"/>))}
   <Annotation at={[0,3.25,0]} show={show}>06 · Cầu cố định</Annotation>
  </group>;
 }
@@ -212,13 +197,35 @@ export function BridgeBrand({length}:{length:number}) {
 }
 export function ServiceRoad() {
  return <group position={[0,0,standLayout.roadCenterZ]} rotation={[0,Math.PI/2,0]}>
-  <Block at={[0,.014,0]} size={[3.8,.02,56]} color="#58626b"/>
-  {[-1.8,1.8].map(x=><Block key={x} at={[x,.03,0]} size={[.06,.015,56]} color="#e5e8e5"/>)}
-  {Array.from({length:20},(_,i)=><Block key={i} at={[0,.032,-27+i*2.8]} size={[.055,.014,1.35]} color="#e5e8e5"/>)}
-  {[-1,1].map(lane=>[-17,-7,7,17].map(z=><group key={lane+':'+z} position={[lane*.9,.043,z]} rotation={[0,lane===-1?0:Math.PI,0]}>
+  <Block at={[0,.014,0]} size={[standLayout.roadWidth,.02,standLayout.roadLength]} color="#58626b"/>
+  {[-1,1].map(side=><Block key={side} at={[side*(standLayout.roadWidth/2-.1),.03,0]} size={[.06,.015,standLayout.roadLength]} color="#e5e8e5"/>)}
+  {Array.from({length:Math.floor(standLayout.roadLength/2.8)},(_,i)=><Block key={i} at={[0,.032,-standLayout.roadLength/2+.8+i*2.8]} size={[.055,.014,1.35]} color="#e5e8e5"/>)}
+  {[-1,1].map(lane=>[-30,-18,-6,6,18,30].map(z=><group key={lane+':'+z} position={[lane*standLayout.roadWidth/4,.043,z]} rotation={[0,lane===-1?0:Math.PI,0]}>
    <Block at={[0,0,0]} size={[.09,.014,.9]} color="#f0f1e9"/>
    {[-1,1].map(side=><mesh key={side} position={[side*.12,0,.3]} rotation={[0,side*.65,0]}><boxGeometry args={[.07,.014,.4]}/><meshBasicMaterial color="#f0f1e9"/></mesh>)}
   </group>))}
 
+ </group>;
+}
+/** Three distinct storeys; the passenger bridge joins level 1 at y=3 m. */
+export function TerminalBuilding(){
+ const t=terminalLayout,face=standLayout.terminalFaceZ;
+ return <group name="three-storey-terminal">
+  <Block at={[0,t.height/2,face-t.depth/2]} size={[t.width,t.height,t.depth]} color="#b9c6cb"/>
+  {t.levels.map((base,level)=><group key={base} name={level===0?'terminal-ground-floor':'terminal-level-'+level}>
+   <Block at={[0,base+1.55,face+.045]} size={[t.width-.6,2.35,.08]} color={level===0?'#33515e':'#416879'}/>
+   {Array.from({length:36},(_,i)=><Block key={i} at={[-34+i*1.94,base+1.55,face+.12]} size={[.07,2.45,.13]} color="#b0c5ce"/>)}
+   <Block at={[0,base+.08,face-t.depth/2]} size={[t.width+.4,.20,t.depth+.4]} color="#e5ecec"/>
+   <Block at={[0,base+2.87,face+.12]} size={[t.width,.19,.32]} color="#e0e8e8"/>
+   <Plate at={[-28,base+1.55,face+.20]} text={level===0?'TẦNG TRỆT':'TẦNG '+level} width={3.2} color="#e9f5f6" background="#254858"/>
+  </group>)}
+  <Block at={[0,t.height+.12,face-t.depth/2]} size={[t.width+1,.25,t.depth+.8]} color="#edf2ef"/>
+  {[-33,-22,0,22,33].map(x=><Block key={x} at={[x,t.height/2,face+.24]} size={[.22,t.height,.30]} color="#d4e0e1"/>)}
+  <group name="terminal-level-1-bridge-entry" position={[standLayout.rotundaX,3,face+.20]}>
+   <Block at={[0,1.25,0]} size={[2.62,2.50,.10]} color="#7ba7b7"/>
+   {[-1,1].map(side=><Block key={side} at={[side*1.4,1.25,.07]} size={[.16,2.65,.18]} color="#f0f2eb"/>)}
+   <Block at={[0,2.58,.07]} size={[2.96,.16,.18]} color="#f0f2eb"/>
+   <Block at={[0,-.05,.07]} size={[2.96,.10,.30]} color="#8da5ad"/>
+  </group>
  </group>;
 }

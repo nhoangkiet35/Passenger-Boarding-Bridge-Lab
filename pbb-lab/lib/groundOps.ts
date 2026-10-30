@@ -1,4 +1,5 @@
-import { initial, cabinFrame, aligned, metrics, moving, command, type State } from './simulation.ts';
+import {pcaReelLayout} from './pcaHoseGeometry.ts';
+import { initial, cabinFrame, aligned, metrics, moving, command, type State, type Pose } from './simulation.ts';
 import { standLayout } from './standLayout.ts';
 import { initialMobileSteps, mobileBrake, mobileFloor, mobileHandle, mobileHoseGuides, mobileReady, onMobilePlatform, type MobileSteps } from './mobileSteps.ts';
 
@@ -41,7 +42,7 @@ export function serviceMount(m:Mission,id:ServiceId) {
  const p=m.bridge.pose,a=p.angle*Math.PI/180,f=cabinFrame(p);
  const bridge=(along:number,y:number,side:number):Point=>[standLayout.rotundaX+along*Math.cos(a)-side*Math.sin(a),y,standLayout.rotundaZ+along*Math.sin(a)+side*Math.cos(a)];
  const cabin=(x:number,y:number,z:number):Point=>[f.x+x*Math.cos(f.heading)-z*Math.sin(f.heading),p.height+y,f.z+x*Math.sin(f.heading)+z*Math.cos(f.heading)];
- const anchor=id==='GPU'?cabin(.83,-1.1,.7):id==='PCA'?bridge(p.length-1.5,p.height-1.04,-1.13):bridge(p.length-1.985,1.3,-2.419);
+ const anchor=id==='GPU'?cabin(.83,-1.1,.7):id==='PCA'?bridge(p.length+pcaReelLayout.mount[0]+pcaReelLayout.outlet[0],p.height+pcaReelLayout.mount[1]+pcaReelLayout.outlet[1]-pcaReelLayout.lipDrop,-pcaReelLayout.spacing+pcaReelLayout.outlet[2]):bridge(p.length-1.985,1.3,-2.419);
  const pickup=id==='GPU'?cabin(.65,1.05-p.height,1.65):id==='PCA'?bridge(p.length-1.5,1.05,-2.75):bridge(p.length-1.985,1.0,-2.95);
  const guide:Point=[pickup[0],.16,pickup[2]];
  return {anchor,pickup,guide,control:pickup};
@@ -104,7 +105,7 @@ export function advanceMission(m: Mission, seconds: number): Mission {
 export function secureBridge(m: Mission): Mission {
   const p=m.bridge.pose,g=metrics(p),t=groundConfig.dockingTolerance;
   if(!m.checks.every(Boolean) || !aligned(p) || Math.abs(g.offset)>t.offset || Math.abs(p.angle+p.cabYaw)>t.yaw || Math.abs(g.heightError)>t.height || p.canopy<.999 || !m.bridge.autoLevel || m.bridge.fault) return fail(m,'Cần căn chỉnh lệch cửa ≤ 0,18 m, góc ≤ 5°, triển khai canopy và bật theo dõi cao độ.');
-  return {...m,docked:true,accuracy:Math.max(0,100-100*(Math.abs(g.heightError)/t.height+Math.abs(g.offset)/t.offset+Math.abs(p.angle+p.cabYaw)/t.yaw)/3),message:'Cầu ổn định. Rời bàn, đến cửa ống A ngay sau cabin, nhấn E mở cửa và xuống cầu thang.'};
+  return {...m,docked:true,accuracy:Math.max(0,100-100*(Math.abs(g.heightError)/t.height+Math.abs(g.offset)/t.offset+Math.abs(p.angle+p.cabYaw)/t.yaw)/3),message:'Cầu ổn định. Rời bàn, đến cửa ống đầu sát cabin, nhấn E mở cửa và xuống cầu thang.'};
 }
 export const handover: Point = [-8,0,24];
 /** Re-entering the console does not detach the bridge; C explicitly starts a new approach. */
@@ -127,8 +128,8 @@ export function finishMission(m: Mission, player: Point, linesClear: boolean): M
 }
 
 /** Service access moves with the tunnel immediately behind the cabin, not the terminal rotunda. */
-export const stairConfig = { setback:2.8, doorSide:1.145, halfDoor:.55, side:2.4, halfWidth:.64, run:6.4, steps:32, landingBack:1, landingFront:1, interactionRange:2.1 };
-export function stairFrame(m:Mission) {
+export const stairConfig = { setback:2.9, doorSide:1.145, halfDoor:.55, side:2.4, halfWidth:.64, run:6.4, steps:32, landingBack:1, landingFront:1, interactionRange:2.1 };
+export function stairFrame(m:{bridge:{pose:Pose}}) {
  const p=m.bridge.pose,a=p.angle*Math.PI/180,along=p.length-stairConfig.setback;
  return {x:standLayout.rotundaX+along*Math.cos(a),z:standLayout.rotundaZ+along*Math.sin(a),a,height:3+(p.height-3)*along/p.length,along};
 }
