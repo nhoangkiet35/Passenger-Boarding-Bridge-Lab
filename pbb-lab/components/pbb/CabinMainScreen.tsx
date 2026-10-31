@@ -88,7 +88,7 @@ export default function CabinMainScreen({ s, send, mobileControls }: { s: State;
   const plcRun = s.power && !s.emergency;
   const slope = Math.atan2(s.pose.height - 3, s.pose.length) * 180 / Math.PI;
   const allMessages = bridgeMessages(s);
-  const messagesPerPage = mobileControls ? 2 : 5;
+  const messagesPerPage = mobileControls ? 2 : 3;
   const lastPage = Math.max(0, Math.ceil(allMessages.length / messagesPerPage) - 1);
   const visiblePage = Math.min(page, lastPage);
   const messages = Array.from({ length: messagesPerPage }, (_, index) => allMessages[visiblePage * messagesPerPage + index] ?? { text: '', alarm: false });

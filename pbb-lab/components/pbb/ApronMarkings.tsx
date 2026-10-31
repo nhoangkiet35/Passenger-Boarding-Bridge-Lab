@@ -61,6 +61,9 @@ export default function ApronMarkings(){
  },[]);
  if(!texture)return null;
  return <mesh name="reference-apron-ground-markings" position={[0,.055,(near+far)/2]} rotation={[-Math.PI/2,0,0]}>
-  <planeGeometry args={[width,far-near]}/><meshBasicMaterial map={texture} transparent depthWrite={false} toneMapped={false}/>
+  <planeGeometry args={[width,far-near]}/>
+  {/* Paint is an opaque cutout: render before the cabin glazing, discard unpainted pixels,
+      and keep depth testing so aircraft/equipment still occlude the ground correctly. */}
+  <meshBasicMaterial map={texture} alphaTest={.05} toneMapped={false}/>
  </mesh>;
 }
