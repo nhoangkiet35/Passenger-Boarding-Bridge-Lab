@@ -137,3 +137,5 @@
 }
 @keyframes site-menu-enter{from{opacity:0;translate:0 -7px}to{opacity:1;translate:0 0}}
 @media(prefers-reduced-motion:reduce){.site-header .site-navigation.is-open{animation:none}.site-shell .site-menu-toggle{transition:none}}
+/* Keep all four header destinations within tablet widths. */
+@media(min-width:761px) and (max-width:1000px){.site-header-inner{gap:12px;padding-inline:20px}.site-header .site-navigation a{font-size:12px;padding-inline:8px;gap:5px}.site-header .site-navigation a svg{display:none}}

@@ -42,7 +42,7 @@ export function World({s,labels=false,cctv=false}:{s:State;labels?:boolean;cctv?
   <ServiceRoad/>
   <FixedBridge show={!cctv&&labels}/><VDGS show={!cctv&&labels} connected={passengerAccess(s)}/>
   {s.obstacles.map(o=><group key={o.id} position={[o.x,o.height/2,o.z]}><Box size={[o.radius*2,o.height,o.radius*2]} color={o.kind==='person'?'#e58c52':'#c95454'}/>{!cctv&&<Html position={[0,o.height/2+.3,0]} center><span className="part-label">{o.kind==='person'?'Người':'Xe'} · vùng giả định</span></Html>}</group>)}
-  <Aircraft labels={labels} annotations={!cctv} doorOpen={passengerAccess(s)} halted={s.emergency||!!s.fault||!s.power} heightShift={s.aircraftShift}/><BridgeServiceStairs pose={s.pose} label={!cctv&&labels?'Cửa thang bộ · ống đầu sát cabin':undefined}/><PBB serviceAccess pose={s.pose} halted={s.emergency||!!s.fault||!s.power||s.paused} wheelTravel={s.wheelTravel} autoLevel={s.autoLevel} aircraftShift={s.aircraftShift} labels={labels} annotations={!cctv} highlight={!cctv} aux={s.power?s.aux:{interior:false,exterior:false,aircon:false,ventilation:false}} wheelRotation={wheelMotion(s).angle}/>
+  <Aircraft labels={labels} annotations={!cctv} doorOpen={passengerAccess(s)} halted={s.emergency||!!s.fault||!s.power} heightShift={s.aircraftShift}/><BridgeServiceStairs pose={s.pose}/><PBB serviceAccess pose={s.pose} halted={s.emergency||!!s.fault||!s.power||s.paused} wheelTravel={s.wheelTravel} autoLevel={s.autoLevel} aircraftShift={s.aircraftShift} labels={labels} annotations={!cctv} highlight={!cctv} aux={s.power?s.aux:{interior:false,exterior:false,aircon:false,ventilation:false}} wheelRotation={wheelMotion(s).angle}/>
   {!cctv&&<PassengerFlow active={passengerAccess(s)} pose={s.pose}/>}
 
 </>;}
